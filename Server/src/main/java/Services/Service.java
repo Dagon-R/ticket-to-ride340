@@ -1,4 +1,5 @@
-package PACKAGE_NAME;
+package Services;
 
 public interface Service {
+    void doService();
 }
