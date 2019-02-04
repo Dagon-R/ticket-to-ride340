@@ -1,12 +1,14 @@
-package Models
+package Models;
+
+import java.util.HashSet;
 
 public class ActiveGame implements IGame{
 	//A list of the players associated with the game
-	HashSet<Player> players = new HashSet<>();
+	private HashSet<Player> players = new HashSet<>();
 	//The name of the game that will be displayed in menus
-	String name;
+	private String name;
 	//The unique id that represents this game
-	String id;
+	private String id;
 	
 	public ActiveGame(){}
 	

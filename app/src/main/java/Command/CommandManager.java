@@ -8,6 +8,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class CommandManager {
@@ -15,10 +16,11 @@ public class CommandManager {
     private Queue<Command> queue;
     private Gson json;
 
-    public CommandManager(String ipAddress, int portNumber) {
+    CommandManager(String ipAddress, int portNumber) {
         try {
             json = new Gson();
             server = new Socket(ipAddress, portNumber);
+            queue = new LinkedList<>();
         } catch (IOException e) {
             System.out.print("Couldn't connect to server.\n");
             e.printStackTrace();

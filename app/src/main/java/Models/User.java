@@ -1,11 +1,12 @@
-
-
+package Models;
 
 public class User {
 	//The unique name of this user
-	String name;
+	private String name;
 	//The password for this user
-	String password;
+	private String password;
+	private PlayerColorEnum playerColor;
+	private String id;
 	
 	public PlayerColorEnum getColor(){
 		return playerColor;

@@ -1,13 +1,15 @@
-package Models
+package Models;
+
+import java.util.HashSet;
 
 public interface IGame {
-	public Boolean addPlayer(Player newPlayer);
-	
-	public Boolean removePlayer(Player targetPlayer);
-	
-	public HashSet<Player> getPlayers();
-	
-	public String getName();
-	
-	public String getId();
+	Boolean addPlayer(Player newPlayer);
+
+	Boolean removePlayer(Player targetPlayer);
+
+	HashSet<Player> getPlayers();
+
+	String getName();
+
+	String getId();
 }
