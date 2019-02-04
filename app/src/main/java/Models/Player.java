@@ -1,11 +1,13 @@
+package Models;
 
 
-
-public class User {
-	//The unique name of this user
+public class Player {
+	//The color that represents this player
+	PlayerColorEnum playerColor;
+	//The name of this player
 	String name;
-	//The password for this user
-	String password;
+	//The unique id of this player
+	String id;
 	
 	public PlayerColorEnum getColor(){
 		return playerColor;
@@ -15,8 +17,8 @@ public class User {
 		return name;
 	}
 	
-	public String getPassword(){
-		return password;
+	public String getId(){
+		return id;
 	}
 	
 	private void setColor(PlayerColorEnum input){
@@ -27,8 +29,8 @@ public class User {
 		this.name = input;
 	}
 	
-	private void setPassword(String input){
-		this.id = password;
+	private void setId(String input){
+		this.id = input;
 	}
 	
 }
