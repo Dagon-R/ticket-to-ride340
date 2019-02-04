@@ -18,7 +18,7 @@ public class ObservableSubscription extends Observable{
             return;
         }
 
-        subscriptions.put(type,new HashSet<>());
+        subscriptions.put(type,new HashSet<Observer>());
         subscriptions.get(type).add(o);
     }
 
