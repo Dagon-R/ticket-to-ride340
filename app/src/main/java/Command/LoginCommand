@@ -1,0 +1,11 @@
+package Command;
+
+public class LoginCommand implements Command {
+    String username;
+    String password;
+
+    @Override
+    public Object execute() {
+        return null;
+    }
+}
