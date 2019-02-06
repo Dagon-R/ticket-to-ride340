@@ -8,6 +8,12 @@ public class Player {
 	String name;
 	//The unique id of this player
 	String id;
+
+	public Player(String name, PlayerColorEnum playerColor, String id){
+		this.name = name;
+		this.playerColor = playerColor;
+		this.id = id;
+	}
 	
 	public PlayerColorEnum getColor(){
 		return playerColor;

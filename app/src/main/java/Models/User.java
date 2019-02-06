@@ -7,6 +7,13 @@ public class User {
 	private String password;
 	private PlayerColorEnum playerColor;
 	private String id;
+
+	public User(String name, String password, PlayerColorEnum playerColor, String id){
+		this.name = name;
+		this.password = password;
+		this.playerColor = playerColor;
+		this.id = id;
+	}
 	
 	public PlayerColorEnum getColor(){
 		return playerColor;
