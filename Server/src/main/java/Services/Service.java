@@ -1,5 +1,5 @@
 package Services;
 
-public interface IService  {
+public interface Service {
     Object doService(Object... obj);
 }
