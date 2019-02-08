@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -27,6 +27,20 @@ public class CommandManager {
         }
     }
 
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        if (server == null) {
+            return;
+        }
+        try {
+            server.getOutputStream().close();
+            server.close();
+        } catch (IOException e) {
+            System.out.print("Server failed to close");
+        }
+    }
+
     public Command getCommand() {
         if (!queue.isEmpty()) {
             return queue.poll();
@@ -42,7 +56,7 @@ public class CommandManager {
                         throw new InvalidCommandException();
                     }
                     String dataJSON = "[" +
-                            new String(Arrays.copyOfRange(data, 0, data.length - 2)) + "]";
+                            new String(Arrays.copyOfRange(data, 0, data.length - 1)) + "]";
                     System.out.print("Found following JSON: \n" + dataJSON + "\n");
                     CommandWrapper[] commandWrappers = json.fromJson(dataJSON, CommandWrapper[].class);
                     System.out.print("Successfully retrieved command wrappers");
@@ -80,9 +94,10 @@ public class CommandManager {
     }
 
     private void writeString(String str, OutputStream os) throws IOException {
-        OutputStreamWriter sw = new OutputStreamWriter(os);
-        sw.write(str);
-        sw.flush();
-        os.close();
+        PrintWriter pw = new PrintWriter(os);
+        pw.write(str + "\n");
+        pw.flush();
+        System.out.print("Message sent to server: " + str + "\n");
+        //os.close();
     }
 }
