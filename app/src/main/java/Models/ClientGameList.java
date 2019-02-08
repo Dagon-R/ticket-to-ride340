@@ -1,4 +1,6 @@
-package Models
+package Models;
+
+import java.util.HashSet;
 
 public class ClientGameList {
 	//A list of games that are currently waiting to start
@@ -10,7 +12,7 @@ public class ClientGameList {
 		return activeGames;
 	}
 	
-	public HashSet<ActiveGame> getPendingGames(){
+	public HashSet<PendingGame> getPendingGames(){
 		return pendingGames;
 	}
 	
@@ -24,7 +26,7 @@ public class ClientGameList {
 
 	public void removePendingGame(PendingGame targetGame){
 		for(PendingGame game : pendingGames){
-			if(game.getId().equals(gameId)){
+			if(game.getId().equals(targetGame.getId())){
 				pendingGames.remove(game);
 			}
 		}
@@ -32,7 +34,7 @@ public class ClientGameList {
 	
 	public void removeActiveGame(ActiveGame targetGame){
 		for(ActiveGame game : activeGames){
-			if(game.getId().equals(gameId)){
+			if(game.getId().equals(targetGame.getId())){
 				activeGames.remove(game);
 			}
 		}

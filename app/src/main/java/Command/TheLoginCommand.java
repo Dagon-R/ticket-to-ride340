@@ -2,7 +2,7 @@ package Command;
 
 import Services.LoginService;
 
-public class LoginCommand implements Command {
+public class TheLoginCommand implements Command {
     private String username;
     private String password;
 
@@ -12,7 +12,7 @@ public class LoginCommand implements Command {
         return newService.doService(username, password);
     }
 
-    public LoginCommand(String username, String password) {
+    public TheLoginCommand(String username, String password) {
         this.username = username;
         this.password = password;
     }

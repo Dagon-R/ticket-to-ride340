@@ -1,5 +1,4 @@
-
-
+package Models;
 
 public class User {
 	//The unique name of this user
@@ -10,6 +9,13 @@ public class User {
 	Boolean loggedIn = false;
 	//The auth token for server verification (if necessary)
 	String authToken;
+	// The player color of the current player
+	PlayerColorEnum playerColor;
+
+	public String getId() { return id; }
+
+	// The player's identification number
+	String id;
 	
 	public PlayerColorEnum getColor(){
 		return playerColor;

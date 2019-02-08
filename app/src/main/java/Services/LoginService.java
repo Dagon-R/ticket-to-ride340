@@ -16,7 +16,7 @@ public class LoginService implements Service {
     public Object doService(Object... obj) {
         String name = (String) obj[0];
         String password = (String) obj[1];
-        PlayerColorEnum color = (int) obj[2];
+        PlayerColorEnum color = PlayerColorEnum.valueOf((String)obj[2]);
 
         String id = "createIDHere";
 
@@ -24,7 +24,7 @@ public class LoginService implements Service {
         //User user = users.where('name' == name);
 
         //send loginCommand
-        sp.sendCommand(user);
+        //sp.sendCommand(user);
 
         //on recieve command return id?? to presenter
         //set logged in flag?
