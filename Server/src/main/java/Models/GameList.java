@@ -1,4 +1,4 @@
-package Models
+package Models;
 
 public class ServerGameList {
 	//A list of games that are currently waiting to start

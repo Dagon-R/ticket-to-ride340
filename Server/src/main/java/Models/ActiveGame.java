@@ -1,4 +1,4 @@
-package Models
+package Models;
 
 public class ServerActiveGame implements IGame{
 	//A list of the players associated with the game
