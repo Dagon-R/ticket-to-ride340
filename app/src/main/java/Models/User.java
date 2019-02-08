@@ -6,6 +6,10 @@ public class User {
 	String name;
 	//The password for this user
 	String password;
+	//Says whether the current instance of the Client is logged in
+	Boolean loggedIn = false;
+	//The auth token for server verification (if necessary)
+	String authToken;
 	
 	public PlayerColorEnum getColor(){
 		return playerColor;
@@ -19,16 +23,31 @@ public class User {
 		return password;
 	}
 	
-	private void setColor(PlayerColorEnum input){
+	public Boolean getLoggedIn(){
+		return loggedIn;
+	}
+	
+	public String getAuthToken(){
+		return authToken;
+	}
+	
+	public void setColor(PlayerColorEnum input){
 		this.playerColor = input;
 	}
 	
-	private void setName(String input){
+	public void setName(String input){
 		this.name = input;
 	}
 	
-	private void setPassword(String input){
+	public void setPassword(String input){
 		this.id = password;
 	}
 	
+	public void setLoggedIn(Boolean state){
+		this.loggedIn = state;
+	}
+	
+	public void setAuthToken(String token){
+		this.authToken = token;
+	}
 }

@@ -1,6 +1,6 @@
 package Models
 
-public class ActiveGame implements IGame{
+public class ServerActiveGame implements IGame{
 	//A list of the players associated with the game
 	HashSet<Player> players = new HashSet<>();
 	//The name of the game that will be displayed in menus
