@@ -1,27 +1,19 @@
-package Models;
+package Models
 
-import java.util.HashSet;
-
-public class ActiveGame implements IGame{
+public class ServerPendingGame implements IGame{
 	//A list of the players associated with the game
-	private HashSet<Player> players = new HashSet<>();
+	HashSet<Player> players = new HashSet<>();
 	//The name of the game that will be displayed in menus
-	private String name;
+	String name;
 	//The unique id that represents this game
-	private String id;
+	String id;
 	
-	public ActiveGame(){}
+	public PendingGame(){}
 	
-	public ActiveGame(Player host, String gameName){
+	public PendingGame(Player host, String gameName){
 		players.add(host);
 		this.name = gameName;
-		this.id = gameName + host.getName() + "_ACTIVE";
-	}
-	
-	public ActiveGame(PendingGame startGame){
-		players.add(startGame.getPlayers());
-		this.name = startGame.getName();
-		this.id = startGame.getId() + "_ACTIVE";
+		this.id = gameName + host.getName();
 	}
 	
 	public Boolean addPlayer(Player newPlayer){
