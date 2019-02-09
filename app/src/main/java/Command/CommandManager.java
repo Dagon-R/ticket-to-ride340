@@ -93,11 +93,15 @@ public class CommandManager {
         }
     }
 
-    private void writeString(String str, OutputStream os) throws IOException {
+    private void writeString(String str, OutputStream os) {
         PrintWriter pw = new PrintWriter(os);
         pw.write(str + "\n");
         pw.flush();
         System.out.print("Message sent to server: " + str + "\n");
         //os.close();
+    }
+
+    boolean isAvailable() throws IOException {
+        return server.getInputStream().available() > 0;
     }
 }
