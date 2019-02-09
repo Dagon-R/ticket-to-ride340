@@ -2,7 +2,6 @@ package Communication;
 
 import Command.*;
 import Models.Player;
-import Models.User;
 
 public class ServerProxy {
     private static ServerProxy ourInstance = null;
@@ -25,12 +24,12 @@ public class ServerProxy {
 
     public void login(String username, String password)
     {
-        TheLoginCommand newLog = new TheLoginCommand(username,password);
+        TheLoginCommand newLog = new TheLoginCommand(username,password,manager.getOwnIP());
         manager.sendCommand(newLog);
     }
     public void register(String username,String password)
     {
-        RegisterCommand newReg = new RegisterCommand(username,password);
+        RegisterCommand newReg = new RegisterCommand(username,password,manager.getOwnIP());
         manager.sendCommand(newReg);
     }
 
@@ -46,10 +45,10 @@ public class ServerProxy {
         StartGameCommand newStart = new StartGameCommand(gameID);
         manager.sendCommand(newStart);
     }
-    public void createGame(Player player)
+    public void createGame(Player player, String gameID)
     {
         CreateGameCommand newCreate =
-                new CreateGameCommand(player);
+                new CreateGameCommand(player, gameID);
         manager.sendCommand(newCreate);
 
     }
