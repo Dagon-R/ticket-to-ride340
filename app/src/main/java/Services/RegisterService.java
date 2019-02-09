@@ -1,7 +1,6 @@
 package Services;
 
 import Communication.ServerProxy;
-import Models.Player;
 import Models.User;
 import Models.UserList;
 
@@ -18,7 +17,7 @@ public class RegisterService implements Service {
         String password = (String) obj[1];
 
         //create user model
-        User newUser = new User(username, password);
+        User newUser = sp.Register(username, password);
 
         //add user to list of all user
         UserList users = UserList.get();
