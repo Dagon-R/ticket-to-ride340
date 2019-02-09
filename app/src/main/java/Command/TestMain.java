@@ -5,7 +5,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
 public class TestMain {
-    private static String ipaddress = "10.24.202.194";
+    private static String ipaddress = "10.24.202.102";
     private static int port = 8080;
 
     public static void main(String[] args) {
@@ -13,12 +13,7 @@ public class TestMain {
         CommandManager manager = new CommandManager(ipaddress, port);
         manager.sendCommand(command);
         String nothing = "null";
-    }
-
-    private static void writeString(String str, OutputStream os) throws IOException {
-        OutputStreamWriter sw = new OutputStreamWriter(os);
-        sw.write(str);
-        sw.flush();
-        os.close();
+        Command nextCommand = manager.getCommand();
+        String something = "nothing";
     }
 }
