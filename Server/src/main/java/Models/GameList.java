@@ -1,62 +1,63 @@
 package Models;
 
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class GameList {
     //A list of games that are currently waiting to start
-    HashSet<ActiveGame> ServerActiveGames;
+    HashMap<String,ActiveGame> ServerActiveGames;
     //A list of games that are currently running
-    HashSet<PendingGame> ServerPendingGames;
+    HashMap<String,PendingGame> ServerPendingGames;
 
-    public GameList(HashSet<ActiveGame> serverActiveGames, HashSet<PendingGame> serverPendingGames) {
-        ServerActiveGames = new HashSet<>();
-        ServerPendingGames = new HashSet<>();
+    public GameList() {
+        ServerActiveGames = new HashMap<>();
+        ServerPendingGames = new HashMap<>();
     }
 
-    public boolean has(String name){
-        IGame game = new ActiveGame(null, name);
-
-        return ServerActiveGames.contains(game) || ServerPendingGames.contains(game);
+    public IGame get(String name){
+        IGame game =ServerActiveGames.get(name);
+        if(game == null){
+            game = ServerPendingGames.get(name);
+        }
+        return game ;
     }
 
-    public HashSet<ActiveGame> getServerActiveGames(){
+    public HashMap<String,ActiveGame> getServerActiveGames(){
         return ServerActiveGames;
     }
 
-    public HashSet<PendingGame> getServerPendingGames(){
+    public HashMap<String,PendingGame> getServerPendingGames(){
         return ServerPendingGames;
     }
 
     public void addServerPendingGame(PendingGame newGame){
-        ServerPendingGames.add(newGame);
+        ServerPendingGames.put(newGame.getName(),newGame);
     }
 
     public void addServerActiveGame(ActiveGame newGame){
-        ServerActiveGames.add(newGame);
+        ServerActiveGames.put(newGame.getName(),newGame);
     }
 
     public void removeServerPendingGame(PendingGame targetGame){
-        for(PendingGame game : ServerPendingGames){
-            if(game.getId().equals(targetGame.getId())){
-                ServerPendingGames.remove(game);
-            }
+        if(ServerPendingGames.containsKey(targetGame.getName())){
+            ServerPendingGames.remove(targetGame.getName());
         }
+
     }
 
     public void removeServerActiveGame(ActiveGame targetGame){
-        for(ActiveGame game : ServerActiveGames){
-            if(game.getName().equals(targetGame.getName())){
-                ServerActiveGames.remove(game);
-            }
+        if(ServerActiveGames.containsKey(targetGame.getName())){
+            ServerActiveGames.remove(targetGame.getName());
         }
+
     }
 
     public void startGame(String name){
-        for(PendingGame game : ServerPendingGames){
-            if(game.getName().equals(name)){
-                addServerActiveGame(new ActiveGame(game));
-                ServerPendingGames.remove(game);
-            }
+        if(ServerPendingGames.containsKey(name)){
+            PendingGame game = ServerPendingGames.get(name);
+            ServerPendingGames.remove(name);
+            addServerActiveGame(new ActiveGame(game));
         }
+
     }
 }

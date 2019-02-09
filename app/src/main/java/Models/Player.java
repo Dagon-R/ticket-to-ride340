@@ -9,10 +9,9 @@ public class Player {
 	//The unique id of this player
 	String id;
 
-	public Player(String name, PlayerColorEnum playerColor, String id){
+	public Player(String name, PlayerColorEnum playerColor){
 		this.name = name;
 		this.playerColor = playerColor;
-		this.id = id;
 	}
 	
 	public PlayerColorEnum getColor(){

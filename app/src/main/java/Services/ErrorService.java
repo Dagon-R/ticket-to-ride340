@@ -7,8 +7,6 @@ public class ErrorService implements Service {
     ServerProxy sp;
     MainModel model;
 
-
-
     @Override
     public void connectToProxy(Object... obj) {
         sp = ServerProxy.get();
@@ -18,6 +16,9 @@ public class ErrorService implements Service {
     @Override
     public void doService(Object... obj) {
         String message = (String) obj[0];
-        model.setErrorMessage(message);
+        String ipAddress = (String) obj[1];
+        if(model.getIPAddress().equals(ipAddress)){
+            model.setErrorMessage(message);
+        }
     }
 }
