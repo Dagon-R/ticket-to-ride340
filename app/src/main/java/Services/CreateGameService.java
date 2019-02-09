@@ -22,7 +22,7 @@ public class CreateGameService implements Service {
         //PendingGame newGame = new PendingGame(host, gameName);
 
         //call service, passback pendingGame
-        PendingGame newGame = sp.createGame(host, gameName);
+        sp.createGame(host, gameName);
 
         //TODO:if returns ok, add pendingGame to list
 
