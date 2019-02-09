@@ -8,6 +8,7 @@ public class MainModel extends Observable {
     private User user;
     private IGame game;
     private ClientGameList gameList;
+    private String errorMessage;
 
     private MainModel() {}
 
@@ -66,5 +67,13 @@ public class MainModel extends Observable {
 
     public void setGameList(ClientGameList gameList) {
         this.gameList = gameList;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 }
