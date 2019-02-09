@@ -17,7 +17,10 @@ public class JoinGameService implements Service {
     @Override
     public void connectToProxy(Object... obj) {
         String gameName = (String) obj[0];
-        Player player = (Player) obj[1];
+
+        PendingGame game = model.findGame(gameName);
+        int numPlayers = game.getPlayers().size();
+        Player player = new Player(model.getUser().getName(), PlayerColorEnum.values()[numPlayers]);
 
         sp.joinGame(player, gameName);
     }
