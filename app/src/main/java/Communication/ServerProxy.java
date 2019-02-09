@@ -46,10 +46,10 @@ public class ServerProxy {
         StartGameCommand newStart = new StartGameCommand(gameID);
         manager.sendCommand(newStart);
     }
-    public void createGame(Player player, String gameID)
+    public void createGame(User user, String gameID)
     {
         CreateGameCommand newCreate =
-                new CreateGameCommand(player, gameID);
+                new CreateGameCommand(user, gameID);
         manager.sendCommand(newCreate);
 
     }
