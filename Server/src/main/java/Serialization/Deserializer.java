@@ -18,7 +18,7 @@ public class Deserializer {
         return gson.fromJson(wrappers,CommandWrapper[].class);
     }
     public static Command deserializeCommand(String com, String type)throws ClassNotFoundException{
-        System.out.println(type);
+//        System.out.println(type);
         return (Command)gson.fromJson(com, Class.forName(type));
     }
 }

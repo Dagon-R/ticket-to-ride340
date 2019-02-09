@@ -19,7 +19,7 @@ public class SerialAndDeserialTest {
     public void setUp(){
         createGame = new ServerCreateGameCommand("awesomeGame");
         joinGame = new ServerJoinGameCommand("awesomeGame");
-        login = new ServerLoginCommand("user","password");
+        login = new ServerTheLoginCommand("user","password");
         register = new ServerRegisterCommand("user","password");
         startGame = new ServerCreateGameCommand("awesomeGame");
 

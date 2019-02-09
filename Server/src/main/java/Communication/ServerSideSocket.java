@@ -29,7 +29,6 @@ public class ServerSideSocket extends Thread implements IServerSocket{
         allSockets = new CopyOnWriteArraySet<>();
         pendingSockets = new HashSet<>();
         boundSockets = new HashMap<>();
-
     }
 
     public void poll()throws ConcurrentModificationException {
@@ -44,6 +43,7 @@ public class ServerSideSocket extends Thread implements IServerSocket{
                 System.out.println("Socket Disconnected");
                 totalSockets--;
             }
+
 
         }
 

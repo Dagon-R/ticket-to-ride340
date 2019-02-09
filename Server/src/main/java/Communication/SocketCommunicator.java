@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.util.Objects;
 
 import Command.Command;
+import Command.ErrorCommand;
 import Command.CommandWrapper;
 import Serialization.Deserializer;
 import Serialization.Serializer;
@@ -27,6 +28,7 @@ public class SocketCommunicator{
     }
 
     public String getIP(){
+//        socket.get
         return socket.getRemoteSocketAddress().toString();
     }
 
@@ -34,7 +36,7 @@ public class SocketCommunicator{
     public void send(Command command){
         String name = String.join("",command.getClass().getName().split("Server"));
         CommandWrapper wrapper = new CommandWrapper(Serializer.serialize(command), name);
-        System.out.println("Sending Command");
+        System.out.println("Sending Command to " + socket.getRemoteSocketAddress()+"\n");
         out.write(Serializer.serialize(wrapper)+",");
         out.flush();
 
@@ -64,7 +66,12 @@ public class SocketCommunicator{
 
 
                 Command command = Deserializer.deserializeCommand(wrapper.getCommand(),type.toString());
-                command.execute();
+                Object obj = command.execute();
+                if(obj.getClass() == ErrorCommand.class){
+                    command = (ErrorCommand) obj;
+                }else{
+                    command.addResults(obj);
+                }
                 System.out.println(command);
                 server.sendToAll(command,this);
             }
