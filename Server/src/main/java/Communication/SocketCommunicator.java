@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.util.Objects;
 
 import Command.Command;
+import Command.ErrorCommand;
 import Command.CommandWrapper;
 import Serialization.Deserializer;
 import Serialization.Serializer;
@@ -27,6 +28,7 @@ public class SocketCommunicator{
     }
 
     public String getIP(){
+//        socket.get
         return socket.getRemoteSocketAddress().toString();
     }
 
@@ -64,7 +66,12 @@ public class SocketCommunicator{
 
 
                 Command command = Deserializer.deserializeCommand(wrapper.getCommand(),type.toString());
-                command.execute();
+                Object obj = command.execute();
+                if(obj.getClass() == ErrorCommand.class){
+                    command = (ErrorCommand) obj;
+                }else{
+                    command.addResults(obj);
+                }
                 System.out.println(command);
                 server.sendToAll(command,this);
             }

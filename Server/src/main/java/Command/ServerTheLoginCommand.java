@@ -8,13 +8,15 @@ public class ServerTheLoginCommand implements Command{
     private String username;
     private String password;
     private boolean valid;
+    private String ipAddress;
     public ServerTheLoginCommand() {
     }
 
-    public ServerTheLoginCommand(String username, String password) {
+    public ServerTheLoginCommand(String username, String password, boolean valid, String ipAddress) {
         this.username = username;
         this.password = password;
-
+        this.valid = valid;
+        this.ipAddress = ipAddress;
     }
 
     public String getUsername() {
@@ -31,6 +33,14 @@ public class ServerTheLoginCommand implements Command{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
     }
 
     @Override
@@ -65,10 +75,11 @@ public class ServerTheLoginCommand implements Command{
 
     @Override
     public String toString() {
-        return "ServerTheLoginCommand\n\t{" +
+        return "ServerTheLoginCommand{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", valid=" + valid +
+                ", ipAddress='" + ipAddress + '\'' +
                 '}';
     }
 }
