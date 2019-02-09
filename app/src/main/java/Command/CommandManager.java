@@ -16,7 +16,7 @@ public class CommandManager {
     private Queue<Command> queue;
     private Gson json;
 
-    CommandManager(String ipAddress, int portNumber) {
+    public CommandManager(String ipAddress, int portNumber) {
         try {
             json = new Gson();
             server = new Socket(ipAddress, portNumber);

@@ -19,7 +19,7 @@ public class ActiveGame implements IGame{
 	}
 	
 	public ActiveGame(PendingGame startGame){
-		players.add(startGame.getPlayers());
+		players.addAll(startGame.getPlayers());
 		this.name = startGame.getName();
 		this.id = startGame.getId() + "_ACTIVE";
 	}

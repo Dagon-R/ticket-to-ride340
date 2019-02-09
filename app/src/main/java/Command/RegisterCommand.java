@@ -12,7 +12,7 @@ public class RegisterCommand implements Command {
         return newService.doService(username, password);
     }
 
-    RegisterCommand(String username, String password) {
+    public RegisterCommand(String username, String password) {
         this.username = username;
         this.password = password;
     }
