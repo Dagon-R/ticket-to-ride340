@@ -2,14 +2,12 @@ package Services;
 
 public class RegisterService implements Service {
     @Override
-    //Takes in String username, String password, String id, and PlayerColorEnum color
+    //Takes in String username, String password
     public Object doService(Object... obj) {
-        //create user model obj and set name, password, color, and id
+        //create user model obj and set name, password
         String username = (String) obj[0];
         String password = (String) obj[1];
-        String id = (String) obj[2];
-        PlayerColorEnum color = (PlayerColorEnum) obj[3];
-        User newUser = new User(username, password, id, color);
+        User newUser = new User(username, password);
         UserList users = UserList.get();
         users.add(newUser);
         return true;
