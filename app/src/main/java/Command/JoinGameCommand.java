@@ -9,9 +9,9 @@ public class JoinGameCommand implements Command {
     private boolean joined;
 
     @Override
-    public Object execute() {
+    public void execute() {
         JoinGameService newService = new JoinGameService();
-        return newService.doService(player, gameID);
+        newService.doService(player, gameID);
     }
 
     public JoinGameCommand(Player player, String gameID) {

@@ -8,9 +8,9 @@ public class RegisterCommand implements Command {
     private String ipAddress;
 
     @Override
-    public Object execute() {
+    public void execute() {
         RegisterService newService = new RegisterService();
-        return newService.doService(username, password, ipAddress);
+        newService.doService(username, password, ipAddress);
     }
 
     public RegisterCommand(String username, String password, String ipAddress) {
