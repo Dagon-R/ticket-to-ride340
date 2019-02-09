@@ -9,12 +9,12 @@ public class LoginService implements Service {
 
         //check that user exists with that username and password
         UserList users = UserList.get();
-        if(users.findUser == true){
+        if(users.findUser(username,password)){
             return true;
         } else{
             return false;//MAKE THIS ERROR
         }
 
-        return false;
+
     }
 }

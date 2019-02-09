@@ -1,5 +1,7 @@
 package Models;
 
+import java.util.ArrayList;
+
 public class UserList{
     private ArrayList<User> list;
     private static final UserList ourInstance = new UserList();
@@ -9,7 +11,7 @@ public class UserList{
     }
 
     private UserList() {
-        list = new ArrayList<User>;
+        list = new ArrayList<User>();
     }
 
     public void addUser(User newUser){
@@ -18,7 +20,7 @@ public class UserList{
 
     public boolean findUser(String username, String password){
         for(User user : list){
-            if(user.username == username && user.password == password){
+            if(user.name == username && user.password == password){
                 return true;
             }
         }
