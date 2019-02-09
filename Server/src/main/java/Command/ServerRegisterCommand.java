@@ -60,4 +60,13 @@ public class ServerRegisterCommand implements Command{
 
         return Objects.hash(getUsername(), getPassword());
     }
+
+    @Override
+    public String toString() {
+        return "ServerRegisterCommand\n\t{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", valid=" + valid +
+                '}';
+    }
 }

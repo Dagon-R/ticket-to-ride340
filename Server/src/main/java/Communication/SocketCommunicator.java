@@ -34,7 +34,7 @@ public class SocketCommunicator{
     public void send(Command command){
         String name = String.join("",command.getClass().getName().split("Server"));
         CommandWrapper wrapper = new CommandWrapper(Serializer.serialize(command), name);
-        System.out.println("Sending Command");
+        System.out.println("Sending Command to " + socket.getRemoteSocketAddress()+"\n");
         out.write(Serializer.serialize(wrapper)+",");
         out.flush();
 

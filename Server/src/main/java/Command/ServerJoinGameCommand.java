@@ -2,26 +2,30 @@ package Command;
 
 import java.util.Objects;
 
+import Models.Player;
 import Services.JoinGameService;
 import Services.Service;
 
 public class ServerJoinGameCommand implements Command {
 //    private Player player;
-    private String gameName;
+    private Player player;
+    private String gameID;
     private boolean joined;
     public ServerJoinGameCommand() {
     }
 
-    public ServerJoinGameCommand(String gameName) {
-        this.gameName = gameName;
+    public ServerJoinGameCommand(Player player, String gameID, boolean joined) {
+        this.player = player;
+        this.gameID = gameID;
+        this.joined = joined;
     }
 
-    public String getGameName() {
-        return gameName;
+    public String getGameID() {
+        return gameID;
     }
 
-    public void setGameName(String gameName) {
-        this.gameName = gameName;
+    public void setGameID(String gameName) {
+        this.gameID = gameName;
     }
 
     @Override
@@ -34,7 +38,7 @@ public class ServerJoinGameCommand implements Command {
     @Override
     public Object execute() {
         Service joinGameService = new JoinGameService();
-        return joinGameService.doService(gameName);
+        return joinGameService.doService(gameID);
     }
 
     @Override
@@ -42,12 +46,21 @@ public class ServerJoinGameCommand implements Command {
         if (this == o) return true;
         if (!(o instanceof ServerJoinGameCommand)) return false;
         ServerJoinGameCommand that = (ServerJoinGameCommand) o;
-        return Objects.equals(getGameName(), that.getGameName());
+        return Objects.equals(gameID, that.getGameID());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getGameName());
+        return Objects.hash(getGameID());
+    }
+
+    @Override
+    public String toString() {
+        return "ServerJoinGameCommand\n\t{" +
+                "player=" + player +
+                ", gameID='" + gameID + '\'' +
+                ", joined=" + joined +
+                '}';
     }
 }

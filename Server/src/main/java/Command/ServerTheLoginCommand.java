@@ -4,14 +4,14 @@ import java.util.Objects;
 import Services.LoginService;
 import Services.Service;
 
-public class ServerLoginCommand implements Command{
+public class ServerTheLoginCommand implements Command{
     private String username;
     private String password;
     private boolean valid;
-    public ServerLoginCommand() {
+    public ServerTheLoginCommand() {
     }
 
-    public ServerLoginCommand(String username, String password) {
+    public ServerTheLoginCommand(String username, String password) {
         this.username = username;
         this.password = password;
 
@@ -50,8 +50,8 @@ public class ServerLoginCommand implements Command{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ServerLoginCommand)) return false;
-        ServerLoginCommand that = (ServerLoginCommand) o;
+        if (!(o instanceof ServerTheLoginCommand)) return false;
+        ServerTheLoginCommand that = (ServerTheLoginCommand) o;
         return Objects.equals(getUsername(), that.getUsername()) &&
                 Objects.equals(getPassword(), that.getPassword());
     }
@@ -63,4 +63,12 @@ public class ServerLoginCommand implements Command{
     }
 
 
+    @Override
+    public String toString() {
+        return "ServerTheLoginCommand\n\t{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", valid=" + valid +
+                '}';
+    }
 }
