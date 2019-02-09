@@ -4,15 +4,12 @@ import java.util.ArrayList;
 
 public class UserList{
     private ArrayList<User> list;
-    private static final UserList ourInstance = new UserList();
 
-    public static UserList get() {
-        return ourInstance;
+    public UserList(ArrayList<User> list) {
+        this.list = new ArrayList<>();
     }
 
-    private UserList() {
-        list = new ArrayList<User>();
-    }
+
 
     public void addUser(User newUser){
         list.add(newUser);
