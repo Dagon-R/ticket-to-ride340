@@ -26,4 +26,4 @@ public class RegisterService implements Service {
         return true;
     }
 }
-}
+
