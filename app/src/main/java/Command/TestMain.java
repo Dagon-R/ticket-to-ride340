@@ -5,6 +5,7 @@ import Communication.ClientPoller;
 import Communication.CommandManager;
 import Models.Player;
 import Models.PlayerColorEnum;
+import Models.User;
 
 public class TestMain {
 
@@ -13,7 +14,7 @@ public class TestMain {
         Command command2 = new JoinGameCommand(new Player("name",PlayerColorEnum.BLACK,"123"),"Game1");
         Command command3 = new TheLoginCommand("user","pass", "");
         Command command4 = new StartGameCommand("theGame");
-        Command command5 = new CreateGameCommand(new Player("name",PlayerColorEnum.BLUE,"421"), "Game2");
+        Command command5 = new CreateGameCommand(new User("name","pass"), "Game2");
         int port = 8080;
         String ipaddress = "192.168.1.200";
         CommandManager manager = new CommandManager(ipaddress, port);

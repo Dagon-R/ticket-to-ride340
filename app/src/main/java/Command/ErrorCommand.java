@@ -1,10 +1,12 @@
 package Command;
 
+import Services.ErrorService;
+
 public class ErrorCommand implements Command {
     private String message;
 
     @Override
-    public Object execute() {
+    public void execute() {
         ErrorService errorService = new ErrorService();
         errorService.doService(message);
     }
