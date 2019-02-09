@@ -9,6 +9,7 @@ public class MainModel extends Observable {
     private IGame game;
     private ClientGameList gameList;
     private String errorMessage;
+    private String IPAddress;
 
     private MainModel() {}
 
@@ -75,5 +76,13 @@ public class MainModel extends Observable {
 
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
+    }
+
+    public String getIPAddress() {
+        return IPAddress;
+    }
+
+    public void setIPAddress(String IPAddress) {
+        this.IPAddress = IPAddress;
     }
 }

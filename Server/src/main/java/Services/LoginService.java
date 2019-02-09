@@ -1,4 +1,8 @@
 package Services;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+import Command.ErrorCommand;
 import Models.*;
 
 public class LoginService implements Service {
@@ -12,7 +16,13 @@ public class LoginService implements Service {
         if(users.findUser(username,password)){
             return true;
         } else{
-            return false;//MAKE THIS ERROR
+            try{
+                String localhost = InetAddress.getLocalHost().getHostAddress();
+                return new ErrorCommand("user does not exist", localhost);
+
+            } catch(UnknownHostException e){
+                return new ErrorCommand("user does not exist & couldn't get IPAddress", null);
+            }
         }
 
 

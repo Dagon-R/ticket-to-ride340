@@ -8,9 +8,9 @@ public class TheLoginCommand implements Command {
     private String ipAddress;
 
     @Override
-    public Object execute() {
+    public void execute() {
         LoginService newService = new LoginService();
-        return newService.doService(username, password, ipAddress);
+        newService.doService(username, password, ipAddress);
     }
 
     public TheLoginCommand(String username, String password, String ipAddress) {

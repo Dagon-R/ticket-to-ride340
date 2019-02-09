@@ -9,8 +9,9 @@ public class ErrorCommand implements Command {
     public ErrorCommand() {
     }
 
-    public ErrorCommand(String error) {
+    public ErrorCommand(String error, String ipAddress) {
         this.error = error;
+        this.ipAddress = ipAddress;
     }
 
     @Override

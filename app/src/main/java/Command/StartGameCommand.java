@@ -3,11 +3,11 @@ package Command;
 import Services.StartGameService;
 
 public class StartGameCommand implements Command {
-    String gameID;
+    private String gameID;
     @Override
-    public Object execute() {
+    public void execute() {
         StartGameService newService = new StartGameService();
-        return newService.doService(gameID);
+        newService.doService(gameID);
     }
     public StartGameCommand(String gameID)
     {
