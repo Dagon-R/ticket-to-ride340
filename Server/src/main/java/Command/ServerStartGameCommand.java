@@ -8,6 +8,7 @@ import Services.StartGameService;
 public class ServerStartGameCommand implements Command {
     private String gameID;
     private boolean starting;
+    private String ipAddress;
     public ServerStartGameCommand() {
     }
 
@@ -30,6 +31,8 @@ public class ServerStartGameCommand implements Command {
     public void setStarting(boolean starting) {
         this.starting = starting;
     }
+
+
 
     @Override
     public void addResults(Object obj) {

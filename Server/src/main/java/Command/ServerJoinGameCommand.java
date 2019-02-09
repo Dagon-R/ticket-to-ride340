@@ -11,6 +11,7 @@ public class ServerJoinGameCommand implements Command {
     private Player player;
     private String gameID;
     private boolean joined;
+    private String ipAddress;
     public ServerJoinGameCommand() {
     }
 
@@ -18,6 +19,14 @@ public class ServerJoinGameCommand implements Command {
         this.player = player;
         this.gameID = gameID;
         this.joined = joined;
+    }
+
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
     }
 
     public String getGameID() {

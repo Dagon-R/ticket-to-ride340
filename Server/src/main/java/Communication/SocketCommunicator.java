@@ -69,6 +69,7 @@ public class SocketCommunicator{
                 Object obj = command.execute();
                 if(obj.getClass() == ErrorCommand.class){
                     command = (ErrorCommand) obj;
+                    ((ErrorCommand) command).setIpAddress(socket.getInetAddress().getHostAddress());
                 }else{
                     command.addResults(obj);
                 }
