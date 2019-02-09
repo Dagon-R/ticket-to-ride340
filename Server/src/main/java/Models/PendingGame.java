@@ -1,6 +1,7 @@
 package Models;
 
 import java.util.HashSet;
+import java.util.Objects;
 
 public class PendingGame implements IGame{
 	//A list of the players associated with the game
@@ -48,5 +49,19 @@ public class PendingGame implements IGame{
 	
 	private void setId(String input){
 		this.id = input;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof IGame)) return false;
+		IGame that = (IGame) o;
+		return Objects.equals(getName(), that.getName());
+	}
+
+	@Override
+	public int hashCode() {
+
+		return Objects.hash(getName());
 	}
 }
