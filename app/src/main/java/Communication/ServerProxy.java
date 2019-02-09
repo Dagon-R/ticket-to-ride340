@@ -34,10 +34,10 @@ public class ServerProxy {
         manager.sendCommand(newReg);
     }
 
-    public void joinGame(User user, String gameID)
+    public void joinGame(Player player, String gameID)
     {
         JoinGameCommand newJoin =
-                new JoinGameCommand(new Player(user.getName(),user.getColor(),user.getId()),gameID);
+                new JoinGameCommand(player,gameID);
         manager.sendCommand(newJoin);
     }
 
@@ -46,6 +46,12 @@ public class ServerProxy {
         StartGameCommand newStart = new StartGameCommand(gameID);
         manager.sendCommand(newStart);
     }
+    public void createGame(Player player)
+    {
+        CreateGameCommand newCreate =
+                new CreateGameCommand(player);
+        manager.sendCommand(newCreate);
 
+    }
 
 }
