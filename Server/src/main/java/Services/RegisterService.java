@@ -22,11 +22,10 @@ public class RegisterService implements Service {
         String username = (String) obj[0];
         String password = (String) obj[1];
 
-        if(model.getUserList().findUser(username, password)){
+        if(model.getUserList().findUser(username, password)){ //un already taken
             try{
                 String localhost = InetAddress.getLocalHost().getHostAddress();
                 return new ErrorCommand("Username is already taken", localhost);
-
             } catch(UnknownHostException e){
                 return new ErrorCommand("Username is already taken & couldn't get IPAddress", null);
             }
@@ -38,6 +37,5 @@ public class RegisterService implements Service {
 
         }
 
-        //not really any way this can fail right now.
     }
 }
