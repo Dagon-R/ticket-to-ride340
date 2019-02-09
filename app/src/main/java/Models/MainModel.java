@@ -48,6 +48,7 @@ public class MainModel extends Observable {
 
     public void setGame(IGame game) {
         this.game = game;
+        this.notifyObservers();
     }
 
     public ClientGameList getGameList() {

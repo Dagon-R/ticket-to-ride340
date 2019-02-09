@@ -6,23 +6,30 @@ import Services.Service;
 import Services.StartGameService;
 
 public class ServerStartGameCommand implements Command {
-    private String gameName;
+    private String gameID;
     private boolean starting;
     public ServerStartGameCommand() {
     }
 
-    public ServerStartGameCommand(String gameName) {
-        this.gameName = gameName;
+    public ServerStartGameCommand(String gameID) {
+        this.gameID = gameID;
     }
 
-    public String getGameName() {
-        return gameName;
+    public String getGameID() {
+        return gameID;
     }
 
-    public void setGameName(String gameName) {
-        this.gameName = gameName;
+    public void setGameID(String gameID) {
+        this.gameID = gameID;
     }
 
+    public boolean isStarting() {
+        return starting;
+    }
+
+    public void setStarting(boolean starting) {
+        this.starting = starting;
+    }
 
     @Override
     public void addResults(Object obj) {
@@ -35,7 +42,7 @@ public class ServerStartGameCommand implements Command {
     public Object execute() {
         Service startGameService = new StartGameService();
 
-        return startGameService.doService(gameName);
+        return startGameService.doService(gameID);
     }
 
     @Override
@@ -43,12 +50,20 @@ public class ServerStartGameCommand implements Command {
         if (this == o) return true;
         if (!(o instanceof ServerStartGameCommand)) return false;
         ServerStartGameCommand that = (ServerStartGameCommand) o;
-        return Objects.equals(getGameName(), that.getGameName());
+        return Objects.equals(gameID, that.getGameID());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getGameName());
+        return Objects.hash(getGameID());
+    }
+
+    @Override
+    public String toString() {
+        return "ServerStartGameCommand\n\t{" +
+                "gameID='" + gameID + '\'' +
+                ", starting=" + starting +
+                '}';
     }
 }
