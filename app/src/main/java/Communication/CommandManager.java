@@ -1,4 +1,4 @@
-package Command;
+package Communication;
 
 import com.google.gson.Gson;
 
@@ -10,6 +10,8 @@ import java.net.Socket;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
+
+import Command.Command;
 
 public class CommandManager {
     private Socket server;
@@ -37,7 +39,7 @@ public class CommandManager {
             server.getOutputStream().close();
             server.close();
         } catch (IOException e) {
-            System.out.print("Server failed to close");
+            System.out.print("Server failed to close\n");
         }
     }
 
@@ -53,17 +55,17 @@ public class CommandManager {
                     int readBytes = input.read(data);
                     System.out.print("Read " + readBytes + " bytes\n");
                     if (data[data.length - 1] != ',') {
-                        throw new InvalidCommandException();
+                        throw new Command.InvalidCommandException();
                     }
                     String dataJSON = "[" +
                             new String(Arrays.copyOfRange(data, 0, data.length - 1)) + "]";
                     System.out.print("Found following JSON: \n" + dataJSON + "\n");
-                    CommandWrapper[] commandWrappers = json.fromJson(dataJSON, CommandWrapper[].class);
+                    Command.CommandWrapper[] commandWrappers = json.fromJson(dataJSON, Command.CommandWrapper[].class);
                     System.out.print("Successfully retrieved command wrappers");
-                    for (CommandWrapper commandWrapper : commandWrappers) {
+                    for (Command.CommandWrapper commandWrapper : commandWrappers) {
                         queue.add((Command) json.fromJson(commandWrapper.getCommand(),
                                 Class.forName(commandWrapper.getType())));
-                        System.out.print("Added a command to the queue");
+                        System.out.print("Added a command to the queue\n");
                     }
                     return queue.poll();
                 } else {
@@ -75,7 +77,7 @@ public class CommandManager {
             } catch (ClassNotFoundException e) {
                 System.out.print("You may want to rename your classes...");
                 e.printStackTrace();
-            } catch (InvalidCommandException e) {
+            } catch (Command.InvalidCommandException e) {
                 e.printStackTrace();
             }
             return null;
@@ -83,8 +85,8 @@ public class CommandManager {
     }
 
     public void sendCommand(Command command) {
-        CommandWrapper newWrapper =
-                new CommandWrapper(json.toJson(command), command.getClass().getName());
+        Command.CommandWrapper newWrapper =
+                new Command.CommandWrapper(json.toJson(command), command.getClass().getName());
         try {
             writeString(json.toJson(newWrapper) + ",", server.getOutputStream());
         } catch (IOException e) {
@@ -101,7 +103,11 @@ public class CommandManager {
         //os.close();
     }
 
-    boolean isAvailable() throws IOException {
-        return server.getInputStream().available() > 0;
+    public boolean isAvailable() throws IOException {
+        return !queue.isEmpty() || server.getInputStream().available() > 0;
+    }
+    public String getOwnIP()
+    {
+        return server.getInetAddress().getHostAddress();
     }
 }

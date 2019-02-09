@@ -1,14 +1,16 @@
-package Command;
+package Communication;
 
 import java.io.IOException;
+
+import Command.Command;
 
 public class ClientPoller extends Thread
 {
     static private final int portNumber = 8080;
     private CommandManager manager;
-    ClientPoller(String ipAddress)
+    public ClientPoller(CommandManager manager)
     {
-        manager = new CommandManager(ipAddress,portNumber);
+        this.manager = manager;
     }
 
     @Override
@@ -18,7 +20,9 @@ public class ClientPoller extends Thread
             try {
                 while(!manager.isAvailable()){Thread.sleep(10); }
                 Command command = manager.getCommand();
-                if (command != null) { command.execute(); }
+                if (command != null)
+                { System.out.println("Executing: " + command.toString() + "\n");
+                command.execute(); }
             } catch (InterruptedException e) {
                 System.out.print("Why would you interrupt this thread?\n");
                 e.printStackTrace();

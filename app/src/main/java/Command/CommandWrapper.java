@@ -4,7 +4,7 @@ public class CommandWrapper {
     private String command;
     private String type;
 
-    CommandWrapper(String command, String type) {
+    public CommandWrapper(String command, String type) {
         this.command = command;
         this.type = type;
     }
