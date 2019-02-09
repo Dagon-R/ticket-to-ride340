@@ -25,12 +25,12 @@ public class ServerProxy {
 
     public void login(String username, String password)
     {
-        TheLoginCommand newLog = new TheLoginCommand(username,password);
+        TheLoginCommand newLog = new TheLoginCommand(username,password,manager.getOwnIP());
         manager.sendCommand(newLog);
     }
     public void register(String username,String password)
     {
-        RegisterCommand newReg = new RegisterCommand(username,password);
+        RegisterCommand newReg = new RegisterCommand(username,password,manager.getOwnIP());
         manager.sendCommand(newReg);
     }
 

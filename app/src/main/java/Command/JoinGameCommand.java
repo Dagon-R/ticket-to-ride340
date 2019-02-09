@@ -6,6 +6,7 @@ import Services.JoinGameService;
 public class JoinGameCommand implements Command {
     private Player player;
     private String gameID;
+    private boolean joined;
 
     @Override
     public Object execute() {
@@ -16,5 +17,6 @@ public class JoinGameCommand implements Command {
     public JoinGameCommand(Player player, String gameID) {
         this.player = player;
         this.gameID = gameID;
+        this.joined = false;
     }
 }
