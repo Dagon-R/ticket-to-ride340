@@ -10,6 +10,7 @@ public class ServerCreateGameCommand implements Command {
     private Player player;
     private String gameID;
     private boolean valid;
+    private String ipAddress;
 
     public ServerCreateGameCommand(Player player, String gameID, boolean valid) {
         this.player = player;
@@ -53,6 +54,14 @@ public class ServerCreateGameCommand implements Command {
         ServerCreateGameCommand that = (ServerCreateGameCommand) o;
         return isValid() == that.isValid() &&
                 Objects.equals(getPlayer(), that.getPlayer());
+    }
+
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
     }
 
     @Override

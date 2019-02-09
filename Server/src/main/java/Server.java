@@ -4,6 +4,7 @@ import Communication.Poller;
 import Communication.ServerSideSocket;
 import Models.MainModel;
 
+import Services.LoginService;
 import Services.RegisterService;
 
 public class Server {
@@ -12,8 +13,8 @@ public class Server {
         try{
             RegisterService registerService = new RegisterService();
             registerService.doService("Bob","password");
-            System.out.println(MainModel.get().getUserList());
-            System.out.println("Here");
+//            System.out.println(registerService.doService("Bob", "password"));
+
             ServerSideSocket serverSideSocket = new ServerSideSocket(8080);
             serverSideSocket.start();
             Poller poller = new Poller(serverSideSocket);
