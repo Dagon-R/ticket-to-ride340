@@ -25,10 +25,6 @@ public class RegisterService implements Service {
         //send registercommand
         Player player = sp.Register(username, password);
 
-        //on recieve command return id?? to presenter
-        //set logged in flag?
-
-        Player player = new Player(username, color, id);
         //add player to list of all players
 
         return true;
