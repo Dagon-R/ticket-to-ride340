@@ -55,6 +55,15 @@ public class MainModel extends Observable {
         return gameList;
     }
 
+    public PendingGame findGame(String gameID){
+        for(PendingGame game : gameList.getPendingGames()){
+            if(game.getName() == gameID){
+                return game;
+            }
+        }
+        return null;
+    }
+
     public void setGameList(ClientGameList gameList) {
         this.gameList = gameList;
     }
