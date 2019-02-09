@@ -75,7 +75,7 @@ public class ServerTheLoginCommand implements Command{
 
     @Override
     public String toString() {
-        return "ServerTheLoginCommand{" +
+        return "ServerTheLoginCommand\n\t{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", valid=" + valid +
