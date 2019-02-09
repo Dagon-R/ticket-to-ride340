@@ -15,7 +15,6 @@ public class LoginService implements Service {
             return false;//MAKE THIS ERROR
         }
 
-        //pass back user info
-        return true;
+        return false;
     }
 }
