@@ -12,19 +12,19 @@ public class LoginService implements Service {
         String password = (String) obj[1];
 
         //check that user exists with that username and password
-        UserList users = UserList.get();
-        if(users.findUser(username,password)){
-            return true;
-        } else{
-            try{
-                String localhost = InetAddress.getLocalHost().getHostAddress();
-                return new ErrorCommand("user does not exist", localhost);
+//        UserList users = UserList.get();
+//        if(users.findUser(username,password)){
+//            return true;
+//        } else{
+//            try{
+//                String localhost = InetAddress.getLocalHost().getHostAddress();
+//                return new ErrorCommand("user does not exist", localhost);
+//
+//            } catch(UnknownHostException e){
+//                return new ErrorCommand("user does not exist & couldn't get IPAddress", null);
+//            }
+//        }
 
-            } catch(UnknownHostException e){
-                return new ErrorCommand("user does not exist & couldn't get IPAddress", null);
-            }
-        }
-
-
+        return null;
     }
 }

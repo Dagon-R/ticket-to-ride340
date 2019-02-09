@@ -45,4 +45,14 @@ public class User {
 	public void setAuthToken(String token){
 		this.authToken = token;
 	}
+
+	@Override
+	public String toString() {
+		return "User{" +
+				"name='" + name + '\'' +
+				", password='" + password + '\'' +
+				", loggedIn=" + loggedIn +
+				", authToken='" + authToken + '\'' +
+				'}';
+	}
 }

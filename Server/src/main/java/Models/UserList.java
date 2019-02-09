@@ -23,4 +23,11 @@ public class UserList{
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "UserList{" +
+                "list=" + list +
+                '}';
+    }
 }
