@@ -23,7 +23,7 @@ public class JoinGameService implements Service {
     }
 
     @Override
-    public Object doService(Object... obj) {
+    public void doService(Object... obj) {
         String gameName = (String) obj[0];
         Player player = (Player) obj[1];
 
@@ -31,6 +31,5 @@ public class JoinGameService implements Service {
             PendingGame game = new PendingGame(player, gameName);
             model.setGame(game);
         }
-        return true;
     }
 }
