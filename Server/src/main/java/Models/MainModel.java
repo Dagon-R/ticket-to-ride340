@@ -10,7 +10,7 @@ public class MainModel extends Observable {
     private MainModel() {
     }
 
-    private MainModel get(){
+    public MainModel get(){
         if(instance == null){
             instance = new MainModel();
         }
