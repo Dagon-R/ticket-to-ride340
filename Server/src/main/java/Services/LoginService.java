@@ -4,6 +4,8 @@ import java.net.UnknownHostException;
 
 import Command.ErrorCommand;
 import Models.*;
+import sun.applet.Main;
+import sun.rmi.runtime.Log;
 
 public class LoginService implements Service {
     MainModel model;
@@ -20,14 +22,8 @@ public class LoginService implements Service {
         if(model.getUserList().findUser(username, password)){
             return true;
         } else{
-            try{
-                String localhost = InetAddress.getLocalHost().getHostAddress();
-                return new ErrorCommand("user does not exist", localhost);
-            } catch(UnknownHostException e){
-                return new ErrorCommand("user does not exist & couldn't get IPAddress", null);
-            }
+            return new ErrorCommand("user does not exist");
         }
-
 
     }
 }
