@@ -9,7 +9,7 @@ public class MockClient {
         Socket socket = new Socket();
 //        socket.connect(new InetSocketAddress("127.0.0.1", 8080));
 //        System.out.println((new ServerRegisterCommand().getClass().getName()).split("",-1));
-        InetAddress localhost = InetAddress.getLocalHost();
-        System.out.println(localhost.getHostAddress());
+        String localhost = InetAddress.getLocalHost().getHostAddress();
+        System.out.println(localhost);
     }
 }
