@@ -1,5 +1,6 @@
 package Services;
 
+import Command.ErrorCommand;
 import Models.ActiveGame;
 import Models.IGame;
 import Models.MainModel;
@@ -16,14 +17,12 @@ public class StartGameService implements Service {
     public Object doService(Object... obj) {
         String gameID = (String) obj[0];
 
-        IGame game = model.getGameList().get(gameID);
-        if(game != null && game.getClass().equals(PendingGame.class)){
-            ActiveGame ag = new ActiveGame(game);
-
+        if(model.getGameList().get(gameID).getPlayers().size() < 2){
+            return new ErrorCommand("Not enough players!");
         }
-        //get rid of pendingGame and change to activeGame
-        //return valid message
-        //-users need to all be listening for startGame
-        return null;
+
+        model.getGameList().startGame(gameID);
+
+        return true;
     }
 }

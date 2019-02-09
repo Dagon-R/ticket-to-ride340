@@ -22,14 +22,8 @@ public class LoginService implements Service {
         if(model.getUserList().findUser(username, password)){
             return true;
         } else{
-            try{
-                String localhost = InetAddress.getLocalHost().getHostAddress();
-                return new ErrorCommand("user does not exist", localhost);
-            } catch(UnknownHostException e){
-                return new ErrorCommand("user does not exist & couldn't get IPAddress", null);
-            }
+            return new ErrorCommand("user does not exist");
         }
-
 
     }
 }
