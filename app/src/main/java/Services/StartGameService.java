@@ -3,6 +3,11 @@ package Services;
 public class StartGameService implements Service {
 
     @Override
+    public void connectToProxy(Object... obj) {
+
+    }
+
+    @Override
     public Object doService(Object... obj) {
         String gameID = (String) obj[0];
 
