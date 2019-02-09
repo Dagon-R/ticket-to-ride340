@@ -1,6 +1,7 @@
 package Models;
 
 import java.util.HashSet;
+import java.util.Objects;
 
 public class ActiveGame implements IGame{
 	//A list of the players associated with the game
@@ -15,7 +16,6 @@ public class ActiveGame implements IGame{
 	public ActiveGame(Player host, String gameName){
 		players.add(host);
 		this.name = gameName;
-		this.id = gameName + host.getName() + "_ACTIVE";
 	}
 	
 	public ActiveGame(PendingGame startGame){
@@ -40,9 +40,7 @@ public class ActiveGame implements IGame{
 		return name;
 	}
 	
-	public String getId(){
-		return id;
-	}
+
 	
 	private void setPlayers(HashSet<Player> input){
 		this.players = input;
@@ -54,5 +52,19 @@ public class ActiveGame implements IGame{
 	
 	private void setId(String input){
 		this.id = input;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof IGame)) return false;
+		IGame that = (IGame) o;
+		return Objects.equals(getName(), that.getName());
+	}
+
+	@Override
+	public int hashCode() {
+
+		return Objects.hash(getName());
 	}
 }

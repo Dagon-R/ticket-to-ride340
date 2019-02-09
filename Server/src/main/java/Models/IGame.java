@@ -10,6 +10,4 @@ public interface IGame {
 	HashSet<Player> getPlayers();
 
 	String getName();
-
-	String getId();
 }
