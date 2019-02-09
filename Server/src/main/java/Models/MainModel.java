@@ -5,6 +5,7 @@ import java.util.Observable;
 public class MainModel extends Observable {
     private static MainModel instance;
     private GameList gameList;
+    private UserList userList;
 
     private MainModel() {
     }
@@ -16,5 +17,19 @@ public class MainModel extends Observable {
         return instance;
     }
 
+    public GameList getGameList() {
+        return gameList;
+    }
 
+    public void setGameList(GameList gameList) {
+        this.gameList = gameList;
+    }
+
+    public UserList getUserList() {
+        return userList;
+    }
+
+    public void setUserList(UserList userList) {
+        this.userList = userList;
+    }
 }
