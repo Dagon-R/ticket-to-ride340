@@ -1,5 +1,5 @@
 package Models;
-
+//import UserList;
 import java.util.Observable;
 
 public class MainModel extends Observable {
@@ -8,6 +8,8 @@ public class MainModel extends Observable {
     private UserList userList;
 
     private MainModel() {
+        gameList = new GameList();
+        userList = new UserList();
     }
 
     public static MainModel get(){
