@@ -1,5 +1,7 @@
 package Services;
 
+import Models.MainModel;
+import Models.PendingGame;
 import Models.Player;
 
 public class CreateGameService implements Service {
@@ -10,11 +12,17 @@ public class CreateGameService implements Service {
     @Override
     public Object doService(Object... obj) {
         //create a game object
-
-        //set HashSet of players
-        //create ID
-        //set game name
-        //return valid message
-        return null;
+        Player player = (Player) obj[0];
+        String gameID = (String) obj[1];
+        if (MainModel.get().getGameList().get(gameID) != null)
+        {
+            return false;
+        }
+        else
+        {
+            PendingGame newGame = new PendingGame(player,gameID);
+            MainModel.get().getGameList().addServerPendingGame(newGame);
+            return true;
+        }
     }
 }
