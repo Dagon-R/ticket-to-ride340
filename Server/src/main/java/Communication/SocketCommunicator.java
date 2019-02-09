@@ -5,12 +5,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Objects;
 
-import Commands.Command;
-import Commands.CommandWrapper;
+import Command.Command;
+import Command.CommandWrapper;
 import Serialization.Deserializer;
 import Serialization.Serializer;
-import sun.security.krb5.internal.crypto.Des;
+
 
 public class SocketCommunicator{
     Socket socket;
@@ -25,48 +26,67 @@ public class SocketCommunicator{
         this.server =server;
     }
 
+    public String getIP(){
+        return socket.getRemoteSocketAddress().toString();
+    }
+
 
     public void send(Command command){
-        CommandWrapper wrapper = new CommandWrapper(Serializer.serialize(command), command.getClass().getName());
-
+        String name = String.join("",command.getClass().getName().split("Server"));
+        CommandWrapper wrapper = new CommandWrapper(Serializer.serialize(command), name);
+        System.out.println("Sending Command");
         out.write(Serializer.serialize(wrapper)+",");
+        out.flush();
 
     }
 
 
     public void readAndExecute()throws IOException{
-        StringBuilder input = null;
+        StringBuilder input = new StringBuilder();
         CommandWrapper[] commandWrappers = null;
+//        System.out.println("Read from Socket");
         if(in.ready()){
             input.append(in.readLine());
         }
-        System.out.println(input);
-//        if(input.charAt(input.length()-1) == ','){
-//            input.setCharAt(input.length()-1,']');
-//            input = new StringBuilder("[" + input.toString());
-//            commandWrappers = Deserializer.deserializeWrappers(input.toString());
-//        }
-//        for(CommandWrapper wrapper : commandWrappers){
-//            try {
-//                Command command = Deserializer.deserializeCommand(wrapper.getCommand(),"Server" + wrapper.getType());
-//                command.execute();
-//                server.sendToAll(command);
-////                socket.
-//            }
-//            catch (ClassNotFoundException e){
-//                System.out.println("Command type is not found");
-//            }
-
-//        }
+        if(input == null ||input.length() <=0 ){
+//            System.out.println("Reading error " + input);
+            return;
+        }
+        if(input.charAt(input.length()-1) == ','){
+            input.setCharAt(input.length()-1,']');
+            input = new StringBuilder("[" + input.toString());
+            commandWrappers = Deserializer.deserializeWrappers(input.toString());
+        }
+        for(CommandWrapper wrapper : commandWrappers){
+            try {
+                StringBuilder type = new StringBuilder(wrapper.getType());
+                type.insert(8,"Server");
 
 
+                Command command = Deserializer.deserializeCommand(wrapper.getCommand(),type.toString());
+                command.execute();
+                System.out.println(command);
+                server.sendToAll(command,this);
+            }
+            catch (ClassNotFoundException e){
+                System.out.println("Command type is not found");
+            }
 
-
-
+        }
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SocketCommunicator)) return false;
+        SocketCommunicator that = (SocketCommunicator) o;
+        return Objects.equals(socket.getRemoteSocketAddress(), that.socket.getRemoteSocketAddress());
+    }
 
+    @Override
+    public int hashCode() {
 
-
+        return Objects.hash(socket);
+    }
 }

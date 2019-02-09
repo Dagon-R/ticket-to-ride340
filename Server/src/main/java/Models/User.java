@@ -1,5 +1,6 @@
 package Models;
 
+
 public class User {
 	//The unique name of this user
 	String name;
@@ -9,18 +10,12 @@ public class User {
 	Boolean loggedIn = false;
 	//The auth token for server verification (if necessary)
 	String authToken;
-	// The player color of the current player
-	PlayerColorEnum playerColor;
 
-	public String getId() { return id; }
-
-	// The player's identification number
-	String id;
-	
-	public PlayerColorEnum getColor(){
-		return playerColor;
+	public User(String name, String password) {
+		this.name = name;
+		this.password = password;
 	}
-	
+
 	public String getName(){
 		return name;
 	}
@@ -37,16 +32,10 @@ public class User {
 		return authToken;
 	}
 	
-	public void setColor(PlayerColorEnum input){
-		this.playerColor = input;
-	}
+
 	
 	public void setName(String input){
 		this.name = input;
-	}
-	
-	public void setPassword(String input){
-		this.id = password;
 	}
 	
 	public void setLoggedIn(Boolean state){

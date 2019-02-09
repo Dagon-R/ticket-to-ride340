@@ -1,5 +1,6 @@
 package Communication;
-import Commands.Command;
+
+import Command.Command;
 public interface IServerSocket {
-    void sendToAll(Command command);
+    void sendToAll(Command command, SocketCommunicator socket);
 }
