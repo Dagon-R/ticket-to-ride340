@@ -9,18 +9,17 @@ public class User {
 	Boolean loggedIn = false;
 	//The auth token for server verification (if necessary)
 	String authToken;
-	// The player color of the current player
-	PlayerColorEnum playerColor;
 
 	public String getId() { return id; }
 
 	// The player's identification number
 	String id;
-	
-	public PlayerColorEnum getColor(){
-		return playerColor;
+
+	public User(String name, String password) {
+		this.name = name;
+		this.password = password;
 	}
-	
+
 	public String getName(){
 		return name;
 	}
@@ -36,11 +35,7 @@ public class User {
 	public String getAuthToken(){
 		return authToken;
 	}
-	
-	public void setColor(PlayerColorEnum input){
-		this.playerColor = input;
-	}
-	
+
 	public void setName(String input){
 		this.name = input;
 	}
