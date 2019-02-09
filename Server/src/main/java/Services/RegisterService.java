@@ -1,5 +1,6 @@
 package Services;
 
+import Models.MainModel;
 import Models.User;
 import Models.UserList;
 
@@ -12,6 +13,7 @@ public class RegisterService implements Service {
         String password = (String) obj[1];
 //        User newUser = new User(username, password);
         User newUser = new User(username, password);
+//        MainModel.get().getUserList().findUser()
         UserList users = UserList.get();
         users.addUser(newUser);
         return true;

@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class ErrorCommand implements Command {
     String error;
+    String ipAddress;
 
     public ErrorCommand() {
     }
@@ -17,8 +18,18 @@ public class ErrorCommand implements Command {
         return null;
     }
 
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+
     @Override
     public void addResults(Object obj) {
+
+
 
     }
 
@@ -42,5 +53,13 @@ public class ErrorCommand implements Command {
     public int hashCode() {
 
         return Objects.hash(getError());
+    }
+
+    @Override
+    public String toString() {
+        return "ErrorCommand{" +
+                "error='" + error + '\'' +
+                ", ipAddress='" + ipAddress + '\'' +
+                '}';
     }
 }

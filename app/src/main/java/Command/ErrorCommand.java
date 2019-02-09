@@ -1,5 +1,7 @@
 package Command;
 
+import Services.ErrorService;
+
 public class ErrorCommand implements Command {
     private String message;
 
