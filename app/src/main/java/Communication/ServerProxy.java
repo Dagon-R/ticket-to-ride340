@@ -23,25 +23,25 @@ public class ServerProxy {
     public static ServerProxy create(String ipAddress) {
         ourInstance = new ServerProxy(ipAddress); return ourInstance;}
 
-    void login(String username, String password)
+    public void login(String username, String password)
     {
         TheLoginCommand newLog = new TheLoginCommand(username,password);
         manager.sendCommand(newLog);
     }
-    void register(String username,String password)
+    public void register(String username,String password)
     {
         RegisterCommand newReg = new RegisterCommand(username,password);
         manager.sendCommand(newReg);
     }
 
-    void joinGame(User user, String gameID)
+    public void joinGame(User user, String gameID)
     {
         JoinGameCommand newJoin =
                 new JoinGameCommand(new Player(user.getName(),user.getColor(),user.getId()),gameID);
         manager.sendCommand(newJoin);
     }
 
-    void startGame(String gameID)
+    public void startGame(String gameID)
     {
         StartGameCommand newStart = new StartGameCommand(gameID);
         manager.sendCommand(newStart);
