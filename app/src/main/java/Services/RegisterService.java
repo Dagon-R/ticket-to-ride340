@@ -30,9 +30,7 @@ public class RegisterService implements Service {
 
         if(model.getUser().getName() == null){
             //add user to list of all user
-            UserList users = UserList.get();
             User newUser = new User(username, password);
-            users.addUser(newUser);
             model.setUser(newUser);
         }
 

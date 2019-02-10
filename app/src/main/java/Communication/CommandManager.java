@@ -12,6 +12,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import Command.Command;
+import Command.CommandWrapper;
+import Command.InvalidCommandException;
 
 public class CommandManager {
     private Socket server;
@@ -55,14 +57,14 @@ public class CommandManager {
                     int readBytes = input.read(data);
                     System.out.print("Read " + readBytes + " bytes\n");
                     if (data[data.length - 1] != ',') {
-                        throw new Command.InvalidCommandException();
+                        throw new InvalidCommandException();
                     }
                     String dataJSON = "[" +
                             new String(Arrays.copyOfRange(data, 0, data.length - 1)) + "]";
                     System.out.print("Found following JSON: \n" + dataJSON + "\n");
-                    Command.CommandWrapper[] commandWrappers = json.fromJson(dataJSON, Command.CommandWrapper[].class);
+                    CommandWrapper[] commandWrappers = json.fromJson(dataJSON, CommandWrapper[].class);
                     System.out.print("Successfully retrieved command wrappers");
-                    for (Command.CommandWrapper commandWrapper : commandWrappers) {
+                    for (CommandWrapper commandWrapper : commandWrappers) {
                         queue.add((Command) json.fromJson(commandWrapper.getCommand(),
                                 Class.forName(commandWrapper.getType())));
                         System.out.print("Added a command to the queue\n");
@@ -77,7 +79,7 @@ public class CommandManager {
             } catch (ClassNotFoundException e) {
                 System.out.print("You may want to rename your classes...");
                 e.printStackTrace();
-            } catch (Command.InvalidCommandException e) {
+            } catch (InvalidCommandException e) {
                 e.printStackTrace();
             }
             return null;
@@ -85,8 +87,8 @@ public class CommandManager {
     }
 
     public void sendCommand(Command command) {
-        Command.CommandWrapper newWrapper =
-                new Command.CommandWrapper(json.toJson(command), command.getClass().getName());
+        CommandWrapper newWrapper =
+                new CommandWrapper(json.toJson(command), command.getClass().getName());
         try {
             writeString(json.toJson(newWrapper) + ",", server.getOutputStream());
         } catch (IOException e) {

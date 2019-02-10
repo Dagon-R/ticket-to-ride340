@@ -16,8 +16,6 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import com.jcjs.tickettoride.R;
-
 public class MainActivity extends AppCompatActivity {
     EditText usernameTextfield;
     EditText passwordEditfield;

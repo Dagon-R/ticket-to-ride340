@@ -8,9 +8,9 @@ public class CreateGameCommand implements Command {
     User user;
     String gameID;
     @Override
-    public Object execute() {
+    public void execute() {
         CreateGameService newService = new CreateGameService();
-        return newService.doService(user, gameID);
+        newService.doService(user, gameID);
     }
     public CreateGameCommand(User user, String gameID)
     {
