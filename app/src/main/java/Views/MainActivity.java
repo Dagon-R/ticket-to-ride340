@@ -1,6 +1,7 @@
 package Views;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
@@ -36,10 +37,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void login(){
-
+        Intent i = new Intent(this, ChooseGameActivity.class);
+        startActivity(i);
     }
 
     protected void register(){
-
+        Intent i = new Intent(this, ChooseGameActivity.class);
+        startActivity(i);
     }
 }
