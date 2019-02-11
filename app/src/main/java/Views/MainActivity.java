@@ -18,15 +18,13 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import java.util.Observable;
-import java.util.Observer;
-
 import Models.MainModel;
 import Models.User;
 import Services.LoginService;
 import Services.RegisterService;
 
 
-public class MainActivity extends AppCompatActivity implements Observer {
+public class MainActivity extends AppCompatActivity {
     EditText usernameTextfield;
     EditText passwordTextfield;
     EditText ipTextfield;
@@ -43,8 +41,6 @@ public class MainActivity extends AppCompatActivity implements Observer {
         ipTextfield = (EditText) findViewById(R.id.ipTextfield);
         loginButton = (Button) findViewById(R.id.loginButton);
         registerButton = (Button) findViewById(R.id.registerButton);
-        mainModel = MainModel.get();
-        mainModel.addObserver(this);
     }
 
     public void login(View view){
@@ -53,8 +49,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
         String address = ipTextfield.getText().toString();
         LoginService service = new LoginService();
         service.connectToProxy(username, password, address);
-//        Intent i = new Intent(this, ChooseGameActivity.class);
-//        startActivity(i);
+        //Intent i = new Intent(this, ChooseGameActivity.class);
+        //startActivity(i);
     }
 
     public void register(View view){
@@ -63,8 +59,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
         String address = ipTextfield.getText().toString();
         RegisterService service = new RegisterService();
         service.connectToProxy(username, password, address);
-//        Intent i = new Intent(this, ChooseGameActivity.class);
-//        startActivity(i);
+        //Intent i = new Intent(this, ChooseGameActivity.class);
+        //startActivity(i);
     }
 
     public void update(Observable object, Object type){

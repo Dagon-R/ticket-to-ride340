@@ -20,8 +20,10 @@ public class ServerProxy {
         manager = new CommandManager(ipAddress,portNumber);
     }
 
-    public static ServerProxy create(String ipAddress) throws SocketConnectionError {
-        ourInstance = new ServerProxy(ipAddress); return ourInstance;}
+    public static ServerProxy create(String ipAddress) {
+        ourInstance = new ServerProxy(ipAddress);
+        return ourInstance;
+    }
 
     public void login(String username, String password, String ipAddress)
     {

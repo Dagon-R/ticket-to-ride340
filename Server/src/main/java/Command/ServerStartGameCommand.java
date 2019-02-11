@@ -2,6 +2,7 @@ package Command;
 
 import java.util.Objects;
 
+import Models.GameList;
 import Services.Service;
 import Services.StartGameService;
 
@@ -9,6 +10,7 @@ public class ServerStartGameCommand implements Command {
     private String gameID;
     private boolean starting;
     private String ipAddress;
+    private GameList gameList;
     public ServerStartGameCommand() {
     }
 
@@ -36,9 +38,9 @@ public class ServerStartGameCommand implements Command {
 
     @Override
     public void addResults(Object obj) {
-        if(obj.getClass() != Boolean.class) return;
-        Boolean start = (Boolean) obj;
-        starting = start;
+        if(obj.getClass() != GameList.class) return;
+        GameList gameList = (GameList) obj;
+        this.gameList = gameList;
     }
 
     @Override
@@ -64,9 +66,11 @@ public class ServerStartGameCommand implements Command {
 
     @Override
     public String toString() {
-        return "ServerStartGameCommand\n\t{" +
+        return "ServerStartGameCommand{" +
                 "gameID='" + gameID + '\'' +
                 ", starting=" + starting +
+                ", ipAddress='" + ipAddress + '\'' +
+                ", gameList=" + gameList +
                 '}';
     }
 }

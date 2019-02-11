@@ -19,7 +19,7 @@ public class JoinGameService implements Service {
             {
                 game.addPlayer(player);
                 System.out.println("Player added to game");
-                return true;
+                return MainModel.get().getGameList();
             }
             else
             {
