@@ -18,8 +18,7 @@ public class TestMain {
         Command command5 = new CreateGameCommand(new User("name","pass"), "Game2");
         int port = 8080;
         String ipaddress = "10.24.196.155";
-        try
-        {
+        try{
             CommandManager manager = new CommandManager(ipaddress, port);
             manager.sendCommand(command);
             manager.sendCommand(command2);
@@ -29,17 +28,15 @@ public class TestMain {
             String nothing = "null";
             ClientPoller poller = new ClientPoller(manager);
             poller.run();
-        }
-        catch (SocketConnectionError e)
-        {
-            e.printStackTrace();
-        }
-
 //        Command nextCommand = manager.getCommand();
 //        Command nextCommand2 = manager.getCommand();
 //        Command nextCommand3 = manager.getCommand();
 //        Command nextCommand4 = manager.getCommand();
 //        Command nextCommand5 = manager.getCommand();
-        String something = "nothing";
+            String something = "nothing";
+        } catch(SocketConnectionError e){
+            System.out.println(e.getMessage());
+        }
+
     }
 }
