@@ -17,32 +17,73 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import java.util.Observable;
+import java.util.Observer;
+
+import Models.MainModel;
+import Models.User;
+import Services.LoginService;
+import Services.RegisterService;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Observer {
     EditText usernameTextfield;
-    EditText passwordEditfield;
+    EditText passwordTextfield;
     EditText ipTextfield;
     Button loginButton;
     Button registerButton;
+
+    MainModel mainModel;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         usernameTextfield = (EditText) findViewById(R.id.usernameTextfield);
-        passwordEditfield = (EditText) findViewById(R.id.passwordTextfield);
+        passwordTextfield = (EditText) findViewById(R.id.passwordTextfield);
         ipTextfield = (EditText) findViewById(R.id.ipTextfield);
         loginButton = (Button) findViewById(R.id.loginButton);
         registerButton = (Button) findViewById(R.id.registerButton);
     }
 
-    protected void login(){
+    public void login(){
+        String username = usernameTextfield.getText().toString();
+        String password = passwordTextfield.getText().toString();
+        String address = ipTextfield.getText().toString();
+        LoginService service = new LoginService();
+        service.connectToProxy(username, password, address);
         Intent i = new Intent(this, ChooseGameActivity.class);
         startActivity(i);
     }
 
-    protected void register(){
+    public void register(){
+        String username = usernameTextfield.getText().toString();
+        String password = passwordTextfield.getText().toString();
+        String address = ipTextfield.getText().toString();
+        RegisterService service = new RegisterService();
+        service.connectToProxy(username, password, address);
         Intent i = new Intent(this, ChooseGameActivity.class);
         startActivity(i);
+    }
+
+    public void update(Observable object, Object type){
+        mainModel = MainModel.get();
+        String error = mainModel.getErrorMessage();
+        if(error != null){
+            Toast.makeText(this,
+                    error,
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else{
+            User currentUser = mainModel.getUser();
+            if(currentUser.getLoggedIn()){
+
+            }
+            else{
+                Toast.makeText(this,
+                        "Unexpected error!",
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

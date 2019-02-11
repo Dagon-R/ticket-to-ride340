@@ -42,6 +42,7 @@ public class MainModel extends Observable {
 
     public void setUser(User user) {
         this.user = user;
+        this.notifyObservers();
     }
 
     public IGame getGame() {
