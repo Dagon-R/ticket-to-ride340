@@ -19,13 +19,14 @@ public class LoginService implements Service {
         String ipAddress = (String) obj[2];
 
         //send loginCommand
-        sp.login(username, password);
+        sp.login(username, password, ipAddress);
     }
 
     @Override
     public void doService(Object... obj) {
         String username = (String) obj[0];
         String password = (String) obj[1];
+        String ipAddress = (String) obj[2];
 
         if(model.getUser().getName() == null){
             //add user to list of all user
