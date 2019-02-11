@@ -11,7 +11,7 @@ public class TestMain {
 
     public static void main(String[] args) {
         Command command = new RegisterCommand("user", "pass", "");
-        Command command2 = new JoinGameCommand(new Player("name",PlayerColorEnum.BLACK,"123"),"Game1");
+        Command command2 = new JoinGameCommand(new Player("name",PlayerColorEnum.BLACK),"Game1");
         Command command3 = new TheLoginCommand("user","pass", "");
         Command command4 = new StartGameCommand("theGame");
         Command command5 = new CreateGameCommand(new User("name","pass"), "Game2");
