@@ -1,6 +1,7 @@
 package Views;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
@@ -29,6 +30,11 @@ public class ChooseGameActivity extends AppCompatActivity{
         createGameButton = (EditText) findViewById(R.id.createGameButton);
         //gamesRecyclerView = (Button) findViewById(R.id.gamesRecyclerView);
 
+    }
+
+    protected void createGame(View v){
+        Intent i = new Intent(this, LobbyActivity.class);
+        startActivity(i);
     }
 
 

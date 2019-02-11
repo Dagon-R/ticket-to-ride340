@@ -77,7 +77,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
         else{
             User currentUser = mainModel.getUser();
             if(currentUser.getLoggedIn()){
-
+                Intent i = new Intent(this, ChooseGameActivity.class);
+                startActivity(i);
             }
             else{
                 Toast.makeText(this,

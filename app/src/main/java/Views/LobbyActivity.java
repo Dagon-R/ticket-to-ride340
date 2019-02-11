@@ -52,7 +52,7 @@ public class LobbyActivity extends AppCompatActivity implements Observer {
 
     }
 
-    public void leaveGame(){
+    public void leaveGame(View v){
         Intent i = new Intent(this, ChooseGameActivity.class);
         startActivity(i);
     }
