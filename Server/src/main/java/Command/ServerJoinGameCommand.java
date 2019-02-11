@@ -2,6 +2,7 @@ package Command;
 
 import java.util.Objects;
 
+import Models.GameList;
 import Models.Player;
 import Services.JoinGameService;
 import Services.Service;
@@ -12,6 +13,7 @@ public class ServerJoinGameCommand implements Command {
     private String gameID;
     private boolean joined;
     private String ipAddress;
+    private GameList gameList;
     public ServerJoinGameCommand() {
     }
 
@@ -39,9 +41,9 @@ public class ServerJoinGameCommand implements Command {
 
     @Override
     public void addResults(Object obj) {
-        if(obj.getClass() != Boolean.class) return;
-        Boolean val = (Boolean) obj;
-        joined = val;
+        if(obj.getClass() != GameList.class) return;
+        GameList gameList = (GameList) obj;
+        this.gameList = gameList;
     }
 
     @Override

@@ -1,6 +1,8 @@
 package Command;
 
 import java.util.Objects;
+
+import Models.GameList;
 import Services.LoginService;
 import Services.Service;
 
@@ -9,6 +11,7 @@ public class ServerTheLoginCommand implements Command{
     private String password;
     private boolean valid;
     private String ipAddress;
+    private GameList gameList;
     public ServerTheLoginCommand() {
     }
 
@@ -45,9 +48,9 @@ public class ServerTheLoginCommand implements Command{
 
     @Override
     public void addResults(Object obj) {
-        if(obj.getClass() != Boolean.class) return;
-        Boolean val = (Boolean) obj;
-        valid = val;
+        if(obj.getClass() != GameList.class) return;
+        GameList gameList = (GameList) obj;
+        this.gameList = gameList;
     }
 
     @Override

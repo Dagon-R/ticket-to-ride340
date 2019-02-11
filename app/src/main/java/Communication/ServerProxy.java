@@ -21,7 +21,9 @@ public class ServerProxy {
     }
 
     public static ServerProxy create(String ipAddress) {
-        ourInstance = new ServerProxy(ipAddress); return ourInstance;}
+        ourInstance = new ServerProxy(ipAddress);
+        return ourInstance;
+    }
 
     public void login(String username, String password, String ipAddress)
     {
