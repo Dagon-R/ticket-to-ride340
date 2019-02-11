@@ -23,14 +23,14 @@ public class ServerProxy {
     public static ServerProxy create(String ipAddress) {
         ourInstance = new ServerProxy(ipAddress); return ourInstance;}
 
-    public void login(String username, String password)
+    public void login(String username, String password, String ipAddress)
     {
-        TheLoginCommand newLog = new TheLoginCommand(username,password,manager.getOwnIP());
+        TheLoginCommand newLog = new TheLoginCommand(username,password,ipAddress);
         manager.sendCommand(newLog);
     }
-    public void register(String username,String password)
+    public void register(String username,String password, String ipAddress)
     {
-        RegisterCommand newReg = new RegisterCommand(username,password,manager.getOwnIP());
+        RegisterCommand newReg = new RegisterCommand(username,password,ipAddress);
         manager.sendCommand(newReg);
     }
 

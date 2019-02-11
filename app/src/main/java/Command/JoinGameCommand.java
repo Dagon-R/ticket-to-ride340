@@ -19,4 +19,8 @@ public class JoinGameCommand implements Command {
         this.gameID = gameID;
         this.joined = false;
     }
+
+    public boolean isJoined() {
+        return joined;
+    }
 }
