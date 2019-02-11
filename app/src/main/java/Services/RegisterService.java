@@ -1,6 +1,7 @@
 package Services;
 
 import Communication.ServerProxy;
+import Communication.SocketConnectionError;
 import Models.ClientGameList;
 import Models.MainModel;
 import Models.User;

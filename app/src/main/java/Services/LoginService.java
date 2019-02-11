@@ -1,6 +1,7 @@
 package Services;
 
 import Communication.ServerProxy;
+import Communication.SocketConnectionError;
 import Models.*;
 
 public class LoginService implements Service {
