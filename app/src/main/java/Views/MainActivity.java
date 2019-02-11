@@ -17,6 +17,11 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import java.util.Observable;
+import Models.MainModel;
+import Models.User;
+import Services.LoginService;
+import Services.RegisterService;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -43,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         String password = passwordTextfield.getText().toString();
         String address = ipTextfield.getText().toString();
         LoginService service = new LoginService();
-        service.connectToProxy(username, password, address);
+        //service.connectToProxy(username, password, address);
         Intent i = new Intent(this, ChooseGameActivity.class);
         startActivity(i);
     }
@@ -53,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         String password = passwordTextfield.getText().toString();
         String address = ipTextfield.getText().toString();
         RegisterService service = new RegisterService();
-        service.connectToProxy(username, password, address);
+        //service.connectToProxy(username, password, address);
         Intent i = new Intent(this, ChooseGameActivity.class);
         startActivity(i);
     }
