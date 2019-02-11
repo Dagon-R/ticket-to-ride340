@@ -21,7 +21,7 @@ public class RegisterService implements Service {
         String ipAddress = (String) obj[2];
 
         //create user model
-        sp.register(username, password);
+        sp.register(username, password, ipAddress);
     }
 
     @Override
