@@ -61,7 +61,7 @@
                     android:layout_height="60dp"
                     android:text="Login"
                     android:textColor="#fff"
-                    android:enabled="false"
+                    android:enabled="true"
                     android:layout_margin="20dp"
                     android:layout_weight="1"
                     android:onClick="Login"/>
@@ -72,7 +72,7 @@
                     android:layout_height="60dp"
                     android:text="Register"
                     android:textColor="#fff"
-                    android:enabled="false"
+                    android:enabled="true"
                     android:layout_margin="20dp"
                     android:layout_weight="1"
                     android:onClick="Register"/>
