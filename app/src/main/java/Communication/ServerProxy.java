@@ -15,15 +15,13 @@ public class ServerProxy {
 
     private CommandManager manager;
 
-    private ServerProxy(String ipAddress)
+    private ServerProxy(String ipAddress) throws SocketConnectionError
     {
         manager = new CommandManager(ipAddress,portNumber);
     }
 
-    public static ServerProxy create(String ipAddress) {
-        ourInstance = new ServerProxy(ipAddress);
-        return ourInstance;
-    }
+    public static ServerProxy create(String ipAddress) throws SocketConnectionError {
+        ourInstance = new ServerProxy(ipAddress); return ourInstance;}
 
     public void login(String username, String password, String ipAddress)
     {

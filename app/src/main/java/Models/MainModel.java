@@ -77,6 +77,8 @@ public class MainModel extends Observable {
 
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
+        setChanged();
+        this.notifyObservers();
     }
 
     public String getIPAddress() {

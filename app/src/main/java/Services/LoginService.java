@@ -1,6 +1,7 @@
 package Services;
 
 import Communication.ServerProxy;
+import Communication.SocketConnectionError;
 import Models.*;
 
 public class LoginService implements Service {
@@ -8,7 +9,6 @@ public class LoginService implements Service {
     private MainModel model;
 
     public LoginService(){
-        sp = ServerProxy.get();
         model = MainModel.get();
     }
 
@@ -19,7 +19,13 @@ public class LoginService implements Service {
         String ipAddress = (String) obj[2];
 
         //send loginCommand
-        sp.login(username, password, ipAddress);
+        try{
+            sp = ServerProxy.create(ipAddress);
+            sp.login(username, password, ipAddress);
+
+        } catch(SocketConnectionError e){
+            model.setErrorMessage("Error connecting to socket");
+        }
     }
 
     @Override
@@ -27,6 +33,7 @@ public class LoginService implements Service {
         String username = (String) obj[0];
         String password = (String) obj[1];
         String ipAddress = (String) obj[2];
+        ClientGameList gameList = (ClientGameList) obj[3];
 
         if(model.getUser().getName() == null){
             //add user to list of all user

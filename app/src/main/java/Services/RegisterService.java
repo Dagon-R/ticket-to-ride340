@@ -1,6 +1,8 @@
 package Services;
 
 import Communication.ServerProxy;
+import Communication.SocketConnectionError;
+import Models.ClientGameList;
 import Models.MainModel;
 import Models.User;
 import Models.UserList;
@@ -10,7 +12,6 @@ public class RegisterService implements Service {
     private MainModel model;
 
     public RegisterService(){
-        sp = ServerProxy.get();
         model = MainModel.get();
     }
 
@@ -20,14 +21,21 @@ public class RegisterService implements Service {
         String password = (String) obj[1];
         String ipAddress = (String) obj[2];
 
-        //create user model
-        sp.register(username, password, ipAddress);
+        try{
+            sp = ServerProxy.create(ipAddress);
+            sp.login(username, password, ipAddress);
+
+        } catch(SocketConnectionError e){
+            model.setErrorMessage("Error connecting to socket");
+        }
     }
 
     @Override
     public void doService(Object... obj) {
         String username = (String) obj[0];
         String password = (String) obj[1];
+        String ipAddress = (String) obj[2];
+        ClientGameList gameList = (ClientGameList) obj[3];
 
         if(model.getUser().getName() == null){
             //add user to list of all user
