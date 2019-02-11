@@ -18,6 +18,7 @@ public class RegisterService implements Service {
     public void connectToProxy(Object... obj) {
         String username = (String) obj[0];
         String password = (String) obj[1];
+        String ipAddress = (String) obj[2];
 
         //create user model
         sp.register(username, password);
@@ -30,9 +31,7 @@ public class RegisterService implements Service {
 
         if(model.getUser().getName() == null){
             //add user to list of all user
-            UserList users = UserList.get();
             User newUser = new User(username, password);
-            users.addUser(newUser);
             model.setUser(newUser);
         }
 

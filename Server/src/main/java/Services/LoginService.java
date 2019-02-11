@@ -1,6 +1,4 @@
 package Services;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 import Command.ErrorCommand;
 import Models.*;

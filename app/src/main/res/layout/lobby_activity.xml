@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="back"
+            android:onClick="leaveGame"/>
+
+        <RelativeLayout
+            android:id="@+id/playerSlot0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp">
+            <TextView
+                android:id="@+id/playerName0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Waiting for player..." />
+            <View
+                android:id="@+id/playerColorRed"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="#fc3c3c"
+                android:layout_alignParentEnd="true">
+            </View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/playerSlot1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp">
+            <TextView
+                android:id="@+id/playerName1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Waiting for player..."/>
+            <View
+                android:id="@+id/playerColorBlue"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@color/colorPrimaryDark"
+                android:layout_alignParentEnd="true">
+                >
+            </View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/playerSlot2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp">
+            <TextView
+                android:id="@+id/playerName2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Waiting for player..."/>
+            <View
+                android:id="@+id/playerColorGreen"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="#6cb16d"
+                android:layout_alignParentEnd="true">
+            </View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/playerSlot3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp">
+            <TextView
+                android:id="@+id/playerName3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Waiting for player..."/>
+            <View
+                android:id="@+id/playerColorYellow"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="#fbe67b"
+                android:layout_alignParentEnd="true">
+            </View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/playerSlot4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp">
+            <TextView
+                android:id="@+id/playerName4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Waiting for player..."/>
+            <View
+                android:id="@+id/playerColorBlack"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="#000"
+                android:layout_alignParentEnd="true">
+            </View>
+        </RelativeLayout>
+
+
+        <Button
+            android:id="@+id/startButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start Game"
+            android:layout_gravity="center"/>
+
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
