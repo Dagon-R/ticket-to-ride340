@@ -18,13 +18,15 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import java.util.Observable;
+import java.util.Observer;
+
 import Models.MainModel;
 import Models.User;
 import Services.LoginService;
 import Services.RegisterService;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Observer {
     EditText usernameTextfield;
     EditText passwordTextfield;
     EditText ipTextfield;
@@ -72,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this,
                     error,
                     Toast.LENGTH_SHORT).show();
+            mainModel.setErrorMessage(null);
             return;
         }
         else{
@@ -86,5 +89,11 @@ public class MainActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mainModel.deleteObserver(this);
     }
 }

@@ -49,7 +49,7 @@ public class LobbyActivity extends AppCompatActivity implements Observer {
         startButton = (Button) findViewById(R.id.startButton);
         backButton = (Button) findViewById(R.id.backButton);
         mainModel = MainModel.get();
-
+        mainModel.addObserver(this);
     }
 
     public void leaveGame(View v){
@@ -77,5 +77,11 @@ public class LobbyActivity extends AppCompatActivity implements Observer {
                         Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mainModel.deleteObserver(this);
     }
 }
