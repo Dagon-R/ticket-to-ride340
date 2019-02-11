@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
         ipTextfield = (EditText) findViewById(R.id.ipTextfield);
         loginButton = (Button) findViewById(R.id.loginButton);
         registerButton = (Button) findViewById(R.id.registerButton);
+        mainModel = MainModel.get();
+        mainModel.addObserver(this);
     }
 
     public void login(){
@@ -51,8 +53,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
         String address = ipTextfield.getText().toString();
         LoginService service = new LoginService();
         service.connectToProxy(username, password, address);
-        Intent i = new Intent(this, ChooseGameActivity.class);
-        startActivity(i);
+        //Intent i = new Intent(this, ChooseGameActivity.class);
+        //startActivity(i);
     }
 
     public void register(){
@@ -61,8 +63,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
         String address = ipTextfield.getText().toString();
         RegisterService service = new RegisterService();
         service.connectToProxy(username, password, address);
-        Intent i = new Intent(this, ChooseGameActivity.class);
-        startActivity(i);
+        //Intent i = new Intent(this, ChooseGameActivity.class);
+        //startActivity(i);
     }
 
     public void update(Observable object, Object type){
