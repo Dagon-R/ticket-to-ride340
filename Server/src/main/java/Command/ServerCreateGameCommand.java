@@ -40,8 +40,8 @@ public class ServerCreateGameCommand implements Command {
 
     @Override
     public Object execute() {
-        Service createGameService = new CreateGameService(player,gameID);
-        return createGameService.doService();
+        Service createGameService = new CreateGameService();
+        return createGameService.doService(player,gameID);
     }
 
     @Override

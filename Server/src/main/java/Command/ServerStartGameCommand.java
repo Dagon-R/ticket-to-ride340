@@ -34,7 +34,10 @@ public class ServerStartGameCommand implements Command {
         this.starting = starting;
     }
 
-
+    @Override
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
 
     @Override
     public void addResults(Object obj) {
