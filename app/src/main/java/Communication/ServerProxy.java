@@ -8,7 +8,7 @@ public class ServerProxy {
     private static ServerProxy ourInstance = null;
 
     private static final int portNumber = 8080;
-
+    private ClientPoller clientPoller;
     public static ServerProxy get() {
         return ourInstance;
     }
@@ -18,6 +18,8 @@ public class ServerProxy {
     private ServerProxy(String ipAddress) throws SocketConnectionError
     {
         manager = new CommandManager(ipAddress,portNumber);
+        clientPoller = new ClientPoller(manager);
+        clientPoller.start();
     }
 
     public static ServerProxy create(String ipAddress) throws SocketConnectionError {

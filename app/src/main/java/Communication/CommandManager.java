@@ -20,15 +20,20 @@ public class CommandManager {
     private Queue<Command> queue;
     private Gson json;
 
+
     public CommandManager(String ipAddress, int portNumber) throws SocketConnectionError{
         json = new Gson();
         queue = new LinkedList<>();
         try {
-
+//            System.out.println("10.24.196.155".equals(ipAddress));
             server = new Socket(ipAddress, portNumber);
 
         } catch (IOException e) {
             throw new SocketConnectionError();
+        }
+        catch (Exception e){
+            System.out.println("ERROR CONNECTING SOCKET");
+            System.out.println(e.getMessage());
         }
     }
 

@@ -28,7 +28,7 @@ public class TestMain {
             manager.sendCommand(command5);
             String nothing = "null";
             ClientPoller poller = new ClientPoller(manager);
-            poller.run();
+//            poller.run();
         }
         catch (SocketConnectionError e)
         {
