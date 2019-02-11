@@ -23,6 +23,6 @@ public class StartGameService implements Service {
 
         model.getGameList().startGame(gameID);
 
-        return true;
+        return MainModel.get().getGameList();
     }
 }

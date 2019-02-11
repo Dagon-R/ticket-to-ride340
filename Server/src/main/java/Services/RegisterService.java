@@ -27,7 +27,7 @@ public class RegisterService implements Service {
         } else{
             User newUser = new User(username, password);
             model.getUserList().addUser(newUser);
-            return true;
+            return MainModel.get().getGameList();
         }
 
     }

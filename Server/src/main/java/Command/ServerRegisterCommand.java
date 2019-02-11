@@ -64,6 +64,7 @@ public class ServerRegisterCommand implements Command{
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", valid=" + valid +
+                ", gameList=" + gameList +
                 ", ipAddress='" + ipAddress + '\'' +
                 '}';
     }

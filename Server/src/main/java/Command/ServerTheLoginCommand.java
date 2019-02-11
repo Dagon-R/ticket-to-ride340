@@ -78,11 +78,12 @@ public class ServerTheLoginCommand implements Command{
 
     @Override
     public String toString() {
-        return "ServerTheLoginCommand\n\t{" +
+        return "ServerTheLoginCommand{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", valid=" + valid +
                 ", ipAddress='" + ipAddress + '\'' +
+                ", gameList=" + gameList +
                 '}';
     }
 }

@@ -49,7 +49,7 @@ public class ServerJoinGameCommand implements Command {
     @Override
     public Object execute() {
         Service joinGameService = new JoinGameService();
-        return joinGameService.doService(gameID);
+        return joinGameService.doService(player,gameID);
     }
 
     @Override
@@ -68,10 +68,12 @@ public class ServerJoinGameCommand implements Command {
 
     @Override
     public String toString() {
-        return "ServerJoinGameCommand\n\t{" +
+        return "ServerJoinGameCommand{" +
                 "player=" + player +
                 ", gameID='" + gameID + '\'' +
                 ", joined=" + joined +
+                ", ipAddress='" + ipAddress + '\'' +
+                ", gameList=" + gameList +
                 '}';
     }
 }

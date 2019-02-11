@@ -66,9 +66,11 @@ public class ServerStartGameCommand implements Command {
 
     @Override
     public String toString() {
-        return "ServerStartGameCommand\n\t{" +
+        return "ServerStartGameCommand{" +
                 "gameID='" + gameID + '\'' +
                 ", starting=" + starting +
+                ", ipAddress='" + ipAddress + '\'' +
+                ", gameList=" + gameList +
                 '}';
     }
 }

@@ -66,11 +66,15 @@ public class ServerCreateGameCommand implements Command {
         return Objects.hash(getPlayer());
     }
 
+
+
     @Override
     public String toString() {
-        return "ServerCreateGameCommand\n\t{" +
+        return "ServerCreateGameCommand{" +
                 "player=" + player +
                 ", gameID='" + gameID + '\'' +
+                ", ipAddress='" + ipAddress + '\'' +
+                ", gameList=" + gameList +
                 '}';
     }
 }
