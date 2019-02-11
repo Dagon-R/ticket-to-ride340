@@ -1,5 +1,8 @@
 package Services;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import Communication.ServerProxy;
 import Communication.SocketConnectionError;
 import Models.*;
@@ -35,10 +38,19 @@ public class LoginService implements Service {
         String ipAddress = (String) obj[2];
         ClientGameList gameList = (ClientGameList) obj[3];
 
-        if(model.getUser().getName() == null){
-            //add user to list of all user
-            User user = new User(username,password);
-            model.setUser(user);
+        try{
+            String localhost = InetAddress.getLocalHost().getHostAddress();
+
+            if(localhost.equals(ipAddress)){
+                model.setIPAddress(localhost);
+                //set user
+                User user = new User(username,password);
+                model.setUser(user);
+                //set gamelist
+                model.setGameList(gameList);
+            }
+        } catch(UnknownHostException e){
+            model.setErrorMessage("Couldn't get localhost for some reason...");
         }
 
     }
