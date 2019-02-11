@@ -3,6 +3,7 @@ package Command;
 
 import Communication.ClientPoller;
 import Communication.CommandManager;
+import Communication.SocketConnectionError;
 import Models.Player;
 import Models.PlayerColorEnum;
 import Models.User;
@@ -16,16 +17,24 @@ public class TestMain {
         Command command4 = new StartGameCommand("theGame");
         Command command5 = new CreateGameCommand(new User("name","pass"), "Game2");
         int port = 8080;
-        String ipaddress = "192.168.1.200";
-        CommandManager manager = new CommandManager(ipaddress, port);
-        manager.sendCommand(command);
-        manager.sendCommand(command2);
-        manager.sendCommand(command3);
-        manager.sendCommand(command4);
-        manager.sendCommand(command5);
-        String nothing = "null";
-        ClientPoller poller = new ClientPoller(manager);
-        poller.run();
+        String ipaddress = "10.24.196.155";
+        try
+        {
+            CommandManager manager = new CommandManager(ipaddress, port);
+            manager.sendCommand(command);
+            manager.sendCommand(command2);
+            manager.sendCommand(command3);
+            manager.sendCommand(command4);
+            manager.sendCommand(command5);
+            String nothing = "null";
+            ClientPoller poller = new ClientPoller(manager);
+            poller.run();
+        }
+        catch (SocketConnectionError e)
+        {
+            e.printStackTrace();
+        }
+
 //        Command nextCommand = manager.getCommand();
 //        Command nextCommand2 = manager.getCommand();
 //        Command nextCommand3 = manager.getCommand();
