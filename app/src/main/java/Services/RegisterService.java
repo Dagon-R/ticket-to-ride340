@@ -26,8 +26,7 @@ public class RegisterService implements Service {
             sp.login(username, password, ipAddress);
 
         } catch(SocketConnectionError e){
-            String message = e.getMessage();
-            model.setErrorMessage(message);
+            model.setErrorMessage("Error connecting to socket");
         }
     }
 
