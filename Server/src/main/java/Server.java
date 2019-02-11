@@ -4,6 +4,7 @@ import Communication.Poller;
 import Communication.ServerSideSocket;
 import Models.MainModel;
 
+import Services.CreateGameService;
 import Services.LoginService;
 import Services.RegisterService;
 
@@ -13,6 +14,7 @@ public class Server {
         try{
             RegisterService registerService = new RegisterService();
             registerService.doService("Bob","password");
+//            CreateGameService serv = new CreateGameService("");
 //            System.out.println(registerService.doService("Bob", "password"));
 
             ServerSideSocket serverSideSocket = new ServerSideSocket(8080);

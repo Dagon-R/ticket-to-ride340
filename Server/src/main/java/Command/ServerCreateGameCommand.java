@@ -2,6 +2,7 @@ package Command;
 
 import java.util.Objects;
 
+import Models.GameList;
 import Models.Player;
 import Services.CreateGameService;
 import Services.Service;
@@ -9,13 +10,15 @@ import Services.Service;
 public class ServerCreateGameCommand implements Command {
     private Player player;
     private String gameID;
-    private boolean valid;
-    private String ipAddress;
 
-    public ServerCreateGameCommand(Player player, String gameID, boolean valid) {
+    private String ipAddress;
+    private GameList gameList;
+
+
+    public ServerCreateGameCommand(Player player, String gameID) {
         this.player = player;
         this.gameID = gameID;
-        this.valid = valid;
+
     }
 
     public Player getPlayer() {
@@ -26,19 +29,13 @@ public class ServerCreateGameCommand implements Command {
         this.player = player;
     }
 
-    public boolean isValid() {
-        return valid;
-    }
 
-    public void setValid(boolean valid) {
-        this.valid = valid;
-    }
 
     @Override
     public void addResults(Object obj) {
-        if(obj.getClass() != Boolean.class) return;
-        Boolean val = (Boolean) obj;
-        valid = val;
+        if(obj.getClass() != GameList.class) return;
+        GameList gameList = (GameList) obj;
+        this.gameList = gameList;
     }
 
     @Override
@@ -52,8 +49,7 @@ public class ServerCreateGameCommand implements Command {
         if (this == o) return true;
         if (!(o instanceof ServerCreateGameCommand)) return false;
         ServerCreateGameCommand that = (ServerCreateGameCommand) o;
-        return isValid() == that.isValid() &&
-                Objects.equals(getPlayer(), that.getPlayer());
+        return Objects.equals(getPlayer(), that.getPlayer());
     }
 
     public String getIpAddress() {
@@ -67,7 +63,7 @@ public class ServerCreateGameCommand implements Command {
     @Override
     public int hashCode() {
 
-        return Objects.hash(getPlayer(), isValid());
+        return Objects.hash(getPlayer());
     }
 
     @Override
@@ -75,7 +71,6 @@ public class ServerCreateGameCommand implements Command {
         return "ServerCreateGameCommand\n\t{" +
                 "player=" + player +
                 ", gameID='" + gameID + '\'' +
-                ", valid=" + valid +
                 '}';
     }
 }
