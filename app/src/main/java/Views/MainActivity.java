@@ -36,12 +36,12 @@ public class MainActivity extends AppCompatActivity {
         registerButton = (Button) findViewById(R.id.registerButton);
     }
 
-    protected void login(){
+    public void login(View view){
         Intent i = new Intent(this, ChooseGameActivity.class);
         startActivity(i);
     }
 
-    protected void register(){
+    public void register(View view){
         Intent i = new Intent(this, ChooseGameActivity.class);
         startActivity(i);
     }
