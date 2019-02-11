@@ -1,12 +1,11 @@
 package Command;
 
-import Models.Player;
 import Models.User;
 import Services.CreateGameService;
 
 public class CreateGameCommand implements Command {
-    User user;
-    String gameID;
+    private User user;
+    private String gameID;
     @Override
     public void execute() {
         CreateGameService newService = new CreateGameService();

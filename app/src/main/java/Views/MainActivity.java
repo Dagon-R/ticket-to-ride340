@@ -18,15 +18,13 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import java.util.Observable;
-import java.util.Observer;
-
 import Models.MainModel;
 import Models.User;
 import Services.LoginService;
 import Services.RegisterService;
 
 
-public class MainActivity extends AppCompatActivity implements Observer {
+public class MainActivity extends AppCompatActivity {
     EditText usernameTextfield;
     EditText passwordTextfield;
     EditText ipTextfield;
@@ -47,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
         mainModel.addObserver(this);
     }
 
-    public void login(){
+    public void login(View view){
         String username = usernameTextfield.getText().toString();
         String password = passwordTextfield.getText().toString();
         String address = ipTextfield.getText().toString();
@@ -57,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
         //startActivity(i);
     }
 
-    public void register(){
+    public void register(View view){
         String username = usernameTextfield.getText().toString();
         String password = passwordTextfield.getText().toString();
         String address = ipTextfield.getText().toString();

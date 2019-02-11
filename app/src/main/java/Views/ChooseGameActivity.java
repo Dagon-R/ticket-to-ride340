@@ -27,7 +27,7 @@ public class ChooseGameActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_game_activity);
         gameNameTextfield = (EditText) findViewById(R.id.gameNameTextfield);
-        createGameButton = (EditText) findViewById(R.id.createGameButton);
+        createGameButton = (Button) findViewById(R.id.createGameButton);
         //gamesRecyclerView = (Button) findViewById(R.id.gamesRecyclerView);
 
     }
