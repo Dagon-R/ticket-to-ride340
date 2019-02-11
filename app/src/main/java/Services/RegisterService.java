@@ -24,7 +24,7 @@ public class RegisterService implements Service {
         try{
             sp = ServerProxy.create(ipAddress);
             sp.login(username, password, ipAddress);
-
+    
         } catch(SocketConnectionError e){
             model.setErrorMessage("Error connecting to socket");
         }
