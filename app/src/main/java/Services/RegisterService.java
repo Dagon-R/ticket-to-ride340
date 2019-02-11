@@ -18,6 +18,7 @@ public class RegisterService implements Service {
     public void connectToProxy(Object... obj) {
         String username = (String) obj[0];
         String password = (String) obj[1];
+        String ipAddress = (String) obj[2];
 
         //create user model
         sp.register(username, password);
