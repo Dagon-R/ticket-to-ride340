@@ -59,8 +59,8 @@ public class MainModel extends Observable {
     }
 
     public PendingGame findGame(String gameID){
-        for(PendingGame game : gameList.getPendingGames()){
-            if(game.getName() == gameID){
+        for(PendingGame game : gameList.getServerPendingGames().values()){
+            if(game.getName().equals(gameID)){
                 return game;
             }
         }
