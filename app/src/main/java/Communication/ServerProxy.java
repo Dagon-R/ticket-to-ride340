@@ -9,15 +9,15 @@ public class ServerProxy {
     public ServerProxy() { }
 
 
-    public void login(String username, String password, String ipAddress)
+    public void login(String username, String password, String ipAddress, String authToken)
     {
-        TheLoginCommand newLog = new TheLoginCommand(username,password,ipAddress);
+        TheLoginCommand newLog = new TheLoginCommand(username,password,ipAddress, authToken);
         SendCommand2 sc2 = new SendCommand2(newLog);
         sc2.start();
     }
-    public void register(String username,String password, String ipAddress)
+    public void register(String username,String password, String ipAddress, String authToken)
     {
-        RegisterCommand newReg = new RegisterCommand(username,password,ipAddress);
+        RegisterCommand newReg = new RegisterCommand(username,password,ipAddress, authToken);
         SendCommand2 sc2 = new SendCommand2(newReg);
         sc2.start();
     }

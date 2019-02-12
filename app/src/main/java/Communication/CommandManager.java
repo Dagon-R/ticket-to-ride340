@@ -4,7 +4,9 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.InetAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -99,5 +101,13 @@ public class CommandManager {
     public boolean isAvailable() throws IOException {
         return !queue.isEmpty() || server.getInputStream().available() > 0;
     }
-    public String getOwnIP() { return server.getLocalAddress().getHostAddress(); }
+    public String getOwnIP() {
+        try{
+            return InetAddress.getLocalHost().getHostAddress();
+        }
+        catch (UnknownHostException e){
+            System.out.println("HERE");
+        }
+        return null;
+    }
 }

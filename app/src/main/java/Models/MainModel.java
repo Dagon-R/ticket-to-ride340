@@ -69,8 +69,11 @@ public class MainModel extends Observable {
         return null;
     }
 
-    public void setGameList(ClientGameList gameList) {
+    public void setGameList(ClientGameList gameList){
+
         this.gameList = gameList;
+        setChanged();
+        notifyObservers();
     }
 
     public String getErrorMessage() {
