@@ -1,8 +1,10 @@
 package Services;
 
+import Command.ErrorCommand;
 import Models.MainModel;
 import Models.PendingGame;
 import Models.Player;
+import sun.applet.Main;
 
 public class CreateGameService implements Service {
 
@@ -11,9 +13,16 @@ public class CreateGameService implements Service {
 
     @Override
     public Object doService(Object... obj) {
+        //Do some param checks
+        if(obj.length != 2){
+            System.out.println("ERROR: " + obj.length + " instead of 2 params on backend createGame service");
+            return new ErrorCommand("Error creating game");
+        }
+
         //create a game object
         Player player = (Player) obj[0];
         String gameID = (String) obj[1];
+        //TODO: check that user exists
         if (MainModel.get().getGameList().get(gameID) != null)
         {
             return false;
