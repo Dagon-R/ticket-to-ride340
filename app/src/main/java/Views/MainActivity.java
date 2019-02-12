@@ -48,6 +48,11 @@ public class MainActivity extends AppCompatActivity implements Observer {
         loginButton = (Button) findViewById(R.id.loginButton);
         registerButton = (Button) findViewById(R.id.registerButton);
         mainModel = MainModel.get();
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
         mainModel.addObserver(this);
     }
 
@@ -126,8 +131,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onPause() {
+        super.onPause();
         mainModel.deleteObserver(this);
     }
 }

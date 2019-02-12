@@ -25,6 +25,7 @@ import java.util.Observer;
 
 
 import Models.MainModel;
+import Services.CreateGameService;
 
 public class ChooseGameActivity extends AppCompatActivity implements Observer {
     RecyclerView gamesRecyclerView;
@@ -47,13 +48,27 @@ public class ChooseGameActivity extends AppCompatActivity implements Observer {
         mainModel.addObserver(this);
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        mainModel.addObserver(this);
+    }
+
     protected void createGame(View v){
+        CreateGameService service = new CreateGameService();
+
         Intent i = new Intent(this, LobbyActivity.class);
         startActivity(i);
     }
 
     public void update(Observable object, Object type) {
-
+        if(mainModel.getGame() != null){
+            Intent i = new Intent(this, LobbyActivity.class);
+            startActivity(i);
+        }
+        else{
+            gamesRecyclerView.swapAdapter(new ChooseGameAdapter(mainModel.getGameList()), false);
+        }
     }
 
     @Override
@@ -62,5 +77,11 @@ public class ChooseGameActivity extends AppCompatActivity implements Observer {
         mainModel.deleteObserver(this);
         //log out
         mainModel.getUser().setLoggedIn(false);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mainModel.deleteObserver(this);
     }
 }
