@@ -1,20 +1,21 @@
 package Command;
 
+import Models.Player;
 import Models.UnobservedUser;
 import Models.User;
 import Services.CreateGameService;
 
 public class CreateGameCommand implements Command {
-    private UnobservedUser user;
+    private Player player;
     private String gameID;
     @Override
     public void execute() {
         CreateGameService newService = new CreateGameService();
-        newService.doService(new User(user), gameID);
+        newService.doService(player, gameID);
     }
-    public CreateGameCommand(User user, String gameID)
+    public CreateGameCommand(Player player, String gameID)
     {
-        this.user = new UnobservedUser(user);
+        this.player = player;
         this.gameID = gameID;
     }
 }
