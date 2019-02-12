@@ -10,15 +10,19 @@ import android.widget.TextView;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Vector;
 
 import Models.ClientGameList;
 import Models.PendingGame;
 
 public class ChooseGameAdapter extends RecyclerView.Adapter<ChooseGameAdapter.ViewHolder>{
-    HashSet<PendingGame> gameList;
+    Vector<PendingGame> gameList = new Vector<>();
 
     ChooseGameAdapter(ClientGameList inputList){
-        gameList = inputList.getPendingGames().values();
+        HashMap<String, PendingGame> pendingList = inputList.getServerPendingGames();
+        for(PendingGame game : pendingList.values()){
+            gameList.add(game);
+        }
     }
 
     @Override
@@ -32,20 +36,30 @@ public class ChooseGameAdapter extends RecyclerView.Adapter<ChooseGameAdapter.Vi
 
     @Override
     public void onBindViewHolder(ChooseGameAdapter.ViewHolder viewHolder, int position) {
-        entry = null;//get an element of teh list
+        PendingGame game = gameList.elementAt(position);
 
+        viewHolder.gameName.setText(game.getName());
+        viewHolder.gamePlayers.setText(Integer.toString(game.getPlayers().size()) + "/5");
+        viewHolder.joinGameButton.setText("Join");
+
+    }
+
+    @Override
+    public int getItemCount(){
+
+        return gameList.size();
     }
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView gameView;
+        public TextView gameName;
         public TextView gamePlayers;
         public Button joinGameButton;
 
         public ViewHolder(View gameView) {
             super(gameView);
 
-            gameView = (TextView) gameView.findViewById(R.id.gameView);
+            gameName = (TextView) gameView.findViewById(R.id.gameName);
             gamePlayers = (TextView) gameView.findViewById(R.id.gamePlayers);
             joinGameButton = (Button) gameView.findViewById(R.id.joinGameButton);
         }

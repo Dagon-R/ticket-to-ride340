@@ -2,6 +2,7 @@ package Command;
 
 import java.util.Objects;
 
+import Models.GameList;
 import Models.Player;
 import Services.JoinGameService;
 import Services.Service;
@@ -12,6 +13,7 @@ public class ServerJoinGameCommand implements Command {
     private String gameID;
     private boolean joined;
     private String ipAddress;
+    private GameList gameList;
     public ServerJoinGameCommand() {
     }
 
@@ -39,15 +41,15 @@ public class ServerJoinGameCommand implements Command {
 
     @Override
     public void addResults(Object obj) {
-        if(obj.getClass() != Boolean.class) return;
-        Boolean val = (Boolean) obj;
-        joined = val;
+        if(obj.getClass() != GameList.class) return;
+        GameList gameList = (GameList) obj;
+        this.gameList = gameList;
     }
 
     @Override
     public Object execute() {
         Service joinGameService = new JoinGameService();
-        return joinGameService.doService(gameID);
+        return joinGameService.doService(player,gameID);
     }
 
     @Override
@@ -66,10 +68,12 @@ public class ServerJoinGameCommand implements Command {
 
     @Override
     public String toString() {
-        return "ServerJoinGameCommand\n\t{" +
+        return "ServerJoinGameCommand{" +
                 "player=" + player +
                 ", gameID='" + gameID + '\'' +
                 ", joined=" + joined +
+                ", ipAddress='" + ipAddress + '\'' +
+                ", gameList=" + gameList +
                 '}';
     }
 }

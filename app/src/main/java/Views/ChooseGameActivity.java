@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -29,7 +30,6 @@ public class ChooseGameActivity extends AppCompatActivity implements Observer {
     RecyclerView gamesRecyclerView;
     EditText gameNameTextfield;
     Button createGameButton;
-    Button registerButton;
 
     MainModel mainModel;
 
@@ -38,8 +38,12 @@ public class ChooseGameActivity extends AppCompatActivity implements Observer {
         setContentView(R.layout.choose_game_activity);
         gameNameTextfield = (EditText) findViewById(R.id.gameNameTextfield);
         createGameButton = (Button) findViewById(R.id.createGameButton);
-        gamesRecyclerView = (Button) findViewById(R.id.gamesRecyclerView);
+        gamesRecyclerView = (RecyclerView) findViewById(R.id.gamesRecyclerView);
         mainModel = MainModel.get();
+        gamesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ChooseGameAdapter adapter = new ChooseGameAdapter(mainModel.getGameList());
+        gamesRecyclerView.setAdapter(adapter);
+
         mainModel.addObserver(this);
     }
 
@@ -49,7 +53,7 @@ public class ChooseGameActivity extends AppCompatActivity implements Observer {
     }
 
     public void update(Observable object, Object type) {
-
+        
     }
 
     @Override

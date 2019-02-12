@@ -18,10 +18,14 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashSet;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Vector;
 
+import Models.ActiveGame;
 import Models.MainModel;
+import Models.Player;
 import Models.User;
 import Services.LoginService;
 import Services.RegisterService;
@@ -35,6 +39,9 @@ public class LobbyActivity extends AppCompatActivity implements Observer {
     TextView playerName3;
     TextView playerName4;
 
+    Object[] players = new Player[5];
+
+    Vector<TextView> playerTextfields = new Vector<>();
 
     MainModel mainModel;
 
@@ -46,36 +53,51 @@ public class LobbyActivity extends AppCompatActivity implements Observer {
         playerName2 = (TextView) findViewById(R.id.playerName2);
         playerName3 = (TextView) findViewById(R.id.playerName3);
         playerName4 = (TextView) findViewById(R.id.playerName4);
+        playerTextfields.add(playerName0);
+        playerTextfields.add(playerName1);
+        playerTextfields.add(playerName2);
+        playerTextfields.add(playerName3);
+        playerTextfields.add(playerName4);
         startButton = (Button) findViewById(R.id.startButton);
         backButton = (Button) findViewById(R.id.backButton);
         mainModel = MainModel.get();
         mainModel.addObserver(this);
+        update(null, null);
     }
 
     public void leaveGame(View v){
-        Intent i = new Intent(this, ChooseGameActivity.class);
-        startActivity(i);
+        finish();
     }
 
     public void update(Observable object, Object type){
         mainModel = MainModel.get();
-        String error = mainModel.getErrorMessage();
-        if(error != null){
-            Toast.makeText(this,
-                    error,
-                    Toast.LENGTH_SHORT).show();
+        players = mainModel.getGame().getPlayers().toArray();
+        if(players.length < 1){
+            finish();
             return;
         }
         else{
-            User currentUser = mainModel.getUser();
-            if(currentUser.getLoggedIn()){
+            int i;
+            for(i = 0; i < players.length; i++){
+                playerTextfields.elementAt(i).setText(((Player)players[i]).getName());
+            }
+            for(i = i; i < playerTextfields.size(); i++){
+                playerTextfields.elementAt(i).setText("Waiting for player...");
+            }
+        }
+    }
 
-            }
-            else{
-                Toast.makeText(this,
-                        "Unexpected error!",
-                        Toast.LENGTH_SHORT).show();
-            }
+    public void startGame(View view){
+        mainModel = MainModel.get();
+        if(mainModel.getGame().getPlayers().size() < 2){
+            Toast.makeText(this,
+                    "Not enough players to start!",
+                    Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this,
+                    "Game " + mainModel.getGame().getName() + " started with " + Integer.toString(mainModel.getGame().getPlayers().size()) + " players!",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 

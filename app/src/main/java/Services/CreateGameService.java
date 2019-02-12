@@ -4,8 +4,8 @@ import Communication.ServerProxy;
 import Models.*;
 
 public class CreateGameService implements Service {
-    ServerProxy sp;
-    MainModel model;
+    private ServerProxy sp;
+    private MainModel model;
 
     public CreateGameService(){
         sp = ServerProxy.get();
@@ -26,7 +26,7 @@ public class CreateGameService implements Service {
         String gameName = (String) obj[1];
 
         PendingGame newGame = new PendingGame(host, gameName);
-        model.getGameList().addPendingGame(newGame);
+        model.getGameList().addServerPendingGame(newGame);
         if(host.getName().equals(model.getUser().getName())){
             //this user created game
             model.setGame(newGame);
