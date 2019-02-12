@@ -12,7 +12,9 @@ public class MainModel extends Observable {
     private String IPAddress;
     private String authToken;
 
-    private MainModel() {}
+    private MainModel() {
+        user = new User();
+    }
 
     public static MainModel get(){
         if(instance == null){
