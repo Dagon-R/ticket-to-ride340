@@ -79,6 +79,12 @@ public class MainModel extends Observable {
         notifyObservers();
     }
 
+    public void addPlayerToGame(String gameName, Player player){
+        gameList.get(gameName).addPlayer(player);
+        setChanged();
+        notifyObservers();
+    }
+
     public String getErrorMessage() {
         return errorMessage;
     }
