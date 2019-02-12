@@ -7,11 +7,12 @@ public class   JoinGameCommand implements Command {
     private Player player;
     private String gameID;
     private boolean joined;
+    private String ipAddress;
 
     @Override
     public void execute() {
         JoinGameService newService = new JoinGameService();
-        newService.doService(player, gameID);
+        newService.doService(player, gameID, joined, ipAddress);
     }
 
     public JoinGameCommand(Player player, String gameID) {
