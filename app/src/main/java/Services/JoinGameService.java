@@ -30,16 +30,18 @@ public class JoinGameService implements Service {
     public void doService(Object... obj) {
         //Check params
         System.out.println("Create game do service");
-        if(obj.length != 3){
+        if(obj.length != 4){
             model.setErrorMessage("Error Joining Game");
-            System.out.println("ERROR: " + obj.length + " instead of 3 params on frontend joinGame service");
+            System.out.println("ERROR: " + obj.length + " instead of 4 params on frontend joinGame service");
         }
         Player player = (Player) obj[0];
         String gameName = (String) obj[1];
         String joined = (String) obj[2];
         String ipAddress = (String) obj[3];
+        ClientGameList gameList = (ClientGameList) obj[4];
 
         model.addPlayerToGame(gameName, player);
+        model.setGameList(gameList);
 
         //If this client
         if(model.getIPAddress().equals(ipAddress)){
