@@ -17,7 +17,7 @@ public class UserList{
 
     public boolean findUser(String username, String password){
         for(User user : list){
-            if(user.getName().equals(username) && user.getPassword().equals(password)){
+            if(user.getName().equals(username) && user.getName().equals(password)){
                 return true;
             }
         }

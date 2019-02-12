@@ -14,6 +14,7 @@ public class PendingGame implements IGame{
 	public PendingGame(){}
 	
 	public PendingGame(Player host, String gameName){
+
 		players.add(host);
 		this.name = gameName;
 		this.id = gameName + host.getName();

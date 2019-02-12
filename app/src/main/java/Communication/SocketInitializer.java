@@ -1,11 +1,12 @@
 package Communication;
 
 import android.os.AsyncTask;
+import android.support.annotation.Nullable;
 
 import java.io.IOException;
 import java.net.Socket;
 
-public class SocketInitializer extends AsyncTask<Object,Void,Socket> {
+public class SocketInitializer extends AsyncTask<Object,Nullable,Socket> {
 
     @Override
     protected void onPreExecute() {
