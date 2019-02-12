@@ -9,5 +9,7 @@ public interface IGame {
 
 	HashSet<Player> getPlayers();
 
+	Boolean playerIsInGame(Player player);
+
 	String getName();
 }

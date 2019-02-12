@@ -39,9 +39,14 @@ public class ActiveGame implements IGame{
 	public String getName(){
 		return name;
 	}
-	
 
-	
+	public Boolean playerIsInGame(Player player){
+		if(players.contains(player)){
+			return true;
+		}
+		return false;
+	}
+
 	private void setPlayers(HashSet<Player> input){
 		this.players = input;
 	}

@@ -30,6 +30,13 @@ public class PendingGame implements IGame{
 	public HashSet<Player> getPlayers(){
 		return players;
 	}
+
+	public Boolean playerIsInGame(Player player){
+		if(players.contains(player)){
+			return true;
+		}
+		return false;
+	}
 	
 	public String getName(){
 		return name;
