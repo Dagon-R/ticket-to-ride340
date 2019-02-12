@@ -67,4 +67,13 @@ public class ActiveGame implements IGame{
 
 		return Objects.hash(getName());
 	}
+
+	@Override
+	public String toString() {
+		return "ActiveGame{" +
+				"players=" + players +
+				", name='" + name + '\'' +
+				", id='" + id + '\'' +
+				'}';
+	}
 }

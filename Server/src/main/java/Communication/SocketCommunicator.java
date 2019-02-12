@@ -45,20 +45,15 @@ public class SocketCommunicator{
 
     public void readAndExecute()throws IOException{
         StringBuilder input = new StringBuilder();
-        CommandWrapper[] commandWrappers = null;
+        CommandWrapper[] commandWrappers = read();
+        if(commandWrappers == null) return;
 //        System.out.println("Read from Socket");
-        if(in.ready()){
-            input.append(in.readLine());
-        }
-        if(input == null ||input.length() <=0 ){
-//            System.out.println("Reading error " + input);
-            return;
-        }
-        if(input.charAt(input.length()-1) == ','){
-            input.setCharAt(input.length()-1,']');
-            input = new StringBuilder("[" + input.toString());
-            commandWrappers = Deserializer.deserializeWrappers(input.toString());
-        }
+        execute(commandWrappers);
+
+
+    }
+
+    private void execute(CommandWrapper[] commandWrappers){
         for(CommandWrapper wrapper : commandWrappers){
             try {
                 StringBuilder type = new StringBuilder(wrapper.getType());
@@ -66,13 +61,17 @@ public class SocketCommunicator{
 
 
                 Command command = Deserializer.deserializeCommand(wrapper.getCommand(),type.toString());
-                Object obj = command.execute();
-                if(obj.getClass() == ErrorCommand.class){
-                    command = (ErrorCommand) obj;
-                    ((ErrorCommand) command).setIpAddress(socket.getInetAddress().getHostAddress());
-                }else{
-                    command.addResults(obj);
+                Object obj = null;
+                try{
+                    obj = command.execute();
                 }
+                catch(AssertionError e){
+                    command = new ErrorCommand(e.getMessage());
+                }
+
+                command.addResults(obj);
+                command.setIpAddress(socket.getInetAddress().getHostAddress());
+
                 System.out.println(command);
                 server.sendToAll(command,this);
             }
@@ -81,7 +80,25 @@ public class SocketCommunicator{
             }
 
         }
+    }
 
+    private CommandWrapper[] read()throws IOException{
+        StringBuilder input = new StringBuilder();
+        CommandWrapper[] commandWrappers = null;
+//        System.out.println("Read from Socket");
+        if(in.ready()){
+            input.append(in.readLine());
+        }
+        if(input == null ||input.length() <=0 ){
+//            System.out.println("Reading error " + input);
+            return null;
+        }
+        if(input.charAt(input.length()-1) == ','){
+            input.setCharAt(input.length()-1,']');
+            input = new StringBuilder("[" + input.toString());
+            return Deserializer.deserializeWrappers(input.toString());
+        }
+        return null;
     }
 
     @Override

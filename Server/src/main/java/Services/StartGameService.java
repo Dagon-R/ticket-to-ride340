@@ -17,6 +17,10 @@ public class StartGameService implements Service {
     public Object doService(Object... obj) {
         String gameID = (String) obj[0];
 
+        if(model.getGameList().get(gameID) == null){
+            return new ErrorCommand("Game does not exist!");
+        }
+
         if(model.getGameList().get(gameID).getPlayers().size() < 2){
             return new ErrorCommand("Not enough players!");
         }
