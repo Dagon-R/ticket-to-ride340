@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
         loginButton = (Button) findViewById(R.id.loginButton);
         registerButton = (Button) findViewById(R.id.registerButton);
         mainModel = MainModel.get();
-        mainModel.addObserver(this);
+        mainModel.getUser().addObserver(this);
     }
 
     public void login(View view){

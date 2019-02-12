@@ -25,6 +25,8 @@ import java.util.Observer;
 
 
 import Models.MainModel;
+import Services.CreateGameService;
+import Services.StartGameService;
 
 public class ChooseGameActivity extends AppCompatActivity implements Observer {
     RecyclerView gamesRecyclerView;
@@ -48,8 +50,10 @@ public class ChooseGameActivity extends AppCompatActivity implements Observer {
     }
 
     protected void createGame(View v){
-        Intent i = new Intent(this, LobbyActivity.class);
-        startActivity(i);
+        CreateGameService service = new CreateGameService();
+        service.connectToProxy(mainModel.getUser(), gameNameTextfield.getText().toString());
+//        Intent i = new Intent(this, LobbyActivity.class);
+//        startActivity(i);
     }
 
     public void update(Observable object, Object type) {

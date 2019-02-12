@@ -59,7 +59,6 @@ public class LobbyActivity extends AppCompatActivity implements Observer {
         playerTextfields.add(playerName3);
         playerTextfields.add(playerName4);
         startButton = (Button) findViewById(R.id.startButton);
-        backButton = (Button) findViewById(R.id.backButton);
         mainModel = MainModel.get();
         mainModel.addObserver(this);
         update(null, null);
