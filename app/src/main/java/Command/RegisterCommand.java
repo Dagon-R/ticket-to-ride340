@@ -12,7 +12,7 @@ public class RegisterCommand implements Command {
     @Override
     public void execute() {
         RegisterService newService = new RegisterService();
-        newService.doService(username, password, ipAddress);
+        newService.doService(username, password, ipAddress, gameList);
     }
 
     public RegisterCommand(String username, String password, String ipAddress) {

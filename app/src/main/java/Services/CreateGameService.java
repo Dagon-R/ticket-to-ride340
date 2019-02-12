@@ -1,5 +1,6 @@
 package Services;
 
+import Communication.CommandManager;
 import Communication.ServerProxy;
 import Models.*;
 
@@ -40,7 +41,7 @@ public class CreateGameService implements Service {
 
         PendingGame newGame = new PendingGame(host, gameName);
         model.getGameList().addServerPendingGame(newGame);
-        if(model.getIPAddress().equals(ipAddress)){
+        if(CommandManager.get().getOwnIP().equals(ipAddress)){
             //this user created game
             model.setGame(newGame);
         }

@@ -1,7 +1,5 @@
 package Communication;
 
-import android.os.AsyncTask;
-
 import java.io.IOException;
 
 import Command.Command;
@@ -17,10 +15,7 @@ public class ClientPoller extends Thread
     {
         manager = cmgr;
     }
-//    public static ClientPoller getPoller()
-//    {
-//        return inst;
-//    }
+
     static ClientPoller create(CommandManager cmgr)
     {
         inst = new ClientPoller(cmgr);

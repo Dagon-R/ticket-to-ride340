@@ -42,6 +42,7 @@ public class MainModel extends Observable {
 
     public void setUser(User user) {
         this.user = user;
+        setChanged();
         this.notifyObservers();
     }
 
@@ -51,6 +52,7 @@ public class MainModel extends Observable {
 
     public void setGame(IGame game) {
         this.game = game;
+        setChanged();
         this.notifyObservers();
     }
 
@@ -81,9 +83,6 @@ public class MainModel extends Observable {
         this.notifyObservers();
     }
 
-    public String getIPAddress() {
-        return IPAddress;
-    }
 
     public void setIPAddress(String IPAddress) {
         this.IPAddress = IPAddress;

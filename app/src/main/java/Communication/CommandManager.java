@@ -51,7 +51,7 @@ public class CommandManager {
             server.getOutputStream().close();
             server.close();
         } catch (IOException e) {
-            System.out.print("Server failed to close\n");
+            System.out.println("Server failed to close");
         }
     }
 
@@ -65,29 +65,29 @@ public class CommandManager {
                 if (bytesToRead > 0) {
                     byte[] data = new byte[bytesToRead];
                     int readBytes = input.read(data);
-                    System.out.print("Read " + readBytes + " bytes\n");
+                    System.out.println("Read " + readBytes + " bytes");
                     if (data[data.length - 1] != ',') {
                         throw new InvalidCommandException();
                     }
                     String dataJSON = "[" +
                             new String(Arrays.copyOfRange(data, 0, data.length - 1)) + "]";
-                    System.out.print("Found following JSON: \n" + dataJSON + "\n");
+                    System.out.println("Found following JSON: \n" + dataJSON);
                     CommandWrapper[] commandWrappers = json.fromJson(dataJSON, CommandWrapper[].class);
-                    System.out.print("Successfully retrieved command wrappers");
+                    System.out.println("Successfully retrieved command wrappers");
                     for (CommandWrapper commandWrapper : commandWrappers) {
                         queue.add((Command) json.fromJson(commandWrapper.getCommand(),
                                 Class.forName(commandWrapper.getType())));
-                        System.out.print("Added a command to the queue\n");
+                        System.out.println("Added a command to the queue");
                     }
                     return queue.poll();
                 } else {
                     return null;
                 }
             } catch (IOException e) {
-                System.out.print("Unable to connect to socket to read command.\n");
+                System.out.println("Unable to connect to socket to read command.");
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
-                System.out.print("You may want to rename your classes...");
+                System.out.println("You may want to rename your classes...");
                 e.printStackTrace();
             } catch (InvalidCommandException e) {
                 e.printStackTrace();

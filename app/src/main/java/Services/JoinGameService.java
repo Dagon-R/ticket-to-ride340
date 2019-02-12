@@ -2,6 +2,7 @@ package Services;
 
 import android.graphics.Paint;
 
+import Communication.CommandManager;
 import Communication.ServerProxy;
 import Models.*;
 
@@ -37,7 +38,7 @@ public class JoinGameService implements Service {
         String ipAddress = (String) obj[2];
 
         //If this client
-        if(model.getIPAddress().equals(ipAddress)){
+        if(CommandManager.get().getOwnIP().equals(ipAddress)){
             PendingGame game = new PendingGame(player, gameName);
             model.setGame(game);
         }

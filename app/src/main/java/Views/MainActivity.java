@@ -69,12 +69,16 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
     public void update(Observable object, Object type){
         mainModel = MainModel.get();
-        String error = mainModel.getErrorMessage();
+        final String error = mainModel.getErrorMessage();
         if(error != null){
-            Toast.makeText(this,
-                    error,
-                    Toast.LENGTH_SHORT).show();
-            return;
+            MainActivity.this.runOnUiThread(new Runnable() {
+                public void run() {
+                    Toast.makeText(MainActivity.this,error,Toast.LENGTH_SHORT).show();
+                }
+            });
+//            Toast.makeText(this,
+//                    error,
+//                    Toast.LENGTH_SHORT).show();
         }
         else{
             User currentUser = mainModel.getUser();
