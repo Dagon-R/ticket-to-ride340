@@ -19,9 +19,8 @@ public class JoinGameService implements Service {
         //Check params
         if(obj.length != 1){
             model.setErrorMessage("Error Joining Game");
-            System.out.println("ERROR: " + obj.length + " instead of 1 params on frontend login service");
+            System.out.println("ERROR: " + obj.length + " instead of 1 params on frontend joinGame service");
         }
-        assert obj[0] instanceof String;
 
         String gameName = (String) obj[0];
 

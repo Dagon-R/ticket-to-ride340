@@ -2,9 +2,11 @@ package Services;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.concurrent.TimeUnit;
 
 import Communication.ServerProxy;
 import Communication.SocketConnectionError;
+import Communication.SocketInitializer;
 import Models.*;
 
 public class LoginService implements Service {
@@ -21,14 +23,23 @@ public class LoginService implements Service {
         String password = (String) obj[1];
         String ipAddress = (String) obj[2];
 
-        //send loginCommand
-        try{
-            sp = ServerProxy.create(ipAddress);
-            sp.login(username, password, ipAddress);
+        SocketInitializer si = new SocketInitializer();
+        si.execute(ipAddress, "8080");
 
-        } catch(SocketConnectionError e){
-            model.setErrorMessage("Error connecting to socket");
+        while(true){
+            try{
+                TimeUnit.SECONDS.sleep((long) .002);
+                sp = ServerProxy.get();
+                if(sp != null){
+                    break;
+                }
+            } catch(InterruptedException e){
+                System.out.println("Error sleeping");
+            }
+
         }
+        //send loginCommand
+        sp.login(username, password, ipAddress);
     }
 
     @Override

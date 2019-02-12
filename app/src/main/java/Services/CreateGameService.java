@@ -31,10 +31,8 @@ public class CreateGameService implements Service {
         //Check params
         if(obj.length != 2){
             model.setErrorMessage("Error Creating Game");
-            System.out.println("ERROR: " + obj.length + " instead of 2 params on frontend login service");
+            System.out.println("ERROR: " + obj.length + " instead of 2 params on frontend createGame service");
         }
-        assert obj[0] instanceof Player;
-        assert obj[1] instanceof String;
 
         Player host = (Player) obj[0];
         String gameName = (String) obj[1];

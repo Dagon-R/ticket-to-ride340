@@ -1,10 +1,14 @@
 package Services;
 
+import android.os.AsyncTask;
+
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.concurrent.TimeUnit;
 
 import Communication.ServerProxy;
 import Communication.SocketConnectionError;
+import Communication.SocketInitializer;
 import Models.ClientGameList;
 import Models.MainModel;
 import Models.User;
@@ -24,13 +28,23 @@ public class RegisterService implements Service {
         String password = (String) obj[1];
         String ipAddress = (String) obj[2];
 
-        try{
-            sp = ServerProxy.create(ipAddress);
-            sp.login(username, password, ipAddress);
+        SocketInitializer si = new SocketInitializer();
+        si.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, ipAddress, "8080");
 
-        } catch(SocketConnectionError e){
-            model.setErrorMessage("Error connecting to socket");
+        long startTime = System.currentTimeMillis(); //fetch starting time
+        while(true){
+            try{
+                TimeUnit.SECONDS.sleep((long) .002);
+                sp = ServerProxy.get();
+                if(sp != null){
+                    break;
+                }
+            } catch(InterruptedException e){
+                System.out.println("Error sleeping");
+            }
+
         }
+        sp.register(username, password, ipAddress);
     }
 
     @Override
@@ -38,12 +52,8 @@ public class RegisterService implements Service {
         //Check params
         if(obj.length != 4){
             model.setErrorMessage("Error Registering");
-            System.out.println("ERROR: " + obj.length + " instead of 4 params on frontend login service");
+            System.out.println("ERROR: " + obj.length + " instead of 4 params on frontend register service");
         }
-        assert obj[0] instanceof String;
-        assert obj[1] instanceof String;
-        assert obj[2] instanceof String;
-        assert obj[1] instanceof ClientGameList;
 
         String username = (String) obj[0];
         String password = (String) obj[1];
