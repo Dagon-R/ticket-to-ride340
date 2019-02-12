@@ -15,13 +15,14 @@ public class LeaveGameService implements Service {
     @Override
     public Object doService(Object... obj) {
         //Do some checks
-        if(obj.length != 2){
-            System.out.println("ERROR: " + obj.length + " instead of 2 params on backend leaveGame service");
-            return new ErrorCommand("Error leaving game");
-        }
+        assert (obj.length == 2) : "Error Leaving Game";
+//        if(obj.length != 2){
+////            System.out.println("ERROR: " + obj.length + " instead of 2 params on backend leaveGame service");
+//            return new ErrorCommand("Error leaving game");
+//        }
         assert obj[0] instanceof Player : "leaveGame service wrong param 0 type";
         assert obj[1] instanceof String :  "leaveGame service wrong param 1 type";
-
+//        throw new IllegalArgumentException();
         Player player = (Player) obj[0];
         String gameID = (String) obj[1];
 
