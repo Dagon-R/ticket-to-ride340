@@ -33,6 +33,7 @@ public class SocketInitializer extends AsyncTask<Object,Void,Socket> {
         super.onPostExecute(socket);
         CommandManager manager = CommandManager.create(socket);
         ServerProxy.create(manager);
-        ClientPoller.create(manager);
+        ClientPoller poller = ClientPoller.create(manager);
+        poller.doInBackground();
     }
 }
