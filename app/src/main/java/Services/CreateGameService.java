@@ -19,11 +19,6 @@ public class CreateGameService implements Service {
         User host = (User) obj[0];
         String gameName = (String) obj[1];
 
-        //call server initializer do in background
-        //while sp.get == null
-            //keep checking
-        //when not null, go on
-
         sp.createGame(host, gameName);
     }
 

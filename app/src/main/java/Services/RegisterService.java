@@ -63,12 +63,13 @@ public class RegisterService implements Service {
 
         if(model.getAuthToken().equals(authToken)){
             model.setIPAddress(ipAddress);
-            //set user
-            User user = new User(username,password);
-            model.setUser(user);
-            user.setLoggedIn(true);
             //set gamelist
             model.setGameList(gameList);
+            //set user
+            model.getUser().setName(username);
+            model.getUser().setPassword(password);
+            model.getUser().setLoggedIn(true);
+
         }
 
     }
