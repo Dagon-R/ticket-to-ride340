@@ -12,43 +12,47 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f99462ba-80c2-4e42-8b58-c6b2ffafab84" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Server/src/main/java/Command/LeaveGameCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/Communication/SocketConnectionError.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/Services/LeaveGame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/Command/ServerLeaveGameCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/Models/PlayerColorEnum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/Services/LeaveGameService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/Communication/SendCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/Communication/SendCommand2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/Communication/SocketInitializer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Command/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Command/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Command/LeaveGameCommand.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/Command/ServerCreateGameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Command/ServerCreateGameCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/Command/ServerJoinGameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Command/ServerJoinGameCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/Command/ServerRegisterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Command/ServerRegisterCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/Command/ServerStartGameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Command/ServerStartGameCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/Command/ServerTheLoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Command/ServerTheLoginCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Communication/SocketCommunicator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Communication/SocketCommunicator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Models/ActiveGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Models/ActiveGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Models/ColorEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Models/ColorEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Models/GameList.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Models/GameList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Models/IGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Models/IGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Models/PendingGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Models/PendingGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Models/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Models/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/Services/CreateGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Services/CreateGameService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Services/JoinGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Services/JoinGameService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/Services/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Services/LoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Services/RegisterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Services/RegisterService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Services/StartGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Services/StartGameService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Command/RegisterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Command/RegisterCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/Command/TestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Command/TestMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Command/TheLoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Command/TheLoginCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Communication/ClientPoller.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Communication/ClientPoller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/Communication/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Communication/CommandManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/Communication/ServerProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Communication/ServerProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Models/ClientGameList.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Models/ClientGameList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Models/MainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Models/MainModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/CreateGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/CreateGameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/ErrorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/ErrorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/JoinGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/JoinGameService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/LoginService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/RegisterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/RegisterService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/StartGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/StartGameService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/Views/ChooseGameActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Views/ChooseGameActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Views/ChooseGameAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Views/ChooseGameAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/Views/LobbyActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Views/LobbyActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Views/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Views/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/choose_game_activity.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/choose_game_activity.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/choose_game_recycler_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/choose_game_recycler_layout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/lobby_activity.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/lobby_activity.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ticket-to-ride.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ticket-to-ride.iml" afterDir="false" />
@@ -78,7 +82,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/Views/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="799">
-              <caret line="95" column="32" lean-forward="true" selection-start-line="95" selection-start-column="32" selection-end-line="95" selection-end-column="32" />
+              <caret line="95" column="32" selection-start-line="95" selection-start-column="32" selection-end-line="95" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -86,15 +90,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChooseGameActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ChooseGameActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/Views/ChooseGameActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="464">
-              <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
+              <caret line="55" selection-start-line="55" selection-end-line="55" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="362">
+              <caret line="28" column="63" selection-start-line="28" selection-start-column="63" selection-end-line="28" selection-end-column="63" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="local.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/local.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Server/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state />
           </provider>
         </entry>
       </file>
@@ -110,15 +137,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LobbyActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="LobbyActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/Views/LobbyActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1666">
-              <caret line="98" column="81" selection-start-line="98" selection-start-column="81" selection-end-line="98" selection-end-column="81" />
+            <state relative-caret-position="306">
+              <caret line="72" column="36" selection-start-line="72" selection-start-column="36" selection-end-line="72" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1788#1789#0" expanded="true" />
-                <element signature="e#1811#1812#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -131,7 +156,7 @@
           </provider>
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="299">
-              <caret line="126" column="38" selection-start-line="126" selection-start-column="38" selection-end-line="126" selection-end-column="38" />
+              <caret line="119" column="38" selection-start-line="119" selection-start-column="38" selection-end-line="119" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -143,7 +168,7 @@
           </provider>
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="298">
-              <caret line="69" column="20" selection-start-line="69" selection-start-column="20" selection-end-line="69" selection-end-column="43" />
+              <caret line="72" column="20" selection-start-line="72" selection-start-column="20" selection-end-line="72" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -2546,9 +2571,9 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/choose_game_recycler_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/choose_game_activity.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/lobby_activity.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/Views/LobbyActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Views/ChooseGameActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Views/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/Views/LobbyActivity.java" />
       </list>
     </option>
   </component>
@@ -2833,7 +2858,7 @@
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5018975" side_tool="true" weight="0.32893288" />
       <window_info anchor="right" id="Preview" order="0" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49905124" weight="0.32893288" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49905124" visible="true" weight="0.32893288" />
       <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info anchor="bottom" id="Logcat" order="10" />
       <window_info id="Captures" order="4" weight="0.25" />
@@ -2845,7 +2870,7 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Device File Explorer" order="5" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="7" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.39933994" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39933994" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -2925,13 +2950,6 @@
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="63" selection-start-line="28" selection-start-column="63" selection-end-line="28" selection-end-column="63" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/Communication/ClientPoller.java">
@@ -3058,7 +3076,7 @@
       </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
-          <caret line="126" column="38" selection-start-line="126" selection-start-column="38" selection-end-line="126" selection-end-column="38" />
+          <caret line="119" column="38" selection-start-line="119" selection-start-column="38" selection-end-line="119" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -3068,7 +3086,7 @@
       </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
-          <caret line="69" column="20" selection-start-line="69" selection-start-column="20" selection-end-line="69" selection-end-column="43" />
+          <caret line="72" column="20" selection-start-line="72" selection-start-column="20" selection-end-line="72" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -3082,22 +3100,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/Views/LobbyActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1666">
-          <caret line="98" column="81" selection-start-line="98" selection-start-column="81" selection-end-line="98" selection-end-column="81" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1788#1789#0" expanded="true" />
-            <element signature="e#1811#1812#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/Views/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="799">
-          <caret line="95" column="32" lean-forward="true" selection-start-line="95" selection-start-column="32" selection-end-line="95" selection-end-column="32" />
+          <caret line="95" column="32" selection-start-line="95" selection-start-column="32" selection-end-line="95" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -3107,7 +3113,34 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/Views/ChooseGameActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="464">
-          <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="28" column="63" selection-start-line="28" selection-start-column="63" selection-end-line="28" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/local.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/Views/LobbyActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="72" column="36" selection-start-line="72" selection-start-column="36" selection-end-line="72" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

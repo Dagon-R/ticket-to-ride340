@@ -57,7 +57,7 @@ public class ChooseGameActivity extends AppCompatActivity implements Observer {
     }
 
     public void update(Observable object, Object type) {
-        
+
     }
 
     @Override
