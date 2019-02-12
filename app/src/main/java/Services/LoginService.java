@@ -1,9 +1,8 @@
 package Services;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.concurrent.TimeUnit;
 
+import Communication.CommandManager;
 import Communication.ServerProxy;
 import Communication.SocketConnectionError;
 import Communication.SocketInitializer;
@@ -23,55 +22,53 @@ public class LoginService implements Service {
         String password = (String) obj[1];
         String ipAddress = (String) obj[2];
 
-        SocketInitializer si = new SocketInitializer();
-        si.execute(ipAddress, "8080");
 
-        while(true){
-            try{
-                TimeUnit.SECONDS.sleep((long) .002);
-                sp = ServerProxy.get();
-                if(sp != null){
-                    break;
+
+        if(CommandManager.get() == null) {
+            SocketInitializer si = new SocketInitializer();
+            int port = 8080;
+            si.execute(ipAddress, port);
+            while (true) {
+                try {
+                    TimeUnit.SECONDS.sleep((long) .002);
+                    if (CommandManager.get() != null) {
+                        break;
+                    }
+                } catch (InterruptedException e) {
+                    System.out.println("Error sleeping");
                 }
-            } catch(InterruptedException e){
-                System.out.println("Error sleeping");
             }
-
         }
+        String authToken = username + Long.toString(System.currentTimeMillis());
+        model.setAuthToken(authToken);
+
+        ServerProxy sp = new ServerProxy();
         //send loginCommand
-        sp.login(username, password, ipAddress);
+        sp.login(username, password, ipAddress, authToken);
     }
 
     @Override
     public void doService(Object... obj) {
         //Check params
-        if(obj.length != 4){
+        if(obj.length != 5){
             model.setErrorMessage("Error Logging in");
-            System.out.println("ERROR: " + obj.length + " instead of 4 params on frontend login service");
+            System.out.println("ERROR: " + obj.length + " instead of 5 params on frontend login service");
         }
-        assert obj[0] instanceof String;
-        assert obj[1] instanceof String;
-        assert obj[2] instanceof String;
-        assert obj[3] instanceof ClientGameList;
 
         String username = (String) obj[0];
         String password = (String) obj[1];
         String ipAddress = (String) obj[2];
         ClientGameList gameList = (ClientGameList) obj[3];
+        String authToken = (String) obj[4];
 
-        try{
-            String localhost = InetAddress.getLocalHost().getHostAddress();
-
-            if(localhost.equals(ipAddress)){
-                model.setIPAddress(localhost);
-                //set user
-                User user = new User(username,password);
-                model.setUser(user);
-                //set gamelist
-                model.setGameList(gameList);
-            }
-        } catch(UnknownHostException e){
-            model.setErrorMessage("Couldn't get localhost for some reason...");
+        if(model.getIPAddress().equals(ipAddress)){
+            model.setIPAddress(ipAddress);
+            //set user
+            User user = new User(username,password);
+            model.setUser(user);
+            user.setLoggedIn(true);
+            //set gamelist
+            model.setGameList(gameList);
         }
 
     }

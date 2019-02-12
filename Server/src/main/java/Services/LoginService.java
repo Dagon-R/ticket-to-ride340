@@ -9,6 +9,7 @@ public class LoginService implements Service {
     public LoginService(){
         model = MainModel.get();
     }
+
     @Override
     public Object doService(Object... obj) {
         String username = (String) obj[0];

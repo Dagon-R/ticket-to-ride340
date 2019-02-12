@@ -1,11 +1,8 @@
 package Services;
 
-import android.os.AsyncTask;
-
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.concurrent.TimeUnit;
 
+import Communication.CommandManager;
 import Communication.ServerProxy;
 import Communication.SocketConnectionError;
 import Communication.SocketInitializer;
@@ -28,51 +25,51 @@ public class RegisterService implements Service {
         String password = (String) obj[1];
         String ipAddress = (String) obj[2];
 
-        SocketInitializer si = new SocketInitializer();
-        si.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, ipAddress, "8080");
-
-        long startTime = System.currentTimeMillis(); //fetch starting time
-        while(true){
-            try{
-                TimeUnit.SECONDS.sleep((long) .002);
-                sp = ServerProxy.get();
-                if(sp != null){
-                    break;
+        if(CommandManager.get() == null) {
+            SocketInitializer si = new SocketInitializer();
+            int port = 8080;
+            si.execute(ipAddress, port);
+            while (true) {
+                try {
+                    TimeUnit.SECONDS.sleep((long) .002);
+                    if (CommandManager.get() != null) {
+                        break;
+                    }
+                } catch (InterruptedException e) {
+                    System.out.println("Error sleeping");
                 }
-            } catch(InterruptedException e){
-                System.out.println("Error sleeping");
             }
-
         }
-        sp.register(username, password, ipAddress);
+        String authToken = username + Long.toString(System.currentTimeMillis());
+        model.setAuthToken(authToken);
+
+        ServerProxy sp = new ServerProxy();
+        sp.register(username, password, ipAddress, authToken);
     }
 
     @Override
     public void doService(Object... obj) {
         //Check params
-        if(obj.length != 4){
+        if(obj.length != 5){
             model.setErrorMessage("Error Registering");
-            System.out.println("ERROR: " + obj.length + " instead of 4 params on frontend register service");
+            System.out.println("ERROR: " + obj.length + " instead of 5 params on frontend register service");
         }
 
         String username = (String) obj[0];
         String password = (String) obj[1];
         String ipAddress = (String) obj[2];
         ClientGameList gameList = (ClientGameList) obj[3];
+        String authToken = (String) obj[4];
 
-        try{
-            String localhost = InetAddress.getLocalHost().getHostAddress();
+        if(model.getAuthToken().equals(authToken)){
+            model.setIPAddress(ipAddress);
+            //set gamelist
+            model.setGameList(gameList);
+            //set user
+            model.getUser().setName(username);
+            model.getUser().setPassword(password);
+            model.getUser().setLoggedIn(true);
 
-            if(localhost.equals(ipAddress)){
-                model.setIPAddress(localhost);
-                //set user
-                User user = new User(username,password);
-                model.setUser(user);
-                //set gamelist
-                model.setGameList(gameList);
-            }
-        } catch(UnknownHostException e){
-            model.setErrorMessage("Couldn't get localhost for some reason...");
         }
 
     }

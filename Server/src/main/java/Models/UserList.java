@@ -27,6 +27,15 @@ public class UserList{
         return false;
     }
 
+    public boolean findUser(String username){
+        for(User user : list){
+            if(user.name == username){
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         return "UserList{" +

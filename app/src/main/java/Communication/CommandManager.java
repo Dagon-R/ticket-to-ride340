@@ -4,9 +4,9 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -18,15 +18,19 @@ import Command.InvalidCommandException;
 public class CommandManager {
     private Socket server;
     private Queue<Command> queue;
-    private Gson json;
 
     private static CommandManager inst;
-
+    private Gson json;
 
     private CommandManager(Socket socket){
         json = new Gson();
         queue = new LinkedList<>();
         server = socket;
+    }
+
+    public Socket getSocket()
+    {
+        return server;
     }
 
     public static CommandManager get()
@@ -49,7 +53,7 @@ public class CommandManager {
             server.getOutputStream().close();
             server.close();
         } catch (IOException e) {
-            System.out.print("Server failed to close\n");
+            System.out.println("Server failed to close");
         }
     }
 
@@ -63,29 +67,29 @@ public class CommandManager {
                 if (bytesToRead > 0) {
                     byte[] data = new byte[bytesToRead];
                     int readBytes = input.read(data);
-                    System.out.print("Read " + readBytes + " bytes\n");
+                    System.out.println("Read " + readBytes + " bytes");
                     if (data[data.length - 1] != ',') {
                         throw new InvalidCommandException();
                     }
                     String dataJSON = "[" +
                             new String(Arrays.copyOfRange(data, 0, data.length - 1)) + "]";
-                    System.out.print("Found following JSON: \n" + dataJSON + "\n");
+                    System.out.println("Found following JSON: \n" + dataJSON);
                     CommandWrapper[] commandWrappers = json.fromJson(dataJSON, CommandWrapper[].class);
-                    System.out.print("Successfully retrieved command wrappers");
+                    System.out.println("Successfully retrieved command wrappers");
                     for (CommandWrapper commandWrapper : commandWrappers) {
                         queue.add((Command) json.fromJson(commandWrapper.getCommand(),
                                 Class.forName(commandWrapper.getType())));
-                        System.out.print("Added a command to the queue\n");
+                        System.out.println("Added a command to the queue");
                     }
                     return queue.poll();
                 } else {
                     return null;
                 }
             } catch (IOException e) {
-                System.out.print("Unable to connect to socket to read command.\n");
+                System.out.println("Unable to connect to socket to read command.");
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
-                System.out.print("You may want to rename your classes...");
+                System.out.println("You may want to rename your classes...");
                 e.printStackTrace();
             } catch (InvalidCommandException e) {
                 e.printStackTrace();
@@ -94,30 +98,16 @@ public class CommandManager {
         }
     }
 
-    public void sendCommand(Command command) {
-        CommandWrapper newWrapper =
-                new CommandWrapper(json.toJson(command), command.getClass().getName());
-        try {
-            writeString(json.toJson(newWrapper) + ",", server.getOutputStream());
-        } catch (IOException e) {
-            System.out.print("Unable to connect to socket to write command.\n");
-            e.printStackTrace();
-        }
-    }
-
-    private void writeString(String str, OutputStream os) {
-        PrintWriter pw = new PrintWriter(os);
-        pw.write(str + "\n");
-        pw.flush();
-        System.out.print("Message sent to server: " + str + "\n");
-        //os.close();
-    }
-
     public boolean isAvailable() throws IOException {
         return !queue.isEmpty() || server.getInputStream().available() > 0;
     }
-    public String getOwnIP()
-    {
-        return server.getInetAddress().getHostAddress();
+    public String getOwnIP() {
+        try{
+            return InetAddress.getLocalHost().getHostAddress();
+        }
+        catch (UnknownHostException e){
+            System.out.println("HERE");
+        }
+        return null;
     }
 }

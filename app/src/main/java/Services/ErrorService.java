@@ -1,15 +1,16 @@
 package Services;
 
+import Communication.CommandManager;
 import Communication.ServerProxy;
 import Models.MainModel;
 
 public class ErrorService implements Service {
-    ServerProxy sp;
-    MainModel model;
+    private ServerProxy sp;
+    private MainModel model;
 
     @Override
     public void connectToProxy(Object... obj) {
-        sp = ServerProxy.get();
+        sp = new ServerProxy();
         model = MainModel.get();
     }
 
@@ -17,6 +18,7 @@ public class ErrorService implements Service {
     public void doService(Object... obj) {
         String message = (String) obj[0];
         String ipAddress = (String) obj[1];
+
         if(model.getIPAddress().equals(ipAddress)){
             model.setErrorMessage(message);
         }

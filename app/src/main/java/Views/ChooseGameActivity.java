@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -17,25 +19,70 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-public class ChooseGameActivity extends AppCompatActivity{
-    //RecyclerView gamesRecyclerView;
+import java.util.Observable;
+import java.util.Observer;
+
+
+
+import Models.MainModel;
+import Services.CreateGameService;
+import Services.StartGameService;
+
+public class ChooseGameActivity extends AppCompatActivity implements Observer {
+    RecyclerView gamesRecyclerView;
     EditText gameNameTextfield;
     Button createGameButton;
-    Button registerButton;
+
+    MainModel mainModel;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_game_activity);
         gameNameTextfield = (EditText) findViewById(R.id.gameNameTextfield);
         createGameButton = (Button) findViewById(R.id.createGameButton);
-        //gamesRecyclerView = (Button) findViewById(R.id.gamesRecyclerView);
+        gamesRecyclerView = (RecyclerView) findViewById(R.id.gamesRecyclerView);
+        mainModel = MainModel.get();
+        gamesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ChooseGameAdapter adapter = new ChooseGameAdapter(mainModel.getGameList());
+        gamesRecyclerView.setAdapter(adapter);
 
+        mainModel.addObserver(this);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        mainModel.addObserver(this);
     }
 
     protected void createGame(View v){
-        Intent i = new Intent(this, LobbyActivity.class);
-        startActivity(i);
+        CreateGameService service = new CreateGameService();
+        service.connectToProxy(mainModel.getUser(), gameNameTextfield.getText().toString());
+//        Intent i = new Intent(this, LobbyActivity.class);
+//        startActivity(i);
     }
 
+    public void update(Observable object, Object type) {
+        if(mainModel.getGame() != null){
+            Intent i = new Intent(this, LobbyActivity.class);
+            startActivity(i);
+        }
+        else{
+            gamesRecyclerView.swapAdapter(new ChooseGameAdapter(mainModel.getGameList()), false);
+        }
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mainModel.deleteObserver(this);
+        //log out
+        mainModel.getUser().setLoggedIn(false);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mainModel.deleteObserver(this);
+    }
 }

@@ -10,8 +10,11 @@ public class MainModel extends Observable {
     private ClientGameList gameList;
     private String errorMessage;
     private String IPAddress;
+    private String authToken;
 
-    private MainModel() {}
+    private MainModel() {
+        user = new User();
+    }
 
     public static MainModel get(){
         if(instance == null){
@@ -42,6 +45,7 @@ public class MainModel extends Observable {
 
     public void setUser(User user) {
         this.user = user;
+        setChanged();
         this.notifyObservers();
     }
 
@@ -51,6 +55,7 @@ public class MainModel extends Observable {
 
     public void setGame(IGame game) {
         this.game = game;
+        setChanged();
         this.notifyObservers();
     }
 
@@ -67,8 +72,11 @@ public class MainModel extends Observable {
         return null;
     }
 
-    public void setGameList(ClientGameList gameList) {
+    public void setGameList(ClientGameList gameList){
+
         this.gameList = gameList;
+        setChanged();
+        notifyObservers();
     }
 
     public String getErrorMessage() {
@@ -81,11 +89,20 @@ public class MainModel extends Observable {
         this.notifyObservers();
     }
 
+
+    public void setIPAddress(String IPAddress) {
+        this.IPAddress = IPAddress;
+    }
+
     public String getIPAddress() {
         return IPAddress;
     }
 
-    public void setIPAddress(String IPAddress) {
-        this.IPAddress = IPAddress;
+    public String getAuthToken() {
+        return authToken;
+    }
+
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
     }
 }

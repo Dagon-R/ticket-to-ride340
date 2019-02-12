@@ -1,19 +1,54 @@
 package Models;
 
-public class User {
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
+
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
+import java.util.Observable;
+
+public class User extends Observable  { //implements JsonSerializer<User>
 	//The unique name of this user
-	String name;
+	private String name;
 	//The password for this user
-	String password;
+	private String password;
 	//Says whether the current instance of the Client is logged in
-	Boolean loggedIn = false;
+	private boolean loggedIn = false;
 	//The auth token for server verification (if necessary)
-	String authToken;
+	private String authToken;
+
+//	@Override
+//	public JsonElement serialize(User user, Type type, JsonSerializationContext jsonSerializationContext) {
+//		JsonObject jsonObj = new JsonObject();
+//		jsonObj.addProperty("name", name);
+//		jsonObj.addProperty("password", password);
+//		jsonObj.addProperty("loggedIn", loggedIn);
+//		jsonObj.addProperty("authToken", authToken);
+//		return JsonObject;
+//	}
 
 	public String getId() { return id; }
 
 	// The player's identification number
-	String id;
+	private String id;
+
+	public User(UnobservedUser user)
+	{
+		this.name = user.getName();
+		this.password = user.getPassword();
+		this.loggedIn = user.getLoggedIn();
+		this.authToken = user.getAuthToken();
+	}
+
+	public User(){
+		this.name = "";
+		this.password = "";
+		this.loggedIn = false;
+		this.authToken = "";
+	}
 
 	public User(String name, String password) {
 		this.name = name;
@@ -46,6 +81,8 @@ public class User {
 	
 	public void setLoggedIn(Boolean state){
 		this.loggedIn = state;
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void setAuthToken(String token){

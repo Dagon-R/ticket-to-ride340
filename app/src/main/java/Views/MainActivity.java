@@ -20,7 +20,11 @@ import android.widget.Toast;
 import java.util.Observable;
 import java.util.Observer;
 
+import Models.ClientGameList;
 import Models.MainModel;
+import Models.PendingGame;
+import Models.Player;
+import Models.PlayerColorEnum;
 import Models.User;
 import Services.LoginService;
 import Services.RegisterService;
@@ -44,6 +48,12 @@ public class MainActivity extends AppCompatActivity implements Observer {
         loginButton = (Button) findViewById(R.id.loginButton);
         registerButton = (Button) findViewById(R.id.registerButton);
         mainModel = MainModel.get();
+        mainModel.getUser().addObserver(this);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
         mainModel.addObserver(this);
     }
 
@@ -61,20 +71,31 @@ public class MainActivity extends AppCompatActivity implements Observer {
         String username = usernameTextfield.getText().toString();
         String password = passwordTextfield.getText().toString();
         String address = ipTextfield.getText().toString();
-        RegisterService service = new RegisterService();
-        service.connectToProxy(username, password, address);
-//        Intent i = new Intent(this, ChooseGameActivity.class);
-//        startActivity(i);
+        if(!username.isEmpty() && !password.isEmpty() && !address.isEmpty()) {
+            RegisterService service = new RegisterService();
+            service.connectToProxy(username, password, address);
+        }
+        else{
+            Toast.makeText(this,
+                    "All fields must be filled!",
+                    Toast.LENGTH_SHORT).show();
+        }
+        //Intent i = new Intent(this, ChooseGameActivity.class);
+        //startActivity(i);
     }
 
     public void update(Observable object, Object type){
         mainModel = MainModel.get();
-        String error = mainModel.getErrorMessage();
+        final String error = mainModel.getErrorMessage();
         if(error != null){
-            Toast.makeText(this,
-                    error,
-                    Toast.LENGTH_SHORT).show();
-            return;
+            MainActivity.this.runOnUiThread(new Runnable() {
+                public void run() {
+                    Toast.makeText(MainActivity.this,error,Toast.LENGTH_SHORT).show();
+                }
+            });
+//            Toast.makeText(this,
+//                    error,
+//                    Toast.LENGTH_SHORT).show();
         }
         else{
             User currentUser = mainModel.getUser();
@@ -88,5 +109,11 @@ public class MainActivity extends AppCompatActivity implements Observer {
                         Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mainModel.deleteObserver(this);
     }
 }

@@ -2,6 +2,7 @@ package Services;
 
 import android.graphics.Paint;
 
+import Communication.CommandManager;
 import Communication.ServerProxy;
 import Models.*;
 
@@ -10,18 +11,12 @@ public class JoinGameService implements Service {
     private MainModel model;
 
     public JoinGameService(){
-        sp = ServerProxy.get();
+        sp = new ServerProxy();
         model = MainModel.get();
     }
 
     @Override
     public void connectToProxy(Object... obj) {
-        //Check params
-        if(obj.length != 1){
-            model.setErrorMessage("Error Joining Game");
-            System.out.println("ERROR: " + obj.length + " instead of 1 params on frontend joinGame service");
-        }
-
         String gameName = (String) obj[0];
 
         PendingGame game = model.findGame(gameName);
@@ -33,11 +28,20 @@ public class JoinGameService implements Service {
 
     @Override
     public void doService(Object... obj) {
+        //Check params
+        if(obj.length != 3){
+            model.setErrorMessage("Error Joining Game");
+            System.out.println("ERROR: " + obj.length + " instead of 3 params on frontend joinGame service");
+        }
         String gameName = (String) obj[0];
         Player player = (Player) obj[1];
+        String ipAddress = (String) obj[2];
 
-        if(player.getName() == model.getUser().getName()){
-            PendingGame game = new PendingGame(player, gameName);
+        PendingGame game = new PendingGame(player, gameName);
+        game.addPlayer(player);
+
+        //If this client
+        if(model.getIPAddress().equals(ipAddress)){
             model.setGame(game);
         }
     }

@@ -22,7 +22,7 @@ public class RegisterService implements Service {
         String username = (String) obj[0];
         String password = (String) obj[1];
 
-        if(model.getUserList().findUser(username, password)){ //un already taken
+        if(model.getUserList().findUser(username)){ //un already taken
             return new ErrorCommand("Username is already taken");
         } else{
             User newUser = new User(username, password);
