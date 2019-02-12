@@ -10,6 +10,7 @@ public class MainModel extends Observable {
     private ClientGameList gameList;
     private String errorMessage;
     private String IPAddress;
+    private String authToken;
 
     private MainModel() {}
 
@@ -86,5 +87,13 @@ public class MainModel extends Observable {
 
     public void setIPAddress(String IPAddress) {
         this.IPAddress = IPAddress;
+    }
+
+    public String getAuthToken() {
+        return authToken;
+    }
+
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
     }
 }
