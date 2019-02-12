@@ -4,18 +4,26 @@ import java.util.Observable;
 
 public class User extends Observable {
 	//The unique name of this user
-	String name;
+	private String name;
 	//The password for this user
-	String password;
+	private String password;
 	//Says whether the current instance of the Client is logged in
-	boolean loggedIn = false;
+	private boolean loggedIn = false;
 	//The auth token for server verification (if necessary)
-	String authToken;
+	private String authToken;
 
 	public String getId() { return id; }
 
 	// The player's identification number
-	String id;
+	private String id;
+
+	public User(UnobservedUser user)
+	{
+		this.name = user.getName();
+		this.password = user.getPassword();
+		this.loggedIn = user.getLoggedIn();
+		this.authToken = user.getAuthToken();
+	}
 
 	public User(){
 		this.name = "";
