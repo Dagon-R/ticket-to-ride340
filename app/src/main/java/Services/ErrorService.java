@@ -18,8 +18,8 @@ public class ErrorService implements Service {
     public void doService(Object... obj) {
         String message = (String) obj[0];
         String ipAddress = (String) obj[1];
-
-        if(model.getIPAddress().equals(ipAddress)){
+        model = MainModel.get();
+        if(model.getAuthToken().equals(ipAddress)){
             model.setErrorMessage(message);
         }
     }

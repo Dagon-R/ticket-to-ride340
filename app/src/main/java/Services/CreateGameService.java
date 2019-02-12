@@ -38,8 +38,13 @@ public class CreateGameService implements Service {
         String ipAddress = (String) obj[2];
         ClientGameList gameList = (ClientGameList) obj[3];
 
+        if(gameName.trim().equals("")){
+            model.setErrorMessage("Enter a game name");
+            return;
+        }
+
         PendingGame newGame = new PendingGame(host, gameName);
-        model.getGameList().addServerPendingGame(newGame);
+        model.setGameList(gameList);
         if(model.getIPAddress().equals(ipAddress)){
             //this user created game
             model.setGame(newGame);
