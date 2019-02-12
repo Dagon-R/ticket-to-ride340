@@ -4,12 +4,12 @@ import Communication.ServerProxy;
 import Models.MainModel;
 
 public class ErrorService implements Service {
-    ServerProxy sp;
-    MainModel model;
+    private ServerProxy sp;
+    private MainModel model;
 
     @Override
     public void connectToProxy(Object... obj) {
-        sp = ServerProxy.get();
+        sp = new ServerProxy();
         model = MainModel.get();
     }
 

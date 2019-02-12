@@ -9,7 +9,7 @@ public class CreateGameService implements Service {
     private MainModel model;
 
     public CreateGameService(){
-        sp = ServerProxy.get();
+        sp = new ServerProxy();
         model = MainModel.get();
     }
 

@@ -4,6 +4,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.concurrent.TimeUnit;
 
+import Communication.CommandManager;
 import Communication.ServerProxy;
 import Communication.SocketConnectionError;
 import Communication.SocketInitializer;
@@ -23,15 +24,14 @@ public class LoginService implements Service {
         String password = (String) obj[1];
         String ipAddress = (String) obj[2];
 
-        if(ServerProxy.get() == null) {
+        if(CommandManager.get() == null) {
             SocketInitializer si = new SocketInitializer();
             int port = 8080;
             si.execute(ipAddress, port);
             while (true) {
                 try {
                     TimeUnit.SECONDS.sleep((long) .002);
-                    sp = ServerProxy.get();
-                    if (sp != null) {
+                    if (CommandManager.get() != null) {
                         break;
                     }
                 } catch (InterruptedException e) {
@@ -39,6 +39,7 @@ public class LoginService implements Service {
                 }
             }
         }
+        ServerProxy sp = new ServerProxy();
         //send loginCommand
         sp.login(username, password, ipAddress);
     }

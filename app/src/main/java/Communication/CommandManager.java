@@ -18,15 +18,19 @@ import Command.InvalidCommandException;
 public class CommandManager {
     private Socket server;
     private Queue<Command> queue;
-    private Gson json;
 
     private static CommandManager inst;
-
+    private Gson json;
 
     private CommandManager(Socket socket){
         json = new Gson();
         queue = new LinkedList<>();
         server = socket;
+    }
+
+    public Socket getSocket()
+    {
+        return server;
     }
 
     public static CommandManager get()
@@ -92,25 +96,6 @@ public class CommandManager {
             }
             return null;
         }
-    }
-
-    public void sendCommand(Command command) {
-        CommandWrapper newWrapper =
-                new CommandWrapper(json.toJson(command), command.getClass().getName());
-        try {
-            writeString(json.toJson(newWrapper) + ",", server.getOutputStream());
-        } catch (IOException e) {
-            System.out.print("Unable to connect to socket to write command.\n");
-            e.printStackTrace();
-        }
-    }
-
-    private void writeString(String str, OutputStream os) {
-        PrintWriter pw = new PrintWriter(os);
-        pw.write(str + "\n");
-        pw.flush();
-        System.out.print("Message sent to server: " + str + "\n");
-        //os.close();
     }
 
     public boolean isAvailable() throws IOException {

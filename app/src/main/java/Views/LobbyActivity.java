@@ -47,7 +47,7 @@ public class LobbyActivity extends AppCompatActivity implements Observer {
         playerName3 = (TextView) findViewById(R.id.playerName3);
         playerName4 = (TextView) findViewById(R.id.playerName4);
         startButton = (Button) findViewById(R.id.startButton);
-        backButton = (Button) findViewById(R.id.backButton);
+        //backButton = (Button) findViewById(R.id.backButton);
         mainModel = MainModel.get();
 
     }
@@ -64,14 +64,10 @@ public class LobbyActivity extends AppCompatActivity implements Observer {
             Toast.makeText(this,
                     error,
                     Toast.LENGTH_SHORT).show();
-            return;
         }
         else{
             User currentUser = mainModel.getUser();
-            if(currentUser.getLoggedIn()){
-
-            }
-            else{
+            if(!currentUser.getLoggedIn()){
                 Toast.makeText(this,
                         "Unexpected error!",
                         Toast.LENGTH_SHORT).show();
