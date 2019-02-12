@@ -19,7 +19,9 @@ public class CreateGameService implements Service {
         User host = (User) obj[0];
         String gameName = (String) obj[1];
 
-        sp.createGame(host, gameName);
+        Player player = new Player(host.getName(), null);
+
+        sp.createGame(player, gameName);
     }
 
     @Override

@@ -36,10 +36,10 @@ public class ServerProxy {
         SendCommand2 sc2 = new SendCommand2(newStart);
         sc2.start();
     }
-    public void createGame(User user, String gameID)
+    public void createGame(Player player, String gameID)
     {
         CreateGameCommand newCreate =
-                new CreateGameCommand(user, gameID);
+                new CreateGameCommand(player, gameID);
         SendCommand2 sc2 = new SendCommand2(newCreate);
         sc2.start();
 
