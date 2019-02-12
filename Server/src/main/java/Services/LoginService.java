@@ -2,8 +2,6 @@ package Services;
 
 import Command.ErrorCommand;
 import Models.*;
-import sun.applet.Main;
-import sun.rmi.runtime.Log;
 
 public class LoginService implements Service {
     MainModel model;

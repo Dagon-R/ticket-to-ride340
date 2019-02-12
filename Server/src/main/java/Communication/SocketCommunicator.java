@@ -61,14 +61,17 @@ public class SocketCommunicator{
 
 
                 Command command = Deserializer.deserializeCommand(wrapper.getCommand(),type.toString());
-                Object obj = command.execute();
-                if(obj.getClass() == ErrorCommand.class){
-                    command = (ErrorCommand) obj;
-                    ((ErrorCommand) command).setIpAddress(socket.getInetAddress().getHostAddress());
-                }else{
-                    command.addResults(obj);
-                    command.setIpAddress(socket.getInetAddress().getHostAddress());
+                Object obj = null;
+                try{
+                    obj = command.execute();
                 }
+                catch(AssertionError e){
+                    command = new ErrorCommand(e.getMessage());
+                }
+
+                command.addResults(obj);
+                command.setIpAddress(socket.getInetAddress().getHostAddress());
+
                 System.out.println(command);
                 server.sendToAll(command,this);
             }
