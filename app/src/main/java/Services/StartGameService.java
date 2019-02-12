@@ -6,11 +6,11 @@ import Models.MainModel;
 import Models.PendingGame;
 
 public class StartGameService implements Service {
-    ServerProxy sp;
-    MainModel model;
+    private ServerProxy sp;
+    private MainModel model;
 
     public StartGameService(){
-        sp = ServerProxy.get();
+        sp = new ServerProxy();
         model = MainModel.get();
     }
 

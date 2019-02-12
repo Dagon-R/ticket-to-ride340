@@ -11,7 +11,7 @@ public class JoinGameService implements Service {
     private MainModel model;
 
     public JoinGameService(){
-        sp = ServerProxy.get();
+        sp = new ServerProxy();
         model = MainModel.get();
     }
 

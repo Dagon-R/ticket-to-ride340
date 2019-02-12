@@ -1,11 +1,5 @@
 package Services;
 
-import android.os.AsyncTask;
-
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.concurrent.TimeUnit;
 
 import Communication.CommandManager;
@@ -31,15 +25,14 @@ public class RegisterService implements Service {
         String password = (String) obj[1];
         String ipAddress = (String) obj[2];
 
-        if(ServerProxy.get() == null) {
+        if(CommandManager.get() == null) {
             SocketInitializer si = new SocketInitializer();
             int port = 8080;
             si.execute(ipAddress, port);
             while (true) {
                 try {
                     TimeUnit.SECONDS.sleep((long) .002);
-                    sp = ServerProxy.get();
-                    if (sp != null) {
+                    if (CommandManager.get() != null) {
                         break;
                     }
                 } catch (InterruptedException e) {
@@ -47,9 +40,8 @@ public class RegisterService implements Service {
                 }
             }
         }
-        String now = Long.toString(System.currentTimeMillis());
-        String authToken = username + now;
-        sp.register(username, password, ipAddress);//, authToken);
+        ServerProxy sp = new ServerProxy();
+        sp.register(username, password, ipAddress);
     }
 
     @Override
