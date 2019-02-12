@@ -61,7 +61,7 @@ public class LoginService implements Service {
         ClientGameList gameList = (ClientGameList) obj[3];
         String authToken = (String) obj[4];
 
-        if(model.getIPAddress().equals(ipAddress)){
+        if(model.getAuthToken().equals(authToken)){
             model.setIPAddress(ipAddress);
             //set user
             User user = new User(username,password);
