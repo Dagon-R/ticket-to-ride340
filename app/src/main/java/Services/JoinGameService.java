@@ -16,6 +16,13 @@ public class JoinGameService implements Service {
 
     @Override
     public void connectToProxy(Object... obj) {
+        //Check params
+        if(obj.length != 1){
+            model.setErrorMessage("Error Joining Game");
+            System.out.println("ERROR: " + obj.length + " instead of 1 params on frontend login service");
+        }
+        assert obj[0] instanceof String;
+
         String gameName = (String) obj[0];
 
         PendingGame game = model.findGame(gameName);

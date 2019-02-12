@@ -33,6 +33,16 @@ public class LoginService implements Service {
 
     @Override
     public void doService(Object... obj) {
+        //Check params
+        if(obj.length != 4){
+            model.setErrorMessage("Error Logging in");
+            System.out.println("ERROR: " + obj.length + " instead of 4 params on frontend login service");
+        }
+        assert obj[0] instanceof String;
+        assert obj[1] instanceof String;
+        assert obj[2] instanceof String;
+        assert obj[3] instanceof ClientGameList;
+
         String username = (String) obj[0];
         String password = (String) obj[1];
         String ipAddress = (String) obj[2];
