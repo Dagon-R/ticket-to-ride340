@@ -24,13 +24,13 @@ public class RegisterService implements Service {
         String password = (String) obj[1];
         String ipAddress = (String) obj[2];
 
-        try{
-            sp = ServerProxy.create(ipAddress);
-            sp.login(username, password, ipAddress);
-
-        } catch(SocketConnectionError e){
-            model.setErrorMessage("Error connecting to socket");
-        }
+//        try{
+//            sp = ServerProxy.create(ipAddress);
+//            sp.login(username, password, ipAddress);
+//
+//        } catch(SocketConnectionError e){
+//            model.setErrorMessage("Error connecting to socket");
+//        }
     }
 
     @Override
