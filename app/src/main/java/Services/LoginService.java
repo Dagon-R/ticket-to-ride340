@@ -24,7 +24,8 @@ public class LoginService implements Service {
         String ipAddress = (String) obj[2];
 
         SocketInitializer si = new SocketInitializer();
-        si.execute(ipAddress, "8080");
+        int port = 8080;
+        si.execute(ipAddress, port);
 
         while(true){
             try{
@@ -67,6 +68,7 @@ public class LoginService implements Service {
                 //set user
                 User user = new User(username,password);
                 model.setUser(user);
+                user.setLoggedIn(true);
                 //set gamelist
                 model.setGameList(gameList);
             }

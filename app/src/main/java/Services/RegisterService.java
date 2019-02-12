@@ -29,7 +29,8 @@ public class RegisterService implements Service {
         String ipAddress = (String) obj[2];
 
         SocketInitializer si = new SocketInitializer();
-        si.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, ipAddress, "8080");
+        int port = 8080;
+        si.execute(ipAddress, port);
 
         long startTime = System.currentTimeMillis(); //fetch starting time
         while(true){
@@ -68,6 +69,7 @@ public class RegisterService implements Service {
                 //set user
                 User user = new User(username,password);
                 model.setUser(user);
+                user.setLoggedIn(true);
                 //set gamelist
                 model.setGameList(gameList);
             }
