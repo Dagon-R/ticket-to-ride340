@@ -22,13 +22,13 @@ public class LoginService implements Service {
         String ipAddress = (String) obj[2];
 
         //send loginCommand
-        try{
-            sp = ServerProxy.create(ipAddress);
-            sp.login(username, password, ipAddress);
-
-        } catch(SocketConnectionError e){
-            model.setErrorMessage("Error connecting to socket");
-        }
+//        try{
+//            sp = ServerProxy.create(ipAddress);
+//            sp.login(username, password, ipAddress);
+//
+//        } catch(SocketConnectionError e){
+//            model.setErrorMessage("Error connecting to socket");
+//        }
     }
 
     @Override
