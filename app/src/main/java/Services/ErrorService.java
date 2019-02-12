@@ -19,7 +19,7 @@ public class ErrorService implements Service {
         String message = (String) obj[0];
         String ipAddress = (String) obj[1];
 
-        if(CommandManager.get().getOwnIP().equals(ipAddress)){
+        if(model.getIPAddress().equals(ipAddress)){
             model.setErrorMessage(message);
         }
     }

@@ -41,7 +41,7 @@ public class JoinGameService implements Service {
         game.addPlayer(player);
 
         //If this client
-        if(CommandManager.get().getOwnIP().equals(ipAddress)){
+        if(model.getIPAddress().equals(ipAddress)){
             model.setGame(game);
         }
     }
