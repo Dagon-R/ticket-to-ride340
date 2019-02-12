@@ -52,7 +52,7 @@
                 android:hint="IP address"
                 android:padding="20dp"
                 android:inputType="text"
-                android:text="10.24.196.155"
+                android:text="10.37.127.122"
                 />
 
             <LinearLayout
