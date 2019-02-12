@@ -2,10 +2,13 @@ package Services;
 
 import android.os.AsyncTask;
 
+import java.io.IOException;
 import java.net.InetAddress;
+import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.concurrent.TimeUnit;
 
+import Communication.CommandManager;
 import Communication.ServerProxy;
 import Communication.SocketConnectionError;
 import Communication.SocketInitializer;
@@ -44,7 +47,9 @@ public class RegisterService implements Service {
                 }
             }
         }
-        sp.register(username, password, ipAddress);
+        String now = Long.toString(System.currentTimeMillis());
+        String authToken = username + now;
+        sp.register(username, password, ipAddress);//, authToken);
     }
 
     @Override
@@ -60,20 +65,13 @@ public class RegisterService implements Service {
         String ipAddress = (String) obj[2];
         ClientGameList gameList = (ClientGameList) obj[3];
 
-        try{
-            String localhost = InetAddress.getLocalHost().getHostAddress();
-
-            if(localhost.equals(ipAddress)){
-                model.setIPAddress(localhost);
-                //set user
-                User user = new User(username,password);
-                model.setUser(user);
-                user.setLoggedIn(true);
-                //set gamelist
-                model.setGameList(gameList);
-            }
-        } catch(UnknownHostException e){
-            model.setErrorMessage("Couldn't get localhost for some reason...");
+        if(CommandManager.get().getOwnIP().equals(ipAddress)){
+            //set user
+            User user = new User(username,password);
+            model.setUser(user);
+            user.setLoggedIn(true);
+            //set gamelist
+            model.setGameList(gameList);
         }
 
     }
