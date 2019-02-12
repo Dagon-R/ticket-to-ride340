@@ -83,13 +83,18 @@ public class LobbyActivity extends AppCompatActivity implements Observer {
             return;
         }
         else{
-            int i;
-            for(i = 0; i < players.length; i++){
-                playerTextfields.elementAt(i).setText(((Player)players[i]).getName());
-            }
-            for(i = i; i < playerTextfields.size(); i++){
-                playerTextfields.elementAt(i).setText("Waiting for player...");
-            }
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    int i;
+                    for (i = 0; i < players.length; i++) {
+                        playerTextfields.elementAt(i).setText(((Player) players[i]).getName());
+                    }
+                    for (i = i; i < playerTextfields.size(); i++) {
+                        playerTextfields.elementAt(i).setText("Waiting for player...");
+                    }
+                }
+            });
         }
     }
 
