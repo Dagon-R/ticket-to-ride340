@@ -1,5 +1,7 @@
 package Communication;
 
+import java.net.Socket;
+
 import Command.*;
 import Models.Player;
 import Models.User;
@@ -8,22 +10,20 @@ public class ServerProxy {
     private static ServerProxy ourInstance = null;
 
     private static final int portNumber = 8080;
-    private ClientPoller clientPoller;
+
     public static ServerProxy get() {
         return ourInstance;
     }
 
     private CommandManager manager;
 
-    private ServerProxy(String ipAddress) throws SocketConnectionError
+    private ServerProxy(CommandManager manager)
     {
-        manager = new CommandManager(ipAddress,portNumber);
-        clientPoller = new ClientPoller(manager);
-        clientPoller.start();
+        this.manager = manager;
     }
 
-    public static ServerProxy create(String ipAddress) throws SocketConnectionError {
-        ourInstance = new ServerProxy(ipAddress); return ourInstance;}
+    public static void create(CommandManager cmgr) {
+        ourInstance = new ServerProxy(cmgr);}
 
     public void login(String username, String password, String ipAddress)
     {
