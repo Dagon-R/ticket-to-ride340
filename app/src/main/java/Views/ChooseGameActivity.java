@@ -25,7 +25,9 @@ import java.util.Observer;
 
 
 import Models.MainModel;
+import Models.PendingGame;
 import Services.CreateGameService;
+import Services.JoinGameService;
 import Services.StartGameService;
 
 public class ChooseGameActivity extends AppCompatActivity implements Observer {
@@ -47,6 +49,23 @@ public class ChooseGameActivity extends AppCompatActivity implements Observer {
         gamesRecyclerView.setAdapter(adapter);
 
         mainModel.addObserver(this);
+        adapter.setOnItemClickListener(new ChooseGameAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View gameView, String name) {
+                MainModel mainModel = MainModel.get();
+                PendingGame game = mainModel.getGameList().getServerPendingGames().get(name);
+                if(game.getPlayers().size() > 4){
+                    Toast.makeText(gameView.getContext(),
+                            "Game is full!",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else{
+                    JoinGameService service = new JoinGameService();
+                    service.connectToProxy(name);
+                }
+            }
+        });
     }
 
     @Override
@@ -68,7 +87,12 @@ public class ChooseGameActivity extends AppCompatActivity implements Observer {
             startActivity(i);
         }
         else{
-            gamesRecyclerView.swapAdapter(new ChooseGameAdapter(mainModel.getGameList()), false);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    gamesRecyclerView.swapAdapter(new ChooseGameAdapter(mainModel.getGameList()), false);
+                }
+            });
         }
     }
 
@@ -85,4 +109,5 @@ public class ChooseGameActivity extends AppCompatActivity implements Observer {
         super.onPause();
         mainModel.deleteObserver(this);
     }
+
 }

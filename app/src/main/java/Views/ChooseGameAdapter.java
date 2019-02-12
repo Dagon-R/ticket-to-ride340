@@ -21,6 +21,15 @@ import Services.JoinGameService;
 
 public class ChooseGameAdapter extends RecyclerView.Adapter<ChooseGameAdapter.ViewHolder>{
     Vector<PendingGame> gameList = new Vector<>();
+    private OnItemClickListener listener;
+
+    public interface OnItemClickListener{
+        void onItemClick(View gameView, String name);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
+    }
 
     ChooseGameAdapter(ClientGameList inputList){
         HashMap<String, PendingGame> pendingList = inputList.getServerPendingGames();
@@ -63,7 +72,8 @@ public class ChooseGameAdapter extends RecyclerView.Adapter<ChooseGameAdapter.Vi
         public TextView gamePlayers;
         public Button joinGameButton;
 
-        public ViewHolder(View gameView) {
+
+        public ViewHolder(final View gameView) {
             super(gameView);
 
             gameName = (TextView) gameView.findViewById(R.id.gameName);
@@ -72,18 +82,8 @@ public class ChooseGameAdapter extends RecyclerView.Adapter<ChooseGameAdapter.Vi
             joinGameButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    String gameId = gameName.getText().toString();
-                    MainModel mainModel = MainModel.get();
-                    PendingGame game = mainModel.getGameList().getServerPendingGames().get(gameId);
-                    if(game.getPlayers().size() > 4){
-                            Toast.makeText(view.getContext(),
-                                    "Game is full!",
-                                    Toast.LENGTH_SHORT).show();
-                            return;
-                    }
-                    else{
-                        JoinGameService service = new JoinGameService();
-                        service.connectToProxy(gameId);
+                    if (listener != null) {
+                        listener.onItemClick(gameView, gameName.getText().toString());
                     }
                 }
             });
