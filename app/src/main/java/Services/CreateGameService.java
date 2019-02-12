@@ -29,17 +29,18 @@ public class CreateGameService implements Service {
     @Override
     public void doService(Object... obj) {
         //Check params
-        if(obj.length != 2){
+        if(obj.length != 3){
             model.setErrorMessage("Error Creating Game");
-            System.out.println("ERROR: " + obj.length + " instead of 2 params on frontend createGame service");
+            System.out.println("ERROR: " + obj.length + " instead of 3 params on frontend createGame service");
         }
 
         Player host = (Player) obj[0];
         String gameName = (String) obj[1];
+        String ipAddress = (String) obj[2];
 
         PendingGame newGame = new PendingGame(host, gameName);
         model.getGameList().addServerPendingGame(newGame);
-        if(host.getName().equals(model.getUser().getName())){
+        if(model.getIPAddress().equals(ipAddress)){
             //this user created game
             model.setGame(newGame);
         }

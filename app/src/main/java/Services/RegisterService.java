@@ -28,21 +28,21 @@ public class RegisterService implements Service {
         String password = (String) obj[1];
         String ipAddress = (String) obj[2];
 
-        SocketInitializer si = new SocketInitializer();
-        si.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, ipAddress, "8080");
-
-        long startTime = System.currentTimeMillis(); //fetch starting time
-        while(true){
-            try{
-                TimeUnit.SECONDS.sleep((long) .002);
-                sp = ServerProxy.get();
-                if(sp != null){
-                    break;
+        if(ServerProxy.get() == null) {
+            SocketInitializer si = new SocketInitializer();
+            int port = 8080;
+            si.execute(ipAddress, port);
+            while (true) {
+                try {
+                    TimeUnit.SECONDS.sleep((long) .002);
+                    sp = ServerProxy.get();
+                    if (sp != null) {
+                        break;
+                    }
+                } catch (InterruptedException e) {
+                    System.out.println("Error sleeping");
                 }
-            } catch(InterruptedException e){
-                System.out.println("Error sleeping");
             }
-
         }
         sp.register(username, password, ipAddress);
     }
@@ -68,6 +68,7 @@ public class RegisterService implements Service {
                 //set user
                 User user = new User(username,password);
                 model.setUser(user);
+                user.setLoggedIn(true);
                 //set gamelist
                 model.setGameList(gameList);
             }
