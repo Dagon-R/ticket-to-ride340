@@ -32,6 +32,8 @@ public class CreateGameService implements Service {
             System.out.println("ERROR: " + obj.length + " instead of 3 params on frontend createGame service");
         }
 
+        System.out.println(obj);
+
         Player host = (Player) obj[0];
         String gameName = (String) obj[1];
         String ipAddress = (String) obj[2];
