@@ -12,6 +12,7 @@ public class ServerRegisterCommand implements Command{
     private boolean valid;
     private GameList gameList;
     private String ipAddress;
+    private String authToken;
     public ServerRegisterCommand() {
     }
 
@@ -19,6 +20,14 @@ public class ServerRegisterCommand implements Command{
         this.username = username;
         this.password = password;
         this.ipAddress = ipAddress;
+    }
+
+    public String getAuthToken() {
+        return authToken;
+    }
+
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
     }
 
     public String getUsername() {
@@ -67,6 +76,7 @@ public class ServerRegisterCommand implements Command{
                 ", valid=" + valid +
                 ", gameList=" + gameList +
                 ", ipAddress='" + ipAddress + '\'' +
+                ", authToken='" + authToken + '\'' +
                 '}';
     }
 

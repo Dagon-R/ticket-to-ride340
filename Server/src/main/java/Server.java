@@ -19,12 +19,12 @@ public class Server {
         try{
             RegisterService registerService = new RegisterService();
             registerService.doService("Bob", "password");
-            CreateGameService createGameService = new CreateGameService();
-            createGameService.doService(new Player("Bob", PlayerColorEnum.BLACK, "df"),"Game");
-            JoinGameService joinGameService = new JoinGameService();
-            joinGameService.doService(new Player("d", PlayerColorEnum.BLACK, "df"),"Game");
-            joinGameService.doService(new Player("b", PlayerColorEnum.BLACK, "df"),"Game");
-            LeaveGameService leaveGameService = new LeaveGameService();
+//            CreateGameService createGameService = new CreateGameService();
+//            createGameService.doService(new Player("Bob", PlayerColorEnum.BLACK, "df"),"Game");
+//            JoinGameService joinGameService = new JoinGameService();
+//            joinGameService.doService(new Player("d", PlayerColorEnum.BLACK, "df"),"Game");
+//            joinGameService.doService(new Player("b", PlayerColorEnum.BLACK, "df"),"Game");
+//            LeaveGameService leaveGameService = new LeaveGameService();
 //            try{
 //                leaveGameService.doService("");
 //            }

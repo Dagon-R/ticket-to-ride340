@@ -36,7 +36,7 @@ public class SocketCommunicator{
     public void send(Command command){
         String name = String.join("",command.getClass().getName().split("Server"));
         CommandWrapper wrapper = new CommandWrapper(Serializer.serialize(command), name);
-        System.out.println("Sending Command to " + socket.getRemoteSocketAddress()+"\n");
+        System.out.println("Sending Command to " + socket.getInetAddress().getHostAddress()+"\n");
         out.write(Serializer.serialize(wrapper)+",");
         out.flush();
 
@@ -68,7 +68,11 @@ public class SocketCommunicator{
                 catch(AssertionError e){
                     command = new ErrorCommand(e.getMessage());
                 }
+                if(obj.getClass() == ErrorCommand.class){
+                    command = (Command)obj;
+                }
 
+//                System.out.println(obj);
                 command.addResults(obj);
                 command.setIpAddress(socket.getInetAddress().getHostAddress());
 
@@ -84,12 +88,11 @@ public class SocketCommunicator{
 
     private CommandWrapper[] read()throws IOException{
         StringBuilder input = new StringBuilder();
-        CommandWrapper[] commandWrappers = null;
-//        System.out.println("Read from Socket");
+
         if(in.ready()){
             input.append(in.readLine());
         }
-        if(input == null ||input.length() <=0 ){
+        if(input.length() <=0 ){
 //            System.out.println("Reading error " + input);
             return null;
         }

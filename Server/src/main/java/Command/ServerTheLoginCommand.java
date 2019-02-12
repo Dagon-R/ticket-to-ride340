@@ -12,6 +12,7 @@ public class ServerTheLoginCommand implements Command{
     private boolean valid;
     private String ipAddress;
     private GameList gameList;
+    private String authToken;
     public ServerTheLoginCommand() {
     }
 
@@ -20,6 +21,14 @@ public class ServerTheLoginCommand implements Command{
         this.password = password;
         this.valid = valid;
         this.ipAddress = ipAddress;
+    }
+
+    public String getAuthToken() {
+        return authToken;
+    }
+
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
     }
 
     public String getUsername() {
@@ -85,6 +94,7 @@ public class ServerTheLoginCommand implements Command{
                 ", valid=" + valid +
                 ", ipAddress='" + ipAddress + '\'' +
                 ", gameList=" + gameList +
+                ", authToken='" + authToken + '\'' +
                 '}';
     }
 }

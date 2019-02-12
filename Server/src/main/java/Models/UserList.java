@@ -1,5 +1,7 @@
 package Models;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 
 public class UserList{
@@ -17,10 +19,11 @@ public class UserList{
 
     public boolean findUser(String username, String password){
         for(User user : list){
-            if(user.name == username && user.password == password){
+            if(user.name.equals(username) && user.password.equals(password)){
                 return true;
             }
         }
+
         return false;
     }
 

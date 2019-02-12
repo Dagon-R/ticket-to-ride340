@@ -58,9 +58,10 @@ public class ServerSideSocket extends Thread implements IServerSocket{
 
             try{
                 socket = serverSocket.accept();
-                System.out.println("New Socket");
+                System.out.println("New Socket " + socket.getInetAddress().getHostAddress());
                 if(socket == null) continue;
 //                socket.getRe
+
                 asyncAddSocket(socket);
                 totalSockets++;
             }
