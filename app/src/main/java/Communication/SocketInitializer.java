@@ -29,7 +29,7 @@ public class SocketInitializer extends AsyncTask<Object,Void,Socket> {
                 Socket socket = new Socket(ipAddress,portNumber);
                 CommandManager manager = CommandManager.create(socket);
                 ClientPoller poller = ClientPoller.create(manager);
-                poller.execute();
+                poller.start();
                 return socket;
             } catch (IOException e) {
                 e.printStackTrace();
