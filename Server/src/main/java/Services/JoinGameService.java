@@ -17,6 +17,7 @@ public class JoinGameService implements Service {
         {
             if (game.getClass() == PendingGame.class)
             {
+                //TODO: check that user exists
                 game.addPlayer(player);
                 System.out.println("Player added to game");
                 return MainModel.get().getGameList();
@@ -30,9 +31,5 @@ public class JoinGameService implements Service {
         {
             return new ErrorCommand("Game doesn't exist");
         }
-        //get game object(by id)
-        //check that player is logged in and not already in game?
-        //activeGame.addPlayer to game
-        //return valid message
     }
 }
