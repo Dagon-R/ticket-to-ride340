@@ -76,9 +76,15 @@ public class ServerSideSocket extends Thread implements IServerSocket{
 
     private void asyncAddSocket(Socket socket)throws IOException{
         SocketCommunicator socketCom = new SocketCommunicator(socket,this);
+        if(!allSockets.add(socketCom)){
+            allSockets.remove(socketCom);
+            allSockets.add(socketCom);
+        }
+        if(!unboundSockets.add(socketCom)){
+            unboundSockets.remove(socketCom);
+            unboundSockets.add(socketCom);
+        }
 
-        allSockets.add(socketCom);
-        unboundSockets.add(socketCom);
 
 
     }
