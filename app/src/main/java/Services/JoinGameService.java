@@ -39,11 +39,11 @@ public class JoinGameService implements Service {
         String joined = (String) obj[2];
         String ipAddress = (String) obj[3];
 
-        PendingGame game = new PendingGame(player, gameName);
-        game.addPlayer(player);
+        model.addPlayerToGame(gameName, player);
 
         //If this client
         if(model.getIPAddress().equals(ipAddress)){
+            PendingGame game = new PendingGame(player, gameName);
             model.setGame(game);
         }
     }
