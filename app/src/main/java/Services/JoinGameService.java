@@ -39,15 +39,17 @@ public class JoinGameService implements Service {
         String ipAddress = (String) obj[3];
         ClientGameList gameList = (ClientGameList) obj[4];
 
-        model.setGameList(gameList);
 
+
+
+        model.setGameList(gameList);
+        model.addPlayerToGame(gameName, player);
         IGame game = gameList.get(gameName);
 
-        model.addPlayerToGame(gameName, player);
-        //If this client
         if(model.getIPAddress().equals(ipAddress)){
             model.setGame(game);
         }
+//        game.addPlayer(player);
 
     }
 }

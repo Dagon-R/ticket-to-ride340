@@ -109,7 +109,8 @@ public class SocketCommunicator{
         if (this == o) return true;
         if (!(o instanceof SocketCommunicator)) return false;
         SocketCommunicator that = (SocketCommunicator) o;
-        return Objects.equals(socket.getRemoteSocketAddress(), that.socket.getRemoteSocketAddress());
+
+        return socket.getInetAddress().getHostAddress().equals(that.socket.getInetAddress().getHostAddress());
     }
 
     @Override

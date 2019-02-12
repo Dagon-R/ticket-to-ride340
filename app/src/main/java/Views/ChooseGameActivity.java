@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,17 +32,27 @@ import Services.JoinGameService;
 import Services.StartGameService;
 
 public class ChooseGameActivity extends AppCompatActivity implements Observer {
+    static String TAG = "Choose Game Activity";
     RecyclerView gamesRecyclerView;
     EditText gameNameTextfield;
     Button createGameButton;
 
     MainModel mainModel;
 
+    View.OnClickListener createGameClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            createGame(v);
+        }
+    };
+
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_game_activity);
         gameNameTextfield = (EditText) findViewById(R.id.gameNameTextfield);
         createGameButton = (Button) findViewById(R.id.createGameButton);
+        createGameButton.setOnClickListener(createGameClick);
+
         gamesRecyclerView = (RecyclerView) findViewById(R.id.gamesRecyclerView);
         mainModel = MainModel.get();
         gamesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -52,6 +63,7 @@ public class ChooseGameActivity extends AppCompatActivity implements Observer {
         adapter.setOnItemClickListener(new ChooseGameAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View gameView, String name) {
+//                System.out.println("Inside of click for the Join Game");
                 MainModel mainModel = MainModel.get();
                 PendingGame game = mainModel.getGameList().getServerPendingGames().get(name);
                 if(game.getPlayers().size() > 4){
@@ -84,7 +96,7 @@ public class ChooseGameActivity extends AppCompatActivity implements Observer {
     public void update(Observable object, Object type) {
         if(mainModel.getGame() != null){
             Intent i = new Intent(this, LobbyActivity.class);
-            startActivity(i);
+            this.startActivity(i);
         }
         else{
             runOnUiThread(new Runnable() {
