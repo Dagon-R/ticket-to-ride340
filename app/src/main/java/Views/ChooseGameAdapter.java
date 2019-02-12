@@ -7,13 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Vector;
 
 import Models.ClientGameList;
+import Models.IGame;
+import Models.MainModel;
 import Models.PendingGame;
+import Services.JoinGameService;
 
 public class ChooseGameAdapter extends RecyclerView.Adapter<ChooseGameAdapter.ViewHolder>{
     Vector<PendingGame> gameList = new Vector<>();
@@ -50,6 +54,9 @@ public class ChooseGameAdapter extends RecyclerView.Adapter<ChooseGameAdapter.Vi
         return gameList.size();
     }
 
+    public void setGames(ClientGameList inputList){
+
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView gameName;
@@ -62,6 +69,24 @@ public class ChooseGameAdapter extends RecyclerView.Adapter<ChooseGameAdapter.Vi
             gameName = (TextView) gameView.findViewById(R.id.gameName);
             gamePlayers = (TextView) gameView.findViewById(R.id.gamePlayers);
             joinGameButton = (Button) gameView.findViewById(R.id.joinGameButton);
+            joinGameButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String gameId = gameName.getText().toString();
+                    MainModel mainModel = MainModel.get();
+                    PendingGame game = mainModel.getGameList().getServerPendingGames().get(gameId);
+                    if(game.getPlayers().size() > 4){
+                            Toast.makeText(view.getContext(),
+                                    "Game is full!",
+                                    Toast.LENGTH_SHORT).show();
+                            return;
+                    }
+                    else{
+                        JoinGameService service = new JoinGameService();
+                        service.connectToProxy(gameId);
+                    }
+                }
+            });
         }
     }
 }

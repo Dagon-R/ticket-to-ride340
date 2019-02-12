@@ -51,6 +51,12 @@ public class MainActivity extends AppCompatActivity implements Observer {
         mainModel.getUser().addObserver(this);
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        mainModel.addObserver(this);
+    }
+
     public void login(View view){
         String username = usernameTextfield.getText().toString();
         String password = passwordTextfield.getText().toString();
@@ -106,8 +112,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onPause() {
+        super.onPause();
         mainModel.deleteObserver(this);
     }
 }

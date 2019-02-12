@@ -64,7 +64,14 @@ public class LobbyActivity extends AppCompatActivity implements Observer {
         update(null, null);
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        mainModel.addObserver(this);
+    }
+
     public void leaveGame(View v){
+        mainModel.setGame(null);
         finish();
     }
 
@@ -101,8 +108,15 @@ public class LobbyActivity extends AppCompatActivity implements Observer {
     }
 
     @Override
-    protected void onDestroy() {
+    protected void onPause() {
+        super.onPause();
+        mainModel.deleteObserver(this);
+    }
+
+    @Override
+    protected  void onDestroy() {
         super.onDestroy();
+        mainModel.setGame(null);
         mainModel.deleteObserver(this);
     }
 }
