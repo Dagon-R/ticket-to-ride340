@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
     @Override
     public void onResume(){
         super.onResume();
-        mainModel.addObserver(this);
+        //mainModel.addObserver(this);
     }
 
     public void login(View view){
