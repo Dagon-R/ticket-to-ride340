@@ -60,4 +60,12 @@ public class GameList {
         }
 
     }
+
+    @Override
+    public String toString() {
+        return "GameList{" +
+                "ServerActiveGames=" + ServerActiveGames +
+                ", ServerPendingGames=" + ServerPendingGames +
+                '}';
+    }
 }

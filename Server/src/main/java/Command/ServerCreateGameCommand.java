@@ -33,6 +33,7 @@ public class ServerCreateGameCommand implements Command {
 
     @Override
     public void addResults(Object obj) {
+        if(obj == null) return;
         if(obj.getClass() != GameList.class) return;
         GameList gameList = (GameList) obj;
         this.gameList = gameList;
@@ -40,8 +41,8 @@ public class ServerCreateGameCommand implements Command {
 
     @Override
     public Object execute() {
-        Service createGameService = new CreateGameService(player,gameID);
-        return createGameService.doService();
+        Service createGameService = new CreateGameService();
+        return createGameService.doService(player,gameID);
     }
 
     @Override

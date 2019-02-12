@@ -71,4 +71,13 @@ public class PendingGame implements IGame{
 
 		return Objects.hash(getName());
 	}
+
+	@Override
+	public String toString() {
+		return "PendingGame{" +
+				"players=" + players +
+				", name='" + name + '\'' +
+				", id='" + id + '\'' +
+				'}';
+	}
 }

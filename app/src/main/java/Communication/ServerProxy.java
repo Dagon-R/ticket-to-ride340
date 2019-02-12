@@ -1,5 +1,7 @@
 package Communication;
 
+import java.net.Socket;
+
 import Command.*;
 import Models.Player;
 import Models.User;
@@ -15,13 +17,13 @@ public class ServerProxy {
 
     private CommandManager manager;
 
-    private ServerProxy(String ipAddress) throws SocketConnectionError
+    private ServerProxy(CommandManager manager)
     {
-        manager = new CommandManager(ipAddress,portNumber);
+        this.manager = manager;
     }
 
-    public static ServerProxy create(String ipAddress) throws SocketConnectionError {
-        ourInstance = new ServerProxy(ipAddress); return ourInstance;}
+    public static void create(CommandManager cmgr) {
+        ourInstance = new ServerProxy(cmgr);}
 
     public void login(String username, String password, String ipAddress)
     {

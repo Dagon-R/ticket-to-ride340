@@ -34,10 +34,14 @@ public class ServerStartGameCommand implements Command {
         this.starting = starting;
     }
 
-
+    @Override
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
 
     @Override
     public void addResults(Object obj) {
+        if(obj == null) return;
         if(obj.getClass() != GameList.class) return;
         GameList gameList = (GameList) obj;
         this.gameList = gameList;

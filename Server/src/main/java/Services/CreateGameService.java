@@ -6,7 +6,7 @@ import Models.Player;
 
 public class CreateGameService implements Service {
 
-    public CreateGameService(Player player, String game) {
+    public CreateGameService() {
     }
 
     @Override
