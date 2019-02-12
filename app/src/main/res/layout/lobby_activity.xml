@@ -9,13 +9,6 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <Button
-            android:id="@+id/backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="back"
-            android:onClick="leaveGame"/>
-
         <RelativeLayout
             android:id="@+id/playerSlot0"
             android:layout_width="match_parent"
