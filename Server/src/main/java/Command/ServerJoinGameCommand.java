@@ -41,6 +41,7 @@ public class ServerJoinGameCommand implements Command {
 
     @Override
     public void addResults(Object obj) {
+        if(obj == null) return;
         if(obj.getClass() != GameList.class) return;
         GameList gameList = (GameList) obj;
         this.gameList = gameList;

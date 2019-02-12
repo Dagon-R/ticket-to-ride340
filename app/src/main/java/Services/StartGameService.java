@@ -6,11 +6,11 @@ import Models.MainModel;
 import Models.PendingGame;
 
 public class StartGameService implements Service {
-    ServerProxy sp;
-    MainModel model;
+    private ServerProxy sp;
+    private MainModel model;
 
     public StartGameService(){
-        sp = ServerProxy.get();
+        sp = new ServerProxy();
         model = MainModel.get();
     }
 
@@ -22,6 +22,12 @@ public class StartGameService implements Service {
 
     @Override
     public void doService(Object... obj) {
+        //Check params
+        if(obj.length != 1){
+            model.setErrorMessage("Error Starting Game");
+            System.out.println("ERROR: " + obj.length + " instead of 1 params on frontend login service");
+        }
+
         String gameID = (String) obj[0];
 
         PendingGame pg = model.findGame(gameID);

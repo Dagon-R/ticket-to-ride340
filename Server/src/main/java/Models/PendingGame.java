@@ -30,6 +30,13 @@ public class PendingGame implements IGame{
 	public HashSet<Player> getPlayers(){
 		return players;
 	}
+
+	public Boolean playerIsInGame(Player player){
+		if(players.contains(player)){
+			return true;
+		}
+		return false;
+	}
 	
 	public String getName(){
 		return name;
@@ -63,5 +70,14 @@ public class PendingGame implements IGame{
 	public int hashCode() {
 
 		return Objects.hash(getName());
+	}
+
+	@Override
+	public String toString() {
+		return "PendingGame{" +
+				"players=" + players +
+				", name='" + name + '\'' +
+				", id='" + id + '\'' +
+				'}';
 	}
 }
