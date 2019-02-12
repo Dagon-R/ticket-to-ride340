@@ -55,33 +55,10 @@ public class MainActivity extends AppCompatActivity implements Observer {
         String username = usernameTextfield.getText().toString();
         String password = passwordTextfield.getText().toString();
         String address = ipTextfield.getText().toString();
-        if(!username.isEmpty() && !password.isEmpty() && !address.isEmpty()) {
-            LoginService service = new LoginService();
-            service.connectToProxy(username, password, address);
-        }
-        else{
-            Toast.makeText(this,
-                    "All fields must be filled!",
-                    Toast.LENGTH_SHORT).show();
-        }
-//        Player player = new Player("one", PlayerColorEnum.RED);
-//        Player player1 = new Player("two", PlayerColorEnum.RED);
-//        Player player2 = new Player("three", PlayerColorEnum.RED);
-//        mainModel.setGameList(new ClientGameList());
-//        mainModel.getGameList().addServerPendingGame(new PendingGame(player, "game1"));
-//        mainModel.setGame(new PendingGame(player, "gameTest"));
-//        mainModel.getGame().addPlayer(player1);
-//        mainModel.getGame().addPlayer(player2);
-//        mainModel.getGameList().addServerPendingGame(new PendingGame(new Player("two", PlayerColorEnum.GREEN), "game2"));
-//        mainModel.getGameList().addServerPendingGame(new PendingGame(new Player("three", PlayerColorEnum.BLUE), "game3"));
-//        mainModel.getGameList().addServerPendingGame(new PendingGame(new Player("four", PlayerColorEnum.BLUE), "game4"));
-//        mainModel.getGameList().addServerPendingGame(new PendingGame(new Player("five", PlayerColorEnum.BLUE), "game5"));
-//        mainModel.getGameList().addServerPendingGame(new PendingGame(new Player("six", PlayerColorEnum.BLUE), "game6"));
-//        mainModel.getGameList().addServerPendingGame(new PendingGame(new Player("seven", PlayerColorEnum.BLUE), "game7"));
-//        mainModel.getGameList().addServerPendingGame(new PendingGame(new Player("eight", PlayerColorEnum.BLUE), "game8"));
-//        mainModel.getGameList().addServerPendingGame(new PendingGame(new Player("nine", PlayerColorEnum.BLUE), "game9"));
-        //Intent i = new Intent(this, ChooseGameActivity.class);
-        //startActivity(i);
+        LoginService service = new LoginService();
+        service.connectToProxy(username, password, address);
+//        Intent i = new Intent(this, ChooseGameActivity.class);
+//        startActivity(i);
     }
 
     public void register(View view){
@@ -103,13 +80,16 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
     public void update(Observable object, Object type){
         mainModel = MainModel.get();
-        String error = mainModel.getErrorMessage();
+        final String error = mainModel.getErrorMessage();
         if(error != null){
-            Toast.makeText(this,
-                    error,
-                    Toast.LENGTH_SHORT).show();
-            mainModel.setErrorMessage(null);
-            return;
+            MainActivity.this.runOnUiThread(new Runnable() {
+                public void run() {
+                    Toast.makeText(MainActivity.this,error,Toast.LENGTH_SHORT).show();
+                }
+            });
+//            Toast.makeText(this,
+//                    error,
+//                    Toast.LENGTH_SHORT).show();
         }
         else{
             User currentUser = mainModel.getUser();

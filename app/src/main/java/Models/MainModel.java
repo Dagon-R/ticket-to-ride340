@@ -83,9 +83,6 @@ public class MainModel extends Observable {
         this.notifyObservers();
     }
 
-    public String getIPAddress() {
-        return IPAddress;
-    }
 
     public void setIPAddress(String IPAddress) {
         this.IPAddress = IPAddress;

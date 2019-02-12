@@ -3,7 +3,7 @@ package Command;
 import Models.Player;
 import Services.JoinGameService;
 
-public class JoinGameCommand implements Command {
+public class   JoinGameCommand implements Command {
     private Player player;
     private String gameID;
     private boolean joined;

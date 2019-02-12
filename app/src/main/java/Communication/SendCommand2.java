@@ -39,7 +39,7 @@ public class SendCommand2 extends Thread {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.print("Message sent to server: " + str + "\n");
+        System.out.println("Message sent to server: " + str);
         //os.close();
     }
 }
