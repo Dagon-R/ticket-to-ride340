@@ -94,6 +94,10 @@ public class MainModel extends Observable {
         this.IPAddress = IPAddress;
     }
 
+    public String getIPAddress() {
+        return IPAddress;
+    }
+
     public String getAuthToken() {
         return authToken;
     }
