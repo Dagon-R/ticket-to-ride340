@@ -2,6 +2,8 @@ package Models;
 
 import java.util.HashSet;
 
+import Phase2Models.Store;
+
 public class ActiveGame implements IGame{
 	//A list of the players associated with the game
 	private HashSet<Player> players = new HashSet<>();
@@ -9,6 +11,9 @@ public class ActiveGame implements IGame{
 	private String name;
 	//The unique id that represents this game
 	private String id;
+
+	//New Field
+	private Store store;
 	
 	public ActiveGame(){}
 	

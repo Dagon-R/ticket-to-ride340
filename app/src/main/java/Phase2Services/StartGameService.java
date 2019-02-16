@@ -1,9 +1,10 @@
-package Services;
+package Phase2Services;
 
 import Communication.ServerProxy;
 import Models.ActiveGame;
 import Models.MainModel;
 import Models.PendingGame;
+import Services.Service;
 
 public class StartGameService implements Service {
     private ServerProxy sp;

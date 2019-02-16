@@ -1,13 +1,24 @@
 package Models;
 
 
+import java.util.ArrayList;
+
+import Phase2Models.DestinationCard;
+import Phase2Models.TrainCardColor;
+
 public class Player {
 	//The color that represents this player
-	PlayerColorEnum playerColor;
+	private PlayerColorEnum playerColor;
 	//The name of this player
-	String name;
-	//The unique id of this player
-	String id;
+	private String name;
+
+
+	// New Fields
+	private ArrayList<TrainCardColor> trainHand;
+	private ArrayList<DestinationCard> destHand;
+	private int score;
+	private int piecesLeft;
+
 
 	public Player(String name, PlayerColorEnum playerColor){
 		this.name = name;
@@ -22,20 +33,12 @@ public class Player {
 		return name;
 	}
 	
-	public String getId(){
-		return id;
-	}
-	
 	private void setColor(PlayerColorEnum input){
 		this.playerColor = input;
 	}
 	
 	private void setName(String input){
 		this.name = input;
-	}
-	
-	private void setId(String input){
-		this.id = input;
 	}
 	
 }
