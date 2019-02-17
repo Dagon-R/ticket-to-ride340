@@ -45,7 +45,7 @@ public class RegisterService implements Service {
             }
         }
         ServerProxy sp = new ServerProxy();
-        sp.register(username, password, ipAddress);
+        sp.register(username, password, ipAddress, "");
     }
 
     @Override

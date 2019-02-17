@@ -16,7 +16,7 @@ public class CreateGameService implements Service {
 
     @Override
     public void connectToProxy(Object... obj) {
-        User host = (User) obj[0];
+        Player player = (Player) obj[0];
         String gameName = (String) obj[1];
 
         //call server initializer do in background
@@ -24,7 +24,7 @@ public class CreateGameService implements Service {
             //keep checking
         //when not null, go on
 
-        sp.createGame(host, gameName);
+        sp.createGame(player, gameName);
     }
 
     @Override

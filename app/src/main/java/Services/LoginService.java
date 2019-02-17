@@ -41,7 +41,7 @@ public class LoginService implements Service {
         }
         ServerProxy sp = new ServerProxy();
         //send loginCommand
-        sp.login(username, password, ipAddress);
+        sp.login(username, password, ipAddress, "");
     }
 
     @Override

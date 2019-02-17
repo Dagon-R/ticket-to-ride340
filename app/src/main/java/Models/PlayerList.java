@@ -20,7 +20,7 @@ public class PlayerList{
 
     public boolean findUser(String username, String password){
         for(Player player : list){
-            if(player.name == username){
+            if(player.getName().equals(username)){
                 return true;
             }
         }
