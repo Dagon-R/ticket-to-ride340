@@ -2,31 +2,55 @@ package Phase2Models;
 
 public class Store
 {
-    private static Store inst;
-
-    private static final int STORE_SIZE = 5;
-
     private TrainCardColor store[];
-
-    private Store(TrainCardColor[] store)
+    private static final int STORE_SIZE = 5;
+    public Store(TrainCardColor[] store) throws InvalidStoreLengthException
     {
-        this.store = store;
-    }
-
-    public static Store create(TrainCardColor[] store) throws InvalidStoreLengthException
-    {
-        if (store.length == STORE_SIZE)
+        if (store.length == 5)
         {
-            inst = new Store(store);
+            this.store = store;
         }
         else
         {
             throw new InvalidStoreLengthException();
         }
-        return null;
     }
-    public static Store get()
+    public TrainCardColor[] drawAt(int... indexes)
     {
-        return inst;
+        if (indexes.length > 2) {
+            System.out.println("Cannot draw more than two cards");
+            return null;
+        }
+        else if (indexes.length == 2)
+        {
+            if (indexes[0] >= STORE_SIZE || indexes[1] >= STORE_SIZE)
+            {
+                System.out.println("Cannot draw at an index greater than the store size");
+                return null;
+            }
+            else if (store[indexes[0]] == TrainCardColor.RAINBOW ||
+                    store[indexes[1]] == TrainCardColor.RAINBOW)
+            {
+                System.out.println("Cannot draw a rainbow with another card");
+                return null;
+            }
+            else
+            {
+                return new TrainCardColor[]{store[indexes[0]],store[indexes[1]]};
+            }
+        }
+        if (indexes.length == 1)
+        {
+            if (indexes[0] >= STORE_SIZE)
+            {
+                System.out.println("Cannot draw at an index greater than the store size");
+                return null;
+            }
+            else
+            {
+                return new TrainCardColor[]{store[indexes[0]]};
+            }
+        }
+        else {return new TrainCardColor[]{};}
     }
 }

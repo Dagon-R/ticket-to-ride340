@@ -1,15 +1,14 @@
 package Models;
 
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class GameList {
     //A list of games that are currently waiting to start
-    HashMap<String,ActiveGame> ServerActiveGames;
+    private HashMap<String,ActiveGame> ServerActiveGames;
     //A list of games that are currently running
-    HashMap<String,PendingGame> ServerPendingGames;
+    private HashMap<String,PendingGame> ServerPendingGames;
 
-    public GameList() {
+    GameList() {
         ServerActiveGames = new HashMap<>();
         ServerPendingGames = new HashMap<>();
     }
@@ -31,23 +30,23 @@ public class GameList {
     }
 
     public void addServerPendingGame(PendingGame newGame){
-        ServerPendingGames.put(newGame.getName(),newGame);
+        ServerPendingGames.put(newGame.getGameName(),newGame);
     }
 
     public void addServerActiveGame(ActiveGame newGame){
-        ServerActiveGames.put(newGame.getName(),newGame);
+        ServerActiveGames.put(newGame.getGameName(),newGame);
     }
 
     public void removeServerPendingGame(PendingGame targetGame){
-        if(ServerPendingGames.containsKey(targetGame.getName())){
-            ServerPendingGames.remove(targetGame.getName());
+        if(ServerPendingGames.containsKey(targetGame.getGameName())){
+            ServerPendingGames.remove(targetGame.getGameName());
         }
 
     }
 
     public void removeServerActiveGame(ActiveGame targetGame){
-        if(ServerActiveGames.containsKey(targetGame.getName())){
-            ServerActiveGames.remove(targetGame.getName());
+        if(ServerActiveGames.containsKey(targetGame.getGameName())){
+            ServerActiveGames.remove(targetGame.getGameName());
         }
 
     }

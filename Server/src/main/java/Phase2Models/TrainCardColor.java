@@ -12,9 +12,6 @@ public enum TrainCardColor {
     {
         this.name = name;
     }
-    public boolean matches(TrainCardColor other) {
-        return this == TrainCardColor.RAINBOW || other == RAINBOW || this == other;
-    }
     public String getName()
     {
         return name;

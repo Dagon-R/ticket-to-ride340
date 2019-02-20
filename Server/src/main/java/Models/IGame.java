@@ -1,15 +1,15 @@
 package Models;
 
-import java.util.HashSet;
+import java.util.TreeSet;
 
 public interface IGame {
 	Boolean addPlayer(Player newPlayer);
 
 	Boolean removePlayer(Player targetPlayer);
 
-	HashSet<Player> getPlayers();
+	TreeSet<Player> getPlayers();
 
 	Boolean playerIsInGame(Player player);
 
-	String getName();
+	String getGameName();
 }

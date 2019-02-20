@@ -1,11 +1,11 @@
 package Models;
 
-import java.util.HashSet;
+import java.util.TreeSet;
 import java.util.Objects;
 
 public class PendingGame implements IGame{
 	//A list of the players associated with the game
-	private HashSet<Player> players = new HashSet<>();
+	private TreeSet<Player> players = new TreeSet<>();
 	//The name of the game that will be displayed in menus
 	private String name;
 	//The unique id that represents this game
@@ -27,18 +27,15 @@ public class PendingGame implements IGame{
 		return players.remove(targetPlayer);
 	}
 	
-	public HashSet<Player> getPlayers(){
+	public TreeSet<Player> getPlayers(){
 		return players;
 	}
 
 	public Boolean playerIsInGame(Player player){
-		if(players.contains(player)){
-			return true;
-		}
-		return false;
-	}
+        return players.contains(player);
+    }
 	
-	public String getName(){
+	public String getGameName(){
 		return name;
 	}
 	
@@ -46,7 +43,7 @@ public class PendingGame implements IGame{
 		return id;
 	}
 	
-	private void setPlayers(HashSet<Player> input){
+	private void setPlayers(TreeSet<Player> input){
 		this.players = input;
 	}
 	
@@ -63,13 +60,13 @@ public class PendingGame implements IGame{
 		if (this == o) return true;
 		if (!(o instanceof IGame)) return false;
 		IGame that = (IGame) o;
-		return Objects.equals(getName(), that.getName());
+		return Objects.equals(getGameName(), that.getGameName());
 	}
 
 	@Override
 	public int hashCode() {
 
-		return Objects.hash(getName());
+		return Objects.hash(getGameName());
 	}
 
 	@Override
