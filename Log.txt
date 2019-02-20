@@ -1,67 +1,29 @@
-New Socket 128.187.83.253
-ServerRegisterCommand{username='the', password='user', valid=false, gameList=GameList{ServerActiveGames={}, ServerPendingGames={}}, ipAddress='128.187.83.253', authToken='the1550013415154'}
-Sending Command to 128.187.83.253
+New Socket 10.37.98.137
+ServerRegisterCommand{username='SARAH', password='ha', valid=false, gameList=GameList{ServerActiveGames={}, ServerPendingGames={}}, ipAddress='10.37.98.137', authToken='SARAH1550698001806'}
+Sending Command to 10.37.98.137
 
-New Socket 128.187.83.253
-ErrorCommand{error='Username is already taken', ipAddress='128.187.83.253'}
-Sending Command to 128.187.83.253
+New Socket 10.37.98.137
+ServerRegisterCommand{username='ha', password='ha', valid=false, gameList=GameList{ServerActiveGames={}, ServerPendingGames={}}, ipAddress='10.37.98.137', authToken='ha1550698130697'}
+Sending Command to 10.37.98.137
 
-ErrorCommand{error='user does not exist', ipAddress='128.187.83.253'}
-Sending Command to 128.187.83.253
+ServerCreateGameCommand{player=Player{playerColor=null, name='ha', id='null'}
+, gameID='game', ipAddress='10.37.98.137', gameList=GameList{ServerActiveGames={}, ServerPendingGames={game=PendingGame{players=[Player{playerColor=null, name='ha', id='null'}
+], name='game', id='gameha'}}}}
+Sending Command to 10.37.98.137
 
-ErrorCommand{error='user does not exist', ipAddress='128.187.83.253'}
-Sending Command to 128.187.83.253
+New Socket 10.37.70.103
+ServerRegisterCommand{username='fdj', password='dfkj', valid=false, gameList=GameList{ServerActiveGames={}, ServerPendingGames={game=PendingGame{players=[Player{playerColor=null, name='ha', id='null'}
+], name='game', id='gameha'}}}, ipAddress='10.37.70.103', authToken='fdj1550698425261'}
+Sending Command to 10.37.98.137
 
-ErrorCommand{error='user does not exist', ipAddress='128.187.83.253'}
-Sending Command to 128.187.83.253
-
-ServerRegisterCommand{username='USER', password='hahah', valid=false, gameList=GameList{ServerActiveGames={}, ServerPendingGames={}}, ipAddress='128.187.83.253', authToken='USER1550013483061'}
-Sending Command to 128.187.83.253
-
-ServerCreateGameCommand{player=Player{playerColor=null, name='USER', id='null'}
-, gameID='NEW GAME', ipAddress='128.187.83.253', gameList=GameList{ServerActiveGames={}, ServerPendingGames={NEW GAME=PendingGame{players=[Player{playerColor=null, name='USER', id='null'}
-], name='NEW GAME', id='NEW GAMEUSER'}}}}
-Sending Command to 128.187.83.253
-
-New Socket 10.37.127.122
-ErrorCommand{error='Username is already taken', ipAddress='10.37.127.122'}
-Sending Command to 128.187.83.253
-
-Sending Command to 10.37.127.122
-
-ServerRegisterCommand{username='Bobdgg', password='kjdgg', valid=false, gameList=GameList{ServerActiveGames={}, ServerPendingGames={NEW GAME=PendingGame{players=[Player{playerColor=null, name='USER', id='null'}
-], name='NEW GAME', id='NEW GAMEUSER'}}}, ipAddress='10.37.127.122', authToken='Bobdgg1550013514228'}
-Sending Command to 128.187.83.253
-
-Sending Command to 10.37.127.122
+Sending Command to 10.37.70.103
 
 Player added to game
-ServerJoinGameCommand{player=Player{playerColor=BLUE, name='Bobdgg', id='null'}
-, gameID='NEW GAME', joined=false, ipAddress='10.37.127.122', gameList=GameList{ServerActiveGames={}, ServerPendingGames={NEW GAME=PendingGame{players=[Player{playerColor=BLUE, name='Bobdgg', id='null'}
-, Player{playerColor=null, name='USER', id='null'}
-], name='NEW GAME', id='NEW GAMEUSER'}}}}
-Sending Command to 128.187.83.253
+ServerJoinGameCommand{player=Player{playerColor=BLUE, name='fdj', id='null'}
+, gameID='game', joined=false, ipAddress='10.37.70.103', gameList=GameList{ServerActiveGames={}, ServerPendingGames={game=PendingGame{players=[Player{playerColor=null, name='ha', id='null'}
+, Player{playerColor=BLUE, name='fdj', id='null'}
+], name='game', id='gameha'}}}}
+Sending Command to 10.37.98.137
 
-Sending Command to 10.37.127.122
-
-Player added to game
-ServerJoinGameCommand{player=Player{playerColor=YELLOW, name='Bobdgg', id='null'}
-, gameID='NEW GAME', joined=false, ipAddress='10.37.127.122', gameList=GameList{ServerActiveGames={}, ServerPendingGames={NEW GAME=PendingGame{players=[Player{playerColor=BLUE, name='Bobdgg', id='null'}
-, Player{playerColor=YELLOW, name='Bobdgg', id='null'}
-, Player{playerColor=null, name='USER', id='null'}
-], name='NEW GAME', id='NEW GAMEUSER'}}}}
-Sending Command to 128.187.83.253
-
-Sending Command to 10.37.127.122
-
-Player added to game
-ServerJoinGameCommand{player=Player{playerColor=BLACK, name='Bobdgg', id='null'}
-, gameID='NEW GAME', joined=false, ipAddress='10.37.127.122', gameList=GameList{ServerActiveGames={}, ServerPendingGames={NEW GAME=PendingGame{players=[Player{playerColor=BLACK, name='Bobdgg', id='null'}
-, Player{playerColor=BLUE, name='Bobdgg', id='null'}
-, Player{playerColor=YELLOW, name='Bobdgg', id='null'}
-, Player{playerColor=null, name='USER', id='null'}
-], name='NEW GAME', id='NEW GAMEUSER'}}}}
-Sending Command to 128.187.83.253
-
-Sending Command to 10.37.127.122
+Sending Command to 10.37.70.103
 
