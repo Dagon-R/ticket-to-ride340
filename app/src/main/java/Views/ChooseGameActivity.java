@@ -63,7 +63,7 @@ public class ChooseGameActivity extends AppCompatActivity implements Observer {
         adapter.setOnItemClickListener(new ChooseGameAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View gameView, String name) {
-//                System.out.println("Inside of click for the Join Game");
+                System.out.println("Inside of click for the Join Game");
                 MainModel mainModel = MainModel.get();
                 PendingGame game = mainModel.getGameList().getServerPendingGames().get(name);
                 if(game.getPlayers().size() > 4){
