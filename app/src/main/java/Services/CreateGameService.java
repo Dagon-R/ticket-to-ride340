@@ -16,7 +16,7 @@ public class CreateGameService implements Service {
 
     @Override
     public void connectToProxy(Object... obj) {
-        Player player = (Player) obj[0];
+        User host = (User) obj[0];
         String gameName = (String) obj[1];
 
         Player player = new Player(host.getName(), null);

@@ -18,9 +18,9 @@ import Command.InvalidCommandException;
 public class CommandManager {
     private Socket server;
     private Queue<Command> queue;
+    private Gson json;
 
     private static CommandManager inst;
-    private Gson json;
 
     private CommandManager(Socket socket){
         json = new Gson();

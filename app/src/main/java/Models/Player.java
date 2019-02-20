@@ -40,10 +40,6 @@ public class Player {
 	private void setName(String input){
 		this.name = input;
 	}
-	
-	private void setId(String input){
-		this.id = input;
-	}
 
 	@Override
 	public String toString() {

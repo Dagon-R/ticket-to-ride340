@@ -29,7 +29,7 @@ import Models.MainModel;
 import Models.PendingGame;
 import Services.CreateGameService;
 import Services.JoinGameService;
-import Services.StartGameService;
+import Phase2Services.StartGameService;
 
 public class ChooseGameActivity extends AppCompatActivity implements Observer {
     static String TAG = "Choose Game Activity";
