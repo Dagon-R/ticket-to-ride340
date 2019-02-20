@@ -1,16 +1,25 @@
-package Command;
+package Phase2Commands;
 
+import java.util.HashMap;
 import java.util.Objects;
 
+import Command.Command;
 import Models.GameList;
+import Phase2Models.DestinationCard;
+import Phase2Models.Store;
 import Services.Service;
-import Services.StartGameService;
+import Phase2Services.StartGameService;
 
 public class ServerStartGameCommand implements Command {
     private String gameID;
     private boolean starting;
     private String ipAddress;
     private GameList gameList;
+
+    // New Fields
+    private Store store;
+    private HashMap<String, DestinationCard[]> drawnCards;
+
     public ServerStartGameCommand() {
     }
 
@@ -43,15 +52,14 @@ public class ServerStartGameCommand implements Command {
     public void addResults(Object obj) {
         if(obj == null) return;
         if(obj.getClass() != GameList.class) return;
-        GameList gameList = (GameList) obj;
-        this.gameList = gameList;
+        this.gameList = (GameList) obj;
     }
 
     @Override
     public Object execute() {
         Service startGameService = new StartGameService();
 
-        return startGameService.doService(gameID);
+        return startGameService.doService(gameID, store, drawnCards);
     }
 
     @Override

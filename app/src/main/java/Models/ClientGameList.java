@@ -15,7 +15,7 @@ public class ClientGameList {
 	}
 
 	public IGame get(String name){
-		IGame game =ServerActiveGames.get(name);
+		IGame game = ServerActiveGames.get(name);
 		if(game == null){
 			game = ServerPendingGames.get(name);
 		}

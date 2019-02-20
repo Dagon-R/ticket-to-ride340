@@ -29,7 +29,6 @@ public class JoinGameService implements Service {
     @Override
     public void doService(Object... obj) {
         //Check params
-        System.out.println("Join game do service");
         if(obj.length != 5){
             model.setErrorMessage("Error Joining Game");
             System.out.println("ERROR: " + obj.length + " instead of 5 params on frontend joinGame service");
@@ -39,9 +38,6 @@ public class JoinGameService implements Service {
         String joined = (String) obj[2];
         String ipAddress = (String) obj[3];
         ClientGameList gameList = (ClientGameList) obj[4];
-
-
-
 
         model.setGameList(gameList);
         model.addPlayerToGame(gameName, player);

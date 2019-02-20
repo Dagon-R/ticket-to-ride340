@@ -28,9 +28,10 @@ public class ClientPoller extends Thread
             try {
                 while(!manager.isAvailable()){Thread.sleep(10); }
                 Command command = manager.getCommand();
-                if (command != null)
-                { System.out.println("Executing: " + command.toString() + "\n");
-                    command.execute(); }
+                if (command != null) {
+                    System.out.println("Executing: " + command.toString() + "\n");
+                    command.execute();
+                }
             } catch (InterruptedException e) {
                 MainModel.get().setErrorMessage("Why would you interrupt this thread?");
                 e.printStackTrace();
