@@ -22,8 +22,6 @@ public class LoginService implements Service {
         String password = (String) obj[1];
         String ipAddress = (String) obj[2];
 
-
-
         if(CommandManager.get() == null) {
             SocketInitializer si = new SocketInitializer();
             int port = 8080;

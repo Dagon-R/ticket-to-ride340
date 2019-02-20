@@ -1,27 +1,57 @@
 package Models;
 
-import java.util.HashSet;
+import java.util.EnumMap;
 import java.util.Objects;
+import java.util.TreeSet;
+
+import Phase2Models.DestinationDeck;
+import Phase2Models.Route;
+import Phase2Models.Store;
+import Phase2Models.TrainDeck;
 
 public class ActiveGame implements IGame{
 	//A list of the players associated with the game
-	private HashSet<Player> players = new HashSet<>();
-	//The name of the game that will be displayed in menus
-	private String name;
-	//The unique id that represents this game
-	private String id;
-	
+	private TreeSet<Player> players = new TreeSet<>();
+	//The gameName of the game that will be displayed in menus
+	private String gameName;
+	//The unique gameId that represents this game
+	private String gameId;
+
+	private EnumMap<Route,Player> routeOwners;
+
+	private Store store;
+
+	private DestinationDeck destDeck;
+
+	private TrainDeck trainDeck;
+
+	public Player getRouteOwner(Route route) {
+		return routeOwners.get(route);
+	}
+
+	public Store getStore() {
+		return store;
+	}
+
+	public DestinationDeck getDestDeck() {
+		return destDeck;
+	}
+
+	public TrainDeck getTrainDeck() {
+		return trainDeck;
+	}
+
 	public ActiveGame(){}
 	
 	public ActiveGame(Player host, String gameName){
 		players.add(host);
-		this.name = gameName;
+		this.gameName = gameName;
 	}
 	
 	public ActiveGame(PendingGame startGame){
 		players.addAll(startGame.getPlayers());
-		this.name = startGame.getName();
-		this.id = startGame.getId() + "_ACTIVE";
+		this.gameName = startGame.getGameName();
+		this.gameId = startGame.getId() + "_ACTIVE";
 	}
 	
 	public Boolean addPlayer(Player newPlayer){
@@ -32,31 +62,28 @@ public class ActiveGame implements IGame{
 		return players.remove(targetPlayer);
 	}
 	
-	public HashSet<Player> getPlayers(){
+	public TreeSet<Player> getPlayers(){
 		return players;
 	}
 	
-	public String getName(){
-		return name;
+	public String getGameName(){
+		return gameName;
 	}
 
 	public Boolean playerIsInGame(Player player){
-		if(players.contains(player)){
-			return true;
-		}
-		return false;
+		return players.contains(player);
 	}
 
-	private void setPlayers(HashSet<Player> input){
+	private void setPlayers(TreeSet<Player> input){
 		this.players = input;
 	}
 	
-	private void setName(String input){
-		this.name = input;
+	private void setGameName(String input){
+		this.gameName = input;
 	}
 	
-	private void setId(String input){
-		this.id = input;
+	private void setGameId(String input){
+		this.gameId = input;
 	}
 
 	@Override
@@ -64,21 +91,21 @@ public class ActiveGame implements IGame{
 		if (this == o) return true;
 		if (!(o instanceof IGame)) return false;
 		IGame that = (IGame) o;
-		return Objects.equals(getName(), that.getName());
+		return Objects.equals(getGameName(), that.getGameName());
 	}
 
 	@Override
 	public int hashCode() {
 
-		return Objects.hash(getName());
+		return Objects.hash(getGameName());
 	}
 
 	@Override
 	public String toString() {
 		return "ActiveGame{" +
 				"players=" + players +
-				", name='" + name + '\'' +
-				", id='" + id + '\'' +
+				", gameName='" + gameName + '\'' +
+				", gameId='" + gameId + '\'' +
 				'}';
 	}
 }
