@@ -16,12 +16,14 @@ public class StartGameService implements Service {
     }
 
     @Override
+    //params: String gameID
     public void connectToProxy(Object... obj) {
         String gameID = (String) obj[0];
         sp.startGame(gameID);
     }
 
     @Override
+    //Params: Store store, Map<ipAddress,DestinationCard[]> drawnCards, String gameID, String ipAddress
     public void doService(Object... obj) {
         //Check params
         if(obj.length != 2){
