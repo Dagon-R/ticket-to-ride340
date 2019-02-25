@@ -2,14 +2,12 @@ package Communication;
 
 import Command.*;
 import Models.Player;
-import Models.User;
 import Phase2Commands.ChatCommand;
 import Phase2Commands.ClaimRouteCommand;
 import Phase2Commands.DiscardCardCommand;
 import Phase2Commands.StartGameCommand;
 import Phase2Models.DestinationCard;
 import Phase2Models.Route;
-import Phase2Services.ClaimRouteService;
 
 public class ServerProxy {
 
