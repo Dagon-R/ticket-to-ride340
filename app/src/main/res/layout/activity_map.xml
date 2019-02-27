@@ -6,8 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".MapActivity">
 
-    <View
-        android:id="@+id/view"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/game_map"/>
+    </FrameLayout>
+
 </android.support.design.widget.CoordinatorLayout>
