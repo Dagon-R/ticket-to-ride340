@@ -1,30 +1,27 @@
 package Communication;
 
-import android.os.AsyncTask;
-
 import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+
 import Command.Command;
 import Command.CommandWrapper;
 
-
-public class SendCommand extends AsyncTask<Command,Void,Void> {
-
+public class SendCommand extends Thread {
     private Gson json;
-
-    public SendCommand()
+    private Command command;
+    SendCommand(Command command)
     {
         json = new Gson();
+        this.command = command;
     }
     @Override
-    protected Void doInBackground(Command... commands) {
-        System.out.println("Made it to send-command do-in-background");
+    public void run() {
+        System.out.println("Made it to send-command run");
         try {
             OutputStream server = CommandManager.get().getSocket().getOutputStream();
-            Command command = commands[0];
             CommandWrapper newWrapper =
                     new CommandWrapper(json.toJson(command), command.getClass().getName());
             writeString(json.toJson(newWrapper) + ",", server);
@@ -32,7 +29,6 @@ public class SendCommand extends AsyncTask<Command,Void,Void> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
     }
     private void writeString(String str, OutputStream os) {
         System.out.println("Made it to write-string");
@@ -43,7 +39,7 @@ public class SendCommand extends AsyncTask<Command,Void,Void> {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.print("Message sent to server: " + str + "\n");
+        System.out.println("Message sent to server: " + str);
         //os.close();
     }
 }
