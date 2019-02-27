@@ -51,23 +51,5 @@ public class ServerProxy {
         sc2.start();
 
     }
-    public void chat(String username, String message)
-    {
-        ChatCommand newChat = new ChatCommand(username,message);
-        SendCommand2 sc2 = new SendCommand2(newChat);
-        sc2.start();
-    }
-    public void claimRoute(Route route, String playerName)
-    {
-        ClaimRouteCommand newClaim = new ClaimRouteCommand(route,playerName);
-        SendCommand2 sc2 = new SendCommand2(newClaim);
-        sc2.start();
-    }
-    public void discardCard(DestinationCard card)
-    {
-        DiscardCardCommand newDiscard = new DiscardCardCommand(card);
-        SendCommand2 sc2 = new SendCommand2(newDiscard);
-        sc2.start();
-    }
 
 }
