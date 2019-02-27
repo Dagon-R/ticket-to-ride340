@@ -11,20 +11,20 @@ public enum City {
     Portland(84,210), Raleigh(865,375),Saint_Louis(655,358),Salt_Lake_City(268,343),
     San_Francisco(70,405),Santa_Fe(392,466), Sault_St_Marie(704,147),Seattle(105,159),
     Toronto(813,169),Vancouver(109,107),Washington(923,306),Winnipeg(465,98);
-    double x;
-    double y;
-    static final double EDGE_X = 1024;
-    static final double EDGE_Y = 683;
-    City(double x, double y)
+    float x;
+    float y;
+    static final float EDGE_X = 1024;
+    static final float EDGE_Y = 683;
+    City(float x, float y)
     {
         this.x = x/EDGE_X;
         this.y = 1 - (y/EDGE_Y);
     }
 
-    public double x() {
+    public float x() {
         return x;
     }
-    public double y()
+    public float y()
     {
         return y;
     }

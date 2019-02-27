@@ -6,6 +6,7 @@ import Phase2Commands.ChatCommand;
 import Phase2Commands.ClaimRouteCommand;
 import Phase2Commands.DiscardCardCommand;
 import Phase2Commands.StartGameCommand;
+import Phase2Models.ChatMessage;
 import Phase2Models.DestinationCard;
 import Phase2Models.Route;
 
@@ -49,9 +50,9 @@ public class ServerProxy {
         sc2.start();
 
     }
-    public void chat(String username, String message)
+    public void chat(ChatMessage message)
     {
-        ChatCommand newChat = new ChatCommand(username,message);
+        ChatCommand newChat = new ChatCommand(message);
         SendCommand sc2 = new SendCommand(newChat);
         sc2.start();
     }
