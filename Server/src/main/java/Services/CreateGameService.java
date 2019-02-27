@@ -4,7 +4,6 @@ import Command.ErrorCommand;
 import Models.MainModel;
 import Models.PendingGame;
 import Models.Player;
-import sun.applet.Main;
 
 public class CreateGameService implements Service {
 

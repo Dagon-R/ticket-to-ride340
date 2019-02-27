@@ -24,7 +24,7 @@ public class ChatService implements Service {
     @Override
     //params: ChatMessage message, String ipAddress
     public void doService(Object... obj) {
-        ChatMessage message = (ChatMessage) obj[0];
+        //ChatMessage message = (ChatMessage) obj[0];
 
         //append message to messageList
     }
