@@ -16,9 +16,9 @@ public class ChatService implements Service {
     @Override
     //params: String message
     public void connectToProxy(Object... obj) {
-        String message = (String) obj[0];
+        ChatMessage message = (String) obj[0];
 
-        sp.chat(model.getUser().getName(), message);
+        //sp.chat(model.getUser().getName(), message);
     }
 
     @Override
