@@ -6,7 +6,7 @@ import Phase2Services.ChatService;
 
 public class ChatCommand implements Command {
     private ChatMessage message;
-    private String ipAddress;
+    private volatile String ipAddress;
     @Override
     public void execute() {
         ChatService chatter  = new ChatService();

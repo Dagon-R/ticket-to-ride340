@@ -11,7 +11,7 @@ public class StartGameCommand implements Command {
     private Store store;
     private HashMap<String, DestinationCard[]> drawnCards;
     private String gameID;
-    private String ipAddress;
+    private volatile String ipAddress;
     @Override
     public void execute() {
         StartGameService newService = new StartGameService();
