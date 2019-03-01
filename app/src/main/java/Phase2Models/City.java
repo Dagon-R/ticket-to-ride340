@@ -18,7 +18,7 @@ public enum City {
     City(float x, float y)
     {
         this.x = x/EDGE_X;
-        this.y = 1 - (y/EDGE_Y);
+        this.y = (y/EDGE_Y);
     }
 
     public float x() {

@@ -67,6 +67,20 @@ public enum Route {
         color2 = type2;
         this.length = length;
     }
+
+
+    public City getCity1() {
+        return city1;
+    }
+
+    public City getCity2() {
+        return city2;
+    }
+
+    public boolean isDouble(){
+        return false;
+    }
+
     public boolean has(City city)
     {
         return city1 == city || city2 == city;

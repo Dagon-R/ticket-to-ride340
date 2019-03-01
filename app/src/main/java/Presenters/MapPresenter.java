@@ -12,11 +12,13 @@ import Models.ActiveGame;
 import Models.Player;
 import Phase2Models.City;
 import Phase2Models.Store;
+
 import Phase2Services.ChatService;
 import Phase2Services.ClaimRouteService;
 import Phase2Services.DrawDestCardService;
 import Services.Service;
 import Views.MapActivity;
+//import View.MapActivity;
 
 public class MapPresenter implements Observer {
     MapActivity mapActivity;
