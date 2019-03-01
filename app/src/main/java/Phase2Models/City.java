@@ -13,12 +13,12 @@ public enum City {
     Toronto(813,169),Vancouver(109,107),Washington(923,306),Winnipeg(465,98);
     double x;
     double y;
-    static final double EDGE_X = 1024;
-    static final double EDGE_Y = 683;
+    public static final double EDGE_X = 1024;
+    public static final double EDGE_Y = 683;
     City(double x, double y)
     {
         this.x = x/EDGE_X;
-        this.y = 1 - (y/EDGE_Y);
+        this.y = (y/EDGE_Y);
     }
 
     public double x() {
