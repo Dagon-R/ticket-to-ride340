@@ -2,14 +2,14 @@ package Phase2Commands;
 
 import Command.Command;
 import Phase2Models.DestinationCard;
-import Phase2Services.DiscardCardService;
+import Phase2Services.DiscardDestCardService;
 
 public class DiscardCardCommand implements Command {
     private volatile String ipAddress;
     private DestinationCard toDiscard;
     @Override
     public void execute() {
-        DiscardCardService discarder = new DiscardCardService();
+        DiscardDestCardService discarder = new DiscardDestCardService();
         discarder.doService(toDiscard,ipAddress);
     }
     public DiscardCardCommand(DestinationCard toDiscard)

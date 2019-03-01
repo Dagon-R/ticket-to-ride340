@@ -50,9 +50,9 @@ public class ServerProxy {
         sc2.start();
 
     }
-    public void chat(ChatMessage message)
+    public void chat(ChatMessage message, String gameID)
     {
-        ChatCommand newChat = new ChatCommand(message);
+        ChatCommand newChat = new ChatCommand(message, gameID);
         SendCommand sc2 = new SendCommand(newChat);
         sc2.start();
     }

@@ -1,10 +1,7 @@
 package Phase2Services;
 
 import Command.ErrorCommand;
-import Models.ActiveGame;
-import Models.IGame;
 import Models.MainModel;
-import Models.PendingGame;
 import Services.Service;
 
 public class StartGameService implements Service {

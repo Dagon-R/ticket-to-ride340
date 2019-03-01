@@ -7,11 +7,12 @@ import Phase2Services.ChatService;
 public class ServerChatCommand implements Command {
     private String ipAddress;
     private ChatMessage message;
+    private String gameID;
 
     @Override
     public Object execute() {
         ChatService chatService = new ChatService();
-        return chatService.doService(message,ipAddress);
+        return chatService.doService(message, gameID, ipAddress);
     }
 
     @Override
