@@ -7,7 +7,7 @@ import Phase2Services.ClaimRouteService;
 public class ClaimRouteCommand implements Command {
     private Route route;
     private String playerName;
-    private String ipAddress;
+    private volatile String ipAddress;
     public ClaimRouteCommand(Route route, String name)
     {
         this.route = route;

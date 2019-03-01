@@ -5,7 +5,6 @@ import Models.MainModel;
 import Models.PendingGame;
 import Models.Player;
 
-
 public class CreateGameService implements Service {
 
     public CreateGameService() {

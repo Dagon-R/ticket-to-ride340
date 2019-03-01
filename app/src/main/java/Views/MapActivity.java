@@ -1,51 +1,81 @@
 package Views;
 
-
-
 import android.os.Bundle;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.google.gson.Gson;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.util.Map;
 
-import Models.CityLoc;
+import Models.ActiveGame;
+import Models.Player;
+import Phase2Models.Store;
+import Presenters.MapPresenter;
 
-
-public class MapActivity extends AppCompatActivity {
-
+public class MapActivity extends AppCompatActivity implements ActionBar,IMap,MesssageSender {
+    MapLogic mapLogic;
+    MapPresenter mapPresenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
-        Gson gson = new Gson();
-        CityLoc[] cityLoc = null;
-//        File file = new File("./app/src/main/java/Models/usdata.txt");
-        try{
-            InputStream stream = getResources().openRawResource(R.raw.usdata);
-            BufferedReader br = new BufferedReader(new InputStreamReader(stream));
-            StringBuilder s = new StringBuilder();
-            while(br.ready()){
-                s.append(br.readLine());
-            }
-            cityLoc = gson.fromJson(s.toString(),CityLoc[].class);
+        construct();
 
-        }
-        catch (IOException e){
-            System.out.println(e.getMessage());
-            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
-        }
-
-
-        setContentView(new MapLogic(this,cityLoc));
 
     }
+
+    private void construct(){
+        mapLogic = new MapLogic(this);
+        mapPresenter = new MapPresenter(this);
+    }
+
+//    public void updateMap(Map map){
+//
+//    }
+
+//    public void updateChat(ChatQueue queue){
+
+//    }
+    public void updatePlayerInfo(Player player){
+
+    }
+    public void updateGameInfo(ActiveGame game){
+
+    }
+    public void updateStore(Store store){
+
+    }
+    public void updateTurnView(int playerIndex){
+
+    }
+
+
+
+    @Override
+    public void drawStore(int i){
+
+    }
+
+    @Override
+    public void drawTrainCarCard(){
+
+    }
+
+    @Override
+    public void drawDestinationCard(){
+
+    }
+
+    @Override
+    public void sendChat(String message){
+
+    }
+
+    @Override
+    public void mapClick(float x,float y){
+
+    }
+
 
 }

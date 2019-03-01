@@ -1,17 +1,17 @@
 package Phase2Commands;
 
 import Command.Command;
+import Phase2Models.ChatMessage;
 import Phase2Services.ChatService;
 
 public class ServerChatCommand implements Command {
     private String ipAddress;
-    private String playerName;
-    private String message;
+    private ChatMessage message;
 
     @Override
     public Object execute() {
         ChatService chatService = new ChatService();
-        return chatService.doService(message,playerName,ipAddress);
+        return chatService.doService(message,ipAddress);
     }
 
     @Override

@@ -8,10 +8,10 @@ import Phase2Models.Store;
 import Phase2Services.StartGameService;
 
 public class StartGameCommand implements Command {
-    private Store store;
-    private HashMap<String, DestinationCard[]> drawnCards;
+    private volatile Store store;
+    private volatile HashMap<String, DestinationCard[]> drawnCards;
     private String gameID;
-    private String ipAddress;
+    private volatile String ipAddress;
     @Override
     public void execute() {
         StartGameService newService = new StartGameService();
