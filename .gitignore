@@ -2,15 +2,13 @@
 .gradle
 .gradle/
 .idea/
-build.gradle
-gradle/
+
 /local.properties
 /.idea/caches/build_file_checksums.ser
 /.idea/libraries
 /.idea/modules.xml
 /.idea/workspace.xml
 .DS_Store
-/build
 
 /captures
 .externalNativeBuild
@@ -36,10 +34,6 @@ Lib
 bin/
 gen/
 out/
-
-# Gradle files
-.gradle/
-build/
 
 # Local configuration file (sdk path, etc)
 local.properties
@@ -94,4 +88,5 @@ fastlane/readme.md
 
 # Version control
 vcs.xml
+
 

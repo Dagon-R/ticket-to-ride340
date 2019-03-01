@@ -13,7 +13,6 @@ public class ServerProxy {
 
     public ServerProxy() { }
 
-
     public void login(String username, String password, String ipAddress, String authToken)
     {
         TheLoginCommand newLog = new TheLoginCommand(username,password,ipAddress, authToken);
