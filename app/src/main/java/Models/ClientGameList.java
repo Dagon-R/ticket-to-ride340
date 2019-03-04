@@ -52,12 +52,15 @@ public class ClientGameList {
 
 	}
 
-	public void startGame(String name){
+	public ActiveGame startGame(String name){
 		if(ServerPendingGames.containsKey(name)){
 			PendingGame game = ServerPendingGames.get(name);
 			ServerPendingGames.remove(name);
-			addServerActiveGame(new ActiveGame(game));
+			ActiveGame ag = new ActiveGame(game);
+			addServerActiveGame(ag);
+			return ag;
 		}
+		return null;
 
 	}
 }

@@ -47,4 +47,44 @@ public class Player {
 				"name='" + name + '\'' +
 				'}';
 	}
+
+	public PlayerColorEnum getPlayerColor() {
+		return playerColor;
+	}
+
+	public void setPlayerColor(PlayerColorEnum playerColor) {
+		this.playerColor = playerColor;
+	}
+
+	public ArrayList<TrainCardColor> getTrainHand() {
+		return trainHand;
+	}
+
+	public void setTrainHand(ArrayList<TrainCardColor> trainHand) {
+		this.trainHand = trainHand;
+	}
+
+	public ArrayList<DestinationCard> getDestHand() {
+		return destHand;
+	}
+
+	public void setDestHand(ArrayList<DestinationCard> destHand) {
+		this.destHand = destHand;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+	public int getPiecesLeft() {
+		return piecesLeft;
+	}
+
+	public void setPiecesLeft(int piecesLeft) {
+		this.piecesLeft = piecesLeft;
+	}
 }
