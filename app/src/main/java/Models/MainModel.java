@@ -1,6 +1,9 @@
 package Models;
 
 import java.util.Observable;
+import java.util.Observer;
+
+import Phase2Models.MapModel;
 
 public class MainModel extends Observable {
     private static MainModel instance;
@@ -11,9 +14,11 @@ public class MainModel extends Observable {
     private String errorMessage;
     private String IPAddress;
     private String authToken;
+    private MapModel mapModel;
 
     private MainModel() {
         user = new User();
+        mapModel = new MapModel();
     }
 
     public static MainModel get(){
@@ -29,6 +34,15 @@ public class MainModel extends Observable {
 
     public static void setInstance(MainModel instance) {
         MainModel.instance = instance;
+    }
+
+    public MapModel getMapModel(){
+        return mapModel;
+    }
+
+    public void addObservers(Observer o){
+        mapModel.addObserver(o);
+
     }
 
     public Player getPlayer() {

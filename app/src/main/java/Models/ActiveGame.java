@@ -2,6 +2,8 @@ package Models;
 
 import java.util.HashSet;
 
+import Phase2Models.ChatMessage;
+import Phase2Models.ChatQueue;
 import Phase2Models.Store;
 
 public class ActiveGame implements IGame{
@@ -14,6 +16,7 @@ public class ActiveGame implements IGame{
 
 	//New Field
 	private Store store;
+	private ChatQueue queue = new ChatQueue();
 	
 	public ActiveGame(){}
 
@@ -22,6 +25,11 @@ public class ActiveGame implements IGame{
 		players.add(host);
 		this.name = gameName;
 		this.id = gameName + host.getName() + "_ACTIVE";
+	}
+
+	public void addChatMessage(ChatMessage message)
+	{
+		queue.add(message);
 	}
 	
 	public ActiveGame(PendingGame startGame){

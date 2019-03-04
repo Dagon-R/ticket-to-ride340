@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public enum City {
     Atlanta(800,430),Boston(970,140),Calgary(240,86),Charleston(893,439),Chicago(700,275),
-    Dallas(567,532),Denver(400,375), Duluth(575,215),El_Paso(386,556), Helena(340,220),
+    Dallas(567,532),Denver(400,375), Duluth(575,215),El_Paso(386,575), Helena(340,220),
     Houston(608,572),Kansas_City(568,357),Las_Vegas(212,453), Little_Rock(638,447),
     Los_Angeles(147,512),Miami(925,596),Montreal(896,82), Nashville(748,397),New_Orleans(702,560),
     New_York(915,215),Oklahoma_City(547,443),Omaha(546,306),Phoenix(267,518),Pittsburgh(831,261),
@@ -18,7 +18,7 @@ public enum City {
     City(float x, float y)
     {
         this.x = x/EDGE_X;
-        this.y = 1 - (y/EDGE_Y);
+        this.y = (y/EDGE_Y);
     }
 
     public float x() {

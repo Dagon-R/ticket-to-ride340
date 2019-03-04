@@ -5,7 +5,7 @@ import Phase2Models.DestinationCard;
 import Phase2Services.DiscardDestCardService;
 
 public class DiscardCardCommand implements Command {
-    private String ipAddress;
+    private volatile String ipAddress;
     private DestinationCard toDiscard;
     @Override
     public void execute() {
