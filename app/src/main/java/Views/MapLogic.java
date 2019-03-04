@@ -114,9 +114,8 @@ public class MapLogic extends View {
     }
 
     private void drawSingleRoute(Route route){
-        setColor(route.getColor1());
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(15);
+
+
 
         PointF point1 = MapEquations.getPoint(route.getCity1(),size);
         PointF point2 = MapEquations.getPoint(route.getCity2(),size);
@@ -124,9 +123,38 @@ public class MapLogic extends View {
         float[] intervals = getIntervals(point1,point2,route.getLength(),dist);
 
 
-        paint.setPathEffect(new DashPathEffect(intervals, dist/(route.getLength() * 2 +1)));
 
+        paint.setStyle(Paint.Style.STROKE);
+        colorMeBlack(point1,point2,dist,route,intervals,route.getColor1());
+//        if(route.getColor1() == TrainCardColor.BLACK){
+//            intervals[0] +=4f;
+//            intervals[1] -=4f;
+//            paint.setStrokeWidth(20);
+//            paint.setPathEffect(new DashPathEffect(intervals, dist/(route.getLength() * 2 +1) +2));
+//            paint.setColor(getResources().getColor(R.color.grey));
+//            paint.setStyle(Paint.Style.STROKE);
+//            canvas.drawLine(point1.x,point1.y,point2.x,point2.y,paint);
+//            intervals[0] -=4f;
+//            intervals[1] +=4f;
+//        }
+        paint.setPathEffect(new DashPathEffect(intervals, dist/(route.getLength() * 2 +1)));
+        setColor(route.getColor1());
+        paint.setStrokeWidth(15);
         canvas.drawLine(point1.x,point1.y,point2.x,point2.y,paint);
+    }
+
+    private void colorMeBlack(PointF point1, PointF point2,float dist,Route route,float[] intervals , TrainCardColor color){
+        if(color == TrainCardColor.BLACK){
+            intervals[0] +=4f;
+            intervals[1] -=4f;
+            paint.setStrokeWidth(20);
+            paint.setPathEffect(new DashPathEffect(intervals, dist/(route.getLength() * 2 +1) +2));
+            paint.setColor(getResources().getColor(R.color.grey));
+            paint.setStyle(Paint.Style.STROKE);
+            canvas.drawLine(point1.x,point1.y,point2.x,point2.y,paint);
+            intervals[0] -=4f;
+            intervals[1] +=4f;
+        }
     }
 
     private void drawDoubleRoute(Route route){
@@ -139,16 +167,32 @@ public class MapLogic extends View {
         float x = (float)Math.cos(angle)*(routeThickness/1.5f);
         float y = (float)Math.sin(angle)*(routeThickness/1.5f);
 
-        setColor(route.getColor1());
+
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(15);
         float[] intervals = getIntervals(pointOrigin1,pointOrigin2,route.getLength(),dist);
 
 
         paint.setPathEffect(new DashPathEffect(intervals, dist/(route.getLength() * 2 +1)));
+        PointF point1 = new PointF(pointOrigin1.x,pointOrigin1.y);
+        point1.x +=x;
+        point1.y +=y;
+        PointF point2 = new PointF(pointOrigin2.x,pointOrigin2.y);
+        point2.x +=x;
+        point2.y +=y;
+        colorMeBlack(point1,point2,dist,route,intervals,route.getColor1());
+        setColor(route.getColor1());
         canvas.drawLine(pointOrigin1.x + x,pointOrigin1.y +y,pointOrigin2.x + x,pointOrigin2.y +y,paint);
 
-        setColor(route.getColor2());//Swit
+        point1 = new PointF(pointOrigin1.x,pointOrigin1.y);
+        point1.x -=x;
+        point1.y -=y;
+        point2 = new PointF(pointOrigin2.x,pointOrigin2.y);
+        point2.x -=x;
+        point2.y -=y;
+        Log.d(TAG, "drawDoubleRoute: color" + route.getColor2());
+        colorMeBlack(point1,point2,dist,route,intervals,route.getColor2());
+        setColor(route.getColor2());
         canvas.drawLine(pointOrigin1.x - x,pointOrigin1.y -y,pointOrigin2.x - x,pointOrigin2.y -y,paint);
 
 
@@ -174,15 +218,13 @@ public class MapLogic extends View {
                 paint.setColor(getResources().getColor(R.color.red));
                 break;
             case BLACK:
-                paint.setColor(getResources().getColor(R.color.black));
-                paint.setStyle(Paint.Style.STROKE);
-                
+                paint.setColor(Color.BLACK);
                 break;
             case GREEN:
                 paint.setColor(getResources().getColor(R.color.green));
                 break;
             case WHITE:
-                paint.setColor(getResources().getColor(R.color.white));
+                paint.setColor(Color.WHITE);
                 break;
             case ORANGE:
                 paint.setColor(getResources().getColor(R.color.orange));
@@ -222,9 +264,9 @@ public class MapLogic extends View {
         }
     }
     private void drawBackground(){
-        Drawable d = getResources().getDrawable(R.drawable.cool_stars, null);
-        d.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        d.draw(canvas);
+//        Drawable d = getResources().getDrawable(R.drawable.cool_stars, null);
+//        d.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+//        d.draw(canvas);
     }
 
 
