@@ -114,7 +114,7 @@ public class MapLogic extends View {
     }
 
     private void drawSingleRoute(Route route){
-        setColor(route.getColor());
+        setColor(route.getColor1());
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(15);
 
@@ -139,7 +139,7 @@ public class MapLogic extends View {
         float x = (float)Math.cos(angle)*(routeThickness/1.5f);
         float y = (float)Math.sin(angle)*(routeThickness/1.5f);
 
-        setColor(route.getColor());
+        setColor(route.getColor1());
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(15);
         float[] intervals = getIntervals(pointOrigin1,pointOrigin2,route.getLength(),dist);
@@ -148,7 +148,7 @@ public class MapLogic extends View {
         paint.setPathEffect(new DashPathEffect(intervals, dist/(route.getLength() * 2 +1)));
         canvas.drawLine(pointOrigin1.x + x,pointOrigin1.y +y,pointOrigin2.x + x,pointOrigin2.y +y,paint);
 
-        setColor(route.getColor());//Swit
+        setColor(route.getColor2());//Swit
         canvas.drawLine(pointOrigin1.x - x,pointOrigin1.y -y,pointOrigin2.x - x,pointOrigin2.y -y,paint);
 
 
@@ -175,6 +175,8 @@ public class MapLogic extends View {
                 break;
             case BLACK:
                 paint.setColor(getResources().getColor(R.color.black));
+                paint.setStyle(Paint.Style.STROKE);
+                
                 break;
             case GREEN:
                 paint.setColor(getResources().getColor(R.color.green));
@@ -209,7 +211,13 @@ public class MapLogic extends View {
             paint.setTextSize(24);
             paint.setColor(Color.WHITE);
             paint.setAlpha(255);
-            canvas.drawText(city.name(),point.x -radius*3,point.y-radius*2,paint);
+            StringBuilder name = new StringBuilder(city.name());
+            if(city.name().indexOf('_') != -1){
+                name = name.replace(city.name().indexOf('_'),city.name().indexOf('_')," ");
+            }
+
+
+            canvas.drawText(name.toString(),point.x -radius*3,point.y-radius*2,paint);
 
         }
     }
