@@ -7,18 +7,18 @@ public enum City {
     New_York(0,0),Oklahoma_City(0,0),Omaha(0,0),Phoenix(0,0),Pittsburgh(0,0),Portland(0,0),
     Raleigh(0,0),Saint_Louis(0,0),Salt_Lake_City(0,0),San_Francisco(0,0),Santa_Fe(0,0),
     Sault_St_Marie(0,0),Seattle(0,0), Toronto(0,0),Vancouver(0,0),Washington(0,0),Winnipeg(0,0);
-    double x;
-    double y;
-    City(double x, double y)
+    float x;
+    float y;
+    City(float x, float y)
     {
         this.x = x;
         this.y = y;
     }
 
-    public double x() {
+    public float x() {
         return x;
     }
-    public double y()
+    public float y()
     {
         return y;
     }
