@@ -26,4 +26,13 @@ public class TrainDeck {
         if (deck.size() > 0) {result[1] = deck.poll();}}
         return result;
     }
+    public TrainCardColor[] draw4()
+    {
+        TrainCardColor[] result = new TrainCardColor[4];
+        if (deck.size() > 0) {result[0] = deck.poll();
+        if (deck.size() > 0) {result[1] = deck.poll();}
+        if (deck.size() > 0) {result[2] = deck.poll();}
+        if (deck.size() > 0) {result[3] = deck.poll();}}
+        return result;
+    }
 }

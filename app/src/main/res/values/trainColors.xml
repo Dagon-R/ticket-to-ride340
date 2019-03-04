@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue">
+        #514ade
+    </color>
+    <color name="red">
+        #e82d5c
+
+    </color>
+    <color name="yellow">
+        #fffe91
+    </color>
+    <color name="green">
+        #309e7b
+    </color>
+    <color name="purple">
+        #7153a1
+    </color>
+    <color name="orange">
+        #fbb553
+    </color>
+    <color name="black">
+        #ffffff
+    </color>
+    <color name="white">
+        #000000
+    </color>
+
+    <color name="grey">
+        #878787
+    </color>
+    <color name="rainbow">
+        #b8bde5
+    </color>
+</resources>
