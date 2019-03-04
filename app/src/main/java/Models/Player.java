@@ -2,6 +2,7 @@ package Models;
 
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 
 import Phase2Models.DestinationCard;
 import Phase2Models.TrainCardColor;
@@ -15,7 +16,7 @@ public class Player {
 
 	// New Fields
 	private ArrayList<TrainCardColor> trainHand;
-	private ArrayList<DestinationCard> destHand;
+	private EnumSet<DestinationCard> destHand;
 	private int score;
 	private int piecesLeft;
 
@@ -23,6 +24,11 @@ public class Player {
 	public Player(String name, PlayerColorEnum playerColor){
 		this.name = name;
 		this.playerColor = playerColor;
+	}
+
+	public void removeDestCard(DestinationCard card)
+	{
+		destHand.remove(card);
 	}
 	
 	public PlayerColorEnum getColor(){

@@ -2,6 +2,8 @@ package Models;
 
 import java.util.Observable;
 
+import Phase2Models.DestinationCard;
+
 public class MainModel extends Observable {
     private static MainModel instance;
     private Player player;
@@ -21,6 +23,11 @@ public class MainModel extends Observable {
             instance = new MainModel();
         }
         return instance;
+    }
+
+    public void discardCard(DestinationCard card)
+    {
+        player.removeDestCard(card);
     }
 
     public static MainModel getInstance() {
