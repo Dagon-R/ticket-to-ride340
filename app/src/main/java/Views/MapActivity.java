@@ -1,17 +1,22 @@
 package Views;
 
+import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+
+import java.util.Map;
 
 import Models.ActiveGame;
 import Models.CityLoc;
 import Models.Player;
 import Phase2Models.City;
+import Phase2Models.MapModel;
 import Phase2Models.Store;
 import Presenters.MapPresenter;
 import Views.ActionBar;
@@ -20,6 +25,7 @@ import Views.MapLogic;
 import Views.MesssageSender;
 
 public class MapActivity extends AppCompatActivity implements ActionBar, IMap, MesssageSender {
+    static String TAG = "MapActivity";
     MapLogic mapLogic;
     MapPresenter mapPresenter;
     @Override
@@ -37,15 +43,15 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
     }
 
     private void construct(){
-        mapLogic = new MapLogic(this);
+        mapLogic = new MapLogic(this,this);
         mapPresenter = new MapPresenter(this);
 //        mapLogic.
         this.setContentView(mapLogic);
     }
 
-//    public void updateMap(Map map){
-//
-//    }
+    public void updateMap(MapModel map){
+        mapLogic.updateMap(map);
+    }
 
 //    public void updateChat(ChatQueue queue){
 
@@ -86,8 +92,9 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
     }
 
     @Override
-    public void mapClick(float x,float y){
+    public void mapClick(float x, float y, PointF size){
 
+        mapPresenter.selectCity(x,y,size);
     }
 
 

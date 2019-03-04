@@ -1,6 +1,8 @@
 package Phase2Models;
 
-public class MapModel {
+import java.util.Observable;
+
+public class MapModel extends Observable {
     City selectedCity;
     public MapModel(){
         selectedCity = City.Kansas_City;
@@ -10,7 +12,13 @@ public class MapModel {
         return selectedCity;
     }
 
+
+
     public void setSelectedCity(City selectedCity) {
         this.selectedCity = selectedCity;
+        setChanged();
+        notifyObservers(this);
     }
+
+
 }
