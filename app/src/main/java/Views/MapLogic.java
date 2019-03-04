@@ -5,37 +5,51 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
+import android.graphics.PathEffect;
 import android.graphics.PointF;
-import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 
-import java.util.Arrays;
+import java.util.Map;
 
-import Models.CityLoc;
 import Phase2Models.City;
 import Phase2Models.MapModel;
 import Phase2Models.Route;
 import Phase2Models.TrainCardColor;
+import Presenters.MapEquations;
 
 public class MapLogic extends View {
+    static String TAG = "MapLogic";
     Paint paint;
     Canvas canvas;
+    PointF size;
     float radius;
     float selectedRadius;
+    float routeThickness;
+    IMap mapActivity;
 
-    public MapLogic(Context context){
+    public MapLogic(Context context, IMap mapActivity){
         super(context);
+        this.mapActivity = mapActivity;
         paint = new Paint();
         radius =15;
         selectedRadius = 20;
+        routeThickness =15;
 //        this.invalidate();
+    }
+
+    public void updateMap(MapModel model){
+
+        drawMap(model);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         this.canvas = canvas;
+        this.size = new PointF(canvas.getWidth(),canvas.getHeight());
 //        this.setBackgroundColor(Color.TRANSPARENT);
 
         drawMap(new MapModel());
@@ -54,13 +68,37 @@ public class MapLogic extends View {
     }
 
     private void drawSelectedCity(City city){
-        if(city == null) return;
-        PointF point = getPoint(city);
-        paint.setColor(Color.argb(255,0,0,255));
-        paint.setStyle(Paint.Style.FILL);
-        System.out.println("::::::: "+point);
 
+        if(city == null) return;
+        PointF point = MapEquations.getPoint(city,size);
+        setPaintParams(getResources().getColor(R.color.lightBlue),null,null);
         canvas.drawCircle(point.x,point.y,radius,paint);
+        setPaintParams(getResources().getColor(R.color.red), Paint.Style.STROKE,null);
+        paint.setStrokeWidth(5);
+        canvas.drawCircle(point.x,point.y,radius*1.5f,paint);
+    }
+
+    private void setPaintParams(Integer color, Paint.Style style, PathEffect pathEffect){
+        if(style == null){
+            paint.setStyle(Paint.Style.FILL);
+        }else{
+            paint.setStyle(style);
+        }
+        if(color == null){
+            paint.setColor(Color.BLACK);
+        } else{
+            paint.setColor(color);
+        }
+
+        if(pathEffect == null){
+            float[] intervals = new float[2];
+            intervals[0] =1;
+            paint.setPathEffect(new DashPathEffect(intervals,0));
+        }else{
+            paint.setPathEffect(pathEffect);
+        }
+
+
     }
 
     private void drawRoutes(){
@@ -80,38 +118,40 @@ public class MapLogic extends View {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(15);
 
-        PointF point1 = getPoint(route.getCity1());
-        PointF point2 = getPoint(route.getCity2());
+        PointF point1 = MapEquations.getPoint(route.getCity1(),size);
+        PointF point2 = MapEquations.getPoint(route.getCity2(),size);
         float dist = (float)Math.pow(Math.pow(point2.x-point1.x,2) + Math.pow(point1.y-point2.y,2),.5);
         float[] intervals = getIntervals(point1,point2,route.getLength(),dist);
 
 
         paint.setPathEffect(new DashPathEffect(intervals, dist/(route.getLength() * 2 +1)));
+
         canvas.drawLine(point1.x,point1.y,point2.x,point2.y,paint);
     }
 
     private void drawDoubleRoute(Route route){
-        PointF pointOrigin1 = getPoint(route.getCity1());
-        PointF pointOrigin2 = getPoint(route.getCity2());
+
+        PointF pointOrigin1 = MapEquations.getPoint(route.getCity1(),size);
+        PointF pointOrigin2 = MapEquations.getPoint(route.getCity2(),size);
         float dist = (float)Math.pow(Math.pow(pointOrigin2.x-pointOrigin1.x,2) + Math.pow(pointOrigin2.y-pointOrigin1.y,2),.5);
-        PointF normal = new PointF();
-        normal.x = pointOrigin1.x - pointOrigin2.x;
-        normal.y = pointOrigin1.y - pointOrigin2.y;
+        float angle = (float)Math.atan2(pointOrigin1.y - pointOrigin2.y,pointOrigin1.x - pointOrigin2.x);
+        angle+=Math.PI/2;
+        float x = (float)Math.cos(angle)*(routeThickness/1.5f);
+        float y = (float)Math.sin(angle)*(routeThickness/1.5f);
 
-        float angle = (float)Math.atan2(normal.y,normal.x);
-        angle += Math.PI/2;
-
-        PointF point1L = pointOrigin1;
-        PointF point1R = pointOrigin1;
-        PointF point2L = pointOrigin2;
-        PointF point2R = pointOrigin2;
-
-        PointF leftChange;
+        setColor(route.getColor());
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(15);
+        float[] intervals = getIntervals(pointOrigin1,pointOrigin2,route.getLength(),dist);
 
 
+        paint.setPathEffect(new DashPathEffect(intervals, dist/(route.getLength() * 2 +1)));
+        canvas.drawLine(pointOrigin1.x + x,pointOrigin1.y +y,pointOrigin2.x + x,pointOrigin2.y +y,paint);
+
+        setColor(route.getColor());//Swit
+        canvas.drawLine(pointOrigin1.x - x,pointOrigin1.y -y,pointOrigin2.x - x,pointOrigin2.y -y,paint);
 
 
-//        float[] intervals = getIntervals(point1,point2,route.getLength(),dist);
     }
 
     private float[] getIntervals(PointF point1, PointF point2, int length, float dist){
@@ -122,42 +162,40 @@ public class MapLogic extends View {
         return intervals;
     }
 
-    private PointF getPoint(City city){
-        float x = (float) (city.x())*canvas.getWidth();
-        float y = (float) (city.y())*canvas.getHeight();
-        return new PointF(x,y);
-    }
+
     private void setColor(TrainCardColor color){
 
         switch (color){
             case BLUE:
-                paint.setColor(Color.argb(255,255,255,255));
+                paint.setColor(getResources().getColor(R.color.blue));
                 break;
             case RED:
-                paint.setColor(Color.RED);
+
+                paint.setColor(getResources().getColor(R.color.red));
                 break;
             case BLACK:
-                paint.setColor(Color.BLACK);
+                paint.setColor(getResources().getColor(R.color.black));
                 break;
             case GREEN:
-                paint.setColor(Color.GREEN);
+                paint.setColor(getResources().getColor(R.color.green));
                 break;
             case WHITE:
-                paint.setColor(Color.WHITE);
+                paint.setColor(getResources().getColor(R.color.white));
                 break;
             case ORANGE:
-                paint.setColor(Color.GRAY);
+                paint.setColor(getResources().getColor(R.color.orange));
                 break;
             case PURPLE:
-                paint.setColor(Color.MAGENTA);
+                paint.setColor(getResources().getColor(R.color.purple));
                 break;
             case YELLOW:
-                paint.setColor(Color.YELLOW);
+                paint.setColor(getResources().getColor(R.color.yellow));
                 break;
             case RAINBOW:
-                paint.setColor(Color.LTGRAY);
+                paint.setColor(getResources().getColor(R.color.rainbow));
                 break;
         }
+        paint.setAlpha(255);
     }
     private void drawCities(){
         paint.setColor(Color.BLACK);
@@ -165,17 +203,28 @@ public class MapLogic extends View {
 
         for(City city: City.values()){
 
-            PointF point = getPoint(city);
-
+            PointF point = MapEquations.getPoint(city,size);
+            paint.setColor(getResources().getColor(R.color.grey));
             canvas.drawCircle(point.x,point.y,radius,paint);
-            paint.setTextSize(20);
-            canvas.drawText(city.name(),point.x -radius,point.y-radius,paint);
+            paint.setTextSize(24);
+            paint.setColor(Color.WHITE);
+            paint.setAlpha(255);
+            canvas.drawText(city.name(),point.x -radius*3,point.y-radius*2,paint);
 
         }
     }
     private void drawBackground(){
-        Drawable d = getResources().getDrawable(R.drawable.stars4, null);
+        Drawable d = getResources().getDrawable(R.drawable.cool_stars, null);
         d.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
         d.draw(canvas);
+    }
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        super.onTouchEvent(event);
+//        System.out.println(event.getX());
+        mapActivity.mapClick(event.getX(),event.getY(),size);
+        return false;
     }
 }

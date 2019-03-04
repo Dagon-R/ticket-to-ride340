@@ -79,7 +79,7 @@ public enum Route {
     }
 
     public boolean isDouble(){
-        return false;
+        return true;
     }
 
     public boolean has(City city)
