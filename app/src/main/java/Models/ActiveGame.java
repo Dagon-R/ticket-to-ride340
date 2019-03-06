@@ -1,9 +1,11 @@
 package Models;
 
+import java.util.EnumMap;
 import java.util.HashSet;
 
 import Phase2Models.ChatMessage;
 import Phase2Models.ChatQueue;
+import Phase2Models.Route;
 import Phase2Models.Store;
 
 public class ActiveGame implements IGame{
@@ -17,6 +19,7 @@ public class ActiveGame implements IGame{
 	//New Field
 	private Store store;
 	private ChatQueue queue = new ChatQueue();
+	private EnumMap<Route,Player> routeOwners;
 	
 	public ActiveGame(){}
 	
@@ -24,6 +27,7 @@ public class ActiveGame implements IGame{
 		players.add(host);
 		this.name = gameName;
 		this.id = gameName + host.getName() + "_ACTIVE";
+		routeOwners = new EnumMap<>(Route.class);
 	}
 
 	public void addChatMessage(ChatMessage message)
@@ -35,7 +39,10 @@ public class ActiveGame implements IGame{
 		players.addAll(startGame.getPlayers());
 		this.name = startGame.getName();
 		this.id = startGame.getId() + "_ACTIVE";
+		routeOwners = new EnumMap<>(Route.class);
 	}
+
+	public Player getOwner(Route route) {return routeOwners.get(route);}
 	
 	public Boolean addPlayer(Player newPlayer){
 		return players.add(newPlayer);

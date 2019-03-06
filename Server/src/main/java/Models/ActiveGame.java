@@ -43,12 +43,14 @@ public class ActiveGame implements IGame{
 	public ActiveGame(Player host, String gameName){
 		players.add(host);
 		this.gameName = gameName;
+		routeOwners = new EnumMap<>(Route.class);
 	}
 	
 	ActiveGame(PendingGame startGame){
 		players.addAll(startGame.getPlayers());
 		this.gameName = startGame.getGameName();
 		this.gameId = startGame.getId() + "_ACTIVE";
+		routeOwners = new EnumMap<>(Route.class);
 	}
 
 	public void discardDestCard(DestinationCard card)
