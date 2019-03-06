@@ -91,6 +91,18 @@ public class ActiveGame implements IGame{
 		this.gameId = input;
 	}
 
+	public DestinationDeck getDestDeck() {
+		return destDeck;
+	}
+
+	public void setDestDeck(DestinationDeck destDeck) {
+		this.destDeck = destDeck;
+	}
+
+	public void setTrainDeck(TrainDeck trainDeck) {
+		this.trainDeck = trainDeck;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
