@@ -6,7 +6,6 @@ public class UserList{
     private ArrayList<User> list;
 
 
-
     public UserList() {
         list = new ArrayList<User>();
     }

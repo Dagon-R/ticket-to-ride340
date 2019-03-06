@@ -22,7 +22,8 @@ public class ActiveGame implements IGame{
 	private EnumMap<Route,Player> routeOwners;
 	
 	public ActiveGame(){}
-	
+
+	//Should be called from ClientGameList.startGame
 	public ActiveGame(Player host, String gameName){
 		players.add(host);
 		this.name = gameName;
@@ -74,5 +75,13 @@ public class ActiveGame implements IGame{
 	
 	private void setId(String input){
 		this.id = input;
+	}
+
+	public Store getStore() {
+		return store;
+	}
+
+	public void setStore(Store store) {
+		this.store = store;
 	}
 }
