@@ -12,6 +12,8 @@ import Phase2Models.TrainDeck;
 public class ActiveGame implements IGame{
 	//A list of the players associated with the game
 	private TreeSet<Player> players = new TreeSet<>();
+
+	
 	//The gameName of the game that will be displayed in menus
 	private String gameName;
 	//The unique gameId that represents this game
@@ -52,6 +54,7 @@ public class ActiveGame implements IGame{
 		players.addAll(startGame.getPlayers());
 		this.gameName = startGame.getGameName();
 		this.gameId = startGame.getId() + "_ACTIVE";
+		this.destDeck = new DestinationDeck();
 	}
 	
 	public Boolean addPlayer(Player newPlayer){

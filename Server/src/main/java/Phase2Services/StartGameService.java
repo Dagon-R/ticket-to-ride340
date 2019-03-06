@@ -1,7 +1,12 @@
 package Phase2Services;
 
+import java.util.HashMap;
+
 import Command.ErrorCommand;
+import Models.ActiveGame;
 import Models.MainModel;
+import Models.Player;
+import Phase2Models.DestinationCard;
 import Services.Service;
 
 public class StartGameService implements Service {
@@ -23,8 +28,14 @@ public class StartGameService implements Service {
             return new ErrorCommand("Not enough players!");
         }
 
-        model.getGameList().startGame(gameID);
+        ActiveGame ag = model.getGameList().startGame(gameID);
+        //divvy out destination cards
+        HashMap<String, DestinationCard[]> cardMap = new HashMap<>();
+        for(Player player : ag.getPlayers()){
+            //create map of players to cards
+            cardMap.put(player.getName(), ag.getDestDeck().draw3());
+        }
 
-        return MainModel.get().getGameList();
+        return cardMap; //was gamelist
     }
 }
