@@ -4,6 +4,7 @@ import java.util.EnumMap;
 import java.util.Objects;
 import java.util.TreeSet;
 
+import Phase2Models.DestinationCard;
 import Phase2Models.DestinationDeck;
 import Phase2Models.Route;
 import Phase2Models.Store;
@@ -35,10 +36,6 @@ public class ActiveGame implements IGame{
 		return store;
 	}
 
-	public DestinationDeck getDestDeck() {
-		return destDeck;
-	}
-
 	public TrainDeck getTrainDeck() {
 		return trainDeck;
 	}
@@ -50,11 +47,16 @@ public class ActiveGame implements IGame{
 		this.gameName = gameName;
 	}
 	
-	public ActiveGame(PendingGame startGame){
+	ActiveGame(PendingGame startGame){
 		players.addAll(startGame.getPlayers());
 		this.gameName = startGame.getGameName();
 		this.gameId = startGame.getId() + "_ACTIVE";
 		this.destDeck = new DestinationDeck();
+	}
+
+	public void discardDestCard(DestinationCard card)
+	{
+		destDeck.discard(card);
 	}
 	
 	public Boolean addPlayer(Player newPlayer){
