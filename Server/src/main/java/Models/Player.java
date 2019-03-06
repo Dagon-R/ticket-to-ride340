@@ -1,13 +1,25 @@
 package Models;
 
 
+import java.util.ArrayList;
+import java.util.EnumSet;
+
+import Phase2Models.DestinationCard;
+import Phase2Models.TrainCardColor;
+
 public class Player {
 	//The color that represents this player
-	PlayerColorEnum playerColor;
+	private PlayerColorEnum playerColor;
 	//The name of this player
-	String name;
+	private String name;
 	//The unique id of this player
-	String id;
+	private String id;
+
+	// New Fields
+	private ArrayList<TrainCardColor> trainHand;
+	private EnumSet<DestinationCard> destHand;
+	private int score;
+	private int piecesLeft;
 
 	public Player(String name, PlayerColorEnum playerColor, String id){
 		this.name = name;

@@ -4,6 +4,7 @@ import java.util.EnumMap;
 import java.util.Objects;
 import java.util.TreeSet;
 
+import Phase2Models.DestinationCard;
 import Phase2Models.DestinationDeck;
 import Phase2Models.Route;
 import Phase2Models.Store;
@@ -12,6 +13,8 @@ import Phase2Models.TrainDeck;
 public class ActiveGame implements IGame{
 	//A list of the players associated with the game
 	private TreeSet<Player> players = new TreeSet<>();
+
+	
 	//The gameName of the game that will be displayed in menus
 	private String gameName;
 	//The unique gameId that represents this game
@@ -33,10 +36,6 @@ public class ActiveGame implements IGame{
 		return store;
 	}
 
-	public DestinationDeck getDestDeck() {
-		return destDeck;
-	}
-
 	public TrainDeck getTrainDeck() {
 		return trainDeck;
 	}
@@ -48,10 +47,16 @@ public class ActiveGame implements IGame{
 		this.gameName = gameName;
 	}
 	
-	public ActiveGame(PendingGame startGame){
+	ActiveGame(PendingGame startGame){
 		players.addAll(startGame.getPlayers());
 		this.gameName = startGame.getGameName();
 		this.gameId = startGame.getId() + "_ACTIVE";
+		this.destDeck = new DestinationDeck();
+	}
+
+	public void discardDestCard(DestinationCard card)
+	{
+		destDeck.discard(card);
 	}
 	
 	public Boolean addPlayer(Player newPlayer){
@@ -84,6 +89,18 @@ public class ActiveGame implements IGame{
 	
 	private void setGameId(String input){
 		this.gameId = input;
+	}
+
+	public DestinationDeck getDestDeck() {
+		return destDeck;
+	}
+
+	public void setDestDeck(DestinationDeck destDeck) {
+		this.destDeck = destDeck;
+	}
+
+	public void setTrainDeck(TrainDeck trainDeck) {
+		this.trainDeck = trainDeck;
 	}
 
 	@Override

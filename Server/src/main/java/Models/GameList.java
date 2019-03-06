@@ -14,7 +14,7 @@ public class GameList {
     }
 
     public IGame get(String name){
-        IGame game =ServerActiveGames.get(name);
+        IGame game = ServerActiveGames.get(name);
         if(game == null){
             game = ServerPendingGames.get(name);
         }
@@ -51,12 +51,15 @@ public class GameList {
 
     }
 
-    public void startGame(String name){
+    public ActiveGame startGame(String name){
         if(ServerPendingGames.containsKey(name)){
             PendingGame game = ServerPendingGames.get(name);
             ServerPendingGames.remove(name);
-            addServerActiveGame(new ActiveGame(game));
+            ActiveGame ag = new ActiveGame(game);
+            addServerActiveGame(ag);
+            return ag;
         }
+        return null;
 
     }
 
