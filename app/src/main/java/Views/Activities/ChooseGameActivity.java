@@ -114,7 +114,7 @@ public class ChooseGameActivity extends AppCompatActivity{
         super.onDestroy();
 //        mainModel.deleteObserver(this);
         //log out
-        mainModel.getUser().setLoggedIn(false);
+//        mainModel.getUser().setLoggedIn(false);
     }
 
     @Override

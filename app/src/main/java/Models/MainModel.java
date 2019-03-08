@@ -65,7 +65,8 @@ public class MainModel extends Observable {
     }
 
     public void addLobbyObservers(Observer o){
-        this.addObserver(o);
+        gameList.addObserver(o);
+        game.addObserver(o);
     }
 
     public void addMapObservers(Observer o){
