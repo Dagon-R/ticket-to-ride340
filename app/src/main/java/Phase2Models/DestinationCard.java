@@ -43,4 +43,5 @@ public enum DestinationCard {
     public int getValue() {
         return value;
     }
+
 }

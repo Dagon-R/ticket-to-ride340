@@ -1,10 +1,11 @@
 package Models;
 
 import java.util.HashSet;
+import java.util.TreeSet;
 
-public class PendingGame implements IGame{
+public class PendingGame{
 	//A list of the players associated with the game
-	private HashSet<Player> players = new HashSet<>();
+	private TreeSet<String> players;
 	//The name of the game that will be displayed in menus
 	private String name;
 	//The unique id that represents this game
@@ -12,21 +13,22 @@ public class PendingGame implements IGame{
 	
 	public PendingGame(){}
 	
-	public PendingGame(Player host, String gameName){
+	public PendingGame(String host, String gameName){
+		players = new TreeSet<>();
 		players.add(host);
 		this.name = gameName;
-		this.id = gameName + host.getName();
+		this.id = gameName + host;
 	}
-	
-	public Boolean addPlayer(Player newPlayer){
+
+	public Boolean addPlayer(String newPlayer){
 		return players.add(newPlayer);
 	}
 	
 	public Boolean removePlayer(Player targetPlayer){
 		return players.remove(targetPlayer);
 	}
-	
-	public HashSet<Player> getPlayers(){
+
+	public TreeSet<String> getPlayers(){
 		return players;
 	}
 	
@@ -38,7 +40,7 @@ public class PendingGame implements IGame{
 		return id;
 	}
 	
-	private void setPlayers(HashSet<Player> input){
+	private void setPlayers(TreeSet<String> input){
 		this.players = input;
 	}
 	

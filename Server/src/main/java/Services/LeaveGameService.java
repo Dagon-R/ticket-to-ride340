@@ -20,7 +20,7 @@ public class LeaveGameService implements Service {
             return new ErrorCommand("Error leaving game");
         }
 
-        Player player = (Player) obj[0];
+        String player = (String) obj[0];
         String gameID = (String) obj[1];
 
         IGame game = model.getGameList().get(gameID);

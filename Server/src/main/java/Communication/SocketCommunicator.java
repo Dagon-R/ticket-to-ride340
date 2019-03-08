@@ -10,6 +10,7 @@ import java.util.Objects;
 import Command.Command;
 import Command.ErrorCommand;
 import Command.CommandWrapper;
+import Phase2Commands.ServerStartGameCommand;
 import Serialization.Deserializer;
 import Serialization.Serializer;
 
@@ -57,16 +58,17 @@ public class SocketCommunicator{
         for(CommandWrapper wrapper : commandWrappers){
             try {
                 StringBuilder type = new StringBuilder(wrapper.getType());
-                type.insert(8,"Server");
+                int index = wrapper.getType().indexOf('.');
+                type.insert(index+1,"Server");
 
-
+//                System.out.println(ServerStartGameCommand.class +" " + type);
                 Command command = Deserializer.deserializeCommand(wrapper.getCommand(),type.toString());
                 Object obj = null;
                 try{
                     obj = command.execute();
                 }
                 catch(AssertionError e){
-                    command = new ErrorCommand(e.getMessage());
+//                    command = new ErrorCommand(e.getMessage());
                 }
                 if(obj.getClass() == ErrorCommand.class){
                     command = (Command)obj;

@@ -65,7 +65,7 @@ public class ServerRegisterCommand implements Command{
     @Override
     public Object execute() {
         Service registerService = new RegisterService();
-        return registerService.doService(username, password);
+        return registerService.doService(username, password,authToken);
     }
 
     @Override

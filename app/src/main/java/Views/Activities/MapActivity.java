@@ -34,6 +34,7 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
     DrawerLayout drawerLayout;
     LinearLayout chatSheet;
     RecyclerView chatList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -49,8 +50,8 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
 
     }
 
-    private void construct(){
-        mapLogic = new MapLogic(this,this);
+    private void construct() {
+        mapLogic = new MapLogic(this, this);
         mapPresenter = new MapPresenter(this);
         drawerLayout = findViewById(R.id.activity_map_layout);
         chatSheet = findViewById(R.id.bottom_sheet);
@@ -60,53 +61,54 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
         this.setContentView(mapLogic);
     }
 
-    public void updateMap(MapModel map){
+    public void updateMap(MapModel map) {
         mapLogic.updateMap(map);
     }
 
 //    public void updateChat(ChatQueue queue){
 
-//    }
-    public void updatePlayerInfo(Player player){
-
-    }
-    public void updateGameInfo(ActiveGame game){
-
-    }
-    public void updateStore(Store store){
-
-    }
-    public void updateTurnView(int playerIndex){
+    //    }
+    public void updatePlayerInfo(Player player) {
 
     }
 
+    public void updateGameInfo(ActiveGame game) {
+
+    }
+
+    public void updateStore(Store store) {
+
+    }
+
+    public void updateTurnView(int playerIndex) {
+
+    }
 
 
     @Override
-    public void drawStore(int i){
-
-    }
-
-    @Override
-    public void drawTrainCarCard(){
+    public void drawStore(int i) {
 
     }
 
     @Override
-    public void drawDestinationCard(){
+    public void drawTrainCarCard() {
 
     }
 
     @Override
-    public void sendChat(String message){
+    public void drawDestinationCard() {
 
     }
 
     @Override
-    public void mapClick(float x, float y, PointF size){
+    public void sendChat(String message) {
 
-        mapPresenter.selectCity(x,y,size);
     }
 
+    @Override
+    public void mapClick(float x, float y, PointF size) {
+
+        mapPresenter.selectCity(x, y, size);
+    }
 
 }

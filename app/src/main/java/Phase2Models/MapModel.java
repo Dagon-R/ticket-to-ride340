@@ -12,8 +12,6 @@ public class MapModel extends Observable {
         return selectedCity;
     }
 
-
-
     public void setSelectedCity(City selectedCity) {
         this.selectedCity = selectedCity;
         setChanged();
