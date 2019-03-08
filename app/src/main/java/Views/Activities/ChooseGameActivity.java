@@ -121,6 +121,7 @@ public class ChooseGameActivity extends AppCompatActivity{
     @Override
     protected void onPause() {
         super.onPause();
+        chooseGamePresenter.deleteObserver();
 //        mainModel.deleteObserver(this);
     }
 

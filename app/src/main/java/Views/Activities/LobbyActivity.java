@@ -146,11 +146,7 @@ public class LobbyActivity extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-//        mainModel.deleteObserver(this);
-    }
+
 
     public void switchToMap(){
         Intent i = new Intent(this, MapActivity.class);
@@ -164,5 +160,11 @@ public class LobbyActivity extends AppCompatActivity {
         super.onDestroy();
         lobbyPresenter.removeObserver();
 //        mainModel.deleteObserver(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        lobbyPresenter.removeObserver();
     }
 }
