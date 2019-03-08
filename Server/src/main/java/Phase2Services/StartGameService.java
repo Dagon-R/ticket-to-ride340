@@ -5,8 +5,6 @@ import java.util.HashMap;
 import Command.ErrorCommand;
 import Models.ActiveGame;
 import Models.MainModel;
-import Models.Player;
-import Models.ReturnObjects.ReturnWrapper;
 import Models.ReturnObjects.StartGameReturn;
 import Phase2Models.DestinationCard;
 import Services.Service;
@@ -38,7 +36,6 @@ public class StartGameService implements Service {
 //            cardMap.put(player.getName(), ag.getDestDeck().draw3());
 //        }
 
-        ReturnWrapper retObj = new StartGameReturn(model.getGameList(), cardMap);
-        return retObj; //was gamelist
+        return new StartGameReturn(model.getGameList(), cardMap); //was gamelist
     }
 }

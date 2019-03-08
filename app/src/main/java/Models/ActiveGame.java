@@ -102,7 +102,7 @@ public class ActiveGame{
 		this.player = player;
 	}
 
-	public ChatQueue getQueue() {
+	public ChatQueue getChatQueue() {
 		return queue;
 	}
 

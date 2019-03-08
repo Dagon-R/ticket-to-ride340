@@ -5,6 +5,7 @@ import java.util.Observer;
 
 import Phase2Models.Activities;
 import Phase2Models.ActivityTypes;
+import Phase2Models.ChatQueue;
 import Phase2Models.MapModel;
 import Phase2Models.Store;
 
@@ -170,4 +171,6 @@ public class MainModel extends Observable {
     public void addGameToGameList(PendingGame newGame) {
         this.getGameList().addServerPendingGame(newGame);
     }
+    public Store getStore() {return this.game.getActiveGame().getStore();}
+    public ChatQueue getChatQueue() {return this.game.getActiveGame().getChatQueue();}
 }
