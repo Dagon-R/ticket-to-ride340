@@ -4,7 +4,10 @@ import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import android.support.design.widget.BottomSheetBehavior;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -28,15 +31,19 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
     static String TAG = "MapActivity";
     MapLogic mapLogic;
     MapPresenter mapPresenter;
+    DrawerLayout drawerLayout;
+    LinearLayout chatSheet;
+    RecyclerView chatList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
-        FrameLayout layout = (FrameLayout) findViewById(R.id.frameLayout);
-        Drawable d = getResources().getDrawable(R.drawable.game_map);
-        d.setAlpha(50);
-        layout.setBackgroundDrawable(d);
+
+        //FrameLayout layout = (FrameLayout) findViewById(R.id.frameLayout);
+        //Drawable d = getResources().getDrawable(R.drawable.game_map);
+        //d.setAlpha(50);
+        //layout.setBackgroundDrawable(d);
         construct();
 
 
@@ -45,6 +52,10 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
     private void construct(){
         mapLogic = new MapLogic(this,this);
         mapPresenter = new MapPresenter(this);
+        drawerLayout = findViewById(R.id.activity_map_layout);
+        chatSheet = findViewById(R.id.bottom_sheet);
+        chatList = findViewById(R.id.chat_recycler_view);
+        //chatSheet.setState(BottomSheetBehavior.STATE_COLLAPSED);
 //        mapLogic.
         this.setContentView(mapLogic);
     }

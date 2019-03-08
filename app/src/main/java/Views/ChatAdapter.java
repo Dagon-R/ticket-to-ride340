@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,8 @@ import java.util.Map;
 import Models.ClientGameList;
 import Models.PendingGame;
 import Models.PlayerColorEnum;
+import Phase2Models.ChatMessage;
+import Phase2Models.ChatQueue;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
     private OnItemClickListener listener;
@@ -30,10 +33,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
         this.listener = listener;
     }
 
-    ChatAdapter(ClientGameList inputList){
-        HashMap<String, PendingGame> pendingList = inputList.getServerPendingGames();
-        for(PendingGame game : pendingList.values()){
-            gameList.add(game);
+    ChatAdapter(ChatQueue inputList){
+        ArrayList<ChatMessage> pendingList = inputList.getQueue();
+        for(ChatMessage message : pendingList){
+            messageList.add(message);
         }
         //colorMap.put()
     }
@@ -49,7 +52,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(ChatAdapter.ViewHolder viewHolder, int position) {
-        ChatMessage message = messageList.elementAt(position);
+        ChatMessage message = messageList.get(position);
 
         viewHolder.playerName.setText(message.getPlayerName());
         viewHolder.chatContent.setText(message.getMessage());
@@ -77,4 +80,3 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
     }
 }
 
-}
