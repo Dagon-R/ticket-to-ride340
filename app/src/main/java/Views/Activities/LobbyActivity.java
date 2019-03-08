@@ -157,10 +157,12 @@ public class LobbyActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    @Override
+
+
+        @Override
     protected  void onDestroy() {
         super.onDestroy();
-
+        lobbyPresenter.removeObserver();
 //        mainModel.deleteObserver(this);
     }
 }

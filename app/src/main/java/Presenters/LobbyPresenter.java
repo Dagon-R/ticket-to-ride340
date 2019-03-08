@@ -64,4 +64,8 @@ public class LobbyPresenter implements Observer {
     private void runOnUI(Runnable run){
         lobbyActivity.runOnUiThread(run);
     }
+
+    public void removeObserver(){
+        MainModel.get().removeLobbyObservers(this);
+    }
 }

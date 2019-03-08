@@ -112,6 +112,13 @@ public class MainActivity extends AppCompatActivity implements Observer {
         startActivity(i);
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        loginPresenter.removeObserver();
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
