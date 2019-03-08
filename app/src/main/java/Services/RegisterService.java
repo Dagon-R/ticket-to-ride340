@@ -4,12 +4,9 @@ import java.util.concurrent.TimeUnit;
 
 import Communication.CommandManager;
 import Communication.ServerProxy;
-import Communication.SocketConnectionError;
 import Communication.SocketInitializer;
 import Models.ClientGameList;
 import Models.MainModel;
-import Models.User;
-import Models.UserList;
 
 public class RegisterService implements Service {
     private ServerProxy sp;

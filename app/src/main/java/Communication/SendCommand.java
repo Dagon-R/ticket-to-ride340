@@ -9,8 +9,9 @@ import java.io.PrintWriter;
 import Command.Command;
 import Command.CommandWrapper;
 
+//TODO: Make this an AsyncTask
 public class SendCommand extends Thread {
-    private Gson json;
+    private final Gson json;
     private Command command;
     SendCommand(Command command)
     {
