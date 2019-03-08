@@ -1,26 +1,38 @@
 package Models;
 
+import android.util.Log;
+
 import java.util.Observable;
 import java.util.Observer;
 
+import Phase2Models.Activities;
+import Phase2Models.ActivityTypes;
+import Phase2Models.ChatQueue;
 import Phase2Models.MapModel;
+import Phase2Models.Store;
+
 
 import Phase2Models.DestinationCard;
 
 public class MainModel extends Observable {
+    private static String TAG = "MainModel";
     private static MainModel instance;
-    private Player player;
+    private String username;
     private User user;
     private IGame game;
     private ClientGameList gameList;
-    private String errorMessage;
+//    private String errorMessage;
     private String IPAddress;
-    private String authToken;
+    private ErrorMessage errorMessage;
     private MapModel mapModel;
+    private Activities activity;
+
 
     private MainModel() {
+        gameList = new ClientGameList();
+        errorMessage = new ErrorMessage();
         user = new User();
-        mapModel = new MapModel();
+        activity = new Activities(ActivityTypes.LobbyActivity);
     }
 
     public static MainModel get(){
@@ -30,34 +42,49 @@ public class MainModel extends Observable {
         return instance;
     }
 
-    public void discardCard(DestinationCard card)
-    {
-        player.removeDestCard(card);
-    }
-
-    public static MainModel getInstance() {
-        return instance;
-    }
-
-    public static void setInstance(MainModel instance) {
-        MainModel.instance = instance;
+    public void discardCard(DestinationCard card) {
+        ((ActiveGame)game).getPlayer().removeDestCard(card);
     }
 
     public MapModel getMapModel(){
         return mapModel;
     }
 
-    public void addObservers(Observer o){
+    public void addLoginObservers(Observer o){
+        errorMessage.addObserver(o);
+        gameList.addObserver(o);
+
+    }
+
+    public void addChooseGameObservers(Observer o){
+        errorMessage.addObserver(o);
+        gameList.addObserver(o);
+        this.addObserver(o);
+    }
+
+    public void addMapObservers(Observer o){
         mapModel.addObserver(o);
+        ((ActiveGame)game).addObserver(o);
+    }
+
+    public void activateGame(String gameName, Store store){
+        game = gameList.startGame(gameName);
+        ((ActiveGame) game).setStore(store);
+        createMapActivity();
+    }
+
+    private void createMapActivity(){
+        mapModel = new MapModel();
+        activity.setCurrentActivty(ActivityTypes.MapActivity);
 
     }
 
     public Player getPlayer() {
-        return player;
+        return ((ActiveGame)game).getPlayer();
     }
 
     public void setPlayer(Player player) {
-        this.player = player;
+        ((ActiveGame)game).setPlayer(player);
     }
 
     public User getUser() {
@@ -66,8 +93,6 @@ public class MainModel extends Observable {
 
     public void setUser(User user) {
         this.user = user;
-        setChanged();
-        this.notifyObservers();
     }
 
     public IGame getGame() {
@@ -77,11 +102,19 @@ public class MainModel extends Observable {
     public void setGame(IGame game) {
         this.game = game;
         setChanged();
-        this.notifyObservers();
+        notifyObservers(game);
     }
 
     public ClientGameList getGameList() {
         return gameList;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public PendingGame findGame(String gameID){
@@ -94,26 +127,20 @@ public class MainModel extends Observable {
     }
 
     public void setGameList(ClientGameList gameList){
+        this.gameList.setServerPendingGames(gameList.getServerPendingGames());
 
-        this.gameList = gameList;
-        setChanged();
-        notifyObservers();
     }
 
-    public void addPlayerToGame(String gameName, Player player){
+    public void addPlayerToGame(String gameName, String player){
         gameList.get(gameName).addPlayer(player);
-        setChanged();
-        notifyObservers();
     }
 
     public String getErrorMessage() {
-        return errorMessage;
+        return errorMessage.getError();
     }
 
     public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
-        setChanged();
-        this.notifyObservers();
+        this.errorMessage.setError(errorMessage);
     }
 
 
@@ -126,10 +153,11 @@ public class MainModel extends Observable {
     }
 
     public String getAuthToken() {
-        return authToken;
+        return user.getAuthToken();
     }
 
     public void setAuthToken(String authToken) {
-        this.authToken = authToken;
+        user.setAuthToken(authToken);
+
     }
 }

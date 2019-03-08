@@ -77,10 +77,14 @@ public class CommandManager {
                     CommandWrapper[] commandWrappers = json.fromJson(dataJSON, CommandWrapper[].class);
                     System.out.println("Successfully retrieved command wrappers");
                     for (CommandWrapper commandWrapper : commandWrappers) {
+                        System.out.println(commandWrapper.getCommand() +" WRAPPERCOMMAND");
                         queue.add((Command) json.fromJson(commandWrapper.getCommand(),
                                 Class.forName(commandWrapper.getType())));
+//                        queue.add((Command) json.fromJson(commandWrapper.getCommand(),
+//                                Class.forName(commandWrapper.getType())));
                         System.out.println("Added a command to the queue");
                     }
+//{"username":"a","password":"a","valid":false,"ipAddress":"10.37.198.38","gameList":{"ServerActiveGames":{},"ServerPendingGames":{"a":{"players":["a"],"name":"a","id":"aa"}}},"authToken":"a1552005440442"}
                     return queue.poll();
                 } else {
                     return null;

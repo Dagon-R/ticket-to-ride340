@@ -1,13 +1,5 @@
 package Models;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSerializationContext;
-import com.google.gson.JsonSerializer;
-
-import org.json.JSONObject;
-
-import java.lang.reflect.Type;
 import java.util.Observable;
 
 public class User extends Observable  { //implements JsonSerializer<User>
@@ -20,15 +12,6 @@ public class User extends Observable  { //implements JsonSerializer<User>
 	//The auth token for server verification (if necessary)
 	private String authToken;
 
-//	@Override
-//	public JsonElement serialize(User user, Type type, JsonSerializationContext jsonSerializationContext) {
-//		JsonObject jsonObj = new JsonObject();
-//		jsonObj.addProperty("name", name);
-//		jsonObj.addProperty("password", password);
-//		jsonObj.addProperty("loggedIn", loggedIn);
-//		jsonObj.addProperty("authToken", authToken);
-//		return JsonObject;
-//	}
 
 	public String getId() { return id; }
 
@@ -84,7 +67,7 @@ public class User extends Observable  { //implements JsonSerializer<User>
 		setChanged();
 		notifyObservers();
 	}
-	
+
 	public void setAuthToken(String token){
 		this.authToken = token;
 	}

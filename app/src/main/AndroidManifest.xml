@@ -10,19 +10,19 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
     tools:ignore="GoogleAppIndexingWarning">
-    <activity android:name=".MainActivity">
-
-    </activity>
-
-    <activity android:name=".ChooseGameActivity" />
-    <activity android:name=".LobbyActivity" />
-    <activity android:name=".MapActivity"
-        android:screenOrientation="landscape">
+    <activity android:name=".Activities.MainActivity">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
+    </activity>
+
+    <activity android:name=".Activities.ChooseGameActivity" />
+    <activity android:name=".Activities.LobbyActivity" />
+    <activity android:name=".Activities.MapActivity"
+        android:screenOrientation="landscape">
+
     </activity>
 </application>
 

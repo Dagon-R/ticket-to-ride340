@@ -1,12 +1,9 @@
 package Presenters;
 
-import android.graphics.Point;
 import android.graphics.PointF;
 import android.util.Log;
 
 import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
@@ -23,7 +20,7 @@ import Phase2Services.ChatService;
 import Phase2Services.ClaimRouteService;
 import Phase2Services.DrawDestCardService;
 import Services.Service;
-import Views.MapActivity;
+import Views.Activities.MapActivity;
 //import View.MapActivity;
 
 public class MapPresenter implements Observer {
@@ -32,7 +29,7 @@ public class MapPresenter implements Observer {
     Map<Type, Set<Runnable>> typeToMethod;
     public MapPresenter(MapActivity mapActivity) {
         this.mapActivity = mapActivity;
-        MainModel.get().addObservers(this);
+        MainModel.get().addMapObservers(this);
 
     }
 

@@ -33,10 +33,10 @@ public class StartGameService implements Service {
         ActiveGame ag = model.getGameList().startGame(gameID);
         //divvy out destination cards
         HashMap<String, DestinationCard[]> cardMap = new HashMap<>();
-        for(Player player : ag.getPlayers()){
+//        for(Player player : ag.getPlayers()){
             //create map of players to cards
-            cardMap.put(player.getName(), ag.getDestDeck().draw3());
-        }
+//            cardMap.put(player.getName(), ag.getDestDeck().draw3());
+//        }
 
         ReturnWrapper retObj = new StartGameReturn(model.getGameList(), cardMap);
         return retObj; //was gamelist

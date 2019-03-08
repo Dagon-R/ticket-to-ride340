@@ -3,13 +3,13 @@ package Models;
 import java.util.TreeSet;
 
 public interface IGame {
-	Boolean addPlayer(Player newPlayer);
+	Boolean addPlayer(String newPlayer);
 
-	Boolean removePlayer(Player targetPlayer);
+	Boolean removePlayer(String targetPlayer);
 
-	TreeSet<Player> getPlayers();
+	TreeSet<String> getPlayers();
 
-	Boolean playerIsInGame(Player player);
+	Boolean playerIsInGame(String player);
 
 	String getGameName();
 }

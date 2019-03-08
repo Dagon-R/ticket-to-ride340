@@ -2,6 +2,8 @@ package Models;
 
 import java.util.EnumMap;
 import java.util.HashSet;
+import java.util.Observer;
+import java.util.TreeSet;
 
 import Phase2Models.ChatMessage;
 import Phase2Models.ChatQueue;
@@ -10,42 +12,44 @@ import Phase2Models.Store;
 
 public class ActiveGame implements IGame{
 	//A list of the players associated with the game
-	private HashSet<Player> players = new HashSet<>();
+	private TreeSet<String> players ;
 	//The name of the game that will be displayed in menus
 	private String name;
 	//The unique id that represents this game
 	private String id;
-
+	private Player player;
 	//New Field
 	private Store store;
-	private ChatQueue queue = new ChatQueue();
-	private EnumMap<Route,Player> routeOwners;
-	
-	public ActiveGame(){}
+	private ChatQueue queue;
+    private EnumMap<Route,Player> routeOwners;
+//	public ActiveGame(){}
 
 	//Should be called from ClientGameList.startGame
-	public ActiveGame(Player host, String gameName){
-		players.add(host);
-		this.name = gameName;
-		this.id = gameName + host.getName() + "_ACTIVE";
-		routeOwners = new EnumMap<>(Route.class);
-	}
-
-	public void addChatMessage(ChatMessage message)
-	{
-		queue.add(message);
-	}
+//	public ActiveGame(Player host, String gameName){
+//		players = new TreeSet<>();
+//
+//		players.add(host);
+//		this.name = gameName;
+//		this.id = gameName + host.getName() + "_ACTIVE";
+//        queue= new ChatQueue();
+//        routeOwners = new EnumMap<>(Route.class);
+//	}
 	
 	public ActiveGame(PendingGame startGame){
+		players = new TreeSet<>();
 		players.addAll(startGame.getPlayers());
 		this.name = startGame.getName();
 		this.id = startGame.getId() + "_ACTIVE";
 		routeOwners = new EnumMap<>(Route.class);
+		queue= new ChatQueue();
 	}
+    public Player getOwner(Route route) {return routeOwners.get(route);}
 
-	public Player getOwner(Route route) {return routeOwners.get(route);}
-	
-	public Boolean addPlayer(Player newPlayer){
+    public void addChatMessage(ChatMessage message)
+	{
+		queue.add(message);
+	}
+	public Boolean addPlayer(String newPlayer){
 		return players.add(newPlayer);
 	}
 	
@@ -53,7 +57,7 @@ public class ActiveGame implements IGame{
 		return players.remove(targetPlayer);
 	}
 	
-	public HashSet<Player> getPlayers(){
+	public TreeSet<String> getPlayers(){
 		return players;
 	}
 	
@@ -64,8 +68,13 @@ public class ActiveGame implements IGame{
 	public String getId(){
 		return id;
 	}
-	
-	private void setPlayers(HashSet<Player> input){
+
+	public void addObserver(Observer o){
+		store.addObserver(o);
+		queue.addObserver(o);
+	}
+
+	private void setPlayers(TreeSet<String> input){
 		this.players = input;
 	}
 	
@@ -83,5 +92,21 @@ public class ActiveGame implements IGame{
 
 	public void setStore(Store store) {
 		this.store = store;
+	}
+
+	public Player getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
+
+	public ChatQueue getQueue() {
+		return queue;
+	}
+
+	public void setQueue(ChatQueue queue) {
+		this.queue = queue;
 	}
 }

@@ -3,10 +3,16 @@ package Command;
 import java.util.Objects;
 
 public class ErrorCommand implements Command {
-    String error;
-    String ipAddress;
+    private String error;
+    private String ipAddress;
+    private String authToken;
 
     public ErrorCommand() {
+    }
+
+    public ErrorCommand(String error,String authToken) {
+        this.error = error;
+        this.authToken = authToken;
     }
 
     public ErrorCommand(String error) {
@@ -40,6 +46,8 @@ public class ErrorCommand implements Command {
     public void setError(String error) {
         this.error = error;
     }
+
+
 
     @Override
     public boolean equals(Object o) {

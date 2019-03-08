@@ -12,13 +12,12 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
-import java.util.Map;
-
 import Phase2Models.City;
 import Phase2Models.MapModel;
 import Phase2Models.Route;
 import Phase2Models.TrainCardColor;
 import Presenters.MapEquations;
+import Views.ViewInterfaces.IMap;
 
 public class MapLogic extends View {
     static String TAG = "MapLogic";
@@ -264,9 +263,9 @@ public class MapLogic extends View {
         }
     }
     private void drawBackground(){
-//        Drawable d = getResources().getDrawable(R.drawable.cool_stars, null);
-//        d.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-//        d.draw(canvas);
+        Drawable d = getResources().getDrawable(R.drawable.cool_stars, null);
+        d.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        d.draw(canvas);
     }
 
 

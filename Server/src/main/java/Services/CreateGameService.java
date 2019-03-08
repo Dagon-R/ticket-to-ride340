@@ -19,7 +19,7 @@ public class CreateGameService implements Service {
         }
 
         //create a game object
-        Player player = (Player) obj[0];
+        String player = (String) obj[0];
         String gameID = (String) obj[1];
         //TODO: check that user exists
         if (MainModel.get().getGameList().get(gameID) != null)

@@ -7,7 +7,7 @@ import Models.User;
 import Services.CreateGameService;
 
 public class CreateGameCommand implements Command {
-    private Player player;
+    private String player;
     private String gameID;
     private String ipAddress;
     private ClientGameList gameList;
@@ -16,9 +16,19 @@ public class CreateGameCommand implements Command {
         CreateGameService newService = new CreateGameService();
         newService.doService(player, gameID, ipAddress, gameList);
     }
-    public CreateGameCommand(Player player, String gameID)
+    public CreateGameCommand(String player, String gameID)
     {
         this.player = player;
         this.gameID = gameID;
+    }
+
+    @Override
+    public String toString() {
+        return "CreateGameCommand{" +
+                "\nplayer='" + player + '\'' +
+                ", \ngameID='" + gameID + '\'' +
+                ", \nipAddress='" + ipAddress + '\'' +
+                ", \ngameList=" + gameList +
+                '}';
     }
 }

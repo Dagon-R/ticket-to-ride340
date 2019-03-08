@@ -54,7 +54,8 @@ public class StartGameService implements Service {
             if(model.getIPAddress().equals(ipAddress)) { //if user
                 //set their destination card hand
                 ArrayList<DestinationCard> userDestCards = new ArrayList<>(Arrays.asList(destCards.get(model.getUser().getName())));
-                model.getPlayer().setDestHand(userDestCards);
+                //TODO ADD BACK IN (Expecting Desination[] not array list)
+//                model.getPlayer().setDestHand(userDestCards);
                 //set their trin card hand
                 ArrayList<TrainCardColor> userTrainCards = new ArrayList<>(Arrays.asList(trainCards.get(model.getUser().getName())));
                 model.getPlayer().setTrainHand(userTrainCards);

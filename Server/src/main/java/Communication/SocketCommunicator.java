@@ -66,7 +66,7 @@ public class SocketCommunicator{
                     obj = command.execute();
                 }
                 catch(AssertionError e){
-                    command = new ErrorCommand(e.getMessage());
+//                    command = new ErrorCommand(e.getMessage());
                 }
                 if(obj.getClass() == ErrorCommand.class){
                     command = (Command)obj;
