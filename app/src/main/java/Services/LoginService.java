@@ -4,7 +4,6 @@ import java.util.concurrent.TimeUnit;
 
 import Communication.CommandManager;
 import Communication.ServerProxy;
-import Communication.SocketConnectionError;
 import Communication.SocketInitializer;
 import Models.*;
 

@@ -166,4 +166,8 @@ public class MainModel extends Observable {
         user.setAuthToken(authToken);
 
     }
+
+    public void addGameToGameList(PendingGame newGame) {
+        this.getGameList().addServerPendingGame(newGame);
+    }
 }

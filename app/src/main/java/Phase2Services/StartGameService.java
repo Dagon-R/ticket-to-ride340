@@ -1,14 +1,9 @@
 package Phase2Services;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
 
 import Communication.ServerProxy;
-import Models.ActiveGame;
-import Models.ClientGameList;
 import Models.MainModel;
-import Models.PendingGame;
 import Phase2Models.DestinationCard;
 import Phase2Models.Store;
 import Phase2Models.TrainCardColor;
@@ -40,7 +35,7 @@ public class StartGameService implements Service {
         String gameID = (String) obj[0];
         String ipAddress = (String) obj[1];
         Store store = (Store) obj[2]; //game store
-        Map<String, DestinationCard[]> destCards = (Map<String, DestinationCard[]>) obj[3];
+        Map<String, DestinationCard[]> destCards = (Map <String, DestinationCard[]>) obj[3];
         Map<String, TrainCardColor[]> trainCards = (Map<String, TrainCardColor[]>) obj[4];
 
 //        PendingGame pg = model.findGame(gameID); //checks if this is user's game
