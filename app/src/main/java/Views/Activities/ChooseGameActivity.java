@@ -112,6 +112,7 @@ public class ChooseGameActivity extends AppCompatActivity{
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        chooseGamePresenter.deleteObserver();
 //        mainModel.deleteObserver(this);
         //log out
 //        mainModel.getUser().setLoggedIn(false);

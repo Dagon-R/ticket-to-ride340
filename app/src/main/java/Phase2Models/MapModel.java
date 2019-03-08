@@ -18,5 +18,13 @@ public class MapModel extends Observable {
         notifyObservers(this);
     }
 
+    public City[] getCities(){
+        return City.values();
+    }
+
+    public Route[] getRoutes(){
+        return Route.values();
+    }
+
 
 }

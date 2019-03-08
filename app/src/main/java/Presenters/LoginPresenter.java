@@ -58,4 +58,8 @@ public class LoginPresenter implements Observer {
     private void runOnUI(Runnable run){
         mainActivity.runOnUiThread(run);
     }
+
+    public void removeObserver(){
+        MainModel.get().removeLoginObservers(this);
+    }
 }
