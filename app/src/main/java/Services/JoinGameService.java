@@ -29,20 +29,27 @@ public class JoinGameService implements Service {
             model.setErrorMessage("Error Joining Game");
             System.out.println("ERROR: " + obj.length + " instead of 5 params on frontend joinGame service");
         }
-        String player = (String) obj[0];
+        //Grab info
+        String playerName = (String) obj[0];
         String gameName = (String) obj[1];
         //String joined = (String) obj[2];
         String ipAddress = (String) obj[2];
-        //ClientGameList gameList = (ClientGameList) obj[3];
-        PendingGame pendingGame = (PendingGame) obj[3];
+        ClientGameList gameList = (ClientGameList) obj[3];
+        //Everyone gets game list
 
-        model.addGameToGameList(pendingGame);
-        //model.setGameList(gameList);
-        model.addPlayerToGame(gameName, player);
-
-        if(model.getIPAddress().equals(ipAddress)){
-            model.setPendingGame(pendingGame);
+        model.setGameList(gameList);
+        model.addPlayerToGame(gameName, playerName);
+        if(model.getIPAddress().equals(ipAddress) ){
+            PendingGame game = gameList.get(gameName);
+            model.setPendingGame(game);
         }
+        if( model.getGame().getPendingGame().getName().equals(gameName)){ //if in the game or joining it
+
+            model.getGame().addToPendingGame(playerName);
+        }
+
+
+
 //        game.addPlayer(player);
 
     }

@@ -18,6 +18,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Observable;
 import java.util.Observer;
@@ -81,8 +82,10 @@ public class LobbyActivity extends AppCompatActivity {
     }
 
     public void updatePlayers(String[] players){
+        System.out.println("PLLLLAYERS " + Arrays.toString(players));
         for(int i =0; i < 5 /*Max 5 players*/;i++){
             if(i< players.length){
+                System.out.println(players[i]);
                 playerTextfields.elementAt(i).setText(players[i]);
                 continue;
             }
@@ -146,21 +149,25 @@ public class LobbyActivity extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-//        mainModel.deleteObserver(this);
-    }
+
 
     public void switchToMap(){
         Intent i = new Intent(this, MapActivity.class);
         startActivity(i);
     }
 
-    @Override
+
+
+        @Override
     protected  void onDestroy() {
         super.onDestroy();
-
+        lobbyPresenter.removeObserver();
 //        mainModel.deleteObserver(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        lobbyPresenter.removeObserver();
     }
 }

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimaryLight">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--dest deck-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Destination \n Deck"/>
+            <View
+                android:id="@+id/destDeck"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:background="@color/grey">
+                <TextView
+                    android:id="@+id/destDeckNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="0"/>
+            </View>
+        </LinearLayout>
+
+        <!--train deck-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Train \n Deck"/>
+            <View
+                android:id="@+id/trainDeck"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:background="@color/grey">
+                <TextView
+                    android:id="@+id/trainDeckNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="0"/>
+            </View>
+        </LinearLayout>
+
+        <!--Store-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Store"/>
+            <View
+                android:id="@+id/store1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:background="@color/grey">
+            </View>
+            <View
+                android:id="@+id/store2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:background="@color/grey">
+            </View>
+            <View
+                android:id="@+id/store3"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:background="@color/grey">
+            </View>
+            <View
+                android:id="@+id/store4"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:background="@color/grey">
+            </View>
+            <View
+                android:id="@+id/store5"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:background="@color/grey">
+            </View>
+        </LinearLayout>
+
+        <!--Turn View-->
+        <LinearLayout
+            android:id="@+id/turnView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <View
+                android:id="@+id/p1Turn"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/circle">
+            </View>
+            <View
+                android:id="@+id/p2Turn"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/circle">
+            </View>
+            <View
+                android:id="@+id/p3Turn"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/circle">
+            </View>
+            <View
+                android:id="@+id/p4Turn"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/circle">
+            </View>
+            <View
+                android:id="@+id/p5Turn"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/circle">
+            </View>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+</android.support.constraint.ConstraintLayout>

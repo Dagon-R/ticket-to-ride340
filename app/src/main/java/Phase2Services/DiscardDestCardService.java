@@ -13,7 +13,7 @@ public class DiscardDestCardService implements Service {
     }
 
     @Override
-    //params: String playerID
+    //params: DestinationCard card
     public void connectToProxy(Object... obj) {
         ServerProxy.get().discardCard((DestinationCard) obj[0]);
     }

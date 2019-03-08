@@ -64,4 +64,8 @@ public class ChooseGamePresenter implements Observer {
     private void runOnUI(Runnable run){
         chooseGameActivity.runOnUiThread(run);
     }
+
+    public void deleteObserver(){
+        MainModel.get().removeChooseGameObservers(this);
+    }
 }

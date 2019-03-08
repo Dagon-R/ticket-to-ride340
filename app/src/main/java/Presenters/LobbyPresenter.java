@@ -18,15 +18,23 @@ public class LobbyPresenter implements Observer {
 
     public LobbyPresenter(LobbyActivity lobbyActivity) {
         this.lobbyActivity = lobbyActivity;
-        retrieve();
+        retrievePlayers();
+        MainModel.get().addLobbyObservers(this);
 
 
     }
 
-    public void retrieve(){
-        TreeSet<String> players = MainModel.get().getGame().getPendingGame().getPlayers();
-        String[] playerStrings =(String[])players.toArray(new String[players.size()]);
-        lobbyActivity.updatePlayers(playerStrings);
+    public void retrievePlayers(){
+
+        runOnUI(new Runnable() {
+            @Override
+            public void run() {
+                TreeSet<String> players = MainModel.get().getGame().getPendingGame().getPlayers();
+                String[] playerStrings =(String[])players.toArray(new String[players.size()]);
+                lobbyActivity.updatePlayers(playerStrings);
+            }
+        });
+
     }
 
     public void startGame(){
@@ -52,13 +60,25 @@ public class LobbyPresenter implements Observer {
                     lobbyActivity.popToast((errorMessage).getError());
                 }});
                 break;
+
+            case "PendingGame":
+                retrievePlayers();
+                break;
             case "ActiveGame":
                 lobbyActivity.switchToMap();
                 break;
-
+            case "ClientGameList":
+                retrievePlayers();
+                break;
+                default:
+                    Log.d(TAG, "INVALID CLASS "+ name);
         }
     }
     private void runOnUI(Runnable run){
         lobbyActivity.runOnUiThread(run);
+    }
+
+    public void removeObserver(){
+        MainModel.get().removeLobbyObservers(this);
     }
 }

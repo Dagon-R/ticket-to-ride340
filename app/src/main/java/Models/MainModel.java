@@ -12,7 +12,7 @@ import Phase2Models.Store;
 
 import Phase2Models.DestinationCard;
 
-public class MainModel extends Observable {
+public class MainModel{
     private static String TAG = "MainModel";
     private static MainModel instance;
     private String username;
@@ -52,22 +52,37 @@ public class MainModel extends Observable {
     public void addLoginObservers(Observer o){
         errorMessage.addObserver(o);
         gameList.addObserver(o);
+    }
 
+    public void removeLoginObservers(Observer o){
+        errorMessage.deleteObserver(o);
+        gameList.deleteObserver(o);
     }
 
     public void addChooseGameObservers(Observer o){
         errorMessage.addObserver(o);
         gameList.addObserver(o);
         game.addObserver(o);
-        this.addObserver(o);
+    }
+
+    public void removeChooseGameObservers(Observer o){
+        errorMessage.deleteObserver(o);
+        gameList.deleteObserver(o);
+        game.deleteObserver(o);
     }
 
     public void addLobbyObservers(Observer o){
-        this.addObserver(o);
+        gameList.addObserver(o);
+        game.addObserver(o);
+    }
+
+    public void removeLobbyObservers(Observer o){
+        gameList.deleteObserver(o);
+        game.deleteObserver(o);
     }
 
     public void addMapObservers(Observer o){
-        mapModel.addObserver(o);
+//        mapModel.addObserver(o);
         game.addObserver(o);
     }
 
@@ -140,6 +155,7 @@ public class MainModel extends Observable {
 
     public void addPlayerToGame(String gameName, String player){
         gameList.get(gameName).addPlayer(player);
+
     }
 
     public String getErrorMessage() {

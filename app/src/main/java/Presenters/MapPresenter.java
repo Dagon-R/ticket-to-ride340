@@ -4,6 +4,7 @@ import android.graphics.PointF;
 import android.util.Log;
 
 import java.lang.reflect.Type;
+import java.util.EnumSet;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
@@ -13,6 +14,7 @@ import Models.ActiveGame;
 import Models.MainModel;
 import Models.Player;
 import Phase2Models.City;
+import Phase2Models.DestinationCard;
 import Phase2Models.MapModel;
 import Phase2Models.Store;
 
@@ -30,7 +32,7 @@ public class MapPresenter implements Observer {
     public MapPresenter(MapActivity mapActivity) {
         this.mapActivity = mapActivity;
         MainModel.get().addMapObservers(this);
-
+        showDestDialog();
     }
 
     @Override
@@ -118,4 +120,10 @@ public class MapPresenter implements Observer {
     private void advanceTurn(){
 
     }
+
+    public void showDestDialog(){
+        EnumSet<DestinationCard> destHand = MainModel.get().getPlayer().getDestHand();
+        this.mapActivity.setDialogInfo(destHand);
+    }
+
 }

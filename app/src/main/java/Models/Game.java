@@ -21,6 +21,12 @@ public class Game extends Observable {
         notifyObservers(pendingGame);
     }
 
+    public void addToPendingGame(String player){
+        this.pendingGame.addPlayer(player);
+        setChanged();
+        notifyObservers();
+    }
+
     public ActiveGame getActiveGame() {
         return activeGame;
     }
