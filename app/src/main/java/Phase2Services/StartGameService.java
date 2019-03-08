@@ -15,11 +15,9 @@ import Phase2Models.TrainCardColor;
 import Services.Service;
 
 public class StartGameService implements Service {
-    private ServerProxy sp;
     private MainModel model;
 
     public StartGameService(){
-        sp = new ServerProxy();
         model = MainModel.get();
     }
 
@@ -27,7 +25,7 @@ public class StartGameService implements Service {
     //params: String gameID
     public void connectToProxy(Object... obj) {
         String gameID = (String) obj[0];
-        sp.startGame(gameID);
+        ServerProxy.get().startGame(gameID);
     }
 
     @Override

@@ -9,7 +9,6 @@ import Models.ClientGameList;
 import Models.MainModel;
 
 public class RegisterService implements Service {
-    private ServerProxy sp;
     private MainModel model;
 
     public RegisterService(){
@@ -40,8 +39,7 @@ public class RegisterService implements Service {
         String authToken = username + Long.toString(System.currentTimeMillis());
         model.setAuthToken(authToken);
 
-        ServerProxy sp = new ServerProxy();
-        sp.register(username, password, ipAddress, authToken);
+        ServerProxy.get().register(username, password, ipAddress, authToken);
     }
 
     @Override

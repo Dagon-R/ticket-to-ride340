@@ -7,11 +7,9 @@ import Communication.ServerProxy;
 import Models.*;
 
 public class JoinGameService implements Service {
-    private ServerProxy sp;
     private MainModel model;
 
     public JoinGameService(){
-        sp = new ServerProxy();
         model = MainModel.get();
     }
 
@@ -24,7 +22,7 @@ public class JoinGameService implements Service {
         int numPlayers = game.getPlayers().size();
 //        String player = new Player(model.getUser().getName(), PlayerColorEnum.values()[numPlayers]);
 
-        sp.joinGame(username, gameName);
+        ServerProxy.get().joinGame(username, gameName);
     }
 
     @Override

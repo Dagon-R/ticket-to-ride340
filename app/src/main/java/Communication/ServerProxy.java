@@ -1,7 +1,6 @@
 package Communication;
 
 import Command.*;
-import Models.Player;
 import Phase2Commands.ChatCommand;
 import Phase2Commands.ClaimRouteCommand;
 import Phase2Commands.DiscardCardCommand;
@@ -12,7 +11,18 @@ import Phase2Models.Route;
 
 public class ServerProxy {
 
-    public ServerProxy() { }
+    private static ServerProxy sp = null;
+
+    public static ServerProxy get()
+    {
+        if (sp == null)
+        {
+            return sp = new ServerProxy();
+        }
+        else {return sp;}
+    }
+
+    private ServerProxy() { }
 
     public void login(String username, String password, String ipAddress, String authToken)
     {

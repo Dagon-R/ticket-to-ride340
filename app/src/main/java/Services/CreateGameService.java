@@ -1,16 +1,13 @@
 package Services;
 
-import Communication.CommandManager;
 import Communication.ServerProxy;
 import Models.*;
 
 
 public class CreateGameService implements Service {
-    private ServerProxy sp;
     private MainModel model;
 
     public CreateGameService(){
-        sp = new ServerProxy();
         model = MainModel.get();
     }
 
@@ -21,7 +18,7 @@ public class CreateGameService implements Service {
 
         String player = host.getName();
 
-        sp.createGame(player, gameName);
+        ServerProxy.get().createGame(player, gameName);
     }
 
     @Override

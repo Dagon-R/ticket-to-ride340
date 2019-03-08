@@ -9,7 +9,6 @@ import Communication.SocketInitializer;
 import Models.*;
 
 public class LoginService implements Service {
-    private ServerProxy sp;
     private MainModel model;
 
     public LoginService(){
@@ -40,9 +39,8 @@ public class LoginService implements Service {
         String authToken = username + Long.toString(System.currentTimeMillis());
         model.setAuthToken(authToken);
 
-        ServerProxy sp = new ServerProxy();
         //send loginCommand
-        sp.login(username, password, ipAddress, authToken);
+        ServerProxy.get().login(username, password, ipAddress, authToken);
     }
 
     @Override
