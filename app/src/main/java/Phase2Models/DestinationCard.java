@@ -44,4 +44,12 @@ public enum DestinationCard {
         return value;
     }
 
+    public City getFirstCity(){
+        return city1;
+    }
+
+    public City getSecondCity(){
+        return city2;
+    }
+
 }

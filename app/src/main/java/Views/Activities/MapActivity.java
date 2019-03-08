@@ -123,6 +123,8 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
         TextView val3 = (TextView) dialog.findViewById(R.id.val3);
         Button acceptButton = (Button) dialog.findViewById(R.id.acceptDestCards);
 
+        //destHand.iterator().next()
+        //dests1.setText();
 
     }
 
