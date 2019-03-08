@@ -2,29 +2,30 @@ package Models;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Observable;
 
-public class ClientGameList {
+public class ClientGameList extends Observable {
 	//A list of games that are currently waiting to start
-	HashMap<String,ActiveGame> ServerActiveGames;
+
 	//A list of games that are currently running
 	HashMap<String,PendingGame> ServerPendingGames;
 
 	public ClientGameList() {
-		ServerActiveGames = new HashMap<>();
 		ServerPendingGames = new HashMap<>();
 	}
 
 	public IGame get(String name){
-		IGame game = ServerActiveGames.get(name);
-		if(game == null){
-			game = ServerPendingGames.get(name);
-		}
+		IGame game = ServerPendingGames.get(name);
+
 		return game ;
 	}
 
-	public HashMap<String,ActiveGame> getServerActiveGames(){
-		return ServerActiveGames;
+	public void setServerPendingGames(HashMap<String,PendingGame> pendingGames){
+		ServerPendingGames = pendingGames;
+		setChanged();
+		notifyObservers();
 	}
+
 
 	public HashMap<String,PendingGame> getServerPendingGames(){
 		return ServerPendingGames;
@@ -34,9 +35,7 @@ public class ClientGameList {
 		ServerPendingGames.put(newGame.getName(),newGame);
 	}
 
-	public void addServerActiveGame(ActiveGame newGame){
-		ServerActiveGames.put(newGame.getName(),newGame);
-	}
+
 
 	public void removeServerPendingGame(PendingGame targetGame){
 		if(ServerPendingGames.containsKey(targetGame.getName())){
@@ -45,19 +44,14 @@ public class ClientGameList {
 
 	}
 
-	public void removeServerActiveGame(ActiveGame targetGame){
-		if(ServerActiveGames.containsKey(targetGame.getName())){
-			ServerActiveGames.remove(targetGame.getName());
-		}
 
-	}
 
 	public ActiveGame startGame(String name){
+
 		if(ServerPendingGames.containsKey(name)){
 			PendingGame game = ServerPendingGames.get(name);
 			ServerPendingGames.remove(name);
 			ActiveGame ag = new ActiveGame(game);
-			addServerActiveGame(ag);
 			return ag;
 		}
 		return null;

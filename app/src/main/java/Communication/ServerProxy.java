@@ -27,7 +27,7 @@ public class ServerProxy {
         sc2.start();
     }
 
-    public void joinGame(Player player, String gameID)
+    public void joinGame(String player, String gameID)
     {
         JoinGameCommand newJoin =
                 new JoinGameCommand(player,gameID);
@@ -41,7 +41,7 @@ public class ServerProxy {
         SendCommand sc2 = new SendCommand(newStart);
         sc2.start();
     }
-    public void createGame(Player player, String gameID)
+    public void createGame(String player, String gameID)
     {
         CreateGameCommand newCreate =
                 new CreateGameCommand(player, gameID);

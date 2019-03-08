@@ -14,8 +14,8 @@ public class Server {
 
     public static void main(String[] args){
         try{
-            RegisterService registerService = new RegisterService();
-            registerService.doService("Bob", "password");
+//            RegisterService registerService = new RegisterService();
+//            registerService.doService("Bob", "password");
 //            CreateGameService createGameService = new CreateGameService();
 //            createGameService.doService(new Player("Bob", PlayerColorEnum.BLACK, "df"),"Game");
 //            JoinGameService joinGameService = new JoinGameService();

@@ -19,7 +19,7 @@ public class CreateGameService implements Service {
         User host = (User) obj[0];
         String gameName = (String) obj[1];
 
-        Player player = new Player(host.getName(), null);
+        String player = host.getName();
 
         sp.createGame(player, gameName);
     }
@@ -33,7 +33,7 @@ public class CreateGameService implements Service {
             System.out.println("ERROR: " + obj.length + " instead of 4 params on frontend createGame service");
         }
 
-        Player host = (Player) obj[0];
+        String host = (String) obj[0];
         String gameName = (String) obj[1];
         String ipAddress = (String) obj[2];
         ClientGameList gameList = (ClientGameList) obj[3];
