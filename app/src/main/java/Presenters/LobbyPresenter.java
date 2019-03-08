@@ -18,12 +18,13 @@ public class LobbyPresenter implements Observer {
 
     public LobbyPresenter(LobbyActivity lobbyActivity) {
         this.lobbyActivity = lobbyActivity;
-        retrieve();
+        retrievePlayers();
+        MainModel.get().addLobbyObservers(this);
 
 
     }
 
-    public void retrieve(){
+    public void retrievePlayers(){
         TreeSet<String> players = MainModel.get().getGame().getPendingGame().getPlayers();
         String[] playerStrings =(String[])players.toArray(new String[players.size()]);
         lobbyActivity.updatePlayers(playerStrings);
@@ -55,7 +56,9 @@ public class LobbyPresenter implements Observer {
             case "ActiveGame":
                 lobbyActivity.switchToMap();
                 break;
-
+            case "GameList":
+                retrievePlayers();
+                break;
         }
     }
     private void runOnUI(Runnable run){

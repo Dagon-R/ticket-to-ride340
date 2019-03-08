@@ -34,17 +34,19 @@ public class JoinGameService implements Service {
             model.setErrorMessage("Error Joining Game");
             System.out.println("ERROR: " + obj.length + " instead of 5 params on frontend joinGame service");
         }
+        //Grab info
         String playerName = (String) obj[0];
         String gameName = (String) obj[1];
         String joined = (String) obj[2];
         String ipAddress = (String) obj[3];
         ClientGameList gameList = (ClientGameList) obj[4];
-
+        //Everyone gets game list
         model.setGameList(gameList);
         model.addPlayerToGame(gameName, playerName);
-        PendingGame game = gameList.get(gameName);
+
 
         if(model.getIPAddress().equals(ipAddress)){
+            PendingGame game = gameList.get(gameName);
             model.setPendingGame(game);
         }
 //        game.addPlayer(player);

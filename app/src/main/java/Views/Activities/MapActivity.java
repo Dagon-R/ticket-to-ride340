@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+import android.view.View;
+
 
 
 import Models.ActiveGame;
@@ -29,6 +31,7 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
     static String TAG = "MapActivity";
     MapLogic mapLogic;
     MapPresenter mapPresenter;
+    View map;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -43,7 +46,8 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
         mapLogic = new MapLogic(this,this);
         mapPresenter = new MapPresenter(this);
 //        mapLogic.
-        this.setContentView(mapLogic);
+        map.findViewById(R.id.map);
+//        this.setContentView(mapLogic);
     }
 
     public void updateMap(MapModel map){
