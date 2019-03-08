@@ -25,6 +25,6 @@ public class DiscardCardCommand implements Command {
     public DiscardCardCommand(DestinationCard toDiscard)
     {
         this.toDiscard = toDiscard;
-        this.gameId = MainModel.get().getGame().getId();
+        this.gameId = MainModel.get().getGame().getActiveGame().getId();
     }
 }

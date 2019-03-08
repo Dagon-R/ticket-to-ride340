@@ -14,8 +14,8 @@ public class ClientGameList extends Observable {
 		ServerPendingGames = new HashMap<>();
 	}
 
-	public IGame get(String name){
-		IGame game = ServerPendingGames.get(name);
+	public PendingGame get(String name){
+		PendingGame game = ServerPendingGames.get(name);
 
 		return game ;
 	}

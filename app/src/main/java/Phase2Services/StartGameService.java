@@ -34,7 +34,7 @@ public class StartGameService implements Service {
     //String gameID, String ipAddress, Store store, Map<ipAddress,DestinationCard[]> destcards, Map<ipAddress,TrainCard[]> trains
     public void doService(Object... obj) {
         //Check params
-        if(obj.length != 4){
+        if(obj.length != 5){
             model.setErrorMessage("Error Starting Game");
             System.out.println("ERROR: " + obj.length + " instead of 4 params on frontend login service");
         }
@@ -49,7 +49,7 @@ public class StartGameService implements Service {
         if(pg != null){ //checks if this is user's game
             ActiveGame ag = model.getGameList().startGame(pg.getName()); //creates active game and removes pending from list
             ag.setStore(store);
-            model.setGame(ag);
+            model.setActiveGame(ag);
 
             if(model.getIPAddress().equals(ipAddress)) { //if user
                 //set player's destination card hand
