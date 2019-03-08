@@ -1,16 +1,13 @@
 package Phase2Services;
 
-import Communication.ServerProxy;
 import Models.MainModel;
 import Phase2Models.DestinationCard;
 import Services.Service;
 
 public class DrawDestCardService implements Service {
-    private ServerProxy sp;
     private MainModel model;
 
     public DrawDestCardService(){
-        sp = new ServerProxy();
         model = MainModel.get();
     }
 

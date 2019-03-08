@@ -22,7 +22,7 @@ public class ChatService implements Service {
         String messageString = (String) obj[0];
         int milliseconds = ((Long) new Date().getTime()).intValue();
         ChatMessage message = new ChatMessage(model.getPlayer(),messageString, milliseconds);
-        ServerProxy.get().chat(message,model.getGame().getId());
+        ServerProxy.get().chat(message,model.getGame().getActiveGame().getId());
     }
 
     @Override

@@ -3,8 +3,8 @@ package Models;
 import java.util.Observable;
 
 public class Game extends Observable {
-    ActiveGame activeGame;
-    PendingGame pendingGame;
+    private ActiveGame activeGame;
+    private PendingGame pendingGame;
 
     public Game() {
     }
