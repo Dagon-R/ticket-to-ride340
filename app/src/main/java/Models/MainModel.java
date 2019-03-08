@@ -84,7 +84,7 @@ public class MainModel{
     }
 
     public void addMapObservers(Observer o){
-        mapModel.addObserver(o);
+//        mapModel.addObserver(o);
         game.addObserver(o);
     }
 
@@ -157,6 +157,7 @@ public class MainModel{
 
     public void addPlayerToGame(String gameName, String player){
         gameList.get(gameName).addPlayer(player);
+
     }
 
     public String getErrorMessage() {

@@ -53,6 +53,10 @@ public class LobbyPresenter implements Observer {
                     lobbyActivity.popToast((errorMessage).getError());
                 }});
                 break;
+
+            case "PendingGame":
+                retrievePlayers();
+                break;
             case "ActiveGame":
                 lobbyActivity.switchToMap();
                 break;
