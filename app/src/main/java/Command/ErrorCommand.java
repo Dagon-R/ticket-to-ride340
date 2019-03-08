@@ -6,8 +6,6 @@ import Services.ErrorService;
 public class ErrorCommand implements Command {
     private String error; // String message of whatever error occurred
     private String ipAddress; // IP Address of player who caused the error
-    private String error;
-    private String ipAddress;
     private String authToken;
 
     @Override // Asks the Error Service to display the error
