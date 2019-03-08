@@ -44,10 +44,13 @@ public class JoinGameService implements Service {
 
         model.setGameList(gameList);
         model.addPlayerToGame(gameName, playerName);
-
-        if(model.getIPAddress().equals(ipAddress) || model.getGame().getPendingGame().getName() == gameName){ //if in the game or joining it
+        if(model.getIPAddress().equals(ipAddress) ){
             PendingGame game = gameList.get(gameName);
             model.setPendingGame(game);
+        }
+        if( model.getGame().getPendingGame().getName().equals(gameName)){ //if in the game or joining it
+
+            model.getGame().addToPendingGame(playerName);
         }
 
 

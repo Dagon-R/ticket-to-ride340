@@ -25,9 +25,16 @@ public class LobbyPresenter implements Observer {
     }
 
     public void retrievePlayers(){
-        TreeSet<String> players = MainModel.get().getGame().getPendingGame().getPlayers();
-        String[] playerStrings =(String[])players.toArray(new String[players.size()]);
-        lobbyActivity.updatePlayers(playerStrings);
+
+        runOnUI(new Runnable() {
+            @Override
+            public void run() {
+                TreeSet<String> players = MainModel.get().getGame().getPendingGame().getPlayers();
+                String[] playerStrings =(String[])players.toArray(new String[players.size()]);
+                lobbyActivity.updatePlayers(playerStrings);
+            }
+        });
+
     }
 
     public void startGame(){
@@ -60,9 +67,11 @@ public class LobbyPresenter implements Observer {
             case "ActiveGame":
                 lobbyActivity.switchToMap();
                 break;
-            case "GameList":
+            case "ClientGameList":
                 retrievePlayers();
                 break;
+                default:
+                    Log.d(TAG, "INVALID CLASS "+ name);
         }
     }
     private void runOnUI(Runnable run){

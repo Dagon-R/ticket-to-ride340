@@ -11,7 +11,7 @@ public class PendingGame{
 	//The unique id that represents this game
 	private String id;
 	//player object for this client
-	private Player player;
+	private String player;
 	
 	public PendingGame(){}
 	
@@ -46,11 +46,11 @@ public class PendingGame{
 		this.players = input;
 	}
 
-	public Player getPlayer() {
+	public String getPlayer() {
 		return player;
 	}
 
-	public void setPlayer(Player player) {
+	public void setPlayer(String player) {
 		this.player = player;
 	}
 	
