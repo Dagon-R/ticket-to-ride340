@@ -14,11 +14,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f99462ba-80c2-4e42-8b58-c6b2ffafab84" name="Default" comment="Finishing startGame service">
+    <list default="true" id="08180cc8-6cea-43b8-a88d-b6153ec19293" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Presenters/MapPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Presenters/MapPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Views/Activities/MapActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Views/Activities/MapActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/JoinGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/JoinGameService.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +60,7 @@
           <entry key="gitignore" value="6" />
           <entry key="gradle" value="2" />
           <entry key="iml" value="1" />
-          <entry key="java" value="175" />
+          <entry key="java" value="176" />
           <entry key="xml" value="15" />
         </counts>
       </usages-collector>
@@ -69,7 +68,7 @@
         <counts>
           <entry key="Groovy" value="2" />
           <entry key="IDEA_MODULE" value="1" />
-          <entry key="JAVA" value="175" />
+          <entry key="JAVA" value="176" />
           <entry key="PLAIN_TEXT" value="6" />
           <entry key="XML" value="15" />
         </counts>
@@ -77,38 +76,53 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="22" />
-          <entry key="java" value="4195" />
-          <entry key="txt" value="167" />
+          <entry key="java" value="4430" />
+          <entry key="txt" value="186" />
           <entry key="xml" value="689" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="4195" />
-          <entry key="PLAIN_TEXT" value="189" />
+          <entry key="JAVA" value="4430" />
+          <entry key="PLAIN_TEXT" value="208" />
           <entry key="XML" value="689" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
         <counts>
-          <entry key="git.branch.merge" value="10" />
+          <entry key="git.branch.merge" value="11" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/Views/Activities/MapActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="115" column="35" lean-forward="true" selection-start-line="115" selection-start-column="35" selection-end-line="115" selection-end-column="35" />
+            <state relative-caret-position="41">
+              <caret line="105" selection-start-line="105" selection-end-line="105" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1344#1345#0" expanded="true" />
                 <element signature="e#1383#1384#0" expanded="true" />
                 <element signature="e#2194#2195#0" expanded="true" />
                 <element signature="e#2226#2227#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/Phase2Models/DestinationCard.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="680">
+              <caret line="51" column="21" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
+              <folding>
+                <element signature="e#1766#1767#0" expanded="true" />
+                <element signature="e#1787#1788#0" expanded="true" />
+                <element signature="e#1832#1833#0" expanded="true" />
+                <element signature="e#1859#1860#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -127,7 +141,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/Presenters/MapPresenter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="508">
-              <caret line="125" column="29" lean-forward="true" selection-start-line="125" selection-start-column="29" selection-end-line="125" selection-end-column="29" />
+              <caret line="125" column="29" selection-start-line="125" selection-start-column="29" selection-end-line="125" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -147,11 +161,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/Services/JoinGameService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="43" column="36" lean-forward="true" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
+            <state relative-caret-position="327">
+              <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -169,19 +183,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/Models/PendingGame.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/Phase2Services/StartGameService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="62" column="9" selection-start-line="62" selection-start-column="9" selection-end-line="62" selection-end-column="9" />
+            <state relative-caret-position="54">
+              <caret line="44" column="42" lean-forward="true" selection-start-line="44" selection-start-column="42" selection-end-line="44" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -241,8 +246,8 @@
       <find>startga</find>
       <find>mapclick</find>
       <find>selectci</find>
-      <find>model</find>
       <find>mainmodel</find>
+      <find>model</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\Jacob Livingston\Documents\Winter2019\cs340\TicketToRide\Server\src\main\java</dir>
@@ -2652,7 +2657,6 @@
         <option value="$PROJECT_DIR$/Server/src/main/java/Phase2Models/TrainCardColor.java" />
         <option value="$PROJECT_DIR$/Server/src/test/java/Command/SerialAndDeserialTest.java" />
         <option value="$PROJECT_DIR$/Server/src/main/java/Models/GameList.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/Phase2Models/DestinationCard.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Phase2Models/MapModel.java" />
         <option value="$PROJECT_DIR$/Server/src/main/java/Models/UserList.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Models/Player.java" />
@@ -2672,15 +2676,16 @@
         <option value="$PROJECT_DIR$/app/src/main/java/Models/ClientGameList.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Services/CreateGameService.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/Services/JoinGameService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Views/MapLogic.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/dest_card_dialog.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/Presenters/MapPresenter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/Phase2Models/DestinationCard.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Views/Activities/MapActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/Services/JoinGameService.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-11" />
     <option name="width" value="1325" />
     <option name="height" value="1391" />
@@ -3234,25 +3239,32 @@
       <option name="project" value="LOCAL" />
       <updated>1551907814745</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="More dialoooog">
+      <created>1552082133669</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1552082133669</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="883" height="927" extended-state="0" />
+    <frame x="-7" y="-7" width="1455" height="935" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info id="Build Variants" order="1" sideWeight="0.5007299" side_tool="true" weight="0.3551263" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Capture Tool" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="4" sideWeight="0.49927008" visible="true" weight="0.2199271" />
+      <window_info active="true" content_ui="combo" id="Project" order="4" sideWeight="0.49927008" visible="true" weight="0.1297491" />
       <window_info id="Structure" order="5" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="6" />
       <window_info id="Captures" order="7" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Build" order="0" sideWeight="0.8430107" weight="0.23491655" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.25464192" side_tool="true" weight="0.32862645" />
       <window_info anchor="bottom" id="Version Control" order="2" sideWeight="0.5763441" weight="0.28369704" />
-      <window_info anchor="bottom" id="Logcat" order="3" sideWeight="0.49597314" weight="0.7368421" />
+      <window_info anchor="bottom" id="Logcat" order="3" sideWeight="0.49597314" visible="true" weight="0.27856225" />
       <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.49749103" weight="0.17073171" />
       <window_info anchor="bottom" id="Messages" order="5" sideWeight="0.49932885" weight="0.32905984" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -3304,7 +3316,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Serializer and Deserializer (Not tested)" />
     <MESSAGE value="Serializer and Deserializer (Tested)" />
     <MESSAGE value="Compilation" />
     <MESSAGE value="IpAddress updates" />
@@ -3329,7 +3340,8 @@
     <MESSAGE value="Start game service" />
     <MESSAGE value="Server side startGame service" />
     <MESSAGE value="Finishing startGame service" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finishing startGame service" />
+    <MESSAGE value="More dialoooog" />
+    <option name="LAST_COMMIT_MESSAGE" value="More dialoooog" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3359,13 +3371,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/Phase2Models/DestinationCard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-63">
-          <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -3648,16 +3653,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/Phase2Services/StartGameService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="62" column="9" selection-start-line="62" selection-start-column="9" selection-end-line="62" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/Views/MapLogic.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4352">
@@ -3680,36 +3675,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/Services/JoinGameService.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/Presenters/MapPresenter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="43" column="36" lean-forward="true" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
+        <state relative-caret-position="508">
+          <caret line="125" column="29" selection-start-line="125" selection-start-column="29" selection-end-line="125" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/Presenters/MapPresenter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/Phase2Models/DestinationCard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="125" column="29" lean-forward="true" selection-start-line="125" selection-start-column="29" selection-end-line="125" selection-end-column="29" />
+        <state relative-caret-position="680">
+          <caret line="51" column="21" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1766#1767#0" expanded="true" />
+            <element signature="e#1787#1788#0" expanded="true" />
+            <element signature="e#1832#1833#0" expanded="true" />
+            <element signature="e#1859#1860#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/Views/Activities/MapActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="115" column="35" lean-forward="true" selection-start-line="115" selection-start-column="35" selection-end-line="115" selection-end-column="35" />
+        <state relative-caret-position="41">
+          <caret line="105" selection-start-line="105" selection-end-line="105" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1344#1345#0" expanded="true" />
             <element signature="e#1383#1384#0" expanded="true" />
             <element signature="e#2194#2195#0" expanded="true" />
             <element signature="e#2226#2227#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/Phase2Services/StartGameService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="44" column="42" lean-forward="true" selection-start-line="44" selection-start-column="42" selection-end-line="44" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/Services/JoinGameService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
