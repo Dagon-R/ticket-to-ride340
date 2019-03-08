@@ -3,7 +3,7 @@ package Models;
 import java.util.HashSet;
 import java.util.TreeSet;
 
-public class PendingGame implements IGame{
+public class PendingGame{
 	//A list of the players associated with the game
 	private TreeSet<String> players;
 	//The name of the game that will be displayed in menus

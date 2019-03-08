@@ -19,7 +19,7 @@ public class MainModel extends Observable {
     private static MainModel instance;
     private String username;
     private User user;
-    private IGame game;
+    private Game game;
     private ClientGameList gameList;
 //    private String errorMessage;
     private String IPAddress;
@@ -29,6 +29,7 @@ public class MainModel extends Observable {
 
 
     private MainModel() {
+        game = new Game();
         gameList = new ClientGameList();
         errorMessage = new ErrorMessage();
         user = new User();
@@ -43,7 +44,7 @@ public class MainModel extends Observable {
     }
 
     public void discardCard(DestinationCard card) {
-        ((ActiveGame)game).getPlayer().removeDestCard(card);
+        game.getActiveGame().getPlayer().removeDestCard(card);
     }
 
     public MapModel getMapModel(){
@@ -59,18 +60,24 @@ public class MainModel extends Observable {
     public void addChooseGameObservers(Observer o){
         errorMessage.addObserver(o);
         gameList.addObserver(o);
+        game.addObserver(o);
+        this.addObserver(o);
+    }
+
+    public void addLobbyObservers(Observer o){
         this.addObserver(o);
     }
 
     public void addMapObservers(Observer o){
         mapModel.addObserver(o);
-        ((ActiveGame)game).addObserver(o);
+        game.addObserver(o);
     }
 
     public void activateGame(String gameName, Store store){
-        game = gameList.startGame(gameName);
-        ((ActiveGame) game).setStore(store);
-        createMapActivity();
+        ActiveGame game = gameList.startGame(gameName);
+        setActiveGame(game);
+//        ((ActiveGame) game).setStore(store);
+//        createMapActivity();
     }
 
     private void createMapActivity(){
@@ -80,11 +87,11 @@ public class MainModel extends Observable {
     }
 
     public Player getPlayer() {
-        return ((ActiveGame)game).getPlayer();
+        return game.getActiveGame().getPlayer();
     }
 
     public void setPlayer(Player player) {
-        ((ActiveGame)game).setPlayer(player);
+        game.getActiveGame().setPlayer(player);
     }
 
     public User getUser() {
@@ -95,14 +102,16 @@ public class MainModel extends Observable {
         this.user = user;
     }
 
-    public IGame getGame() {
+    public Game getGame() {
         return game;
     }
 
-    public void setGame(IGame game) {
-        this.game = game;
-        setChanged();
-        notifyObservers(game);
+    public void setPendingGame(PendingGame game){
+        this.game.setPendingGame(game);
+    }
+
+    public void setActiveGame(ActiveGame game) {
+        this.game.setActiveGame(game);
     }
 
     public ClientGameList getGameList() {

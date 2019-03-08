@@ -4,7 +4,7 @@ import java.util.Date;
 
 import Communication.ServerProxy;
 import Models.ActiveGame;
-import Models.IGame;
+
 import Models.MainModel;
 import Phase2Models.ChatMessage;
 import Services.Service;
@@ -31,13 +31,13 @@ public class ChatService implements Service {
         ChatMessage message = (ChatMessage) obj[0];
         String gameID = (String) obj[1];
         //String ipAddress = (String) obj[2];
-        IGame game = model.getGame();
+        ActiveGame game = model.getGame().getActiveGame();
         if (game.getId().equals(gameID))
         {
             String className = game.getClass().getSimpleName();
             switch (className) {
                 case "Active Game":
-                    ((ActiveGame) game).addChatMessage(message);
+                    game.addChatMessage(message);
                     break;
                 case "Pending Game":
                     System.out.println("Somehow, you tried to send a command to a pending game");
