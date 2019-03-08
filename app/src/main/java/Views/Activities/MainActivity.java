@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
     }
 
 
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -122,6 +123,6 @@ public class MainActivity extends AppCompatActivity implements Observer {
     @Override
     protected void onPause() {
         super.onPause();
-
+        loginPresenter.removeObserver();
     }
 }
