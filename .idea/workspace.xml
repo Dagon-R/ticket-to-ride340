@@ -28,62 +28,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f99462ba-80c2-4e42-8b58-c6b2ffafab84" name="Default" comment="Presenters Galore. Stuff should be fixed other places too.">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/Models/ErrorMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/Phase2Models/Activities.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/Phase2Models/ActivityTypes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/Presenters/ChooseGamePresenter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/Presenters/LobbyPresenter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/Presenters/LoginPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/Views/Activities/MapActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Command/ErrorCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Command/ErrorCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Command/ServerCreateGameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Command/ServerCreateGameCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Command/ServerJoinGameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Command/ServerJoinGameCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Command/ServerRegisterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Command/ServerRegisterCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Command/ServerTheLoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Command/ServerTheLoginCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Communication/SocketCommunicator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Communication/SocketCommunicator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Models/ActiveGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Models/ActiveGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Models/IGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Models/IGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Models/PendingGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Models/PendingGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Phase2Services/StartGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Phase2Services/StartGameService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Services/CreateGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Services/CreateGameService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Services/JoinGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Services/JoinGameService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Services/LeaveGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Services/LeaveGameService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Services/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Services/LoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Services/RegisterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Services/RegisterService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Command/CommandWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Command/CommandWrapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Command/CreateGameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Command/CreateGameCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Command/ErrorCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Command/ErrorCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Command/JoinGameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Command/JoinGameCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Communication/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Communication/CommandManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Communication/ServerProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Communication/ServerProxy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/Models/ActiveGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Models/ActiveGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Models/CityLoc.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/Models/ClientGameList.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Models/ClientGameList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Models/IGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Models/IGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Models/MainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Models/MainModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Models/PendingGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Models/PendingGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Phase2Models/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Phase2Models/Store.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Phase2Services/StartGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Phase2Services/StartGameService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Presenters/MapPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Presenters/MapPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/CreateGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/CreateGameService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/ErrorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/ErrorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/JoinGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/JoinGameService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Views/ActionBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Views/ViewInterfaces/ActionBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Views/ChooseGameActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Views/Activities/ChooseGameActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Views/ChooseGameAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Views/Adapters/ChooseGameAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Views/IMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Views/ViewInterfaces/IMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Views/LobbyActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Views/Activities/LobbyActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Views/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Views/Activities/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Views/MapActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Views/MapLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Views/MapLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Views/MesssageSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Views/ViewInterfaces/MesssageSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_map.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_map.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_map.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_map.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -149,7 +97,7 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="iml" value="6" />
-          <entry key="java" value="175" />
+          <entry key="java" value="176" />
           <entry key="jpg" value="1" />
           <entry key="xml" value="24" />
         </counts>
@@ -158,7 +106,7 @@
         <counts>
           <entry key="IDEA_MODULE" value="6" />
           <entry key="Image" value="1" />
-          <entry key="JAVA" value="175" />
+          <entry key="JAVA" value="176" />
           <entry key="XML" value="24" />
         </counts>
       </usages-collector>
@@ -196,10 +144,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/Phase2Services/StartGameService.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/Views/Activities/MapActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="17">
+              <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -290,12 +239,12 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
           <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="20" column="35" lean-forward="true" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
+            <state relative-caret-position="251">
+              <caret line="27" column="47" lean-forward="true" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -3621,7 +3570,14 @@
       <option name="project" value="LOCAL" />
       <updated>1551736546233</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Presenters Galore. Stuff should be fixed other places too.">
+      <created>1552008143176</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1552008143176</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -3632,7 +3588,7 @@
       <window_info id="Build Variants" order="1" sideWeight="0.5007299" side_tool="true" weight="0.3551263" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Capture Tool" order="3" />
-      <window_info content_ui="combo" id="Project" order="4" sideWeight="0.49812734" visible="true" weight="0.21677852" />
+      <window_info active="true" content_ui="combo" id="Project" order="4" sideWeight="0.49812734" visible="true" weight="0.21677852" />
       <window_info id="Structure" order="5" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="6" />
       <window_info id="Captures" order="7" sideWeight="0.50187266" side_tool="true" weight="0.2865772" />
@@ -3641,7 +3597,7 @@
       <window_info anchor="bottom" id="Version Control" order="2" sideWeight="0.49932885" weight="0.32763532" />
       <window_info anchor="bottom" id="Logcat" order="3" sideWeight="0.87315434" weight="0.7815603" />
       <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.49798658" weight="0.17021276" />
-      <window_info active="true" anchor="bottom" id="Messages" order="5" sideWeight="0.4986577" visible="true" weight="0.32765958" />
+      <window_info anchor="bottom" id="Messages" order="5" sideWeight="0.4986577" visible="true" weight="0.32765958" />
       <window_info anchor="bottom" id="Run" order="6" sideWeight="0.63892615" weight="0.32624114" />
       <window_info anchor="bottom" id="TODO" order="7" />
       <window_info anchor="bottom" id="Message" order="8" />
@@ -3841,16 +3797,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="25" column="58" selection-start-line="25" selection-start-column="58" selection-end-line="25" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/Views/Activities/MapActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-232">
-          <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4094,8 +4040,18 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="20" column="35" lean-forward="true" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
+        <state relative-caret-position="251">
+          <caret line="27" column="47" lean-forward="true" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/Views/Activities/MapActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
