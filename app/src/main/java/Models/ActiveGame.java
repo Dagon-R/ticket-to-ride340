@@ -10,7 +10,7 @@ import Phase2Models.ChatQueue;
 import Phase2Models.Route;
 import Phase2Models.Store;
 
-public class ActiveGame implements IGame{
+public class ActiveGame{
 	//A list of the players associated with the game
 	private TreeSet<String> players ;
 	//The name of the game that will be displayed in menus

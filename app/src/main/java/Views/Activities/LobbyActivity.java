@@ -76,7 +76,7 @@ public class LobbyActivity extends AppCompatActivity {
     }
 
     public void leaveGame(View v){
-        mainModel.setGame(null);
+
         finish();
     }
 
@@ -126,17 +126,24 @@ public class LobbyActivity extends AppCompatActivity {
 //    }
 
     public void startGame(View view){
-        mainModel = MainModel.get();
-        if(mainModel.getGame().getPlayers().size() < 2){
-            Toast.makeText(this,
-                    "Not enough players to start!",
-                    Toast.LENGTH_SHORT).show();
-        }
-        else{
-            Toast.makeText(this,
-                    "Game " + mainModel.getGame().getName() + " started with " + Integer.toString(mainModel.getGame().getPlayers().size()) + " players!",
-                    Toast.LENGTH_SHORT).show();
-        }
+        lobbyPresenter.startGame();
+//        mainModel = MainModel.get();
+//        if(mainModel.getGame().getPlayers().size() < 2){
+//            Toast.makeText(this,
+//                    "Not enough players to start!",
+//                    Toast.LENGTH_SHORT).show();
+//        }
+//        else{
+//            Toast.makeText(this,
+//                    "Game " + mainModel.getGame().getName() + " started with " + Integer.toString(mainModel.getGame().getPlayers().size()) + " players!",
+//                    Toast.LENGTH_SHORT).show();
+//        }
+    }
+
+    public void popToast(String message){
+        Toast.makeText(this,
+                message,
+                Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -145,10 +152,15 @@ public class LobbyActivity extends AppCompatActivity {
 //        mainModel.deleteObserver(this);
     }
 
+    public void switchToMap(){
+        Intent i = new Intent(this, MapActivity.class);
+        startActivity(i);
+    }
+
     @Override
     protected  void onDestroy() {
         super.onDestroy();
-        mainModel.setGame(null);
+
 //        mainModel.deleteObserver(this);
     }
 }

@@ -47,7 +47,7 @@ public class CreateGameService implements Service {
         model.setGameList(gameList);
         if(model.getIPAddress().equals(ipAddress)){
             //this user created game
-            model.setGame(newGame);
+            model.setPendingGame(newGame);
             System.out.println("model set");
         }
 
