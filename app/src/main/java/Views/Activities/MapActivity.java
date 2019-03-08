@@ -1,10 +1,14 @@
 package Views.Activities;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.PointF;
 import android.os.Bundle;
 
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.TextView;
 
 
 import Models.ActiveGame;
@@ -31,7 +35,7 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         construct();
-        mapLogic.showDestDialog();
+        showDestDialog(this);
 
     }
 
@@ -95,6 +99,15 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
     }
 
     public void showDestDialog(Context context){
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dest_card_dialog);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(true);
+
+        TextView dests1 = (TextView) dialog.findViewById(R.id.dests1);
+
+        Button acceptButton = (Button) dialog.findViewById(R.id.acceptDestCards);
 
     }
 

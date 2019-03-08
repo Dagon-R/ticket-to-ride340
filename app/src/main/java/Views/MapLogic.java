@@ -1,5 +1,6 @@
 package Views;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -11,6 +12,7 @@ import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 
 import Phase2Models.City;
 import Phase2Models.MapModel;
@@ -274,7 +276,4 @@ public class MapLogic extends View {
         return false;
     }
 
-    public void showDestDialog(Context context){
-
-    }
 }
