@@ -44,12 +44,12 @@ public enum DestinationCard {
         return value;
     }
 
-    public City getFirstCity(){
-        return city1;
+    public String getFirstCityName(){
+        return city1.getName();
     }
 
-    public City getSecondCity(){
-        return city2;
+    public String getSecondCityName(){
+        return city2.getName();
     }
 
 }

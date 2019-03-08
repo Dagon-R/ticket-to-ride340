@@ -34,6 +34,10 @@ public enum City {
         return this.name() + ": (" + x() + "," + y() + ")";
     }
 
+    public String getName(){
+        return this.name();
+    }
+
     public static void main(String args[])
     {
         System.out.println(Arrays.toString(City.values()));
