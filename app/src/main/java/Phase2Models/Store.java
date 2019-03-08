@@ -1,7 +1,8 @@
 package Phase2Models;
 
-public class Store
-{
+import java.util.Observable;
+
+public class Store extends Observable {
     private TrainCardColor store[];
     private static final int STORE_SIZE = 5;
     public Store(TrainCardColor[] store) throws InvalidStoreLengthException

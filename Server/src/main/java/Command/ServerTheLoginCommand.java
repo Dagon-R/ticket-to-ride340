@@ -67,7 +67,7 @@ public class ServerTheLoginCommand implements Command{
     public Object execute() {
         //pass in info in constructor
         Service loginService = new LoginService();
-        return loginService.doService(username,password);
+        return loginService.doService(username,password,authToken);
     }
 
     @Override

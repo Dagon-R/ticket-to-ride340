@@ -9,7 +9,7 @@ import Services.Service;
 
 public class ServerJoinGameCommand implements Command {
 //    private Player player;
-    private Player player;
+    private String player;
     private String gameID;
     private boolean joined;
     private String ipAddress;
@@ -17,7 +17,7 @@ public class ServerJoinGameCommand implements Command {
     public ServerJoinGameCommand() {
     }
 
-    public ServerJoinGameCommand(Player player, String gameID, boolean joined) {
+    public ServerJoinGameCommand(String player, String gameID, boolean joined) {
         this.player = player;
         this.gameID = gameID;
         this.joined = joined;

@@ -12,8 +12,7 @@ import Phase2Models.TrainDeck;
 
 public class ActiveGame implements IGame{
 	//A list of the players associated with the game
-	private TreeSet<Player> players = new TreeSet<>();
-
+	private TreeSet<String> players = new TreeSet<>();
 
 	//The gameName of the game that will be displayed in menus
 	private String gameName;
@@ -42,7 +41,7 @@ public class ActiveGame implements IGame{
 
 	public ActiveGame(){}
 	
-	public ActiveGame(Player host, String gameName){
+	public ActiveGame(String host, String gameName){
 		players.add(host);
 		this.gameName = gameName;
 		routeOwners = new EnumMap<>(Route.class);
@@ -52,7 +51,6 @@ public class ActiveGame implements IGame{
 		players.addAll(startGame.getPlayers());
 		this.gameName = startGame.getGameName();
 		this.gameId = startGame.getId() + "_ACTIVE";
-		this.destDeck = new DestinationDeck();
 		routeOwners = new EnumMap<>(Route.class);
 	}
 
@@ -61,15 +59,15 @@ public class ActiveGame implements IGame{
 		destDeck.discard(card);
 	}
 	
-	public Boolean addPlayer(Player newPlayer){
+	public Boolean addPlayer(String newPlayer){
 		return players.add(newPlayer);
 	}
 	
-	public Boolean removePlayer(Player targetPlayer){
+	public Boolean removePlayer(String targetPlayer){
 		return players.remove(targetPlayer);
 	}
 	
-	public TreeSet<Player> getPlayers(){
+	public TreeSet<String> getPlayers(){
 		return players;
 	}
 	
@@ -77,11 +75,11 @@ public class ActiveGame implements IGame{
 		return gameName;
 	}
 
-	public Boolean playerIsInGame(Player player){
+	public Boolean playerIsInGame(String player){
 		return players.contains(player);
 	}
 
-	private void setPlayers(TreeSet<Player> input){
+	private void setPlayers(TreeSet<String> input){
 		this.players = input;
 	}
 	
@@ -91,18 +89,6 @@ public class ActiveGame implements IGame{
 	
 	private void setGameId(String input){
 		this.gameId = input;
-	}
-
-	public DestinationDeck getDestDeck() {
-		return destDeck;
-	}
-
-	public void setDestDeck(DestinationDeck destDeck) {
-		this.destDeck = destDeck;
-	}
-
-	public void setTrainDeck(TrainDeck trainDeck) {
-		this.trainDeck = trainDeck;
 	}
 
 	@Override

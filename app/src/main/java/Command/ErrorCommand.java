@@ -6,13 +6,16 @@ import Services.ErrorService;
 public class ErrorCommand implements Command {
     private String error; // String message of whatever error occurred
     private String ipAddress; // IP Address of player who caused the error
+    private String error;
+    private String ipAddress;
+    private String authToken;
 
     @Override // Asks the Error Service to display the error
     public void execute() {
         // Creates a new error service
         ErrorService errorService = new ErrorService();
         // Causes the error service to display the error
-        errorService.doService(error, ipAddress);
+        errorService.doService(error, ipAddress,authToken);
     }
     // Creates a new error command from a simple message
     public ErrorCommand(String message)

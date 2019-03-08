@@ -8,24 +8,24 @@ import Services.CreateGameService;
 import Services.Service;
 
 public class ServerCreateGameCommand implements Command {
-    private Player player;
+    private String player;
     private String gameID;
 
     private String ipAddress;
     private GameList gameList;
 
 
-    public ServerCreateGameCommand(Player player, String gameID) {
+    public ServerCreateGameCommand(String player, String gameID) {
         this.player = player;
         this.gameID = gameID;
 
     }
 
-    public Player getPlayer() {
+    public String getPlayer() {
         return player;
     }
 
-    public void setPlayer(Player player) {
+    public void setPlayer(String player) {
         this.player = player;
     }
 

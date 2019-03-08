@@ -94,11 +94,15 @@ public class CommandManager {
                     // to the wrappers to determine the type of Command to deserialize their inner
                     // JSON into. Add those commands to the queue
                     for (CommandWrapper commandWrapper : commandWrappers) {
+                        System.out.println(commandWrapper.getCommand() +" WRAPPERCOMMAND");
                         queue.add((Command) json.fromJson(commandWrapper.getCommand(),
                                 Class.forName(commandWrapper.getType())));
+//                        queue.add((Command) json.fromJson(commandWrapper.getCommand(),
+//                                Class.forName(commandWrapper.getType())));
                         System.out.println("Added a command to the queue");
                     }
                     // Return the first command in the new array
+//{"username":"a","password":"a","valid":false,"ipAddress":"10.37.198.38","gameList":{"ServerActiveGames":{},"ServerPendingGames":{"a":{"players":["a"],"name":"a","id":"aa"}}},"authToken":"a1552005440442"}
                     return queue.poll();
                 } else { // If there was nothing to read and the queue was empty, return null
                     return null;

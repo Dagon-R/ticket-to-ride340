@@ -1,12 +1,11 @@
 package Command;
 
 import Models.ClientGameList;
-import Models.Player;
 import Services.JoinGameService;
 
 // Command that is used to add a player to a game
 public class JoinGameCommand implements Command {
-    private Player player; // The player joining the game
+    private String player; // The player joining the game
     private String gameID; // The game being joined
     //TODO: Remove "joined" from the program
     private boolean joined; // Whether or not the join was successful
@@ -23,10 +22,11 @@ public class JoinGameCommand implements Command {
         newService.doService(player, gameID, joined, ipAddress, gameList);
     }
     // Create a new Join Game Command from the commanding player and the game name
-    public JoinGameCommand(Player player, String gameID) {
+    public JoinGameCommand(String player, String gameID) {
         this.player = player; // Set the commanding player
         this.gameID = gameID; // Set the game name
         this.joined = false; // Before returning from the server, the join is a fail
+        this.gameList = null;
 
     }
 }

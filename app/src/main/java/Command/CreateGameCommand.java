@@ -18,10 +18,21 @@ public class CreateGameCommand implements Command {
         // Execute that service
         newService.doService(player, gameID, ipAddress, gameList);
     }
+    public CreateGameCommand(String player, String gameID)
     // Creates a new command with a specific game name and starting player
     public CreateGameCommand(Player player, String gameID)
     {
         this.player = player; // Set the player
         this.gameID = gameID; // Set the game ID
+    }
+
+    @Override
+    public String toString() {
+        return "CreateGameCommand{" +
+                "\nplayer='" + player + '\'' +
+                ", \ngameID='" + gameID + '\'' +
+                ", \nipAddress='" + ipAddress + '\'' +
+                ", \ngameList=" + gameList +
+                '}';
     }
 }

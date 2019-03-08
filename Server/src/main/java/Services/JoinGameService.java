@@ -10,7 +10,7 @@ public class JoinGameService implements Service {
     //Params: player, gameID
     @Override
     public Object doService(Object... obj) {
-        Player player = (Player) obj[0];
+        String player = (String) obj[0];
         String gameID = (String) obj[1];
         IGame game = MainModel.get().getGameList().get(gameID);
         if (game != null)
