@@ -52,7 +52,6 @@ public class ClientGameList extends Observable {
 			PendingGame game = ServerPendingGames.get(name);
 			ServerPendingGames.remove(name);
 			ActiveGame ag = new ActiveGame(game);
-			ag.setPlayer(game.getPlayer());
 			return ag;
 		}
 		return null;

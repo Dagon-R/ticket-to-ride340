@@ -38,6 +38,7 @@ public class ActiveGame{
 	public ActiveGame(PendingGame startGame){
 		players = new TreeSet<>();
 		players.addAll(startGame.getPlayers());
+		player = startGame.getPlayer();
 		this.name = startGame.getName();
 		this.id = startGame.getId() + "_ACTIVE";
 		routeOwners = new EnumMap<>(Route.class);
