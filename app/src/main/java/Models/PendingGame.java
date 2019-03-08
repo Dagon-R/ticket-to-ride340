@@ -10,6 +10,8 @@ public class PendingGame implements IGame{
 	private String name;
 	//The unique id that represents this game
 	private String id;
+	//player object for this client
+	private Player player;
 	
 	public PendingGame(){}
 	
@@ -42,6 +44,14 @@ public class PendingGame implements IGame{
 	
 	private void setPlayers(TreeSet<String> input){
 		this.players = input;
+	}
+
+	public Player getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 	
 	private void setName(String input){

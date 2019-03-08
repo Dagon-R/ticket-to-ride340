@@ -2,6 +2,7 @@ package Phase2Services;
 
 import Communication.ServerProxy;
 import Models.MainModel;
+import Models.PendingGame;
 import Phase2Models.DestinationCard;
 import Services.Service;
 
@@ -17,10 +18,12 @@ public class DrawDestCardService implements Service {
     @Override
     //Params: String playerID
     public void connectToProxy(Object... obj) {
-
+        String playerID = (String) obj[0];
+        //sp.drawDestCard(playerID);
     }
 
     @Override
+    //TODO: need gameID and numDestCards
     //Params: String playerID, IDestCard card, String ipAddress
     public void doService(Object... obj) {
         //Check params
@@ -32,6 +35,13 @@ public class DrawDestCardService implements Service {
         String playerID = (String) obj[0];
         DestinationCard card = (DestinationCard) obj[1];
         String ipAddress = (String) obj[2];
+
+        //TODO: update number of destination cards
+//        PendingGame pg = model.findGame(gameID);
+//        if(pg != null) { //checks if this is user's game
+//
+//
+//        }
 
         //if player, add card to hand
         if(model.getIPAddress().equals(ipAddress)) { //if user

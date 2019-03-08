@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--dest card 1-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/dest1Check"
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/dests1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="dest1 - dest2"
+            android:layout_gravity="center_vertical"/>
+        <TextView
+            android:id="@+id/val1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="value"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+
+    <!--dest card 2-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/dest2Check"
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/dests2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="dest1 - dest2"
+            android:layout_gravity="center_vertical"/>
+        <TextView
+            android:id="@+id/val2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="value"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+
+    <!--dest card 3-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/dest3Check"
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/dests3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="dest1 - dest2"
+            android:layout_gravity="center_vertical"/>
+        <TextView
+            android:id="@+id/val3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="value"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GO"
+        android:enabled="false"
+        android:layout_alignParentRight="true"/>
+
+</LinearLayout>

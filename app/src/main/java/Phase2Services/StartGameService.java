@@ -45,18 +45,17 @@ public class StartGameService implements Service {
         Map<String, DestinationCard[]> destCards = (Map<String, DestinationCard[]>) obj[3];
         Map<String, TrainCardColor[]> trainCards = (Map<String, TrainCardColor[]>) obj[4];
 
-        PendingGame pg = model.findGame(gameID); //checks if this is user's game
-        if(pg != null){
+        PendingGame pg = model.findGame(gameID);
+        if(pg != null){ //checks if this is user's game
             ActiveGame ag = model.getGameList().startGame(pg.getName()); //creates active game and removes pending from list
             ag.setStore(store);
             model.setGame(ag);
 
             if(model.getIPAddress().equals(ipAddress)) { //if user
-                //set their destination card hand
-                ArrayList<DestinationCard> userDestCards = new ArrayList<>(Arrays.asList(destCards.get(model.getUser().getName())));
-                //TODO ADD BACK IN (Expecting Desination[] not array list)
-//                model.getPlayer().setDestHand(userDestCards);
-                //set their trin card hand
+                //set player's destination card hand
+                //ArrayList<DestinationCard> userDestCards = new ArrayList<>(Arrays.asList(destCards.get(model.getUser().getName())));
+                model.getPlayer().setDestHand(destCards.get(model.getUser().getName()));
+                //set player's train card hand
                 ArrayList<TrainCardColor> userTrainCards = new ArrayList<>(Arrays.asList(trainCards.get(model.getUser().getName())));
                 model.getPlayer().setTrainHand(userTrainCards);
             }

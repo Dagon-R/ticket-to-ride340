@@ -63,7 +63,6 @@ public class MapLogic extends View {
         drawSelectedCity(selectedCity);
 
 
-
     }
 
     private void drawSelectedCity(City city){
@@ -113,8 +112,6 @@ public class MapLogic extends View {
     }
 
     private void drawSingleRoute(Route route){
-
-
 
         PointF point1 = MapEquations.getPoint(route.getCity1(),size);
         PointF point2 = MapEquations.getPoint(route.getCity2(),size);
@@ -275,5 +272,9 @@ public class MapLogic extends View {
 //        System.out.println(event.getX());
         mapActivity.mapClick(event.getX(),event.getY(),size);
         return false;
+    }
+
+    public void showDestDialog(Context context){
+
     }
 }
