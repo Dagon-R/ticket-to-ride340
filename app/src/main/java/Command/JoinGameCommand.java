@@ -17,6 +17,7 @@ public class JoinGameCommand implements Command {
         // Creates a new service
         JoinGameService newService = new JoinGameService();
         // Commands the service to add the player to the game
+
         newService.doService(player, gameID/*, joined*/, ipAddress, pendingGame);
     }
     // Create a new Join Game Command from the commanding player and the game name

@@ -9,7 +9,7 @@ import java.util.List;
 import Phase2Models.DestinationCard;
 import Phase2Models.TrainCardColor;
 
-public class Player {
+public class Player implements Comparable<Player>{
 	//The color that represents this player
 	private PlayerColorEnum playerColor;
 	//The name of this player
@@ -47,6 +47,11 @@ public class Player {
 	
 	private void setName(String input){
 		this.name = input;
+	}
+
+	@Override
+	public int compareTo(Player o) {
+		return getColor().compareTo(o.getColor());
 	}
 
 	@Override

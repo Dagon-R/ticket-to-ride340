@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.PathEffect;
 import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -31,14 +32,25 @@ public class MapLogic extends View {
     float routeThickness;
     IMap mapActivity;
 
-    public MapLogic(Context context, IMap mapActivity){
-        super(context);
+    public MapLogic(Context context, AttributeSet attrs, Canvas canvas) {
+        super(context, attrs);
+        this.canvas = canvas;
         this.mapActivity = mapActivity;
         paint = new Paint();
         radius =15;
         selectedRadius = 20;
         routeThickness =15;
 //        this.invalidate();
+    }
+
+    public void setIMap(IMap map){
+        mapActivity = map;
+    }
+
+
+    public MapLogic(Context context, IMap mapActivity){
+        super(context);
+
     }
 
     public void updateMap(MapModel model){

@@ -6,7 +6,7 @@ import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
-import android.support.design.widget.BottomSheetBehavior;
+//import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -32,7 +32,7 @@ import Phase2Models.MapModel;
 import Phase2Models.Store;
 import Presenters.MapPresenter;
 import Views.ActionBar;
-import Views.IMap;
+;
 import Views.MapLogic;
 import Views.R;
 import Views.ActionBar;
@@ -41,11 +41,11 @@ import Views.MapLogic;
 import Views.R;
 import Views.ViewInterfaces.IMap;
 import Views.ViewInterfaces.MesssageSender;
-import Views.MesssageSender;
 
 public class MapActivity extends AppCompatActivity implements ActionBar, IMap, MesssageSender {
     static String TAG = "MapActivity";
-    MapLogic mapLogic;
+//    MapLogic mapLogic;
+    View mapLogic;
     MapPresenter mapPresenter;
     DrawerLayout drawerLayout;
     LinearLayout chatSheet;
@@ -62,18 +62,19 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
     }
 
     private void construct() {
-        mapLogic = new MapLogic(this, this);
+//        mapLogic = new MapLogic(this, this);
         mapPresenter = new MapPresenter(this);
-        drawerLayout = findViewById(R.id.activity_map_layout);
-        chatSheet = findViewById(R.id.bottom_sheet);
-        chatList = findViewById(R.id.chat_recycler_view);
+//        drawerLayout = findViewById(R.id.activity_map_layout);
+//        chatSheet = findViewById(R.id.bottom_sheet);
+//        chatList = findViewById(R.id.chat_recycler_view);
         //chatSheet.setState(BottomSheetBehavior.STATE_COLLAPSED);
-//        mapLogic.
-        this.setContentView(mapLogic);
+        mapLogic = findViewById(R.id.map);
+//        ((MapLogic)mapLogic).setIMap(this);
+//        this.setContentView(mapLogic);
     }
-
+ 
     public void updateMap(MapModel map){
-        mapLogic.updateMap(map);
+        ((MapLogic)mapLogic).updateMap(map);
     }
 
 //    public void updateChat(ChatQueue queue){
@@ -131,22 +132,22 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
     }
 
     public void showDestDialog(Context context, EnumSet<DestinationCard> destHand){
-        final Dialog dialog = new Dialog(context);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dest_card_dialog);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.setCancelable(true);
-
-        TextView dests1 = (TextView) dialog.findViewById(R.id.dests1);
-        TextView dests2 = (TextView) dialog.findViewById(R.id.dests2);
-        TextView dests3 = (TextView) dialog.findViewById(R.id.dests3);
-        TextView val1 = (TextView) dialog.findViewById(R.id.val1);
-        TextView val2 = (TextView) dialog.findViewById(R.id.val2);
-        TextView val3 = (TextView) dialog.findViewById(R.id.val3);
-        Button acceptButton = (Button) dialog.findViewById(R.id.acceptDestCards);
-
-        DestinationCard card1 = destHand.iterator().next();
-        String dests1Text = destHand.iterator().next().getFirstCityName() + " - " + destHand.iterator().next().getSecondCityName();
+//        final Dialog dialog = new Dialog(context);
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        dialog.setContentView(R.layout.dest_card_dialog);
+//        dialog.setCanceledOnTouchOutside(false);
+//        dialog.setCancelable(true);
+//
+//        TextView dests1 = (TextView) dialog.findViewById(R.id.dests1);
+//        TextView dests2 = (TextView) dialog.findViewById(R.id.dests2);
+//        TextView dests3 = (TextView) dialog.findViewById(R.id.dests3);
+//        TextView val1 = (TextView) dialog.findViewById(R.id.val1);
+//        TextView val2 = (TextView) dialog.findViewById(R.id.val2);
+//        TextView val3 = (TextView) dialog.findViewById(R.id.val3);
+//        Button acceptButton = (Button) dialog.findViewById(R.id.acceptDestCards);
+//
+//        DestinationCard card1 = destHand.iterator().next();
+//        String dests1Text = destHand.iterator().next().getFirstCityName() + " - " + destHand.iterator().next().getSecondCityName();
 
         //dests1.setText();
 
