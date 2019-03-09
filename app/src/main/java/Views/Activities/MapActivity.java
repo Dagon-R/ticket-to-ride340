@@ -6,8 +6,11 @@ import android.graphics.PointF;
 import android.os.Bundle;
 
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.view.View;
 
@@ -40,13 +43,12 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         construct();
-        //showDestDialog(this);
 
     }
 
     private void construct(){
         mapLogic = new MapLogic(this,this);
-        mapPresenter = new MapPresenter(this);
+        mapPresenter = new MapPresenter(this); //sets info for showing dialog
 //        mapLogic.
         map.findViewById(R.id.map);
 //        this.setContentView(mapLogic);
@@ -115,19 +117,82 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(true);
 
+        setDialogText(dialog, destHand);
+
+        setDialogListeners(dialog);
+
+        //make dialog only cover 85% of screen
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        int dialogWidth = (int)(displayMetrics.widthPixels * 0.85);
+        int dialogHeight = (int)(displayMetrics.heightPixels * 0.85);
+        dialog.getWindow().setLayout(dialogWidth, dialogHeight);
+
+        dialog.show();
+
+    }
+
+    private void setDialogListeners(final Dialog dialog){
+        final Button acceptButton = (Button) dialog.findViewById(R.id.acceptDestCards);
+        acceptButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("Clicked button!");
+                mapPresenter.clickDialogAccept();
+                dialog.dismiss();
+            }
+        });
+
+        CheckBox card1Check = (CheckBox) dialog.findViewById(R.id.dest1Check);
+        card1Check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()  {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mapPresenter.checkDestination(isChecked, 0);
+                if(mapPresenter.enoughDestsSelected()) acceptButton.setEnabled(true);
+                else acceptButton.setEnabled(false);
+            }
+        });
+
+        CheckBox card2Check = (CheckBox) dialog.findViewById(R.id.dest2Check);
+        card2Check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()  {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mapPresenter.checkDestination(isChecked, 1);
+                if(mapPresenter.enoughDestsSelected()) acceptButton.setEnabled(true);
+                else acceptButton.setEnabled(false);
+            }
+        });
+
+        CheckBox card3Check = (CheckBox) dialog.findViewById(R.id.dest3Check);
+        card3Check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()  {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mapPresenter.checkDestination(isChecked, 2);
+                if(mapPresenter.enoughDestsSelected()) acceptButton.setEnabled(true);
+                else acceptButton.setEnabled(false);
+            }
+        });
+
+    }
+
+    private void setDialogText(Dialog dialog, EnumSet<DestinationCard> destHand){
         TextView dests1 = (TextView) dialog.findViewById(R.id.dests1);
         TextView dests2 = (TextView) dialog.findViewById(R.id.dests2);
         TextView dests3 = (TextView) dialog.findViewById(R.id.dests3);
         TextView val1 = (TextView) dialog.findViewById(R.id.val1);
         TextView val2 = (TextView) dialog.findViewById(R.id.val2);
         TextView val3 = (TextView) dialog.findViewById(R.id.val3);
-        Button acceptButton = (Button) dialog.findViewById(R.id.acceptDestCards);
 
         DestinationCard card1 = destHand.iterator().next();
-        String dests1Text = destHand.iterator().next().getFirstCityName() + " - " + destHand.iterator().next().getSecondCityName();
+        String dests1Text = card1.getFirstCityName() + " - " + card1.getSecondCityName();
+        dests1.setText(dests1Text);
+        val1.setText(Integer.toString(card1.getValue()));
 
-        //dests1.setText();
+        DestinationCard card2 =  destHand.iterator().next();
+        String dests2Text = card2.getFirstCityName() + " - " + card2.getSecondCityName();
+        dests2.setText(dests2Text);
+        val2.setText(Integer.toString(card2.getValue()));
 
+        DestinationCard card3 =  destHand.iterator().next();
+        String dests3Text = card3.getFirstCityName() + " - " + card3.getSecondCityName();
+        dests3.setText(dests3Text);
+        val3.setText(Integer.toString(card3.getValue()));
     }
 
 
