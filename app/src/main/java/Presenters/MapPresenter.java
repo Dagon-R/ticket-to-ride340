@@ -32,7 +32,7 @@ public class MapPresenter implements Observer {
     public MapPresenter(MapActivity mapActivity) {
         this.mapActivity = mapActivity;
         MainModel.get().addMapObservers(this);
-        showDestDialog();
+        //showDestDialog();
     }
 
     @Override
@@ -122,8 +122,8 @@ public class MapPresenter implements Observer {
     }
 
     public void showDestDialog(){
-        EnumSet<DestinationCard> destHand = MainModel.get().getPlayer().getDestHand();
-        this.mapActivity.setDialogInfo(destHand);
+        //EnumSet<DestinationCard> destHand = MainModel.get().getPlayer().getDestHand();
+        //this.mapActivity.setDialogInfo(destHand);
     }
 
 }

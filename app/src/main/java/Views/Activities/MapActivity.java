@@ -45,7 +45,7 @@ import Views.ViewInterfaces.MesssageSender;
 public class MapActivity extends AppCompatActivity implements ActionBar, IMap, MesssageSender {
     static String TAG = "MapActivity";
 //    MapLogic mapLogic;
-    View mapLogic;
+    MapLogic mapLogic;
     MapPresenter mapPresenter;
     DrawerLayout drawerLayout;
     LinearLayout chatSheet;
@@ -69,7 +69,7 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
 //        chatList = findViewById(R.id.chat_recycler_view);
         //chatSheet.setState(BottomSheetBehavior.STATE_COLLAPSED);
         mapLogic = findViewById(R.id.map);
-//        ((MapLogic)mapLogic).setIMap(this);
+        mapLogic.setIMap(this);
 //        this.setContentView(mapLogic);
     }
  
