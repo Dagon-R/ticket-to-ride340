@@ -4,6 +4,8 @@ import android.graphics.PointF;
 import android.util.Log;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.Map;
 import java.util.Observable;
@@ -29,10 +31,12 @@ public class MapPresenter implements Observer {
     static String TAG = "Presenter";
     MapActivity mapActivity;
     Map<Type, Set<Runnable>> typeToMethod;
+    ArrayList<DestinationCard> selectedDestCards;
     public MapPresenter(MapActivity mapActivity) {
         this.mapActivity = mapActivity;
         MainModel.get().addMapObservers(this);
-        //showDestDialog();
+        selectedDestCards = new ArrayList<>();
+        showDestDialog();
     }
 
     @Override
@@ -118,12 +122,33 @@ public class MapPresenter implements Observer {
 
     }
     private void advanceTurn(){
-
+        //mapactivity.updateTurnView
     }
 
     public void showDestDialog(){
-        //EnumSet<DestinationCard> destHand = MainModel.get().getPlayer().getDestHand();
-        //this.mapActivity.setDialogInfo(destHand);
+        EnumSet<DestinationCard> destHand = MainModel.get().getPlayer().getDestHand();
+        this.mapActivity.setDialogInfo(destHand);
+    }
+
+    public void checkDestination(boolean isChecked, int index){
+        DestinationCard card = null;
+        EnumSet<DestinationCard> hand = MainModel.get().getPlayer().getDestHand();
+        int i = 0;
+        for(DestinationCard itCard : hand){
+            if(i == index) card = itCard;
+            i += 1;
+        }
+        if(isChecked) selectedDestCards.add(card);
+        if(!isChecked) selectedDestCards.remove(card);
+    }
+
+    public boolean enoughDestsSelected(){
+        if(selectedDestCards.size() > 1) return true;
+        return false;
+    }
+
+    public void clickDialogAccept(){
+        MainModel.get().getPlayer().setDestHand(selectedDestCards);
     }
 
 }

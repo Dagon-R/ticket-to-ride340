@@ -13,6 +13,10 @@ public class GameList {
     //A list of games that are currently running
     private HashMap<String,PendingGame> ServerPendingGames;
 
+    public GameList(GameList gameList){
+        ServerPendingGames = gameList.getServerPendingGames();
+    }
+
     GameList() {
         ServerActiveGames = new HashMap<>();
         ServerPendingGames = new HashMap<>();

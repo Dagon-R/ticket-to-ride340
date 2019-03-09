@@ -4,6 +4,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import Command.ErrorCommand;
+import Models.GameList;
 import Models.MainModel;
 import Models.User;
 import Models.UserList;
@@ -28,7 +29,9 @@ public class RegisterService implements Service {
         } else{
             User newUser = new User(username, password);
             model.getUserList().addUser(newUser);
-            return MainModel.get().getGameList();
+
+
+            return new GameList(MainModel.get().getGameList());
         }
 
     }
