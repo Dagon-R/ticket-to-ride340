@@ -8,14 +8,11 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 //import android.support.design.widget.BottomSheetBehavior;
-import android.support.annotation.ColorInt;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.view.Window;
 import android.widget.Button;
@@ -23,6 +20,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.view.View;
+import android.widget.TextView;
 
 
 import java.util.Map;
@@ -32,11 +30,15 @@ import java.util.EnumSet;
 import Models.ActiveGame;
 import Models.Player;
 import Phase2Models.ChatQueue;
+import Phase2Models.ChatQueue;
 import Phase2Models.DestinationCard;
-import Phase2Models.City;
 import Phase2Models.MapModel;
 import Phase2Models.Store;
 import Presenters.MapPresenter;
+//import Views.ActionBar;
+;
+import Views.Adapters.ChatAdapter;
+import Views.Adapters.DestinationAdapter;
 import Views.ViewInterfaces.ActionBar;
 import Views.MapLogic;
 import Views.R;
@@ -53,6 +55,17 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
     RecyclerView chatList;
     EditText chatInput;
     Button chatButton;
+    RecyclerView destinationCardDisplay;
+    TextView blueCards;
+    TextView redCards;
+    TextView yellowCards;
+    TextView greenCards;
+    TextView purpleCards;
+    TextView orangeCards;
+    TextView blackCards;
+    TextView whiteCards;
+    TextView rainbowCards;
+
 
 
     @Override
@@ -71,6 +84,7 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
 
         //drawer initialization stuff
         drawerLayout = findViewById(R.id.activity_map_layout);
+        destinationCardDisplay = findViewById(R.id.destination_card_recycler_view);
         //chat sheet initialization stuff
         chatSheet = findViewById(R.id.bottom_sheet);
         chatList = findViewById(R.id.chat_recycler_view);
@@ -81,7 +95,7 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
             public void onClick(View v) {
                 String newMessage = chatInput.getText().toString();
                 if(newMessage.length() == 0){
-                    
+
                 }
                 else{
                     chatInput.setText("");
@@ -100,11 +114,9 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
         mapLogic.updateMap(map);
     }
 
-    public void updateChat(ChatQueue queue){
 
-    }
     public void updatePlayerInfo(Player player){
-
+        destinationCardDisplay.swapAdapter(new DestinationAdapter(player.getDestHand()), false);
     }
 
     public void updateGameInfo(ActiveGame game) {
@@ -142,6 +154,10 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
     @Override
     public void sendChat(String message) {
         mapPresenter.sendMessage(message);
+    }
+
+    public void updateChat(ChatQueue queue){
+        chatList.swapAdapter(new ChatAdapter(queue), false);
     }
 
     @Override
