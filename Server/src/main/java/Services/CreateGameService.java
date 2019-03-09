@@ -22,7 +22,8 @@ public class CreateGameService implements Service {
         String player = (String) obj[0];
         String gameID = (String) obj[1];
         //TODO: check that user exists
-        if (MainModel.get().getGameList().get(gameID) != null) {
+        if (MainModel.get().getGameList().getPendingGame(gameID) != null)
+        {
             return false;
         }
         else {

@@ -3,6 +3,7 @@ package Presenters;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.TreeSet;
@@ -29,9 +30,9 @@ public class LobbyPresenter implements Observer {
         runOnUI(new Runnable() {
             @Override
             public void run() {
-                TreeSet<String> players = MainModel.get().getGame().getPendingGame().getPlayers();
-                String[] playerStrings =(String[])players.toArray(new String[players.size()]);
-                lobbyActivity.updatePlayers(playerStrings);
+                ArrayList<String> players = MainModel.get().getGame().getPendingGame().getPlayers();
+
+                lobbyActivity.updatePlayers(players);
             }
         });
 

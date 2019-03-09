@@ -24,6 +24,12 @@ public class ClientGameList extends Observable {
 		notifyObservers();
 	}
 
+	public void addPlayerToGame(String game, String player){
+		ServerPendingGames.get(game).addPlayer(player);
+		setChanged();
+		notifyObservers(this);
+	}
+
 
 	public HashMap<String,PendingGame> getServerPendingGames(){
 		return ServerPendingGames;
@@ -32,7 +38,7 @@ public class ClientGameList extends Observable {
 	public void addServerPendingGame(PendingGame newGame){
 		ServerPendingGames.put(newGame.getName(),newGame);
 		setChanged();
-		notifyObservers();
+		notifyObservers(this);
 	}
 
 

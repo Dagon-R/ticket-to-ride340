@@ -24,7 +24,7 @@ public class StartGameService implements Service {
     public Object doService(Object... obj) {
         String gameID = (String) obj[0];
 
-        if(model.getGameList().get(gameID) == null){
+        if(model.getGameList().getPendingGame(gameID) == null){
             return new ErrorCommand("Game does not exist!");
         }
 

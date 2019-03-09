@@ -87,8 +87,10 @@ public class MainModel{
     }
 
     public void activateGame(String gameName, Store store){
-        ActiveGame game = gameList.startGame(gameName);
+        gameList.startGame(gameName);
+        ActiveGame game = new ActiveGame(this.game.getPendingGame());
         setActiveGame(game);
+        game.setStore(store);
 //        ((ActiveGame) game).setStore(store);
 //        createMapActivity();
     }
@@ -154,7 +156,7 @@ public class MainModel{
     }
 
     public void addPlayerToGame(String gameName, String player){
-        gameList.get(gameName).addPlayer(player);
+        gameList.addPlayerToGame(gameName,player);
 
     }
 

@@ -1,7 +1,6 @@
 package Phase2Services;
 
 import Models.ActiveGame;
-import Models.IGame;
 import Models.MainModel;
 import Phase2Models.DestinationCard;
 
@@ -10,10 +9,10 @@ public class DiscardCardService implements Services.Service {
     public Object doService(Object... obj) {
         DestinationCard destCard = (DestinationCard) obj[0];
         String gameId = (String) obj[1];
-        IGame game = MainModel.get().getGameList().get(gameId);
-        if (game.getClass() == ActiveGame.class)
+        ActiveGame game = MainModel.get().getGameList().getActiveGame(gameId);
+        if (game != null)
         {
-            ((ActiveGame)MainModel.get().getGameList().get(gameId)).discardDestCard(destCard);
+            game.discardDestCard(destCard);
             return true;
         }
         else
