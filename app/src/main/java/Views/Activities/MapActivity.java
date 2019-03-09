@@ -2,16 +2,19 @@ package Views.Activities;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 //import android.support.design.widget.BottomSheetBehavior;
+import android.support.annotation.ColorInt;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.view.Window;
@@ -43,11 +46,14 @@ import Views.ViewInterfaces.MesssageSender;
 public class MapActivity extends AppCompatActivity implements ActionBar, IMap, MesssageSender {
     static String TAG = "MapActivity";
 //    MapLogic mapLogic;
-    View mapLogic;
+    MapLogic mapLogic;
     MapPresenter mapPresenter;
     DrawerLayout drawerLayout;
     LinearLayout chatSheet;
     RecyclerView chatList;
+    EditText chatInput;
+    Button chatButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,14 +66,33 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
 
     private void construct() {
 //        mapLogic = new MapLogic(this, this);
+
+        //presenter initialization stuff
         mapPresenter = new MapPresenter(this);
-//        drawerLayout = findViewById(R.id.activity_map_layout);
-//        chatSheet = findViewById(R.id.bottom_sheet);
-//        chatList = findViewById(R.id.chat_recycler_view);
-        //chatSheet.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        //drawer initialization stuff
+        drawerLayout = findViewById(R.id.activity_map_layout);
+        //chat sheet initialization stuff
+        chatSheet = findViewById(R.id.bottom_sheet);
+        chatList = findViewById(R.id.chat_recycler_view);
+        chatInput = findViewById(R.id.message_box);
+        chatButton = findViewById(R.id.message_button);
+        chatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String newMessage = chatInput.getText().toString();
+                if(newMessage.length() == 0){
+                    
+                }
+                else{
+                    chatInput.setText("");
+                    sendChat(newMessage);
+                }
+            }
+        });
+
+        //canvas initialization stuff
         mapLogic = findViewById(R.id.map);
-//        ((MapLogic)mapLogic).setIMap(this);
-//        this.setContentView(mapLogic);
+        mapLogic.setIMap(this);
     }
 
     public void updateMap(MapModel map){
@@ -114,7 +139,6 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
 
     @Override
     public void sendChat(String message) {
-
     }
 
     @Override

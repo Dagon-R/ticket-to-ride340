@@ -30,9 +30,8 @@ public class MapLogic extends View {
     float routeThickness;
     IMap mapActivity;
 
-    public MapLogic(Context context, AttributeSet attrs, Canvas canvas) { //TODO: fix!
+    public MapLogic(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.canvas = canvas;
         this.mapActivity = mapActivity;
         paint = new Paint();
         radius =15;
@@ -45,6 +44,9 @@ public class MapLogic extends View {
         mapActivity = map;
     }
 
+    public void setCanvas(Canvas canvas){
+        this.canvas = canvas;
+    }
 
     public MapLogic(Context context, IMap mapActivity){
         super(context);
