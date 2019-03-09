@@ -2,6 +2,11 @@ package Models;
 
 import java.util.HashMap;
 
+import Phase2Models.DestinationDeck;
+import Phase2Models.InvalidStoreLengthException;
+import Phase2Models.Store;
+import Phase2Models.TrainDeck;
+
 public class GameList {
     //A list of games that are currently waiting to start
     private HashMap<String,ActiveGame> ServerActiveGames;
@@ -57,6 +62,8 @@ public class GameList {
             ServerPendingGames.remove(name);
             ActiveGame ag = new ActiveGame(game);
             addServerActiveGame(ag);
+            ag.setDestDeck(new DestinationDeck());
+            ag.setTrainDeck(new TrainDeck());
             return ag;
         }
         return null;

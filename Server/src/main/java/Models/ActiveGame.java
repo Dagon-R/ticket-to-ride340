@@ -91,6 +91,22 @@ public class ActiveGame{
 		this.gameId = input;
 	}
 
+	public DestinationDeck getDestDeck() {
+		return destDeck;
+	}
+
+	public void setDestDeck(DestinationDeck destDeck) {
+		this.destDeck = destDeck;
+	}
+
+	public void setTrainDeck(TrainDeck trainDeck) {
+		this.trainDeck = trainDeck;
+	}
+
+	public void setStore(Store store) {
+		this.store = store;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

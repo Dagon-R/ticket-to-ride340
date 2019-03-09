@@ -26,8 +26,7 @@ public class CreateGameService implements Service {
         {
             return false;
         }
-        else
-        {
+        else {
             PendingGame newGame = new PendingGame(player,gameID);
             MainModel.get().getGameList().addServerPendingGame(newGame);
             return newGame;
