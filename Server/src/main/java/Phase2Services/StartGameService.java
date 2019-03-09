@@ -1,11 +1,11 @@
 package Phase2Services;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 
 import Command.ErrorCommand;
 import Models.ActiveGame;
 import Models.MainModel;
-import Models.Player;
 import Models.ReturnObjects.StartGameReturn;
 import Phase2Models.DestinationCard;
 import Phase2Models.InvalidStoreLengthException;
@@ -35,7 +35,7 @@ public class StartGameService implements Service {
         ActiveGame ag = model.getGameList().startGame(gameID);
         //divvy out destination cards
         HashMap<String, DestinationCard[]> destMap = new HashMap<>();
-        HashMap<String, TrainCardColor[]> trainMap = new HashMap<>();
+        HashMap<String, EnumMap<TrainCardColor,Integer>> trainMap = new HashMap<>();
         Store store = null;
         try{
             store = new Store(ag.getTrainDeck().drawStore());
@@ -48,7 +48,14 @@ public class StartGameService implements Service {
         for(String playerName : ag.getPlayers()){
             //create map of players to cards
             destMap.put(playerName, ag.getDestDeck().draw3());
-            trainMap.put(playerName, ag.getTrainDeck().draw4());
+            trainMap.put(playerName,new EnumMap<TrainCardColor,Integer>(TrainCardColor.class));
+            for (TrainCardColor color : TrainCardColor.values())
+            {trainMap.get(playerName).put(color,0);}
+            for (TrainCardColor color : ag.getTrainDeck().draw4())
+            {
+                int colorCount = trainMap.get(playerName).get(color);
+                trainMap.get(playerName).put(color,colorCount+1);
+            }
 
         }
 

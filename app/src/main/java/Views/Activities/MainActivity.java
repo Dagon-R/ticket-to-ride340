@@ -12,6 +12,7 @@ import android.widget.Toast;
 import java.util.Observable;
 import java.util.Observer;
 
+import Communication.SongPlayer;
 import Models.MainModel;
 import Models.User;
 import Presenters.LoginPresenter;
@@ -28,13 +29,13 @@ public class MainActivity extends AppCompatActivity implements Observer {
     Button registerButton;
     LoginPresenter loginPresenter;
     MainModel mainModel;
-    MediaPlayer mediaPlayer;
+    //SongPlayer player;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.railroad);
-        mediaPlayer.start();
+        //player = new SongPlayer(MediaPlayer.create(getApplicationContext(),R.raw.railroad),true);
+        //player.start();
         loginPresenter = new LoginPresenter(this);
         usernameTextfield = (EditText) findViewById(R.id.usernameTextfield);
         passwordTextfield = (EditText) findViewById(R.id.passwordTextfield);
@@ -127,8 +128,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
     @Override
     protected void onPause() {
         super.onPause();
-        mediaPlayer.stop();
-        mediaPlayer.release();
+        //player.setTurn_on(false);
+        //player.start();
         loginPresenter.removeObserver();
     }
 }
