@@ -6,19 +6,18 @@
     android:layout_height="wrap_content"
     android:background="#fff"
     android:orientation="vertical"
-
-
-    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
     app:behavior_hideable="false"
-    app:behavior_peekHeight="56dp"
+    app:behavior_peekHeight="28dp"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
 
         <TextView
             android:id="@+id/message_alert"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
+            android:layout_width="match_parent"
+            android:layout_height="26dp"
             android:textSize="20dp"
             android:gravity="center"
+            android:textAlignment="center"
             android:text="No Pending Messages"
             />
 
@@ -27,18 +26,38 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/chat_recycler_view"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scrollbars="vertical"
         />
+
+    <LinearLayout
+        android:id="@+id/player1_info1"
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:fitsSystemWindows="true"
+        android:orientation="horizontal"
+        android:background="#efefef"
+        android:layout_weight="5">
 
     <EditText
         android:id="@+id/message_box"
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:layout_weight="4"
+        android:background="@color/grey"
         />
 
+        <Button
+            android:id="@+id/message_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Send"
+            android:layout_weight="1"
+            android:padding="0dp"
+            android:layout_margin="0dp"
+            android:gravity="center"/>
 
+    </LinearLayout>
 
 </LinearLayout>
