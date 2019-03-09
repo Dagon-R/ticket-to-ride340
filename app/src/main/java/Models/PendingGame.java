@@ -1,11 +1,12 @@
 package Models;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.TreeSet;
 
 public class PendingGame{
 	//A list of the players associated with the game
-	private TreeSet<String> players;
+	private ArrayList<String> players;
 	//The name of the game that will be displayed in menus
 	private String name;
 	//The unique id that represents this game
@@ -16,7 +17,7 @@ public class PendingGame{
 	public PendingGame(){}
 	
 	public PendingGame(String host, String gameName){
-		players = new TreeSet<>();
+		players = new ArrayList<>();
 		players.add(host);
 		this.name = gameName;
 		this.id = gameName + host;
@@ -30,7 +31,7 @@ public class PendingGame{
 		return players.remove(targetPlayer);
 	}
 
-	public TreeSet<String> getPlayers(){
+	public ArrayList<String> getPlayers(){
 		return players;
 	}
 	
@@ -42,7 +43,7 @@ public class PendingGame{
 		return id;
 	}
 	
-	private void setPlayers(TreeSet<String> input){
+	private void setPlayers(ArrayList<String> input){
 		this.players = input;
 	}
 
