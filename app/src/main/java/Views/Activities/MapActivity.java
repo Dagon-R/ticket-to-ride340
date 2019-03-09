@@ -68,7 +68,7 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
 //        mapLogic = new MapLogic(this, this);
 
         //presenter initialization stuff
-        mapPresenter = new MapPresenter(this);
+
         //drawer initialization stuff
         drawerLayout = findViewById(R.id.activity_map_layout);
         //chat sheet initialization stuff
@@ -93,10 +93,11 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
         //canvas initialization stuff
         mapLogic = findViewById(R.id.map);
         mapLogic.setIMap(this);
+        mapPresenter = new MapPresenter(this);
     }
 
     public void updateMap(MapModel map){
-        ((MapLogic)mapLogic).updateMap(map);
+        mapLogic.updateMap(map);
     }
 
     public void updateChat(ChatQueue queue){

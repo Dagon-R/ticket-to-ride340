@@ -47,7 +47,7 @@ public class MapPresenter implements Observer {
         updateStore();
         updateActiveGame();
         updateChat();
-        updateMap();
+//        updateMap();
     }
 
 
@@ -71,6 +71,7 @@ public class MapPresenter implements Observer {
                 updateActiveGame();
                 break;
             case "MapModel":
+                Log.d(TAG, "update: "+ MainModel.get().getMapModel());
                 updateMap();
 
                 break;
@@ -148,7 +149,7 @@ public class MapPresenter implements Observer {
         for(City city : City.values()){
             PointF point = MapEquations.getPoint(city,size);
             float dist = (float)Math.pow(Math.pow(x-point.x,2) + Math.pow(y-point.y,2),.5);
-            System.out.println(city);
+
             if(dist < 30){
                 System.out.println(city);
                 selectCity(city);

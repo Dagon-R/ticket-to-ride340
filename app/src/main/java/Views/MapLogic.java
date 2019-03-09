@@ -37,7 +37,8 @@ public class MapLogic extends View {
         radius =15;
         selectedRadius = 20;
         routeThickness =15;
-//        this.invalidate();
+
+        this.invalidate();
     }
 
     public void setIMap(IMap map){
@@ -64,7 +65,6 @@ public class MapLogic extends View {
         this.canvas = canvas;
         this.size = new PointF(canvas.getWidth(),canvas.getHeight());
 //        this.setBackgroundColor(Color.TRANSPARENT);
-
         drawMap(new MapModel());
     }
 
@@ -200,7 +200,7 @@ public class MapLogic extends View {
         point2 = new PointF(pointOrigin2.x,pointOrigin2.y);
         point2.x -=x;
         point2.y -=y;
-        Log.d(TAG, "drawDoubleRoute: color" + route.getColor2());
+
         colorMeBlack(point1,point2,dist,route,intervals,route.getColor2());
         setColor(route.getColor2());
         canvas.drawLine(pointOrigin1.x - x,pointOrigin1.y -y,pointOrigin2.x - x,pointOrigin2.y -y,paint);
