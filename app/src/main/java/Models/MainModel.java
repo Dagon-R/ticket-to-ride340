@@ -1,13 +1,10 @@
 package Models;
 
-import android.util.Log;
-
 import java.util.Observable;
 import java.util.Observer;
 
 import Phase2Models.Activities;
 import Phase2Models.ActivityTypes;
-import Phase2Models.ChatQueue;
 import Phase2Models.MapModel;
 import Phase2Models.Store;
 
@@ -184,5 +181,9 @@ public class MainModel{
     public void setAuthToken(String authToken) {
         user.setAuthToken(authToken);
 
+    }
+
+    public void addGameToGameList(PendingGame newGame) {
+        this.getGameList().addServerPendingGame(newGame);
     }
 }

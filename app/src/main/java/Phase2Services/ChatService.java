@@ -10,11 +10,9 @@ import Phase2Models.ChatMessage;
 import Services.Service;
 
 public class ChatService implements Service {
-    private ServerProxy sp;
     private MainModel model;
 
     public ChatService(){
-        sp = new ServerProxy();
         model = MainModel.get();
     }
 
@@ -24,7 +22,7 @@ public class ChatService implements Service {
         String messageString = (String) obj[0];
         int milliseconds = ((Long) new Date().getTime()).intValue();
         ChatMessage message = new ChatMessage(model.getPlayer(),messageString, milliseconds);
-        sp.chat(message,model.getGame().getActiveGame().getId());
+        ServerProxy.get().chat(message,model.getGame().getActiveGame().getId());
     }
 
     @Override

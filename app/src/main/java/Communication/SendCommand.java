@@ -3,43 +3,50 @@ package Communication;
 import com.google.gson.Gson;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 
 import Command.Command;
 import Command.CommandWrapper;
 
+//Instances of this class are created then executed in order to send commands to the server
+// This is required so that writing to the server is on a separate thread
+//TODO: Make this an AsyncTask
 public class SendCommand extends Thread {
-    private Gson json;
-    private Command command;
+    private final Gson json; // Object used for JSON transformations
+    private Command command; // The command that's getting ready to be sent
+    private PrintWriter server;
     SendCommand(Command command)
     {
-        json = new Gson();
-        this.command = command;
+        json = new Gson(); // Prepare JSON for transformations
+
+        this.command = command; // Set the command to be sent to the server
+        try // Try to create a writer for the server
+        { server = new PrintWriter(CommandManager.get().getSocket().getOutputStream()); }
+        catch (IOException e)
+        {
+            System.out.println("Send Command failed to instantiate");
+            e.printStackTrace(); // Print that a send command failed to be created
+        }
     }
-    @Override
+    @Override // Writes the JSON of the given command to the server
     public void run() {
         System.out.println("Made it to send-command run");
-        try {
-            OutputStream server = CommandManager.get().getSocket().getOutputStream();
-            CommandWrapper newWrapper =
-                    new CommandWrapper(json.toJson(command), command.getClass().getName());
-            writeString(json.toJson(newWrapper) + ",", server);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        CommandWrapper newWrapper = // Wraps the command in a command wrapper to send
+                new CommandWrapper(json.toJson(command), command.getClass().getName());
+        //Writes the wrapper with an added trailing comma in case multiple commands are sent
+        writeString(json.toJson(newWrapper) + ",");
     }
-    private void writeString(String str, OutputStream os) {
+    // A method for writing strings to the server
+    private void writeString(String str) {
         System.out.println("Made it to write-string");
-        PrintWriter pw = new PrintWriter(os);
-        pw.write(str + "\n");
+        // Write the given string to the output stream
+        server.write(str + "\n");
         try {
-            pw.flush();
+            server.flush(); // Attempt to send the output stream to the server
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(); // Print a failure
         }
+        // Print the method that was sent to the server
         System.out.println("Message sent to server: " + str);
-        //os.close();
     }
 }

@@ -4,16 +4,13 @@ import java.util.concurrent.TimeUnit;
 
 import Communication.CommandManager;
 import Communication.ServerProxy;
-import Communication.SocketConnectionError;
 import Communication.SocketInitializer;
 import Models.ClientGameList;
 import Models.MainModel;
-import Models.User;
-import Models.UserList;
 
 public class RegisterService implements Service {
-    private ServerProxy sp;
     private MainModel model;
+    private SocketInitializer si = new SocketInitializer();
 
     public RegisterService(){
         model = MainModel.get();
@@ -26,25 +23,32 @@ public class RegisterService implements Service {
         String ipAddress = (String) obj[2];
 
         if(CommandManager.get() == null) {
-            SocketInitializer si = new SocketInitializer();
             int port = 8080;
+            si.resetFinished();
             si.execute(ipAddress, port);
-            while (true) {
+            while (si.isFinished() == 0) {
                 try {
                     TimeUnit.SECONDS.sleep((long) .002);
-                    if (CommandManager.get() != null) {
-                        break;
-                    }
                 } catch (InterruptedException e) {
-                    System.out.println("Error sleeping");
+                    e.printStackTrace();
                 }
             }
+//            while (true) {
+//                try {
+//                    TimeUnit.SECONDS.sleep((long) .002);
+//                    if (CommandManager.get() != null) {
+//                        break;
+//                    }
+//                } catch (InterruptedException e) {
+//                    System.out.println("Error sleeping");
+//                }
+//            }
         }
+        if (si.isFinished() == -1) {MainModel.get().setErrorMessage("Failed Connection"); return;}
         String authToken = username + Long.toString(System.currentTimeMillis());
         model.setAuthToken(authToken);
 
-        ServerProxy sp = new ServerProxy();
-        sp.register(username, password, ipAddress, authToken);
+        ServerProxy.get().register(username, password, ipAddress, authToken);
     }
 
     @Override

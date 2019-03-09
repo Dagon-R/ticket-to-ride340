@@ -3,7 +3,7 @@ package Command;
 import java.util.Objects;
 
 import Models.GameList;
-import Models.Player;
+import Models.PendingGame;
 import Services.JoinGameService;
 import Services.Service;
 
@@ -11,16 +11,17 @@ public class ServerJoinGameCommand implements Command {
 //    private Player player;
     private String player;
     private String gameID;
-    private boolean joined;
+    //private boolean joined;
     private String ipAddress;
-    private GameList gameList;
+    //private GameList gameList;
+    private PendingGame pendingGame;
     public ServerJoinGameCommand() {
     }
 
-    public ServerJoinGameCommand(String player, String gameID, boolean joined) {
+    public ServerJoinGameCommand(String player, String gameID/*, boolean joined*/) {
         this.player = player;
         this.gameID = gameID;
-        this.joined = joined;
+        //this.joined = joined;
     }
 
     public String getIpAddress() {
@@ -42,9 +43,8 @@ public class ServerJoinGameCommand implements Command {
     @Override
     public void addResults(Object obj) {
         if(obj == null) return;
-        if(obj.getClass() != GameList.class) return;
-        GameList gameList = (GameList) obj;
-        this.gameList = gameList;
+        if(obj.getClass() != PendingGame.class) return;
+        this.pendingGame = (PendingGame) obj;
     }
 
     @Override
@@ -72,9 +72,9 @@ public class ServerJoinGameCommand implements Command {
         return "ServerJoinGameCommand{" +
                 "player=" + player +
                 ", gameID='" + gameID + '\'' +
-                ", joined=" + joined +
+                //", joined=" + joined +
                 ", ipAddress='" + ipAddress + '\'' +
-                ", gameList=" + gameList +
+                ", pendingGame=" + pendingGame +
                 '}';
     }
 }

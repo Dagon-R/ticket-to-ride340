@@ -3,6 +3,7 @@ package Command;
 import java.util.Objects;
 
 import Models.GameList;
+import Models.PendingGame;
 import Models.Player;
 import Services.CreateGameService;
 import Services.Service;
@@ -12,7 +13,8 @@ public class ServerCreateGameCommand implements Command {
     private String gameID;
 
     private String ipAddress;
-    private GameList gameList;
+    //private GameList gameList;
+    private volatile PendingGame pendingGame;
 
 
     public ServerCreateGameCommand(String player, String gameID) {
@@ -33,10 +35,13 @@ public class ServerCreateGameCommand implements Command {
 
     @Override
     public void addResults(Object obj) {
+//        if(obj == null) return;
+//        if(obj.getClass() != GameList.class) return;
+//        GameList gameList = (GameList) obj;
+//        this.gameList = gameList;
         if(obj == null) return;
-        if(obj.getClass() != GameList.class) return;
-        GameList gameList = (GameList) obj;
-        this.gameList = gameList;
+        if(obj.getClass() != PendingGame.class) return;
+        this.pendingGame = (PendingGame) obj;
     }
 
     @Override
@@ -75,7 +80,7 @@ public class ServerCreateGameCommand implements Command {
                 "player=" + player +
                 ", gameID='" + gameID + '\'' +
                 ", ipAddress='" + ipAddress + '\'' +
-                ", gameList=" + gameList +
+                //", gameList=" + gameList +
                 '}';
     }
 }

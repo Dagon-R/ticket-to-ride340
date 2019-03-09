@@ -6,18 +6,16 @@ import Phase2Models.DestinationCard;
 import Services.Service;
 
 public class DiscardDestCardService implements Service {
-    private ServerProxy sp;
     private MainModel model;
 
     public DiscardDestCardService(){
-        sp = new ServerProxy();
         model = MainModel.get();
     }
 
     @Override
     //params: DestinationCard card
     public void connectToProxy(Object... obj) {
-        sp.discardCard((DestinationCard) obj[0]);
+        ServerProxy.get().discardCard((DestinationCard) obj[0]);
     }
 
     @Override

@@ -30,7 +30,7 @@ public class CreateGameService implements Service {
         {
             PendingGame newGame = new PendingGame(player,gameID);
             MainModel.get().getGameList().addServerPendingGame(newGame);
-            return MainModel.get().getGameList();
+            return newGame;
         }
     }
 }

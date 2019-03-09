@@ -4,7 +4,6 @@ import Command.ErrorCommand;
 import Models.IGame;
 import Models.MainModel;
 import Models.PendingGame;
-import Models.Player;
 
 public class JoinGameService implements Service {
     //Params: player, gameID
@@ -20,7 +19,7 @@ public class JoinGameService implements Service {
                 //TODO: check that user exists
                 game.addPlayer(player);
                 System.out.println("Player added to game");
-                return MainModel.get().getGameList();
+                return game;
             }
             else
             {
