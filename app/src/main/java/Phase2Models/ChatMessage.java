@@ -26,19 +26,19 @@ public class ChatMessage {
         this.timestamp = timestamp;
     }
 
-    String getMessage() {
+    public String getMessage() {
         return message;
     }
 
-    PlayerColorEnum getColor() {
+    public PlayerColorEnum getColor() {
         return color;
     }
 
-    String getPlayerName() {
+    public String getPlayerName() {
         return playerName;
     }
 
-    String getDate()
+    public String getDate()
     {
         Date time = new Date(timestamp);
         return SimpleDateFormat.getTimeInstance().format(time);

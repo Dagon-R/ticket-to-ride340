@@ -11,4 +11,8 @@ public class ChatQueue extends Observable {
         chatQueue.add(message);
         super.notify();
     }
+
+    public ArrayList<ChatMessage> getQueue(){
+        return chatQueue;
+    }
 }

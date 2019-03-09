@@ -34,14 +34,15 @@ public class JoinGameService implements Service {
         String gameName = (String) obj[1];
         //String joined = (String) obj[2];
         String ipAddress = (String) obj[2];
-        ClientGameList gameList = (ClientGameList) obj[3];
-        //Everyone gets game list
+        //ClientGameList gameList = (ClientGameList) obj[3];
+        PendingGame pendingGame = (PendingGame) obj[3];
 
-        model.setGameList(gameList);
+        model.addGameToGameList(pendingGame);
+        //model.setGameList(gameList);
         model.addPlayerToGame(gameName, playerName);
-        if(model.getIPAddress().equals(ipAddress) ){
-            PendingGame game = gameList.get(gameName);
-            model.setPendingGame(game);
+
+        if(model.getIPAddress().equals(ipAddress)){
+            model.setPendingGame(pendingGame);
         }
         if( model.getGame().getPendingGame().getName().equals(gameName)){ //if in the game or joining it
 
