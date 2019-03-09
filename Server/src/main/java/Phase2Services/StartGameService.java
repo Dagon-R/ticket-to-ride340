@@ -28,9 +28,9 @@ public class StartGameService implements Service {
             return new ErrorCommand("Game does not exist!");
         }
 
-//        if(model.getGameList().get(gameID).getPlayers().size() < 2){ //TODO: don't forget to uncomment
-//            return new ErrorCommand("Not enough players!");
-//        }
+        if(model.getGameList().get(gameID).getPlayers().size() < 2){ //TODO: don't forget to uncomment
+            return new ErrorCommand("Not enough players!");
+        }
 
         ActiveGame ag = model.getGameList().startGame(gameID);
         //divvy out destination cards
