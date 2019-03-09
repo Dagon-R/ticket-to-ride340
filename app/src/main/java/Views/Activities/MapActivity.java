@@ -29,10 +29,11 @@ import java.util.EnumSet;
 import Models.ActiveGame;
 import Models.Player;
 import Phase2Models.DestinationCard;
+import Phase2Models.City;
 import Phase2Models.MapModel;
 import Phase2Models.Store;
 import Presenters.MapPresenter;
-import Views.ActionBar;
+import Views.ViewInterfaces.ActionBar;
 import Views.MapLogic;
 import Views.R;
 import Views.ViewInterfaces.IMap;
@@ -80,7 +81,7 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
     }
 
     public void updateGameInfo(ActiveGame game) {
-
+        //drawer update
     }
 
     public void updateStore(Store store) {
@@ -88,12 +89,14 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
     }
 
     public void updateTurnView(int playerIndex) {
-
+        //grey out i - 1 and color i
+        //put views into list and
     }
 
 
     @Override
-    public void drawStore(int i) {
+    public void drawStore(int i, DestinationCard newCard) {
+        //replace card at i with new dest card
 
     }
 
@@ -107,9 +110,6 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
 
     }
 
-    public void drawTurnView(){
-
-    }
 
     @Override
     public void sendChat(String message) {
@@ -194,6 +194,8 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
         TextView val1 = (TextView) dialog.findViewById(R.id.val1);
         TextView val2 = (TextView) dialog.findViewById(R.id.val2);
         TextView val3 = (TextView) dialog.findViewById(R.id.val3);
+
+        //for(DestinationCard card : )
 
         DestinationCard card1 = destHand.iterator().next();
         String dests1Text = card1.getFirstCityName() + " - " + card1.getSecondCityName();

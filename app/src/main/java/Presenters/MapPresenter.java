@@ -122,7 +122,7 @@ public class MapPresenter implements Observer {
 
     }
     private void advanceTurn(){
-
+        //mapactivity.updateTurnView
     }
 
     public void showDestDialog(){
@@ -133,8 +133,10 @@ public class MapPresenter implements Observer {
     public void checkDestination(boolean isChecked, int index){
         DestinationCard card = null;
         EnumSet<DestinationCard> hand = MainModel.get().getPlayer().getDestHand();
-        for(int i = 0; i < index; i++){ //TODO: make sure this works
-            card = hand.iterator().next();
+        int i = 0;
+        for(DestinationCard itCard : hand){
+            if(i == index) card = itCard;
+            i += 1;
         }
         if(isChecked) selectedDestCards.add(card);
         if(!isChecked) selectedDestCards.remove(card);
