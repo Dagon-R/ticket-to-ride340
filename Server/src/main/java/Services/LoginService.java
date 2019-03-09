@@ -18,7 +18,7 @@ public class LoginService implements Service {
 
         //check that user exists with that username and password
         if(model.getUserList().findUser(username, password)){
-            return MainModel.get().getGameList();
+            return new GameList(MainModel.get().getGameList());
         } else{
             return new ErrorCommand("user does not exist",authToken);
         }
