@@ -1,5 +1,6 @@
 package Models;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.Observer;
@@ -47,7 +48,7 @@ public class ActiveGame{
 		queue= new ChatQueue();
 	}
 
-	private void addPlayers(TreeSet<String> players){
+	private void addPlayers(ArrayList<String> players){
 		int i =0;
 		for(String name : players){
 			Player player = new Player(name,PlayerColorEnum.values()[i]);

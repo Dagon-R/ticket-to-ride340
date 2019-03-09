@@ -13,12 +13,12 @@ public class GameList {
         ServerPendingGames = new HashMap<>();
     }
 
-    public IGame get(String name){
-        IGame game = ServerActiveGames.get(name);
-        if(game == null){
-            game = ServerPendingGames.get(name);
-        }
-        return game ;
+    public PendingGame getPendingGame(String name){
+        return ServerPendingGames.get(name);
+    }
+
+    public ActiveGame getActiveGame(String name){
+        return ServerActiveGames.get(name);
     }
 
     public HashMap<String,ActiveGame> getServerActiveGames(){

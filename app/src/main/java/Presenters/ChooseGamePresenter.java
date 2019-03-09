@@ -61,7 +61,7 @@ public class ChooseGamePresenter implements Observer {
                 break;
             case "PendingGame":
                 chooseGameActivity.switchToLobby();
-
+ 
         }
 
     }

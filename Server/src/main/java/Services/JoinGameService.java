@@ -1,7 +1,7 @@
 package Services;
 
 import Command.ErrorCommand;
-import Models.IGame;
+
 import Models.MainModel;
 import Models.PendingGame;
 
@@ -11,7 +11,7 @@ public class JoinGameService implements Service {
     public Object doService(Object... obj) {
         String player = (String) obj[0];
         String gameID = (String) obj[1];
-        IGame game = MainModel.get().getGameList().get(gameID);
+        PendingGame game = MainModel.get().getGameList().getPendingGame(gameID);
         if (game != null)
         {
             if (game.getClass() == PendingGame.class)

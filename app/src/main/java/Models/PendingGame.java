@@ -2,6 +2,7 @@ package Models;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.TreeSet;
 
 public class PendingGame{
@@ -61,5 +62,18 @@ public class PendingGame{
 	
 	private void setId(String input){
 		this.id = input;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof PendingGame)) return false;
+		PendingGame that = (PendingGame) o;
+		return Objects.equals(getName(), that.getName());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getName());
 	}
 }

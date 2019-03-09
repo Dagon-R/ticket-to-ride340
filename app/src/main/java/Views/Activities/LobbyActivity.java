@@ -18,6 +18,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Observable;
@@ -81,12 +82,12 @@ public class LobbyActivity extends AppCompatActivity {
         finish();
     }
 
-    public void updatePlayers(String[] players){
-        System.out.println("PLLLLAYERS " + Arrays.toString(players));
+    public void updatePlayers(ArrayList<String> players){
+        System.out.println("PLLLLAYERS " +players);
         for(int i =0; i < 5 /*Max 5 players*/;i++){
-            if(i< players.length){
-                System.out.println(players[i]);
-                playerTextfields.elementAt(i).setText(players[i]);
+            if(i< players.size()){
+                System.out.println(players.size());
+                playerTextfields.elementAt(i).setText(players.get(i));
                 continue;
             }
             playerTextfields.elementAt(i).setText("Waiting for player...");

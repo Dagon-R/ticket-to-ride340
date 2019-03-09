@@ -154,7 +154,7 @@ public class MainModel{
     }
 
     public void addPlayerToGame(String gameName, String player){
-        gameList.get(gameName).addPlayer(player);
+        gameList.addPlayerToGame(gameName,player);
 
     }
 

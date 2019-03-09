@@ -37,17 +37,17 @@ public class JoinGameService implements Service {
         //ClientGameList gameList = (ClientGameList) obj[3];
         PendingGame pendingGame = (PendingGame) obj[3];
 
-        model.addGameToGameList(pendingGame);
+//        model.addGameToGameList(pendingGame);
         //model.setGameList(gameList);
-        model.addPlayerToGame(gameName, playerName);
-
-        if(model.getIPAddress().equals(ipAddress)){
-            model.setPendingGame(pendingGame);
-        }
-        if( model.getGame().getPendingGame().getName().equals(gameName)){ //if in the game or joining it
-
+        PendingGame game =  model.getGame().getPendingGame();
+        if(game != null && game.getName().equals(gameName)){ //if in the game or joining it
             model.getGame().addToPendingGame(playerName);
+        }else if(model.getIPAddress().equals(ipAddress)){
+            model.setPendingGame(pendingGame);
+        }else{
+            model.addPlayerToGame(gameName, playerName);
         }
+
 
 
 
