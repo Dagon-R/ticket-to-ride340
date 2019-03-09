@@ -27,15 +27,9 @@ import Models.ActiveGame;
 
 import Models.Player;
 import Phase2Models.DestinationCard;
-import Phase2Models.City;
 import Phase2Models.MapModel;
 import Phase2Models.Store;
 import Presenters.MapPresenter;
-import Views.ActionBar;
-;
-import Views.MapLogic;
-import Views.R;
-import Views.ActionBar;
 import Views.ActionBar;
 import Views.MapLogic;
 import Views.R;

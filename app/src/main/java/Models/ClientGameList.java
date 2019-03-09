@@ -1,7 +1,6 @@
 package Models;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Observable;
 
 public class ClientGameList extends Observable {

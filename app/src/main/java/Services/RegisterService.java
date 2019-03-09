@@ -33,16 +33,6 @@ public class RegisterService implements Service {
                     e.printStackTrace();
                 }
             }
-//            while (true) {
-//                try {
-//                    TimeUnit.SECONDS.sleep((long) .002);
-//                    if (CommandManager.get() != null) {
-//                        break;
-//                    }
-//                } catch (InterruptedException e) {
-//                    System.out.println("Error sleeping");
-//                }
-//            }
         }
         if (si.isFinished() == -1) {MainModel.get().setErrorMessage("Failed Connection"); return;}
         String authToken = username + Long.toString(System.currentTimeMillis());

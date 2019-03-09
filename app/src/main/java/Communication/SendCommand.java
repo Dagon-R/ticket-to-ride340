@@ -10,7 +10,6 @@ import Command.CommandWrapper;
 
 //Instances of this class are created then executed in order to send commands to the server
 // This is required so that writing to the server is on a separate thread
-//TODO: Make this an AsyncTask
 public class SendCommand extends Thread {
     private final Gson json; // Object used for JSON transformations
     private Command command; // The command that's getting ready to be sent

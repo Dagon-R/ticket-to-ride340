@@ -25,7 +25,7 @@ public class CreateGameService implements Service {
     public void doService(Object... obj) {
         //Check params
         System.out.println("In doService!");
-        if(obj.length != 3){
+        if(obj.length != 4){
             model.setErrorMessage("Error Creating Game");
             System.out.println("ERROR: " + obj.length + " instead of 4 params on frontend createGame service");
         }
