@@ -31,6 +31,7 @@ import java.util.EnumSet;
 
 import Models.ActiveGame;
 import Models.Player;
+import Phase2Models.ChatQueue;
 import Phase2Models.DestinationCard;
 import Phase2Models.City;
 import Phase2Models.MapModel;
@@ -98,9 +99,9 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
         ((MapLogic)mapLogic).updateMap(map);
     }
 
-//    public void updateChat(ChatQueue queue){
+    public void updateChat(ChatQueue queue){
 
-//    }
+    }
     public void updatePlayerInfo(Player player){
 
     }
@@ -120,24 +121,26 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
 
 
     @Override
-    public void drawStore(int i, DestinationCard newCard) {
+    public void drawStore(int i) {
         //replace card at i with new dest card
+        mapPresenter.drawStore(i);
 
     }
 
     @Override
     public void drawTrainCarCard() {
-
+        mapPresenter.drawTrainCard();
     }
 
     @Override
     public void drawDestinationCard() {
-
+        mapPresenter.drawDestination();
     }
 
 
     @Override
     public void sendChat(String message) {
+        mapPresenter.sendMessage(message);
     }
 
     @Override
