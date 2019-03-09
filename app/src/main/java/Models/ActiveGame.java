@@ -12,7 +12,7 @@ import Phase2Models.Store;
 
 public class ActiveGame{
 	//A list of the players associated with the game
-	private TreeSet<String> players ;
+	private TreeSet<Player> players ;
 	//The name of the game that will be displayed in menus
 	private String name;
 	//The unique id that represents this game
@@ -37,12 +37,26 @@ public class ActiveGame{
 	
 	public ActiveGame(PendingGame startGame){
 		players = new TreeSet<>();
-		players.addAll(startGame.getPlayers());
-		player = startGame.getPlayer();
+		addPlayers(startGame.getPlayers());
+
+//		players.addAll();
+
 		this.name = startGame.getName();
 		this.id = startGame.getId() + "_ACTIVE";
 		routeOwners = new EnumMap<>(Route.class);
 		queue= new ChatQueue();
+	}
+
+	private void addPlayers(TreeSet<String> players){
+		int i =0;
+		for(String name : players){
+			Player player = new Player(name,PlayerColorEnum.values()[i]);
+			if(name.equals(MainModel.get().getUsername())){
+				this.player = player;
+			}
+			this.players.add(player);
+			i++;
+		}
 	}
     public Player getOwner(Route route) {return routeOwners.get(route);}
 
@@ -50,7 +64,7 @@ public class ActiveGame{
 	{
 		queue.add(message);
 	}
-	public Boolean addPlayer(String newPlayer){
+	public Boolean addPlayer(Player newPlayer){
 		return players.add(newPlayer);
 	}
 	
@@ -58,7 +72,7 @@ public class ActiveGame{
 		return players.remove(targetPlayer);
 	}
 	
-	public TreeSet<String> getPlayers(){
+	public TreeSet<Player> getPlayers(){
 		return players;
 	}
 	
@@ -75,7 +89,7 @@ public class ActiveGame{
 		queue.addObserver(o);
 	}
 
-	private void setPlayers(TreeSet<String> input){
+	private void setPlayers(TreeSet<Player> input){
 		this.players = input;
 	}
 	

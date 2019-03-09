@@ -8,16 +8,15 @@ public class ClientGameList extends Observable {
 	//A list of games that are currently waiting to start
 
 	//A list of games that are currently running
-	HashMap<String,PendingGame> ServerPendingGames;
+	private HashMap<String,PendingGame> ServerPendingGames;
 
 	public ClientGameList() {
 		ServerPendingGames = new HashMap<>();
 	}
 
 	public PendingGame get(String name){
-		PendingGame game = ServerPendingGames.get(name);
 
-		return game ;
+		return ServerPendingGames.get(name);
 	}
 
 	public void setServerPendingGames(HashMap<String,PendingGame> pendingGames){
@@ -33,6 +32,8 @@ public class ClientGameList extends Observable {
 
 	public void addServerPendingGame(PendingGame newGame){
 		ServerPendingGames.put(newGame.getName(),newGame);
+		setChanged();
+		notifyObservers();
 	}
 
 
@@ -51,8 +52,7 @@ public class ClientGameList extends Observable {
 		if(ServerPendingGames.containsKey(name)){
 			PendingGame game = ServerPendingGames.get(name);
 			ServerPendingGames.remove(name);
-			ActiveGame ag = new ActiveGame(game);
-			return ag;
+			return new ActiveGame(game);
 		}
 		return null;
 

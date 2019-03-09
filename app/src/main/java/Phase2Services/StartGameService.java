@@ -6,7 +6,6 @@ import java.util.Map;
 
 import Communication.ServerProxy;
 import Models.ActiveGame;
-import Models.ClientGameList;
 import Models.MainModel;
 import Models.PendingGame;
 import Phase2Models.DestinationCard;
@@ -15,11 +14,9 @@ import Phase2Models.TrainCardColor;
 import Services.Service;
 
 public class StartGameService implements Service {
-    private ServerProxy sp;
     private MainModel model;
 
     public StartGameService(){
-        sp = new ServerProxy();
         model = MainModel.get();
     }
 
@@ -27,7 +24,7 @@ public class StartGameService implements Service {
     //params: String gameID
     public void connectToProxy(Object... obj) {
         String gameID = (String) obj[0];
-        sp.startGame(gameID);
+        ServerProxy.get().startGame(gameID);
     }
 
     @Override
@@ -42,7 +39,7 @@ public class StartGameService implements Service {
         String gameID = (String) obj[0];
         String ipAddress = (String) obj[1];
         Store store = (Store) obj[2]; //game store
-        Map<String, DestinationCard[]> destCards = (Map<String, DestinationCard[]>) obj[3];
+        Map<String, DestinationCard[]> destCards = (Map <String, DestinationCard[]>) obj[3];
         Map<String, TrainCardColor[]> trainCards = (Map<String, TrainCardColor[]>) obj[4];
 
         PendingGame pg = model.findGame(gameID);
@@ -54,10 +51,10 @@ public class StartGameService implements Service {
             if(model.getIPAddress().equals(ipAddress)) { //if user
                 //set player's destination card hand
                 //ArrayList<DestinationCard> userDestCards = new ArrayList<>(Arrays.asList(destCards.get(model.getUser().getName())));
-                model.getPlayer().setDestHand(destCards.get(model.getUser().getName()));
+//                model.getPlayer().setDestHand(destCards.get(model.getUser().getName()));
                 //set player's train card hand
-                ArrayList<TrainCardColor> userTrainCards = new ArrayList<>(Arrays.asList(trainCards.get(model.getUser().getName())));
-                model.getPlayer().setTrainHand(userTrainCards);
+//                ArrayList<TrainCardColor> userTrainCards = new ArrayList<>(Arrays.asList(trainCards.get(model.getUser().getName())));
+//                model.getPlayer().setTrainHand(userTrainCards);
             }
 
         }
