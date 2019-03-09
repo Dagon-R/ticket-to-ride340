@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.view.View;
 
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import java.util.EnumSet;
@@ -212,29 +213,25 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
     }
 
     private void setDialogText(Dialog dialog, EnumSet<DestinationCard> destHand){
-        TextView dests1 = (TextView) dialog.findViewById(R.id.dests1);
-        TextView dests2 = (TextView) dialog.findViewById(R.id.dests2);
-        TextView dests3 = (TextView) dialog.findViewById(R.id.dests3);
-        TextView val1 = (TextView) dialog.findViewById(R.id.val1);
-        TextView val2 = (TextView) dialog.findViewById(R.id.val2);
-        TextView val3 = (TextView) dialog.findViewById(R.id.val3);
+        ArrayList<TextView> destViews = new ArrayList<>();
+        destViews.add((TextView) dialog.findViewById(R.id.dests1));
+        destViews.add((TextView) dialog.findViewById(R.id.dests2));
+        destViews.add((TextView) dialog.findViewById(R.id.dests3));
 
-        //for(DestinationCard card : )
+        ArrayList<TextView> valViews = new ArrayList<>();
+        valViews.add((TextView) dialog.findViewById(R.id.val1));
+        valViews.add((TextView) dialog.findViewById(R.id.val2));
+        valViews.add((TextView) dialog.findViewById(R.id.val3));
 
-        DestinationCard card1 = destHand.iterator().next();
-        String dests1Text = card1.getFirstCityName() + " - " + card1.getSecondCityName();
-        dests1.setText(dests1Text);
-        val1.setText(Integer.toString(card1.getValue()));
+        int i = 0;
+        String destText = "";
+        for(DestinationCard card : destHand){
+            destText = card.getFirstCityName() + " - " + card.getSecondCityName();
+            destViews.get(i).setText(destText);
+            valViews.get(i).setText(Integer.toString(card.getValue()));
+            i += 1;
+        }
 
-        DestinationCard card2 =  destHand.iterator().next();
-        String dests2Text = card2.getFirstCityName() + " - " + card2.getSecondCityName();
-        dests2.setText(dests2Text);
-        val2.setText(Integer.toString(card2.getValue()));
-
-        DestinationCard card3 =  destHand.iterator().next();
-        String dests3Text = card3.getFirstCityName() + " - " + card3.getSecondCityName();
-        dests3.setText(dests3Text);
-        val3.setText(Integer.toString(card3.getValue()));
     }
 
 

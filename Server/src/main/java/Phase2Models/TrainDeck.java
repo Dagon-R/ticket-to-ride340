@@ -1,5 +1,7 @@
 package Phase2Models;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.concurrent.ArrayBlockingQueue;
 
 public class TrainDeck {
@@ -18,6 +20,11 @@ public class TrainDeck {
         }
         deck.add(TrainCardColor.RAINBOW);
         deck.add(TrainCardColor.RAINBOW);
+
+        ArrayList<TrainCardColor> list = new ArrayList(deck);
+        Collections.shuffle(list);
+        deck = new ArrayBlockingQueue<>((TrainCardColor.values().length * DECK_COLOR_SIZE) + 2, true, deck);
+
     }
     public TrainCardColor[] draw2()
     {
