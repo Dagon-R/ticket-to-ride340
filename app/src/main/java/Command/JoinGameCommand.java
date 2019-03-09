@@ -9,7 +9,6 @@ public class JoinGameCommand implements Command {
     private String gameID; // The game being joined
     private volatile String ipAddress; // The IP Address of the user joining the game (set by Server)
     // The new list of pending games after this game was joined
-    //TODO: Use the Game ID to increment values instead of the WHOLE GAME LIST
     private volatile PendingGame pendingGame;
 
     @Override // If the player matches, join game, otherwise increment size of game in game list

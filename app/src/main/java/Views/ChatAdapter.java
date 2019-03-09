@@ -35,9 +35,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
 
     ChatAdapter(ChatQueue inputList){
         ArrayList<ChatMessage> pendingList = inputList.getQueue();
-        for(ChatMessage message : pendingList){
-            messageList.add(message);
-        }
+        messageList.addAll(pendingList);
         //colorMap.put()
     }
 
@@ -46,8 +44,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
         Context c = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(c);
         View gameView = inflater.inflate(R.layout.chat_recycler_layout, parent, false);
-        ViewHolder viewHolder = new ViewHolder(gameView);
-        return viewHolder;
+        return new ViewHolder(gameView);
     }
 
     @Override
@@ -66,12 +63,12 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
 
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView playerName;
-        public TextView chatContent;
+    class ViewHolder extends RecyclerView.ViewHolder {
+        TextView playerName;
+        TextView chatContent;
 
 
-        public ViewHolder(final View gameView) {
+        ViewHolder(final View gameView) {
             super(gameView);
 
             playerName = (TextView) gameView.findViewById(R.id.message_player);

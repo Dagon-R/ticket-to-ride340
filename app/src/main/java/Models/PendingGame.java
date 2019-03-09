@@ -1,6 +1,5 @@
 package Models;
 
-import java.util.HashSet;
 import java.util.TreeSet;
 
 public class PendingGame{
@@ -26,7 +25,7 @@ public class PendingGame{
 		return players.add(newPlayer);
 	}
 	
-	public Boolean removePlayer(Player targetPlayer){
+	public Boolean removePlayer(String targetPlayer){
 		return players.remove(targetPlayer);
 	}
 
