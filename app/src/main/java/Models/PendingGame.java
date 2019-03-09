@@ -1,9 +1,7 @@
 package Models;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.TreeSet;
 
 public class PendingGame{
 	//A list of the players associated with the game
