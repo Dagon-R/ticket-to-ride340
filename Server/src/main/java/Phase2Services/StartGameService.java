@@ -5,6 +5,7 @@ import java.util.HashMap;
 import Command.ErrorCommand;
 import Models.ActiveGame;
 import Models.MainModel;
+import Models.Player;
 import Models.ReturnObjects.StartGameReturn;
 import Phase2Models.DestinationCard;
 import Phase2Models.InvalidStoreLengthException;
@@ -33,20 +34,24 @@ public class StartGameService implements Service {
 
         ActiveGame ag = model.getGameList().startGame(gameID);
         //divvy out destination cards
-        HashMap<String, DestinationCard[]> cardMap = new HashMap<>();
-        TrainCardColor drawnCards[] = new TrainCardColor[0];
+        HashMap<String, DestinationCard[]> destMap = new HashMap<>();
+        HashMap<String, TrainCardColor[]> trainMap = new HashMap<>();
         Store store = null;
-        try {
-            store = new Store(drawnCards);
-        } catch (InvalidStoreLengthException e) {
+        try{
+            store = new Store(ag.getTrainDeck().drawStore());
+            ag.setStore(store);
+        } catch (InvalidStoreLengthException e){
             e.printStackTrace();
+            return new ErrorCommand("Invalid store length in start game service");
         }
-        HashMap<String, TrainCardColor[]> drawnTrains = new HashMap<>();
-//        for(Player player : ag.getPlayers()){
-            //create map of players to cards
-//            cardMap.put(player.getName(), ag.getDestDeck().draw3());
-//        }
 
-        return new StartGameReturn(gameID, store, drawnTrains, cardMap); //was gamelist
+        for(String playerName : ag.getPlayers()){
+            //create map of players to cards
+            destMap.put(playerName, ag.getDestDeck().draw3());
+            trainMap.put(playerName, ag.getTrainDeck().draw4());
+
+        }
+
+        return new StartGameReturn(gameID, store, trainMap, destMap); //was gamelist
     }
 }

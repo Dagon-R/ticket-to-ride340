@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_margin="10dp">
-        <android.support.v7.widget.AppCompatCheckBox
+        <CheckBox
             android:id="@+id/dest1Check"
             android:layout_margin="5dp"
             android:layout_width="wrap_content"
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_margin="10dp">
-        <android.support.v7.widget.AppCompatCheckBox
+        <CheckBox
             android:id="@+id/dest2Check"
             android:layout_margin="5dp"
             android:layout_width="wrap_content"
@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_margin="10dp">
-        <android.support.v7.widget.AppCompatCheckBox
+        <CheckBox
             android:id="@+id/dest3Check"
             android:layout_margin="5dp"
             android:layout_width="wrap_content"

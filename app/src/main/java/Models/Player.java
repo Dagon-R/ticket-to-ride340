@@ -1,6 +1,7 @@
 package Models;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumSet;
@@ -85,6 +86,12 @@ public class Player implements Comparable<Player>{
 	public void setDestHand(DestinationCard[] destHand) { //TODO TEST
 		EnumSet<DestinationCard> temp = EnumSet.noneOf(DestinationCard.class);
 		temp.addAll(Arrays.asList(destHand));
+		this.destHand = temp;
+	}
+
+	public void setDestHand(ArrayList<DestinationCard> destHand) { //TODO TEST
+		EnumSet<DestinationCard> temp = EnumSet.noneOf(DestinationCard.class);
+		temp.addAll(destHand);
 		this.destHand = temp;
 	}
 
