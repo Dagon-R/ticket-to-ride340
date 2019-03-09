@@ -1,6 +1,7 @@
 package Views.Activities;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -27,10 +28,13 @@ public class MainActivity extends AppCompatActivity implements Observer {
     Button registerButton;
     LoginPresenter loginPresenter;
     MainModel mainModel;
+    MediaPlayer mediaPlayer;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.railroad);
+        mediaPlayer.start();
         loginPresenter = new LoginPresenter(this);
         usernameTextfield = (EditText) findViewById(R.id.usernameTextfield);
         passwordTextfield = (EditText) findViewById(R.id.passwordTextfield);
@@ -123,6 +127,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
     @Override
     protected void onPause() {
         super.onPause();
+        mediaPlayer.stop();
+        mediaPlayer.release();
         loginPresenter.removeObserver();
     }
 }
