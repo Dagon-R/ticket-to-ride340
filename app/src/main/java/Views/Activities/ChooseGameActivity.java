@@ -14,7 +14,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 
-
+import Models.ClientGameList;
 import Models.MainModel;
 import Models.PendingGame;
 import Presenters.ChooseGamePresenter;
@@ -73,6 +73,10 @@ public class ChooseGameActivity extends AppCompatActivity{
         ChooseGameAdapter adapter = new ChooseGameAdapter(mainModel.getGameList());
         gamesRecyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(itemClick);
+    }
+
+    public void swapAdapter(ClientGameList gameList){
+        gamesRecyclerView.swapAdapter(new ChooseGameAdapter(gameList), false);
     }
 
     @Override

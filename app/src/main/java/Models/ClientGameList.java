@@ -32,7 +32,7 @@ public class ClientGameList extends Observable {
 	public void addServerPendingGame(PendingGame newGame){
 		ServerPendingGames.put(newGame.getName(),newGame);
 		setChanged();
-		notifyObservers();
+		notifyObservers(this);
 	}
 
 

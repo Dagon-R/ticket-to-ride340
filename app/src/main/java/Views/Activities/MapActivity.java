@@ -66,7 +66,7 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
 //        ((MapLogic)mapLogic).setIMap(this);
 //        this.setContentView(mapLogic);
     }
- 
+
     public void updateMap(MapModel map){
         ((MapLogic)mapLogic).updateMap(map);
     }
