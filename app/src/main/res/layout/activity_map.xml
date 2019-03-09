@@ -5,31 +5,32 @@
     android:id="@+id/activity_map_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000"
     tools:context=".Activities.MapActivity">
 
 
 
-<!--This nested coordinator layout needs to be here or else the sheet won't work properly-->
-    <!--<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-        <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-        <!--xmlns:tools="http://schemas.android.com/tools"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:background="#efefef"-->
+This nested coordinator layout needs to be here or else the sheet won't work properly
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#efefef">
         <!--tools:context="info.androidhive.bottomsheet.MainActivity">-->
 
 
 
-            <View
+            <Views.MapLogic
                 android:id="@+id/map"
                 android:layout_width="match_parent"
                 android:layout_height="266dp"
                 android:background="#00FFFFFF" />
 
 
-        <!--<include layout="@layout/chat_sheet" />-->
+        <include layout="@layout/chat_sheet" />
 
-<!--</android.support.design.widget.CoordinatorLayout>-->
+</android.support.design.widget.CoordinatorLayout>
 
 <!--This is the player drawer stuff, it can't go in another file, I tried-->
     <LinearLayout

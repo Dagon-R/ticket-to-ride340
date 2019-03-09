@@ -1,5 +1,6 @@
 package Views;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -12,6 +13,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 
 import Phase2Models.City;
 import Phase2Models.MapModel;
@@ -30,9 +32,8 @@ public class MapLogic extends View {
     float routeThickness;
     IMap mapActivity;
 
-    public MapLogic(Context context, AttributeSet attrs, Canvas canvas) { //TODO: fix!
+    public MapLogic(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.canvas = canvas;
         this.mapActivity = mapActivity;
         paint = new Paint();
         radius =15;
@@ -45,6 +46,9 @@ public class MapLogic extends View {
         mapActivity = map;
     }
 
+    public void setCanvas(Canvas canvas){
+        this.canvas = canvas;
+    }
 
     public MapLogic(Context context, IMap mapActivity){
         super(context);
