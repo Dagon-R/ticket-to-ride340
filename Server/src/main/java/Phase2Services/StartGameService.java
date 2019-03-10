@@ -28,7 +28,7 @@ public class StartGameService implements Service {
             return new ErrorCommand("Game does not exist!");
         }
 
-//        if(model.getGameList().getPendingGame(gameID).getPlayers().size() < 2){
+//        if(model.getGameList().get(gameID).getPlayers().size() < 2){ //TODO: don't forget to uncomment
 //            return new ErrorCommand("Not enough players!");
 //        }
 

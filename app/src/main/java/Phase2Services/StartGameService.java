@@ -68,6 +68,8 @@ public class StartGameService implements Service {
                 //set player's train card hand
                 EnumMap<TrainCardColor,Integer> userTrainCards =colorMap.get(model.getUser().getName());
                 model.getPlayer().setTrainHand(userTrainCards);
+
+                //decrement deck counts (subtract sum player train cards & dest cards)
             }
 
         }

@@ -5,16 +5,18 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashSet;
+import java.util.Observable;
 import java.util.Observer;
 import java.util.TreeSet;
 
 import Phase2Models.ChatMessage;
 import Phase2Models.ChatQueue;
+import Phase2Models.City;
 import Phase2Models.Route;
 import Phase2Models.Store;
 
-public class ActiveGame{
-	private static String TAG = "ActiveGame";
+public class ActiveGame extends Observable {
+	static String TAG = "ActiveGame";
 	//A list of the players associated with the game
 	private TreeSet<Player> players ;
 	//The name of the game that will be displayed in menus
@@ -26,6 +28,9 @@ public class ActiveGame{
 	private Store store;
 	private ChatQueue queue;
     private EnumMap<Route,Player> routeOwners;
+    private int destDeckSize;
+    private int trainDeckSize;
+    private int activePlayerInd;
 //	public ActiveGame(){}
 
 	//Should be called from ClientGameList.unPendGame
@@ -38,8 +43,14 @@ public class ActiveGame{
 //        queue= new ChatQueue();
 //        routeOwners = new EnumMap<>(Route.class);
 //	}
-	
-	ActiveGame(PendingGame startGame, Store store){
+
+	public ActiveGame() {
+
+		routeOwners = new EnumMap<>(Route.class);
+		queue= new ChatQueue();
+	}
+
+	public ActiveGame(PendingGame startGame){
 		players = new TreeSet<>();
 		addPlayers(startGame.getPlayers());
 
@@ -50,6 +61,12 @@ public class ActiveGame{
 		routeOwners = new EnumMap<>(Route.class);
 		queue= new ChatQueue();
         this.store = store;
+		//Sorry for the hard coding but they're always the same so sue me -_o_-
+		this.destDeckSize = 30;
+		this.trainDeckSize = 110;
+		this.activePlayerInd = 0;
+
+//		store = new Store();
 	}
 
 	private void addPlayers(ArrayList<String> players){
@@ -65,6 +82,15 @@ public class ActiveGame{
 			this.players.add(player);
 			i++;
 		}
+	}
+
+	public void setRouteOwner(City city1, City city2){
+		Route route = Route.getRoute(city1,city2);
+		if(route != null){
+			routeOwners.put(route,player);
+			return;
+		}
+		MainModel.get().setErrorMessage(city1.getName() + " is not directly next to "+ city2);
 	}
     public Player getOwner(Route route) {return routeOwners.get(route);}
 
@@ -92,12 +118,18 @@ public class ActiveGame{
 		return id;
 	}
 
-	public void addObserver(Observer o){
-		store.addObserver(o);
+	public void addObservers(Observer o){
+	    //		store.addObserver(o);
+        store.addObserver(o);
 		queue.addObserver(o);
+		this.addObserver(o);
 	}
 
-	private void setPlayers(TreeSet<Player> input){
+    public EnumMap<Route, Player> getRouteOwners() {
+        return routeOwners;
+    }
+
+    private void setPlayers(TreeSet<Player> input){
 		this.players = input;
 	}
 	
@@ -131,5 +163,40 @@ public class ActiveGame{
 
 	public void setQueue(ChatQueue queue) {
 		this.queue = queue;
+	}
+
+	public int getDestDeckSize() {
+		return destDeckSize;
+	}
+
+	public void setDestDeckSize(int destDeckSize) {
+		this.destDeckSize = destDeckSize;
+	}
+
+	public void decrementDeckSize(int numDrawn){
+		this.destDeckSize -= numDrawn;
+	}
+
+	public int getTrainDeckSize() {
+		return trainDeckSize;
+	}
+
+	public void setTrainDeckSize(int trainDeckSize) {
+		this.trainDeckSize = trainDeckSize;
+	}
+
+	public void decrementTrainCards(int numDrawn){
+		this.trainDeckSize -= numDrawn;
+	}
+
+	public int getActivePlayerInd() {
+		return activePlayerInd;
+	}
+
+	public void incActivePlayerInd(){
+		int numPlayers = this.players.size();
+		this.activePlayerInd += 1;
+		//wraparound to player 0
+		if(this.activePlayerInd > numPlayers) this.activePlayerInd = 0;
 	}
 }
