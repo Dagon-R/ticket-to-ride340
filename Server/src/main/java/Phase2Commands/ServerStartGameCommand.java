@@ -14,7 +14,7 @@ import Phase2Services.StartGameService;
 public class ServerStartGameCommand implements Command {
     private volatile TrainCardColor[] store;
     private volatile HashMap<String, DestinationCard[]> drawnCards;
-    private volatile HashMap<String, EnumMap<TrainCardColor,Integer>> drawnTrains;
+    private volatile HashMap<String, Integer[]> drawnTrains;
     private String gameID;
     private volatile String ipAddress;
 

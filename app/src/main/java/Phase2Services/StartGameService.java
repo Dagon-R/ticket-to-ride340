@@ -43,17 +43,18 @@ public class StartGameService implements Service {
         String ipAddress = (String) obj[1];
         Store store = (Store) obj[2]; //game store
         HashMap<String, DestinationCard[]> destCards = (HashMap<String, DestinationCard[]>) obj[3];
-        HashMap<String, LinkedHashMap<TrainCardColor,Integer>> tempTrains = (HashMap<String, LinkedHashMap<TrainCardColor,Integer>>) obj[4];
-        HashMap<String, EnumMap<TrainCardColor,Integer>> trainCards = new HashMap<>();
-        for (String string : tempTrains.keySet())
+        HashMap<String, Integer[]> drawnTrains = (HashMap<String, Integer[]>) obj[4];
+        HashMap<String, EnumMap<TrainCardColor,Integer>> colorMap = new HashMap<>();
+        for (String string : drawnTrains.keySet())
         {
-            trainCards.put(string,new EnumMap<TrainCardColor, Integer>(TrainCardColor.class));
-            for (TrainCardColor color : tempTrains.get(string).keySet())
+            colorMap.put(string,new EnumMap<TrainCardColor, Integer>(TrainCardColor.class));
+            int i = 0;
+            for (int count : drawnTrains.get(string))
             {
-                trainCards.get(string).put(color,tempTrains.get(string).get(color));
+                colorMap.get(string).put(TrainCardColor.values()[i],count);
+                i++;
             }
         }
-
         PendingGame pg = model.findGame(gameID);
         if(pg != null){ //checks if this is user's game
 //            ActiveGame ag = model.getGameList().unPendGame(pg.getName()); //creates active game and removes pending from list
@@ -65,8 +66,7 @@ public class StartGameService implements Service {
                 //ArrayList<DestinationCard> userDestCards = new ArrayList<>(Arrays.asList(destCards.get(model.getUser().getName())));
                 model.getPlayer().setDestHand(destCards.get(model.getUser().getName()));
                 //set player's train card hand
-                EnumMap<TrainCardColor,Integer> userTrainCards =
-                        new EnumMap<TrainCardColor,Integer>(trainCards.get(model.getUser().getName()));
+                EnumMap<TrainCardColor,Integer> userTrainCards =colorMap.get(model.getUser().getName());
                 model.getPlayer().setTrainHand(userTrainCards);
             }
 

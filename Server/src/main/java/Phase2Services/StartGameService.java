@@ -28,14 +28,14 @@ public class StartGameService implements Service {
             return new ErrorCommand("Game does not exist!");
         }
 
-        if(model.getGameList().getPendingGame(gameID).getPlayers().size() < 2){
-            return new ErrorCommand("Not enough players!");
-        }
+//        if(model.getGameList().getPendingGame(gameID).getPlayers().size() < 2){
+//            return new ErrorCommand("Not enough players!");
+//        }
 
         ActiveGame ag = model.getGameList().startGame(gameID);
         //divvy out destination cards
         HashMap<String, DestinationCard[]> destMap = new HashMap<>();
-        HashMap<String, EnumMap<TrainCardColor,Integer>> trainMap = new HashMap<>();
+        HashMap<String, Integer[]> trainMap = new HashMap<>();
         Store store = null;
         try{
             store = new Store(ag.getTrainDeck().drawStore());
@@ -48,13 +48,14 @@ public class StartGameService implements Service {
         for(String playerName : ag.getPlayers()){
             //create map of players to cards
             destMap.put(playerName, ag.getDestDeck().draw3());
-            trainMap.put(playerName,new EnumMap<TrainCardColor,Integer>(TrainCardColor.class));
+            trainMap.put(playerName,new Integer[TrainCardColor.values().length]);
+            int i = 0;
             for (TrainCardColor color : TrainCardColor.values())
-            {trainMap.get(playerName).put(color,0);}
+            {trainMap.get(playerName)[color.ordinal()] = 0;}
             for (TrainCardColor color : ag.getTrainDeck().draw4())
             {
-                int colorCount = trainMap.get(playerName).get(color);
-                trainMap.get(playerName).put(color,colorCount+1);
+                int colorCount = trainMap.get(playerName)[color.ordinal()];
+                trainMap.get(playerName)[color.ordinal()] = colorCount+1;
             }
 
         }
