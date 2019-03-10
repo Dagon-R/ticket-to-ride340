@@ -93,8 +93,7 @@ public class ActiveGame extends Observable {
 	}
     public Player getOwner(Route route) {return routeOwners.get(route);}
 
-    public void addChatMessage(ChatMessage message)
-	{
+    public void addChatMessage(ChatMessage message){
 		queue.add(message);
 	}
 	public Boolean addPlayer(Player newPlayer){
@@ -120,6 +119,7 @@ public class ActiveGame extends Observable {
 	public void addObservers(Observer o){
 		store.addObserver(o);
 		queue.addObserver(o);
+		
 		this.addObserver(o);
 	}
 

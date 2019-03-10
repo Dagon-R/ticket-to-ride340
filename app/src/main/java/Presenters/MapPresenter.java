@@ -149,18 +149,13 @@ public class MapPresenter implements Observer {
         Service drawTrainCardService = null;
     }
     public void selectCity(float x, float y,PointF size){
-        //Loop over cities and check distance between this point and the city point
-        //If distance is <= a specified radius, the city will be specified
-        //If no city is currently selected selectCity();
-        //If same city as currently selected, deselectCity()
-        //If city is not directly connected, do nothing
-        //If city is directly connected, claimRoute()
         for(City city : City.values()){
             PointF point = MapEquations.getPoint(city,size);
             float dist = (float)Math.pow(Math.pow(x-point.x,2) + Math.pow(y-point.y,2),.5);
 
             if(dist < 30){
-                if(MainModel.get().getMapModel().getSelectedCity() == null)selectCity(city);
+                if(MainModel.get().getMapModel().getSelectedCity() == null) selectCity(city);
+                else if(MainModel.get().getMapModel().getSelectedCity().equals(city)) deselectCity();
                 else claimRoute(MainModel.get().getMapModel().getSelectedCity(),city);
                 return;
             }
@@ -170,34 +165,29 @@ public class MapPresenter implements Observer {
     private void claimRoute(City city1, City city2){
         MainModel.get().getGame().getActiveGame().setRouteOwner(city1,city2);
         MainModel.get().getMapModel().setSelectedCity(null);
-        //Send prompt to view with message "Claim route between %city1 and %city2?" (place names in for city1 and city2)
-        //Prompt should also include "Requires %numberRequired %color train car cards"
-        //Prompt includes "You have %numberOwned %color train car cards"
-        //Prompt may also include "You must use %numberRequired - numberOwned rainbow car cards"
-        //Options for confirm and deny
-        //(Next parts will not be called from here, but will include the sequence of events)
-        //If confirmed, call confirmRoute()
-        //If deny, deselectCity()
+        //TODO Send prompt to view with message "Claim route between %city1 and %city2?" (place names in for city1 and city2)
+        //TODO Prompt should also include "Requires %numberRequired %color train car cards"
+        //TODO Prompt includes "You have %numberOwned %color train car cards"
+        //TODO Prompt may also include "You must use %numberRequired - numberOwned rainbow car cards"
+        //TODO Options for confirm and deny
+        //TODO (Next parts will not be called from here, but will include the sequence of events)
+        //TODO If confirmed, call confirmRoute()
+        //TODO If deny, deselectCity()
     }
 
     public void confirmRoute(){
-        //Confirm route after being prompted
         Service claimRouteService = new ClaimRouteService();
     }
 
     private void selectCity(City city){
         MainModel.get().getMapModel().setSelectedCity(city);
-
-}
+    }
 
     private void deselectCity(){
         MainModel.get().getMapModel().setSelectedCity(null);
-        //update model. Selected
     }
     public void sendMessage(String message){
-//        ChatMessage message, String gameI
-//        ChatMessage chatMessage = new ChatMessage(MainModel.get().getPlayer(),message,(int)System.currentTimeMillis());
-        //Create ChatMessage object, retrieve UTC time stamp, and send to service
+
         Service chatService = new ChatService();
         chatService.connectToProxy(message,MainModel.get().getGame().getActiveGame().getName());
 

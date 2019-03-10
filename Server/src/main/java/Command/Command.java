@@ -7,4 +7,6 @@ public interface Command {
     void addResults(Object obj);
 
     void setIpAddress(String ipAddress);
+
+    String getGameID();
 }

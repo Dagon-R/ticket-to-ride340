@@ -24,6 +24,8 @@ public class ServerJoinGameCommand implements Command {
         //this.joined = joined;
     }
 
+
+
     public String getIpAddress() {
         return ipAddress;
     }

@@ -15,7 +15,10 @@ public class ServerChatCommand implements Command {
 
     @Override
     public void addResults(Object obj) { }
-
+    @Override
+    public String getGameID() {
+        return gameID;
+    }
     @Override
     public void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;

@@ -6,11 +6,10 @@ import java.util.Observable;
 public class ChatQueue extends Observable {
     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     private ArrayList<ChatMessage> chatQueue = new ArrayList<>();
-    public void add(ChatMessage message)
-    {
+    public void add(ChatMessage message){
         chatQueue.add(message);
         setChanged();
-        notifyObservers();
+        notifyObservers(this);
     }
 
     public ArrayList<ChatMessage> getQueue(){

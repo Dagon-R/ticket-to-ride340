@@ -17,6 +17,11 @@ public class ServerDiscardCardCommand implements Command {
     }
 
     @Override
+    public String getGameID() {
+        return gameId;
+    }
+
+    @Override
     public void addResults(Object obj) {
         success = (Boolean) obj;
     }

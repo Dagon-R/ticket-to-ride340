@@ -32,13 +32,17 @@ public class ChatService implements Service {
         String gameID = (String) obj[1];
         //String ipAddress = (String) obj[2];
         ActiveGame game = model.getGame().getActiveGame();
-        if (game != null && game.getName().equals(gameID))
-        {
-            game.addChatMessage(message);
+        if(game == null){
+            System.out.println("You dont have a game. Stop trying to receive messages");
+            return;
         }
-        else
-        {
-            System.out.println("Another game just got a chat message");
+        if(!game.getName().equals(gameID)){
+            System.out.println("Another Active game just got a chat message");
+            return;
         }
+
+
+        game.addChatMessage(message);
+
     }
 }
