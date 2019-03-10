@@ -1,5 +1,7 @@
 package Phase2Models;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.concurrent.ArrayBlockingQueue;
 
 public class TrainDeck {
@@ -18,6 +20,11 @@ public class TrainDeck {
         }
         deck.add(TrainCardColor.RAINBOW);
         deck.add(TrainCardColor.RAINBOW);
+
+        ArrayList<TrainCardColor> list = new ArrayList(deck);
+        Collections.shuffle(list);
+        deck = new ArrayBlockingQueue<>((TrainCardColor.values().length * DECK_COLOR_SIZE) + 2, true, deck);
+
     }
     public TrainCardColor[] draw2()
     {
@@ -33,6 +40,16 @@ public class TrainDeck {
         if (deck.size() > 0) {result[1] = deck.poll();}
         if (deck.size() > 0) {result[2] = deck.poll();}
         if (deck.size() > 0) {result[3] = deck.poll();}}
+        return result;
+    }
+
+    public TrainCardColor[] drawStore(){
+        TrainCardColor[] result = new TrainCardColor[5];
+        if (deck.size() > 0) {result[0] = deck.poll();}
+        if (deck.size() > 0) {result[1] = deck.poll();}
+        if (deck.size() > 0) {result[2] = deck.poll();}
+        if (deck.size() > 0) {result[3] = deck.poll();}
+        if (deck.size() > 0) {result[4] = deck.poll();}
         return result;
     }
 }

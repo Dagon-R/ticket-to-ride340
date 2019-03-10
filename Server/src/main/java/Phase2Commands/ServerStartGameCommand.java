@@ -1,24 +1,23 @@
 package Phase2Commands;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Objects;
 
 import Command.Command;
-import Models.GameList;
+import Models.ReturnObjects.StartGameReturn;
 import Phase2Models.DestinationCard;
 import Phase2Models.Store;
+import Phase2Models.TrainCardColor;
 import Services.Service;
 import Phase2Services.StartGameService;
 
 public class ServerStartGameCommand implements Command {
+    private volatile Store store;
+    private volatile HashMap<String, DestinationCard[]> drawnCards;
+    private volatile HashMap<String, EnumMap<TrainCardColor,Integer>> drawnTrains;
     private String gameID;
-    private boolean starting;
-    private String ipAddress;
-    private GameList gameList;
-
-    // New Fields
-    private Store store;
-    private HashMap<String, DestinationCard[]> drawnCards;
+    private volatile String ipAddress;
 
     public ServerStartGameCommand() {
     }
@@ -35,14 +34,6 @@ public class ServerStartGameCommand implements Command {
         this.gameID = gameID;
     }
 
-    public boolean isStarting() {
-        return starting;
-    }
-
-    public void setStarting(boolean starting) {
-        this.starting = starting;
-    }
-
     @Override
     public void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
@@ -51,15 +42,19 @@ public class ServerStartGameCommand implements Command {
     @Override
     public void addResults(Object obj) {
         if(obj == null) return;
-        if(obj.getClass() != GameList.class) return;
-        this.gameList = (GameList) obj;
+        if(obj.getClass() != StartGameReturn.class) return;
+        StartGameReturn returnVal = (StartGameReturn) obj;
+        this.store = returnVal.getStore();
+        this.drawnCards = returnVal.getDrawnDestCards();
+        this.drawnTrains = returnVal.getDrawnTrains();
+        this.gameID = returnVal.getGameID();
     }
 
     @Override
     public Object execute() {
         Service startGameService = new StartGameService();
 
-        return startGameService.doService(gameID, store, drawnCards);
+        return startGameService.doService(gameID);
     }
 
     @Override
@@ -80,9 +75,10 @@ public class ServerStartGameCommand implements Command {
     public String toString() {
         return "ServerStartGameCommand{" +
                 "gameID='" + gameID + '\'' +
-                ", starting=" + starting +
+                ", store=" + store +
                 ", ipAddress='" + ipAddress + '\'' +
-                ", gameList=" + gameList +
+                ", trainCards=" + drawnTrains +
+                ", destCards=" + drawnCards +
                 '}';
     }
 }

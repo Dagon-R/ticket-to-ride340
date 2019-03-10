@@ -1,32 +1,57 @@
 package Models.ReturnObjects;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 
-import Models.GameList;
 import Phase2Models.DestinationCard;
+import Phase2Models.Store;
+import Phase2Models.TrainCardColor;
 
 public class StartGameReturn implements ReturnWrapper {
-    private GameList gameList;
-    private HashMap<String, DestinationCard[]> cardMap;
+    private String gameID;
+    private HashMap<String, EnumMap<TrainCardColor,Integer>> drawnTrains;
+    private HashMap<String, DestinationCard[]> drawnDestCards;
+    private Store store;
 
-    public StartGameReturn(GameList gameList, HashMap<String, DestinationCard[]> cardMap) {
-        this.gameList = gameList;
-        this.cardMap = cardMap;
+    public StartGameReturn(String gameID, Store store,
+                           HashMap<String, EnumMap<TrainCardColor,Integer>> drawnTrains,
+                           HashMap<String, DestinationCard[]> drawnDestCards)
+    {
+        this.gameID = gameID;
+        this.drawnTrains = drawnTrains;
+        this.drawnDestCards = drawnDestCards;
+        this.store = store;
     }
 
-    public GameList getGameList() {
-        return gameList;
+    public String getGameID() {
+        return gameID;
     }
 
-    public void setGameList(GameList gameList) {
-        this.gameList = gameList;
+    public void setGameID(String gameID) {
+        this.gameID = gameID;
     }
 
-    public HashMap<String, DestinationCard[]> getCardMap() {
-        return cardMap;
+    public HashMap<String, EnumMap<TrainCardColor,Integer>> getDrawnTrains() {
+        return drawnTrains;
     }
 
-    public void setCardMap(HashMap<String, DestinationCard[]> cardMap) {
-        this.cardMap = cardMap;
+    public void setDrawnTrains(HashMap<String, EnumMap<TrainCardColor,Integer>> drawnTrains) {
+        this.drawnTrains = drawnTrains;
+    }
+
+    public HashMap<String, DestinationCard[]> getDrawnDestCards() {
+        return drawnDestCards;
+    }
+
+    public void setDrawnDestCards(HashMap<String, DestinationCard[]> drawnDestCards) {
+        this.drawnDestCards = drawnDestCards;
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
     }
 }

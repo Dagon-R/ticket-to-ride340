@@ -5,6 +5,7 @@ import java.util.Observer;
 
 import Phase2Models.Activities;
 import Phase2Models.ActivityTypes;
+import Phase2Models.ChatQueue;
 import Phase2Models.MapModel;
 import Phase2Models.Store;
 
@@ -86,10 +87,12 @@ public class MainModel{
     }
 
     public void activateGame(String gameName, Store store){
-        ActiveGame game = gameList.startGame(gameName);
+        gameList.startGame(gameName);
+        ActiveGame game = new ActiveGame(this.game.getPendingGame());
         setActiveGame(game);
+        game.setStore(store);
 //        ((ActiveGame) game).setStore(store);
-//        createMapActivity();
+        createMapActivity();
     }
 
     private void createMapActivity(){
@@ -153,7 +156,7 @@ public class MainModel{
     }
 
     public void addPlayerToGame(String gameName, String player){
-        gameList.get(gameName).addPlayer(player);
+        gameList.addPlayerToGame(gameName,player);
 
     }
 
@@ -186,4 +189,6 @@ public class MainModel{
     public void addGameToGameList(PendingGame newGame) {
         this.getGameList().addServerPendingGame(newGame);
     }
+    public Store getStore() {return this.game.getActiveGame().getStore();}
+    public ChatQueue getChatQueue() {return this.game.getActiveGame().getChatQueue();}
 }

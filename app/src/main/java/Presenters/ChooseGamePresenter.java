@@ -48,15 +48,20 @@ public class ChooseGamePresenter implements Observer {
             case "ErrorMessage":
                 final ErrorMessage errorMessage = (ErrorMessage)o;
                 runOnUI(new Runnable(){public void run() {
-//                        chooseGameActivity.popToast((errorMessage).getError());
+                        chooseGameActivity.popToast((errorMessage).getError());
                 }});
                 break;
             case "ClientGameList":
-//                    chooseGameActivity.switchToLobby();
+                    runOnUI(new Runnable() {
+                        @Override
+                        public void run() {
+                            chooseGameActivity.swapAdapter(MainModel.get().getGameList());
+                        }
+                    });
                 break;
             case "PendingGame":
                 chooseGameActivity.switchToLobby();
-
+ 
         }
 
     }

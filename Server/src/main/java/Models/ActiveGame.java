@@ -10,7 +10,7 @@ import Phase2Models.Route;
 import Phase2Models.Store;
 import Phase2Models.TrainDeck;
 
-public class ActiveGame implements IGame{
+public class ActiveGame{
 	//A list of the players associated with the game
 	private TreeSet<String> players = new TreeSet<>();
 
@@ -91,11 +91,27 @@ public class ActiveGame implements IGame{
 		this.gameId = input;
 	}
 
+	public DestinationDeck getDestDeck() {
+		return destDeck;
+	}
+
+	public void setDestDeck(DestinationDeck destDeck) {
+		this.destDeck = destDeck;
+	}
+
+	public void setTrainDeck(TrainDeck trainDeck) {
+		this.trainDeck = trainDeck;
+	}
+
+	public void setStore(Store store) {
+		this.store = store;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
-		if (!(o instanceof IGame)) return false;
-		IGame that = (IGame) o;
+		if (!(o instanceof ActiveGame)) return false;
+		ActiveGame that = (ActiveGame) o;
 		return Objects.equals(getGameName(), that.getGameName());
 	}
 

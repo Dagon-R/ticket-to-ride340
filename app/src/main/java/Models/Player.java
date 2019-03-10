@@ -3,8 +3,8 @@ package Models;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.EnumSet;
-import java.util.List;
 
 import Phase2Models.DestinationCard;
 import Phase2Models.TrainCardColor;
@@ -17,7 +17,7 @@ public class Player implements Comparable<Player>{
 
 
 	// New Fields
-	private ArrayList<TrainCardColor> trainHand;
+	private EnumMap<TrainCardColor,Integer> trainHand;
 	private EnumSet<DestinationCard> destHand; //TODO: might have to override some methods bc enumsets are weird
 	private int score;
 	private int piecesLeft;
@@ -69,11 +69,9 @@ public class Player implements Comparable<Player>{
 		this.playerColor = playerColor;
 	}
 
-	public ArrayList<TrainCardColor> getTrainHand() {
-		return trainHand;
-	}
+	public int getCardColorCount(TrainCardColor color) { return trainHand.get(color); }
 
-	public void setTrainHand(ArrayList<TrainCardColor> trainHand) {
+	public void setTrainHand(EnumMap<TrainCardColor,Integer> trainHand) {
 		this.trainHand = trainHand;
 	}
 
@@ -84,6 +82,12 @@ public class Player implements Comparable<Player>{
 	public void setDestHand(DestinationCard[] destHand) { //TODO TEST
 		EnumSet<DestinationCard> temp = EnumSet.noneOf(DestinationCard.class);
 		temp.addAll(Arrays.asList(destHand));
+		this.destHand = temp;
+	}
+
+	public void setDestHand(ArrayList<DestinationCard> destHand) { //TODO TEST
+		EnumSet<DestinationCard> temp = EnumSet.noneOf(DestinationCard.class);
+		temp.addAll(destHand);
 		this.destHand = temp;
 	}
 

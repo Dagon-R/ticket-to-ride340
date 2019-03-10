@@ -6,8 +6,8 @@ public class UserList{
     private ArrayList<User> list;
 
 
-    public UserList() {
-        list = new ArrayList<User>();
+    UserList() {
+        list = new ArrayList<>();
     }
 
     public void addUser(User newUser){
@@ -16,7 +16,7 @@ public class UserList{
 
     public boolean findUser(String username, String password){
         for(User user : list){
-            if(user.getName().equals(username) && user.getName().equals(password)){
+            if(user.getName().equals(username) && user.getPassword().equals(password)){
                 return true;
             }
         }

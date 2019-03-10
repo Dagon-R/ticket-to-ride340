@@ -1,5 +1,8 @@
 package Models;
 
+import android.util.Log;
+
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.Observer;
@@ -11,6 +14,7 @@ import Phase2Models.Route;
 import Phase2Models.Store;
 
 public class ActiveGame{
+	static String TAG = "ActiveGame";
 	//A list of the players associated with the game
 	private TreeSet<Player> players ;
 	//The name of the game that will be displayed in menus
@@ -47,12 +51,15 @@ public class ActiveGame{
 		queue= new ChatQueue();
 	}
 
-	private void addPlayers(TreeSet<String> players){
+	private void addPlayers(ArrayList<String> players){
 		int i =0;
+		Log.d(TAG, "addPlayers: " + players);
 		for(String name : players){
 			Player player = new Player(name,PlayerColorEnum.values()[i]);
+
 			if(name.equals(MainModel.get().getUsername())){
 				this.player = player;
+
 			}
 			this.players.add(player);
 			i++;
@@ -117,7 +124,7 @@ public class ActiveGame{
 		this.player = player;
 	}
 
-	public ChatQueue getQueue() {
+	public ChatQueue getChatQueue() {
 		return queue;
 	}
 

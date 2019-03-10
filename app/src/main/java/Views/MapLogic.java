@@ -1,6 +1,5 @@
 package Views;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -13,7 +12,6 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 
 import Phase2Models.City;
 import Phase2Models.MapModel;
