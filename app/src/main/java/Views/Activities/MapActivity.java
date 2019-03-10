@@ -29,14 +29,18 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import java.util.EnumSet;
+import java.util.TreeSet;
 
 import Models.ActiveGame;
 import Models.Player;
 import Phase2Models.ChatQueue;
 import Phase2Models.ChatQueue;
+import Models.PlayerColorEnum;
+import Models.PlayerList;
 import Phase2Models.DestinationCard;
 import Phase2Models.MapModel;
 import Phase2Models.Store;
+import Phase2Models.TrainCardColor;
 import Presenters.MapPresenter;
 //import Views.ActionBar;
 ;
@@ -69,6 +73,7 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
     TextView whiteCards;
     TextView rainbowCards;
 
+    LinearLayout actionBar;
 
 
     @Override
@@ -85,6 +90,9 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
 
         //presenter initialization stuff
 
+//        mapPresenter = new MapPresenter(this);
+        //init actionbar
+        actionBar = (LinearLayout) findViewById(R.id.action_bar_layout);
         //drawer initialization stuff
         drawerLayout = findViewById(R.id.activity_map_layout);
         destinationCardDisplay = findViewById(R.id.destination_card_recycler_view);
@@ -134,12 +142,95 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
     }
 
     public void updateStore(Store store) {
+        ArrayList<View> views = new ArrayList<>();
+        views.add((View) findViewById(R.id.store0));
+        views.add((View) findViewById(R.id.store1));
+        views.add((View) findViewById(R.id.store2));
+        views.add((View) findViewById(R.id.store3));
+        views.add((View) findViewById(R.id.store4));
 
+        TrainCardColor[] storeList = store.getStore();
+        for(int i = 0; i < storeList.length; i++){
+            views.get(i).setBackgroundColor(getTrainColor(storeList[i]));
+        }
     }
 
-    public void updateTurnView(int playerIndex) {
+    private int getTrainColor(TrainCardColor cardColor){
+        int retColor = 0;
+        switch (cardColor){
+            case BLUE:
+                retColor = getResources().getColor(R.color.blue);
+                break;
+            case RED:
+                retColor = getResources().getColor(R.color.red);
+                break;
+            case BLACK:
+                retColor = getResources().getColor(R.color.black);
+                break;
+            case GREEN:
+                retColor = getResources().getColor(R.color.green);
+                break;
+            case WHITE:
+                retColor = getResources().getColor(R.color.white);
+                break;
+            case ORANGE:
+                retColor = getResources().getColor(R.color.orange);
+                break;
+            case PURPLE:
+                retColor = getResources().getColor(R.color.purple);
+                break;
+            case YELLOW:
+                retColor = getResources().getColor(R.color.yellow);
+                break;
+            case RAINBOW:
+                retColor = getResources().getColor(R.color.rainbow);
+                break;
+        }
+        return retColor;
+    }
+
+    private int getPlayerColor(PlayerColorEnum playerColor){
+        int retColor = 0;
+        switch (playerColor) { //RBGYB
+            case RED:
+                retColor = getResources().getColor(R.color.p0Color);
+                break;
+            case BLUE:
+                retColor = getResources().getColor(R.color.p1Color);
+                break;
+            case GREEN:
+                retColor = getResources().getColor(R.color.p2Color);
+                break;
+            case YELLOW:
+                retColor = getResources().getColor(R.color.p3Color);
+                break;
+            case BLACK:
+                retColor = getResources().getColor(R.color.p4Color);
+                break;
+        }
+        return retColor;
+    }
+
+
+
+    public void updateTurnView(int playerIndex, TreeSet<Player> playerList) {
         //grey out i - 1 and color i
-        //put views into list and
+        ArrayList<View> views = new ArrayList<>();
+        views.add((View) findViewById(R.id.p0Turn));
+        views.add((View) findViewById(R.id.p1Turn));
+        views.add((View) findViewById(R.id.p2Turn));
+        views.add((View) findViewById(R.id.p3Turn));
+        views.add((View) findViewById(R.id.p4Turn));
+
+        int i = 0;
+        int lastPlayer = playerIndex - 1;
+        if(lastPlayer < 0) lastPlayer = playerList.size();
+        for(Player player : playerList){
+            //set active player view color
+            if (i == playerIndex) views.get(i).getBackground().setTint(getPlayerColor(player.getColor()));
+            //set previous active player view color to grey
+            if(i == lastPlayer)  views.get(i).getBackground().setTint(getResources().getColor(R.color.grey));
+        }
     }
 
 

@@ -14,6 +14,7 @@ import Phase2Models.ChatQueue;
 import Phase2Models.City;
 import Phase2Models.Route;
 import Phase2Models.Store;
+import Views.R;
 
 public class ActiveGame extends Observable {
 	static String TAG = "ActiveGame";
@@ -28,6 +29,9 @@ public class ActiveGame extends Observable {
 	private Store store;
 	private ChatQueue queue;
     private EnumMap<Route,Player> routeOwners;
+    private int destDeckSize;
+    private int trainDeckSize;
+    private int activePlayerInd;
 //	public ActiveGame(){}
 
 	//Should be called from ClientGameList.startGame
@@ -57,8 +61,10 @@ public class ActiveGame extends Observable {
 		this.id = startGame.getId() + "_ACTIVE";
 		routeOwners = new EnumMap<>(Route.class);
 		queue= new ChatQueue();
-
-//		store = new Store();
+		//Sorry for the hard coding but they're always the same so sue me -_o_-
+		this.destDeckSize = 30;
+		this.trainDeckSize = 110;
+		this.activePlayerInd = 0;
 	}
 
 	private void addPlayers(ArrayList<String> players){
@@ -154,5 +160,40 @@ public class ActiveGame extends Observable {
 
 	public void setQueue(ChatQueue queue) {
 		this.queue = queue;
+	}
+
+	public int getDestDeckSize() {
+		return destDeckSize;
+	}
+
+	public void setDestDeckSize(int destDeckSize) {
+		this.destDeckSize = destDeckSize;
+	}
+
+	public void decrementDeckSize(int numDrawn){
+		this.destDeckSize -= numDrawn;
+	}
+
+	public int getTrainDeckSize() {
+		return trainDeckSize;
+	}
+
+	public void setTrainDeckSize(int trainDeckSize) {
+		this.trainDeckSize = trainDeckSize;
+	}
+
+	public void decrementTrainCards(int numDrawn){
+		this.trainDeckSize -= numDrawn;
+	}
+
+	public int getActivePlayerInd() {
+		return activePlayerInd;
+	}
+
+	public void incActivePlayerInd(){
+		int numPlayers = this.players.size();
+		this.activePlayerInd += 1;
+		//wraparound to player 0
+		if(this.activePlayerInd > numPlayers) this.activePlayerInd = 0;
 	}
 }

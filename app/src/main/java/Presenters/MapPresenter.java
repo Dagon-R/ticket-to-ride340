@@ -39,6 +39,7 @@ public class MapPresenter implements Observer {
         MainModel.get().addMapObservers(this);
         selectedDestCards = new ArrayList<>();
         showDestDialog();
+        initActionBar();
         initialize();
     }
 
@@ -76,6 +77,9 @@ public class MapPresenter implements Observer {
                 break;
             case "ActiveGame":
                 updateActiveGame();
+                mapActivity.updateGameInfo((ActiveGame)arg);
+                ActiveGame ag = MainModel.get().getGame().getActiveGame();
+                mapActivity.updateTurnView(ag.getActivePlayerInd(), ag.getPlayers());
                 break;
             case "MapModel":
 
@@ -202,6 +206,12 @@ public class MapPresenter implements Observer {
     }
     private void advanceTurn(){
         //mapactivity.updateTurnView
+    }
+
+    public void initActionBar(){
+        ActiveGame ag = MainModel.get().getGame().getActiveGame();
+        mapActivity.updateTurnView(ag.getActivePlayerInd(), ag.getPlayers());
+        mapActivity.updateStore(ag.getStore());
     }
 
     public void showDestDialog(){

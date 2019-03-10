@@ -54,4 +54,12 @@ public class Store extends Observable {
         }
         else {return new TrainCardColor[]{};}
     }
+
+    public TrainCardColor[] getStore() {
+        return store;
+    }
+
+    public void setStore(TrainCardColor[] store) {
+        this.store = store;
+    }
 }
