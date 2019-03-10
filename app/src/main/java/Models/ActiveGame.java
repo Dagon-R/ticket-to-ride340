@@ -118,7 +118,7 @@ public class ActiveGame extends Observable {
 		return id;
 	}
 
-	public void addObserver(Observer o){
+	public void addObservers(Observer o){
 	    //		store.addObserver(o);
         store.addObserver(o);
 		queue.addObserver(o);
