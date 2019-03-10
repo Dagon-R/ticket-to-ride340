@@ -1,5 +1,6 @@
 package Views.Activities;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.PointF;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.support.v7.widget.RecyclerView;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Button;
@@ -25,6 +27,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.EnumSet;
+import java.util.TreeSet;
 
 import Models.ActiveGame;
 import Models.Player;
@@ -32,11 +35,13 @@ import Phase2Models.ChatQueue;
 import Phase2Models.DestinationCard;
 import Phase2Models.MapModel;
 import Phase2Models.Store;
+import Phase2Models.TrainCardColor;
 import Presenters.MapPresenter;
 
 import Views.Adapters.ChatAdapter;
 import Views.Adapters.DestinationAdapter;
 
+import Views.PlayerSummaryView;
 import Views.ViewInterfaces.ActionBar;
 
 import Views.MapLogic;
@@ -65,6 +70,12 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
     TextView whiteCards;
     TextView rainbowCards;
 
+    PlayerSummaryView[] playersArray;
+    PlayerSummaryView player1;
+    PlayerSummaryView player2;
+    PlayerSummaryView player3;
+    PlayerSummaryView player4;
+    PlayerSummaryView player5;
 
 
     @Override
@@ -81,7 +92,7 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
 
         //presenter initialization stuff
         mapPresenter = new MapPresenter(this);
-        //drawer initialization stuff
+        //Player drawer initialization stuff
         drawerLayout = findViewById(R.id.activity_map_layout);
         destinationCardDisplay = findViewById(R.id.destination_card_recycler_view);
         TextView blueCards = findViewById(R.id.blue_card_box);
@@ -93,6 +104,13 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
         TextView blackCards = findViewById(R.id.black_card_box);
         TextView whiteCards = findViewById(R.id.white_card_box);
         TextView rainbowCards = findViewById(R.id.rainbow_card_box);
+        //Game drawer initialization
+        player1 = findViewById(R.id.player1);
+        player2 = findViewById(R.id.player2);
+        player3 = findViewById(R.id.player3);
+        player4 = findViewById(R.id.player4);
+        player5 = findViewById(R.id.player5);
+        playersArray = new PlayerSummaryView[]{player1, player2, player3, player4, player5};
         //chat sheet initialization stuff
         chatSheet = findViewById(R.id.bottom_sheet);
         chatList = findViewById(R.id.chat_recycler_view);
@@ -126,11 +144,24 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
 //    }
     public void updatePlayerInfo(Player player){
         destinationCardDisplay.swapAdapter(new DestinationAdapter(player.getDestHand()), false);
-        
+        blueCards.setText(player.getCardColorCount(TrainCardColor.BLUE));
+        redCards.setText(player.getCardColorCount(TrainCardColor.RED));
+        yellowCards.setText(player.getCardColorCount(TrainCardColor.YELLOW));
+        greenCards.setText(player.getCardColorCount(TrainCardColor.GREEN));
+        purpleCards.setText(player.getCardColorCount(TrainCardColor.PURPLE));
+        orangeCards.setText(player.getCardColorCount(TrainCardColor.ORANGE));
+        blackCards.setText(player.getCardColorCount(TrainCardColor.BLACK));
+        whiteCards.setText(player.getCardColorCount(TrainCardColor.WHITE));
+        rainbowCards.setText(player.getCardColorCount(TrainCardColor.RAINBOW));
     }
 
     public void updateGameInfo(ActiveGame game) {
-        //drawer update
+        TreeSet<Player> players = game.getPlayers();
+        int i = 0;
+        for (Player currentPlayer : players){
+            playersArray[i].setInfo(currentPlayer);
+            i++;
+        }
     }
 
     public void updateStore(Store store) {

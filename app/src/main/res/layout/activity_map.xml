@@ -155,84 +155,30 @@ This nested coordinator layout needs to be here or else the sheet won't work pro
         android:orientation="vertical"
         android:background="#efefef">
 
-        <LinearLayout
-            android:id="@+id/player1_info1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            android:orientation="horizontal"
-            android:background="#efefef">
+        <Views.PlayerSummaryView
+                android:id="@+id/player1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-            <View android:id="@+id/player1_active_box"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_alignParentTop="true"
-                android:background="#000000"
-                android:visibility="visible"/>
+        <Views.PlayerSummaryView
+            android:id="@+id/player2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-            <TextView
-                android:id="@+id/player1_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/blue"/>
+        <Views.PlayerSummaryView
+            android:id="@+id/player3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Points:"/>
+        <Views.PlayerSummaryView
+            android:id="@+id/player4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-            <TextView
-                android:id="@+id/player1_points"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"/>
-
-        </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/player1_info2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
-                android:orientation="horizontal"
-                android:background="#efefef">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Train Cards:"/>
-
-                <TextView
-                    android:id="@+id/player1_train_cards"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Dest. Cards:"/>
-
-                <TextView
-                    android:id="@+id/player1_destination_cards"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Trains:"/>
-
-                <TextView
-                    android:id="@+id/player1_trains"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"/>
-
-
-
-            </LinearLayout>
+        <Views.PlayerSummaryView
+            android:id="@+id/player5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
 
         <!-- End Game drawer stuff-->

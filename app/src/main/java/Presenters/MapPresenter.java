@@ -36,7 +36,7 @@ public class MapPresenter implements Observer {
         this.mapActivity = mapActivity;
         MainModel.get().addMapObservers(this);
         selectedDestCards = new ArrayList<>();
-        showDestDialog();
+        //showDestDialog();
     }
 
     @Override

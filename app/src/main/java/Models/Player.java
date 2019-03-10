@@ -110,4 +110,22 @@ public class Player implements Comparable<Player>{
 	public void setPiecesLeft(int piecesLeft) {
 		this.piecesLeft = piecesLeft;
 	}
+
+	public int getTotalTrainCards(){
+		int total = 0;
+		total += trainHand.get(TrainCardColor.BLUE);
+		total += trainHand.get(TrainCardColor.RED);
+		total += trainHand.get(TrainCardColor.GREEN);
+		total += trainHand.get(TrainCardColor.ORANGE);
+		total += trainHand.get(TrainCardColor.PURPLE);
+		total += trainHand.get(TrainCardColor.YELLOW);
+		total += trainHand.get(TrainCardColor.BLACK);
+		total += trainHand.get(TrainCardColor.WHITE);
+		total += trainHand.get(TrainCardColor.RAINBOW);
+		return total;
+	}
+
+	public int getTotalDestinationCards(){
+		return destHand.size();
+	}
 }
