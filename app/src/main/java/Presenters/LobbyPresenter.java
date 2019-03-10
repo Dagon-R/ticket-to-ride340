@@ -1,17 +1,15 @@
 package Presenters;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.TreeSet;
 
 import Models.ErrorMessage;
 import Models.MainModel;
 import Phase2Services.StartGameService;
-import Views.Activities.LobbyActivity;
+import views.activities.LobbyActivity;
 
 public class LobbyPresenter implements Observer {
     static String TAG = "LobbyPresenter";

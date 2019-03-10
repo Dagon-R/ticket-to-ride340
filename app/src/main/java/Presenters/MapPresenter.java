@@ -5,7 +5,6 @@ import android.util.Log;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.Map;
 import java.util.Observable;
@@ -14,19 +13,14 @@ import java.util.Set;
 
 import Models.ActiveGame;
 import Models.MainModel;
-import Models.Player;
-import Phase2Models.ChatMessage;
-import Phase2Models.ChatQueue;
 import Phase2Models.City;
 import Phase2Models.DestinationCard;
-import Phase2Models.MapModel;
-import Phase2Models.Store;
 
 import Phase2Services.ChatService;
 import Phase2Services.ClaimRouteService;
 import Phase2Services.DrawDestCardService;
 import Services.Service;
-import Views.Activities.MapActivity;
+import views.activities.MapActivity;
 //import View.MapActivity;
 
 public class MapPresenter implements Observer {
@@ -141,6 +135,9 @@ public class MapPresenter implements Observer {
             @Override
             public void run() {
                 mapActivity.updateGameInfo(MainModel.get().getGame().getActiveGame());
+
+                ActiveGame ag = MainModel.get().getGame().getActiveGame();
+                mapActivity.updateTurnView(ag.getActivePlayerInd(), ag.getPlayers());
             }
         });
     }
@@ -179,7 +176,7 @@ public class MapPresenter implements Observer {
             PointF point = MapEquations.getPoint(city,size);
             float dist = (float)Math.pow(Math.pow(x-point.x,2) + Math.pow(y-point.y,2),.5);
 
-            if(dist < 30){
+            if(dist < 50){
                 if(MainModel.get().getMapModel().getSelectedCity() == null) selectCity(city);
                 else if(MainModel.get().getMapModel().getSelectedCity().equals(city)) deselectCity();
                 else claimRoute(MainModel.get().getMapModel().getSelectedCity(),city);
