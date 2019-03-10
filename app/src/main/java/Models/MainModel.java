@@ -1,6 +1,5 @@
 package Models;
 
-import java.util.Observable;
 import java.util.Observer;
 
 import Phase2Models.Activities;
@@ -94,12 +93,11 @@ public class MainModel{
     }
 
     public void activateGame(String gameName, Store store){
-        gameList.startGame(gameName);
-        ActiveGame game = new ActiveGame(this.game.getPendingGame());
-        setActiveGame(game);
-        game.setStore(store);
+        gameList.unPendGame(gameName);
+        ActiveGame game = new ActiveGame(this.game.getPendingGame(),store);
 //        ((ActiveGame) game).setStore(store);
         createMapActivity();
+        setActiveGame(game);
     }
 
     private void createMapActivity(){

@@ -24,7 +24,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -134,7 +133,7 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
             public void onClick(View v) {
                 String newMessage = chatInput.getText().toString();
                 if(newMessage.length() == 0){
-
+                    
                 }
                 else{
                     chatInput.setText("");
@@ -146,6 +145,7 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
         //canvas initialization stuff
         mapLogic = findViewById(R.id.map);
         mapLogic.setIMap(this);
+        //presenter initialization stuff
         mapPresenter = new MapPresenter(this);
     }
 
@@ -157,6 +157,7 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
         Toast.makeText(MapActivity.this,error,Toast.LENGTH_SHORT).show();
     }
 
+//    public void updateChat(ChatQueue queue){
 
 
     public void updatePlayerInfo(Player player){

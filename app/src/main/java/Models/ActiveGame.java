@@ -33,7 +33,7 @@ public class ActiveGame extends Observable {
     private int activePlayerInd;
 //	public ActiveGame(){}
 
-	//Should be called from ClientGameList.startGame
+	//Should be called from ClientGameList.unPendGame
 //	public ActiveGame(Player host, String gameName){
 //		players = new TreeSet<>();
 //
@@ -60,6 +60,7 @@ public class ActiveGame extends Observable {
 		this.id = startGame.getId() + "_ACTIVE";
 		routeOwners = new EnumMap<>(Route.class);
 		queue= new ChatQueue();
+        this.store = store;
 		//Sorry for the hard coding but they're always the same so sue me -_o_-
 		this.destDeckSize = 30;
 		this.trainDeckSize = 110;
@@ -117,8 +118,9 @@ public class ActiveGame extends Observable {
 		return id;
 	}
 
-	public void addObservers(Observer o){
-//		store.addObserver(o);
+	public void addObserver(Observer o){
+	    //		store.addObserver(o);
+        store.addObserver(o);
 		queue.addObserver(o);
 		this.addObserver(o);
 	}

@@ -3,6 +3,8 @@ package Phase2Services;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import Communication.ServerProxy;
@@ -40,12 +42,22 @@ public class StartGameService implements Service {
         String gameID = (String) obj[0];
         String ipAddress = (String) obj[1];
         Store store = (Store) obj[2]; //game store
-        Map<String, DestinationCard[]> destCards = (Map <String, DestinationCard[]>) obj[3];
-        Map<String, EnumMap<TrainCardColor,Integer>> trainCards = (Map<String, EnumMap<TrainCardColor,Integer>>) obj[4];
-
+        HashMap<String, DestinationCard[]> destCards = (HashMap<String, DestinationCard[]>) obj[3];
+        HashMap<String, Integer[]> drawnTrains = (HashMap<String, Integer[]>) obj[4];
+        HashMap<String, EnumMap<TrainCardColor,Integer>> colorMap = new HashMap<>();
+        for (String string : drawnTrains.keySet())
+        {
+            colorMap.put(string,new EnumMap<TrainCardColor, Integer>(TrainCardColor.class));
+            int i = 0;
+            for (int count : drawnTrains.get(string))
+            {
+                colorMap.get(string).put(TrainCardColor.values()[i],count);
+                i++;
+            }
+        }
         PendingGame pg = model.findGame(gameID);
         if(pg != null){ //checks if this is user's game
-//            ActiveGame ag = model.getGameList().startGame(pg.getName()); //creates active game and removes pending from list
+//            ActiveGame ag = model.getGameList().unPendGame(pg.getName()); //creates active game and removes pending from list
 //            ag.setStore(store);
             model.activateGame(gameID,store);
 
@@ -54,7 +66,7 @@ public class StartGameService implements Service {
                 //ArrayList<DestinationCard> userDestCards = new ArrayList<>(Arrays.asList(destCards.get(model.getUser().getName())));
                 model.getPlayer().setDestHand(destCards.get(model.getUser().getName()));
                 //set player's train card hand
-                EnumMap<TrainCardColor,Integer> userTrainCards = trainCards.get(model.getUser().getName());
+                EnumMap<TrainCardColor,Integer> userTrainCards =colorMap.get(model.getUser().getName());
                 model.getPlayer().setTrainHand(userTrainCards);
 
                 //decrement deck counts (subtract sum player train cards & dest cards)

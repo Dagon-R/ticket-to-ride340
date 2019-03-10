@@ -3,18 +3,12 @@ package Phase2Models;
 import java.util.Observable;
 
 public class Store extends Observable {
+
     private TrainCardColor store[];
     private static final int STORE_SIZE = 5;
-    public Store(TrainCardColor[] store) throws InvalidStoreLengthException
+    public Store(TrainCardColor[] store)
     {
-        if (store.length == 5)
-        {
-            this.store = store;
-        }
-        else
-        {
-            throw new InvalidStoreLengthException();
-        }
+        this.store = store;
     }
     public TrainCardColor[] drawAt(int... indexes)
     {

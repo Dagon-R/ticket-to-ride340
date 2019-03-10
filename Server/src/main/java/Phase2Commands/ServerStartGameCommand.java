@@ -7,15 +7,14 @@ import java.util.Objects;
 import Command.Command;
 import Models.ReturnObjects.StartGameReturn;
 import Phase2Models.DestinationCard;
-import Phase2Models.Store;
 import Phase2Models.TrainCardColor;
 import Services.Service;
 import Phase2Services.StartGameService;
 
 public class ServerStartGameCommand implements Command {
-    private volatile Store store;
+    private volatile TrainCardColor[] store;
     private volatile HashMap<String, DestinationCard[]> drawnCards;
-    private volatile HashMap<String, EnumMap<TrainCardColor,Integer>> drawnTrains;
+    private volatile HashMap<String, Integer[]> drawnTrains;
     private String gameID;
     private volatile String ipAddress;
 
@@ -44,7 +43,7 @@ public class ServerStartGameCommand implements Command {
         if(obj == null) return;
         if(obj.getClass() != StartGameReturn.class) return;
         StartGameReturn returnVal = (StartGameReturn) obj;
-        this.store = returnVal.getStore();
+        this.store = returnVal.getStore().getStore();
         this.drawnCards = returnVal.getDrawnDestCards();
         this.drawnTrains = returnVal.getDrawnTrains();
         this.gameID = returnVal.getGameID();
