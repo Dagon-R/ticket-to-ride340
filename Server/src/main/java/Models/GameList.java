@@ -15,11 +15,21 @@ public class GameList {
 
     public GameList(GameList gameList){
         ServerPendingGames = gameList.getServerPendingGames();
+//        createReadyGames();
     }
 
     GameList() {
         ServerActiveGames = new HashMap<>();
         ServerPendingGames = new HashMap<>();
+//        createReadyGames();
+    }
+
+    private void createReadyGames(){
+//        MainModel.get().getUserList().addUser(new User("Host","hehe"));
+        for(int i =0; i < 10; i++){
+
+            ServerPendingGames.put("Game"+i,new PendingGame("Host","Game"+i));
+        }
     }
 
     public PendingGame getPendingGame(String name){

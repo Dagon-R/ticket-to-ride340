@@ -145,6 +145,8 @@ public class ActiveGame extends Observable {
 
 	public void setStore(Store store) {
 		this.store = store;
+		setChanged();
+		notifyObservers(store);
 	}
 
 	public Player getPlayer() {

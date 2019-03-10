@@ -2,60 +2,46 @@ package Views.Activities;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.PointF;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-
-//import android.support.design.widget.BottomSheetBehavior;
-import android.support.annotation.ColorInt;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.DisplayMetrics;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
+import android.util.DisplayMetrics;
+import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.view.View;
 import android.widget.Toast;
 
-
 import java.util.ArrayList;
-import java.util.Map;
-
 import java.util.EnumSet;
 import java.util.TreeSet;
 
 import Models.ActiveGame;
 import Models.Player;
-import Phase2Models.ChatQueue;
-import Phase2Models.ChatQueue;
 import Models.PlayerColorEnum;
-import Models.PlayerList;
 import Phase2Models.ChatQueue;
 import Phase2Models.DestinationCard;
-import Phase2Models.City;
 import Phase2Models.MapModel;
 import Phase2Models.Store;
 import Phase2Models.TrainCardColor;
 import Presenters.MapPresenter;
-
 import Views.Adapters.ChatAdapter;
 import Views.Adapters.DestinationAdapter;
-
-import Views.PlayerSummaryView;
-import Views.ViewInterfaces.ActionBar;
 import Views.MapLogic;
+import Views.PlayerSummaryView;
 import Views.R;
+import Views.ViewInterfaces.ActionBar;
 import Views.ViewInterfaces.IMap;
 import Views.ViewInterfaces.MesssageSender;
+
+//import android.support.design.widget.BottomSheetBehavior;
 
 public class MapActivity extends AppCompatActivity implements ActionBar, IMap, MesssageSender {
     static String TAG = "MapActivity";
@@ -100,17 +86,27 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
 
     }
 
+
+
     private void construct() {
-//        mapLogic = new MapLogic(this, this);
+        setupActionBar();
+        setupDrawers();
+        setupChatSheet();
+        setupMap();
+        mapPresenter = new MapPresenter(this);
 
-        //presenter initialization stuff
+    }
 
-//        mapPresenter = new MapPresenter(this);
-        //init actionbar
-//        actionBar = (LinearLayout) findViewById(R.id.action_bar_layout);
+    private void setupActionBar(){
         actionBar = findViewById(R.id.action_bar_layout);
-        //drawer initialization stuff
-        drawerLayout = findViewById(R.id.activity_map_layout);
+    }
+
+    private void setupMap(){
+        mapLogic = findViewById(R.id.map);
+        mapLogic.setIMap(this);
+    }
+
+    private void setupPlayerDrawer(){
         destinationCardDisplay = findViewById(R.id.destination_card_recycler_view);
         blueCards = findViewById(R.id.blue_card_box);
         redCards = findViewById(R.id.red_card_box);
@@ -121,40 +117,37 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
         blackCards = findViewById(R.id.black_card_box);
         whiteCards = findViewById(R.id.white_card_box);
         rainbowCards = findViewById(R.id.rainbow_card_box);
-        //Game drawer initialization
+    }
+
+    private void setupGameDrawer(){
         player1 = findViewById(R.id.player1);
         player2 = findViewById(R.id.player2);
         player3 = findViewById(R.id.player3);
         player4 = findViewById(R.id.player4);
         player5 = findViewById(R.id.player5);
         playersArray = new PlayerSummaryView[]{player1, player2, player3, player4, player5};
-        //chat sheet initialization stuff
+    }
+
+    private void setupChatSheet(){
         chatSheet = findViewById(R.id.bottom_sheet);
         chatList = findViewById(R.id.chat_recycler_view);
+        chatList.setLayoutManager(new LinearLayoutManager(this));
         chatInput = findViewById(R.id.message_box);
         chatButton = findViewById(R.id.message_button);
         chatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String newMessage = chatInput.getText().toString();
-                if(newMessage.length() == 0){
+                sendChat(newMessage);
 
-                }
-                else{
-                    chatInput.setText("");
-                    sendChat(newMessage);
-                }
             }
         });
+    }
 
-        //canvas initialization stuff
-        mapLogic = findViewById(R.id.map);
-        mapLogic.setIMap(this);
-
-        //presenter initialization stuff
-        mapPresenter = new MapPresenter(this);
-        //presenter initialization stuff
-//        mapPresenter = new MapPresenter(this);
+    private void setupDrawers(){
+        drawerLayout = findViewById(R.id.activity_map_layout);
+        setupPlayerDrawer();
+        setupGameDrawer();
     }
 
     public void updateMap(MapModel map){
@@ -168,8 +161,12 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
 //    public void updateChat(ChatQueue queue){
 
 
-    public void updatePlayerInfo(Player player){
-        destinationCardDisplay.swapAdapter(new DestinationAdapter(player.getDestHand()), false);
+    public void updateDestinationCards(EnumSet<DestinationCard> destinationCards){
+        destinationCardDisplay.swapAdapter(new DestinationAdapter(destinationCards), false);
+
+    }
+
+    public void updateTrainCards(Player player){
         blueCards.setText(String.valueOf(player.getCardColorCount(TrainCardColor.BLUE)));
         redCards.setText((String.valueOf(player.getCardColorCount(TrainCardColor.RED))));
         yellowCards.setText(String.valueOf(player.getCardColorCount(TrainCardColor.YELLOW)));
@@ -192,11 +189,11 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
 
     public void updateStore(Store store) {
         ArrayList<View> views = new ArrayList<>();
-        views.add((View) findViewById(R.id.store0));
-        views.add((View) findViewById(R.id.store1));
-        views.add((View) findViewById(R.id.store2));
-        views.add((View) findViewById(R.id.store3));
-        views.add((View) findViewById(R.id.store4));
+        views.add(findViewById(R.id.store0));
+        views.add(findViewById(R.id.store1));
+        views.add(findViewById(R.id.store2));
+        views.add(findViewById(R.id.store3));
+        views.add(findViewById(R.id.store4));
 
         TrainCardColor[] storeList = store.getStore();
         for(int i = 0; i < storeList.length; i++){
@@ -265,11 +262,11 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
     public void updateTurnView(int playerIndex, TreeSet<Player> playerList) {
         //grey out i - 1 and color i
         ArrayList<View> views = new ArrayList<>();
-        views.add((View) findViewById(R.id.p0Turn));
-        views.add((View) findViewById(R.id.p1Turn));
-        views.add((View) findViewById(R.id.p2Turn));
-        views.add((View) findViewById(R.id.p3Turn));
-        views.add((View) findViewById(R.id.p4Turn));
+        views.add(findViewById(R.id.p0Turn));
+        views.add(findViewById(R.id.p1Turn));
+        views.add(findViewById(R.id.p2Turn));
+        views.add(findViewById(R.id.p3Turn));
+        views.add(findViewById(R.id.p4Turn));
 
         int i = 0;
         int lastPlayer = playerIndex - 1;

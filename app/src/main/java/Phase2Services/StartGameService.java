@@ -71,11 +71,17 @@ public class StartGameService implements Service {
             return;
         }
 
-        model.activateGame(gameID,store);
-        model.getPlayer().setDestHand(destCards.get(model.getUser().getName()));
+
+        ActiveGame game = model.activateGame(gameID,store);
+        game.getPlayer().setDestHand(destCards.get(model.getUser().getName()));
         //set player's train card hand
         EnumMap<TrainCardColor,Integer> userTrainCards =colorMap.get(model.getUser().getName());
-        model.getPlayer().setTrainHand(userTrainCards);
+
+
+
+
+        game.getPlayer().setTrainHand(userTrainCards);
+        model.setActiveGame(game);
 
             //decrement deck counts (subtract sum player train cards & dest cards)
 //        }

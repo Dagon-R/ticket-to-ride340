@@ -97,6 +97,7 @@ public class ActiveGame{
 
 	public void setDestDeck(DestinationDeck destDeck) {
 		this.destDeck = destDeck;
+
 	}
 
 	public void setTrainDeck(TrainDeck trainDeck) {

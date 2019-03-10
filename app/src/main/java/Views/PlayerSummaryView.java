@@ -79,7 +79,7 @@ public class PlayerSummaryView extends LinearLayout {
             playerTrains.setTextColor(Color.RED);
         }
         trainCards.setText(String.valueOf(player.getTotalTrainCards()));
-        destCards.setText(String.valueOf(player.getTotalTrainCards()));
+        destCards.setText(String.valueOf(player.getTotalDestinationCards()));
     }
 
 }

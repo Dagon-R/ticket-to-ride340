@@ -74,7 +74,7 @@ public class SocketCommunicator{
                 command.setIpAddress(socket.getInetAddress().getHostAddress());
 
                 System.out.println(command);
-                checkGame(command);
+//                checkGame(command);
                 server.sendToAll(command,this);
             }
             catch (ClassNotFoundException e){

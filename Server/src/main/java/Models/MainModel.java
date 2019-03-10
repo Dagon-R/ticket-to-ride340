@@ -10,6 +10,7 @@ public class MainModel extends Observable {
     private MainModel() {
         gameList = new GameList();
         userList = new UserList();
+//        userList.addUser(new User("Host","HostPass"));
     }
 
     public static MainModel get(){

@@ -1,6 +1,8 @@
 package Models;
 
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
@@ -11,6 +13,7 @@ import Phase2Models.DestinationCard;
 import Phase2Models.TrainCardColor;
 
 public class Player extends Observable implements Comparable<Player>{
+	static String TAG = "Player";
 	//The color that represents this player
 	private PlayerColorEnum playerColor;
 	//The name of this player
@@ -80,8 +83,9 @@ public class Player extends Observable implements Comparable<Player>{
 
 	public void setTrainHand(EnumMap<TrainCardColor,Integer> trainHand) {
 		this.trainHand = trainHand;
+
 		setChanged();
-		notifyObservers(this);
+		notifyObservers(TrainCardColor.BLACK);
 	}
 
 	public EnumSet<DestinationCard> getDestHand() {
@@ -93,7 +97,7 @@ public class Player extends Observable implements Comparable<Player>{
 		temp.addAll(Arrays.asList(destHand));
 		this.destHand = temp;
 		setChanged();
-		notifyObservers(this);
+		notifyObservers(destHand[0]);
 	}
 
 	public void setDestHand(ArrayList<DestinationCard> destHand) { //TODO TEST
@@ -101,7 +105,7 @@ public class Player extends Observable implements Comparable<Player>{
 		temp.addAll(destHand);
 		this.destHand = temp;
 		setChanged();
-		notifyObservers(this);
+		notifyObservers(destHand.get(0));
 	}
 
 	public void addToDestHand(DestinationCard card){

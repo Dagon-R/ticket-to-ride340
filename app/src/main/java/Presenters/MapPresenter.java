@@ -44,9 +44,9 @@ public class MapPresenter implements Observer {
     }
 
     private void initialize(){
-        updatePlayer();
-        updateStore();
-        updateActiveGame();
+//        updatePlayer();
+//        updateStore();
+//        updateActiveGame();
         updateChat();
         updateMap();
         initActionBar();
@@ -75,11 +75,19 @@ public class MapPresenter implements Observer {
                 updateStore();
 
                 break;
+            case "TrainCardColor":
+                updatePlayerTrainCards();
+                break;
+
+            case"DestinationCard":
+                updatePlayerDestCards();
+                break;
+
             case "ActiveGame":
                 updateActiveGame();
-                mapActivity.updateGameInfo((ActiveGame)arg);
-                ActiveGame ag = MainModel.get().getGame().getActiveGame();
-                mapActivity.updateTurnView(ag.getActivePlayerInd(), ag.getPlayers());
+////                mapActivity.updateGameInfo((ActiveGame)arg);
+//                ActiveGame ag = MainModel.get().getGame().getActiveGame();
+//                mapActivity.updateTurnView(ag.getActivePlayerInd(), ag.getPlayers());
                 break;
             case "MapModel":
                 updateMap();
@@ -92,11 +100,29 @@ public class MapPresenter implements Observer {
         }
     }
 
+    private void updatePlayerTrainCards(){
+        runOnUI(new Runnable() {
+            @Override
+            public void run() {
+                mapActivity.updateTrainCards(MainModel.get().getPlayer());
+            }
+        });
+    }
+
+    private void updatePlayerDestCards(){
+        runOnUI(new Runnable() {
+            @Override
+            public void run() {
+                mapActivity.updateDestinationCards(MainModel.get().getPlayer().getDestHand());
+            }
+        });
+    }
+
     private void updatePlayer(){
         runOnUI(new Runnable() {
             @Override
             public void run() {
-                mapActivity.updatePlayerInfo(MainModel.get().getPlayer());
+                mapActivity.updateTrainCards(MainModel.get().getPlayer());
             }
         });
     }
@@ -187,6 +213,7 @@ public class MapPresenter implements Observer {
         MainModel.get().getMapModel().setSelectedCity(null);
     }
     public void sendMessage(String message){
+        if(message.length() == 0) return;
 
         Service chatService = new ChatService();
         chatService.connectToProxy(message,MainModel.get().getGame().getActiveGame().getName());
