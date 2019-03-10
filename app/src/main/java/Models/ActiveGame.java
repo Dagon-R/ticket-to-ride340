@@ -29,6 +29,7 @@ public class ActiveGame{
     private EnumMap<Route,Player> routeOwners;
     private int destDeckSize;
     private int trainDeckSize;
+    private int activePlayerInd;
 //	public ActiveGame(){}
 
 	//Should be called from ClientGameList.startGame
@@ -55,6 +56,7 @@ public class ActiveGame{
 		//Sorry for the hard coding but they're always the same so sue me -_o_-
 		this.destDeckSize = 30;
 		this.trainDeckSize = 110;
+		this.activePlayerInd = 0;
 	}
 
 	private void addPlayers(ArrayList<String> players){
@@ -160,5 +162,16 @@ public class ActiveGame{
 
 	public void decrementTrainCards(int numDrawn){
 		this.trainDeckSize -= numDrawn;
+	}
+
+	public int getActivePlayerInd() {
+		return activePlayerInd;
+	}
+
+	public void incActivePlayerInd(){
+		int numPlayers = this.players.size();
+		this.activePlayerInd += 1;
+		//wraparound to player 0
+		if(this.activePlayerInd > numPlayers) this.activePlayerInd = 0;
 	}
 }

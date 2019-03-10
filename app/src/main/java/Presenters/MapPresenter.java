@@ -37,6 +37,7 @@ public class MapPresenter implements Observer {
         MainModel.get().addMapObservers(this);
         selectedDestCards = new ArrayList<>();
         showDestDialog();
+        initActionBar();
     }
 
     @Override
@@ -52,6 +53,8 @@ public class MapPresenter implements Observer {
                 break;
             case "ActiveGame":
                 mapActivity.updateGameInfo((ActiveGame)arg);
+                ActiveGame ag = MainModel.get().getGame().getActiveGame();
+                mapActivity.updateTurnView(ag.getActivePlayerInd(), ag.getPlayers());
                 break;
             case "Phase2Models.MapModel":
                 mapActivity.updateMap((MapModel) arg);
@@ -123,6 +126,12 @@ public class MapPresenter implements Observer {
     }
     private void advanceTurn(){
         //mapactivity.updateTurnView
+    }
+
+    public void initActionBar(){
+        ActiveGame ag = MainModel.get().getGame().getActiveGame();
+        mapActivity.updateTurnView(ag.getActivePlayerInd(), ag.getPlayers());
+        mapActivity.updateStore(ag.getStore());
     }
 
     public void showDestDialog(){
