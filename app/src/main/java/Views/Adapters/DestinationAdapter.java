@@ -27,7 +27,7 @@ public class DestinationAdapter extends RecyclerView.Adapter<DestinationAdapter.
     public interface OnItemClickListener{
         void onItemClick(View gameView, String name);
     }
-
+ 
     public void setOnItemClickListener(OnItemClickListener listener){
         this.listener = listener;
     }
