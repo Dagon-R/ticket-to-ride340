@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -21,8 +22,8 @@ import Views.R;
 
 public class DestinationAdapter extends RecyclerView.Adapter<DestinationAdapter.ViewHolder>{
     private OnItemClickListener listener;
-    private List<DestinationCard> cardList;
-    private Map<PlayerColorEnum, Color> colorMap;
+    private List<DestinationCard> cardList = new ArrayList<>();
+    private Map<PlayerColorEnum, Color> colorMap = new HashMap<>();
 
     public interface OnItemClickListener{
         void onItemClick(View gameView, String name);

@@ -1,6 +1,10 @@
 package Phase2Models;
 
+import java.util.EnumMap;
 import java.util.Observable;
+
+import Models.MainModel;
+import Models.Player;
 
 public class MapModel extends Observable {
     City selectedCity;
@@ -26,5 +30,14 @@ public class MapModel extends Observable {
         return Route.values();
     }
 
+    public EnumMap<Route, Player> getClaimedRoutes(){
+        return MainModel.get().getGame().getActiveGame().getRouteOwners();
+    }
 
+    @Override
+    public String toString() {
+        return "MapModel{" +
+                "selectedCity=" + selectedCity +
+                '}';
+    }
 }

@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.DisplayMetrics;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -23,6 +24,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 import java.util.ArrayList;
@@ -36,7 +39,7 @@ import Models.Player;
 import Models.PlayerColorEnum;
 import Models.PlayerList;
 import Phase2Models.ChatQueue;
-import Phase2Models.DestinationCard;
+\import Phase2Models.DestinationCard;
 import Phase2Models.City;
 import Phase2Models.MapModel;
 import Phase2Models.Store;
@@ -131,7 +134,7 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
             public void onClick(View v) {
                 String newMessage = chatInput.getText().toString();
                 if(newMessage.length() == 0){
-                    
+
                 }
                 else{
                     chatInput.setText("");
@@ -143,15 +146,19 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
         //canvas initialization stuff
         mapLogic = findViewById(R.id.map);
         mapLogic.setIMap(this);
+        mapPresenter = new MapPresenter(this);
     }
 
     public void updateMap(MapModel map){
-        ((MapLogic)mapLogic).updateMap(map);
+        mapLogic.updateMap(map);
     }
 
-//    public void updateChat(ChatQueue queue){
+    public void popToast(String error){
+        Toast.makeText(MapActivity.this,error,Toast.LENGTH_SHORT).show();
+    }
 
-//    }
+
+
     public void updatePlayerInfo(Player player){
         destinationCardDisplay.swapAdapter(new DestinationAdapter(player.getDestHand()), false);
         blueCards.setText(player.getCardColorCount(TrainCardColor.BLUE));
@@ -269,23 +276,25 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
 
     @Override
     public void drawStore(int i) {
+        //replace card at i with new dest card
+        mapPresenter.drawStore(i);
 
     }
 
     @Override
     public void drawTrainCarCard() {
-        //decrement deck
-
+        mapPresenter.drawTrainCard();
     }
 
     @Override
     public void drawDestinationCard() {
-        //decrement deck
+        mapPresenter.drawDestination();
     }
 
 
     @Override
     public void sendChat(String message) {
+        mapPresenter.sendMessage(message);
     }
 
     public void updateChat(ChatQueue queue){

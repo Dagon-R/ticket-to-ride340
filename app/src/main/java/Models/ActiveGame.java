@@ -5,16 +5,17 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashSet;
+import java.util.Observable;
 import java.util.Observer;
 import java.util.TreeSet;
 
 import Phase2Models.ChatMessage;
 import Phase2Models.ChatQueue;
+import Phase2Models.City;
 import Phase2Models.Route;
 import Phase2Models.Store;
-import Views.R;
 
-public class ActiveGame{
+public class ActiveGame extends Observable {
 	static String TAG = "ActiveGame";
 	//A list of the players associated with the game
 	private TreeSet<Player> players ;
@@ -42,7 +43,13 @@ public class ActiveGame{
 //        queue= new ChatQueue();
 //        routeOwners = new EnumMap<>(Route.class);
 //	}
-	
+
+	public ActiveGame() {
+
+		routeOwners = new EnumMap<>(Route.class);
+		queue= new ChatQueue();
+	}
+
 	public ActiveGame(PendingGame startGame){
 		players = new TreeSet<>();
 		addPlayers(startGame.getPlayers());
@@ -57,6 +64,8 @@ public class ActiveGame{
 		this.destDeckSize = 30;
 		this.trainDeckSize = 110;
 		this.activePlayerInd = 0;
+
+//		store = new Store();
 	}
 
 	private void addPlayers(ArrayList<String> players){
@@ -72,6 +81,15 @@ public class ActiveGame{
 			this.players.add(player);
 			i++;
 		}
+	}
+
+	public void setRouteOwner(City city1, City city2){
+		Route route = Route.getRoute(city1,city2);
+		if(route != null){
+			routeOwners.put(route,player);
+			return;
+		}
+		MainModel.get().setErrorMessage(city1.getName() + " is not directly next to "+ city2);
 	}
     public Player getOwner(Route route) {return routeOwners.get(route);}
 
@@ -99,12 +117,17 @@ public class ActiveGame{
 		return id;
 	}
 
-	public void addObserver(Observer o){
-		store.addObserver(o);
+	public void addObservers(Observer o){
+//		store.addObserver(o);
 		queue.addObserver(o);
+		this.addObserver(o);
 	}
 
-	private void setPlayers(TreeSet<Player> input){
+    public EnumMap<Route, Player> getRouteOwners() {
+        return routeOwners;
+    }
+
+    private void setPlayers(TreeSet<Player> input){
 		this.players = input;
 	}
 	

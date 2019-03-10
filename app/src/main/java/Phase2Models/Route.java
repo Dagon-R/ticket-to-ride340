@@ -1,5 +1,7 @@
 package Phase2Models;
 
+import Models.MainModel;
+
 import static Phase2Models.City.*;
 import static Phase2Models.TrainCardColor.*;
 
@@ -103,5 +105,17 @@ public enum Route {
     @Override
     public String toString() {
         return "[" + city1 + " to " + city2 + ", " + color1.getName() + ", " + length + "]";
+    }
+
+    static public Route getRoute(City city1, City city2){
+        for(Route route : Route.values()){
+//            System.out.println(route.getCity1() +" " + route.getCity2());
+            if(((route.getCity1().equals(city1)) || route.getCity2().equals(city1)) &&
+                    (route.getCity1().equals(city2) || route.getCity2().equals(city2)) &&
+                    !MainModel.get().getGame().getActiveGame().getRouteOwners().containsKey(route)){
+                return route;
+            }
+        }
+        return null;
     }
 }
