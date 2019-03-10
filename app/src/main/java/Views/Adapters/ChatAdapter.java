@@ -19,7 +19,7 @@ import Views.R;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
     private OnItemClickListener listener;
-    private List<ChatMessage> messageList;
+    private List<ChatMessage> messageList = new ArrayList<ChatMessage>();
     private Map<PlayerColorEnum, Color> colorMap;
 
     public interface OnItemClickListener{

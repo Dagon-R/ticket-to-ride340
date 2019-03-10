@@ -75,6 +75,15 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
         //drawer initialization stuff
         drawerLayout = findViewById(R.id.activity_map_layout);
         destinationCardDisplay = findViewById(R.id.destination_card_recycler_view);
+        TextView blueCards = findViewById(R.id.blue_card_box);
+        TextView redCards = findViewById(R.id.red_card_box);
+        TextView yellowCards = findViewById(R.id.yellow_card_box);
+        TextView greenCards = findViewById(R.id.green_card_box);
+        TextView purpleCards = findViewById(R.id.purple_card_box);
+        TextView orangeCards = findViewById(R.id.orange_card_box);
+        TextView blackCards = findViewById(R.id.black_card_box);
+        TextView whiteCards = findViewById(R.id.white_card_box);
+        TextView rainbowCards = findViewById(R.id.rainbow_card_box);
         //chat sheet initialization stuff
         chatSheet = findViewById(R.id.bottom_sheet);
         chatList = findViewById(R.id.chat_recycler_view);
@@ -108,6 +117,7 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
 //    }
     public void updatePlayerInfo(Player player){
         destinationCardDisplay.swapAdapter(new DestinationAdapter(player.getDestHand()), false);
+        
     }
 
     public void updateGameInfo(ActiveGame game) {
