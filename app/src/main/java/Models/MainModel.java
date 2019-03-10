@@ -92,7 +92,7 @@ public class MainModel{
         setActiveGame(game);
         game.setStore(store);
 //        ((ActiveGame) game).setStore(store);
-//        createMapActivity();
+        createMapActivity();
     }
 
     private void createMapActivity(){

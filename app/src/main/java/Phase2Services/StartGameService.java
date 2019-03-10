@@ -2,6 +2,7 @@ package Phase2Services;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.Map;
 
 import Communication.ServerProxy;
@@ -40,7 +41,7 @@ public class StartGameService implements Service {
         String ipAddress = (String) obj[1];
         Store store = (Store) obj[2]; //game store
         Map<String, DestinationCard[]> destCards = (Map <String, DestinationCard[]>) obj[3];
-        Map<String, TrainCardColor[]> trainCards = (Map<String, TrainCardColor[]>) obj[4];
+        Map<String, EnumMap<TrainCardColor,Integer>> trainCards = (Map<String, EnumMap<TrainCardColor,Integer>>) obj[4];
 
         PendingGame pg = model.findGame(gameID);
         if(pg != null){ //checks if this is user's game
@@ -53,7 +54,7 @@ public class StartGameService implements Service {
                 //ArrayList<DestinationCard> userDestCards = new ArrayList<>(Arrays.asList(destCards.get(model.getUser().getName())));
                 model.getPlayer().setDestHand(destCards.get(model.getUser().getName()));
                 //set player's train card hand
-                ArrayList<TrainCardColor> userTrainCards = new ArrayList<>(Arrays.asList(trainCards.get(model.getUser().getName())));
+                EnumMap<TrainCardColor,Integer> userTrainCards = trainCards.get(model.getUser().getName());
                 model.getPlayer().setTrainHand(userTrainCards);
             }
 

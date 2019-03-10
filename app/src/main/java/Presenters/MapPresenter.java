@@ -88,8 +88,9 @@ public class MapPresenter implements Observer {
         for(City city : City.values()){
             PointF point = MapEquations.getPoint(city,size);
             float dist = (float)Math.pow(Math.pow(x-point.x,2) + Math.pow(y-point.y,2),.5);
-
+            System.out.println(city);
             if(dist < 30){
+                System.out.println(city);
                 selectCity(city);
                 return;
             }
