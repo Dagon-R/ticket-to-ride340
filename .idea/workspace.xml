@@ -29,6 +29,13 @@
     <list default="true" id="a577f5f5-6e42-4b41-8455-de55739b3b84" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Models/ActiveGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Models/ActiveGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Models/MainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Models/MainModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Phase2Services/ChatService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Phase2Services/ChatService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Presenters/MapPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Presenters/MapPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Views/Activities/MapActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Views/Activities/MapActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Views/Adapters/ChatAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Views/Adapters/ChatAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Views/Adapters/DestinationAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Views/Adapters/DestinationAdapter.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -95,7 +102,7 @@
         <counts>
           <entry key="gradle" value="2" />
           <entry key="iml" value="6" />
-          <entry key="java" value="257" />
+          <entry key="java" value="264" />
           <entry key="jpg" value="1" />
           <entry key="xml" value="35" />
         </counts>
@@ -105,7 +112,7 @@
           <entry key="Groovy" value="2" />
           <entry key="IDEA_MODULE" value="6" />
           <entry key="Image" value="1" />
-          <entry key="JAVA" value="257" />
+          <entry key="JAVA" value="264" />
           <entry key="XML" value="35" />
         </counts>
       </usages-collector>
@@ -122,15 +129,15 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="13" />
-          <entry key="java" value="15555" />
-          <entry key="txt" value="345" />
+          <entry key="java" value="15725" />
+          <entry key="txt" value="349" />
           <entry key="xml" value="372" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="15555" />
-          <entry key="PLAIN_TEXT" value="358" />
+          <entry key="JAVA" value="15725" />
+          <entry key="PLAIN_TEXT" value="362" />
           <entry key="XML" value="372" />
         </counts>
       </usages-collector>
@@ -144,11 +151,84 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/Views/Adapters/DestinationAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+            <state relative-caret-position="136">
+              <caret line="26" selection-start-line="26" selection-end-line="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/Views/Adapters/ChatAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="25" column="41" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/Views/Activities/MapActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="91">
+              <caret line="90" column="23" selection-start-line="90" selection-start-column="23" selection-end-line="90" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/Phase2Services/ChatService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="291">
+              <caret line="36" column="41" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/Presenters/MapPresenter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="187" column="46" selection-start-line="187" selection-start-column="46" selection-end-line="187" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/Models/ActiveGame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+              <folding>
+                <element signature="e#1971#1972#0" expanded="true" />
+                <element signature="e#2013#2014#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/Phase2Models/Store.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/Models/MainModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="93">
+              <caret line="86" column="45" selection-start-line="86" selection-start-column="45" selection-end-line="86" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -2811,7 +2891,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/Services/ErrorService.java" />
         <option value="$PROJECT_DIR$/Server/src/main/java/Phase2Services/StartGameService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Command/ErrorCommand.java" />
         <option value="$PROJECT_DIR$/Server/src/main/java/Server.java" />
@@ -2827,7 +2906,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/Models/ErrorMessage.java" />
         <option value="$PROJECT_DIR$/Server/src/main/java/Communication/SocketCommunicator.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Phase2Commands/DiscardCardCommand.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/Phase2Services/ChatService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Services/CreateGameService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Phase2Models/MapModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Presenters/LoginPresenter.java" />
@@ -2846,7 +2924,6 @@
         <option value="$PROJECT_DIR$/Server/src/main/java/Models/ActiveGame.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Models/PendingGame.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/action_bar.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/Models/ActiveGame.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Phase2Services/StartGameService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Models/Game.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
@@ -2854,14 +2931,17 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/lobby_activity.xml" />
         <option value="$PROJECT_DIR$/Server/src/main/java/Models/GameList.java" />
         <option value="$PROJECT_DIR$/Server/src/main/java/Services/RegisterService.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/Models/MainModel.java" />
         <option value="$PROJECT_DIR$/Server/src/main/java/Services/LoginService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Phase2Models/ChatQueue.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Views/ViewInterfaces/ActionBar.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/Views/Activities/MapActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/Presenters/MapPresenter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Views/MapLogic.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Views/Adapters/DestinationAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/Views/Adapters/ChatAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/Phase2Services/ChatService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/Views/Activities/MapActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/Presenters/MapPresenter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/Models/MainModel.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/Models/ActiveGame.java" />
       </list>
     </option>
   </component>
@@ -2882,6 +2962,98 @@
             <path>
               <item name="ticket-to-ride" type="b2602c69:ProjectViewProjectNode" />
               <item name="ticket-to-ride" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="ticket-to-ride" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ticket-to-ride" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="ticket-to-ride" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ticket-to-ride" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ticket-to-ride" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ticket-to-ride" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ticket-to-ride" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ticket-to-ride" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ticket-to-ride" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ticket-to-ride" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ticket-to-ride" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ticket-to-ride" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Phase2Services" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ticket-to-ride" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ticket-to-ride" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Presenters" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ticket-to-ride" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ticket-to-ride" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ticket-to-ride" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ticket-to-ride" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Views" type="462c0819:PsiDirectoryNode" />
+              <item name="Activities" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ticket-to-ride" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ticket-to-ride" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Views" type="462c0819:PsiDirectoryNode" />
+              <item name="Adapters" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ticket-to-ride" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ticket-to-ride" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Views" type="462c0819:PsiDirectoryNode" />
+              <item name="ViewInterfaces" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ticket-to-ride" type="b2602c69:ProjectViewProjectNode" />
@@ -3393,7 +3565,14 @@
       <option name="project" value="LOCAL" />
       <updated>1552179982015</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Hmmm">
+      <created>1552179999230</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1552179999230</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TodoView">
@@ -3479,7 +3658,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Main Model get static" />
     <MESSAGE value="Merge remote-tracking branch 'origin/sarahBranch' into JacobsBranch" />
     <MESSAGE value="Update to commands" />
     <MESSAGE value="Updates" />
@@ -3504,7 +3682,8 @@
     <MESSAGE value="We can get to the GAMEEEEEE" />
     <MESSAGE value="Presenter and Activity info push" />
     <MESSAGE value="Merge remote-tracking branch 'origin/sarahBranch' into JacobsBranch&#10;&#10;# Conflicts:&#10;#&#9;.gradle/buildOutputCleanup/buildOutputCleanup.lock&#10;#&#9;.idea/workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/sarahBranch' into JacobsBranch&#10;&#10;# Conflicts:&#10;#&#9;.gradle/buildOutputCleanup/buildOutputCleanup.lock&#10;#&#9;.idea/workspace.xml" />
+    <MESSAGE value="Hmmm" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hmmm" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3542,27 +3721,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/Phase2Models/MapModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server/src/main/java/Command/ServerCreateGameCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="36" column="37" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server/src/main/java/Phase2Commands/ServerStartGameCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/chat_sheet.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
@@ -3665,6 +3823,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3680,6 +3841,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="850">
           <caret line="73" selection-start-line="73" selection-end-line="73" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1522#1523#0" expanded="true" />
+            <element signature="e#1559#1560#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3704,13 +3870,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="49" column="50" selection-start-line="49" selection-start-column="50" selection-end-line="49" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/Models/ActiveGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="55" column="45" selection-start-line="55" selection-start-column="45" selection-end-line="55" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -3875,61 +4034,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/Models/MainModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1261">
-          <caret line="99" column="62" selection-start-line="99" selection-start-column="62" selection-end-line="99" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/Views/Activities/MapActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="48" column="9" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2890#2891#0" expanded="true" />
-            <element signature="e#2941#2942#0" expanded="true" />
-            <element signature="e#3533#3534#0" expanded="true" />
-            <element signature="e#3577#3578#0" expanded="true" />
-            <element signature="e#3632#3633#0" expanded="true" />
-            <element signature="e#3678#3679#0" expanded="true" />
-            <element signature="e#3659#3660#0" expanded="true" />
-            <element signature="e#3706#3707#0" expanded="true" />
-            <element signature="e#3857#3858#0" expanded="true" />
-            <element signature="e#3903#3904#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/Presenters/MapPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
-          <folding>
-            <element signature="e#1974#2143#0" expanded="true" />
-            <element signature="e#2142#2143#0" expanded="true" />
-            <element signature="e#2201#2364#0" expanded="true" />
-            <element signature="e#2363#2364#0" expanded="true" />
-            <element signature="e#2427#2608#0" expanded="true" />
-            <element signature="e#2607#2608#0" expanded="true" />
-            <element signature="e#2664#2828#0" expanded="true" />
-            <element signature="e#2827#2828#0" expanded="true" />
-            <element signature="e#2885#3077#0" expanded="true" />
-            <element signature="e#3076#3077#0" expanded="true" />
-            <element signature="e#3365#3366#0" expanded="true" />
-            <element signature="e#3416#3417#0" expanded="true" />
-            <element signature="e#6554#6555#0" expanded="true" />
-            <element signature="e#6628#6629#0" expanded="true" />
-            <element signature="e#6668#6669#0" expanded="true" />
-            <element signature="e#6714#6715#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/Views/MapLogic.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="181">
@@ -3939,8 +4043,67 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/Views/Adapters/DestinationAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+        <state relative-caret-position="136">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/Views/Adapters/ChatAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="25" column="41" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/Phase2Services/ChatService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="36" column="41" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/Views/Activities/MapActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="90" column="23" selection-start-line="90" selection-start-column="23" selection-end-line="90" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/Presenters/MapPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="187" column="46" selection-start-line="187" selection-start-column="46" selection-end-line="187" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/Models/MainModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="86" column="45" selection-start-line="86" selection-start-column="45" selection-end-line="86" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/Phase2Models/Store.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/Models/ActiveGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+          <folding>
+            <element signature="e#1971#1972#0" expanded="true" />
+            <element signature="e#2013#2014#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

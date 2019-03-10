@@ -22,7 +22,7 @@ public class ChatService implements Service {
         String messageString = (String) obj[0];
         int milliseconds = ((Long) new Date().getTime()).intValue();
         ChatMessage message = new ChatMessage(model.getPlayer(),messageString, milliseconds);
-        ServerProxy.get().chat(message,model.getGame().getActiveGame().getId());
+        ServerProxy.get().chat(message,model.getGame().getActiveGame().getName());
     }
 
     @Override
@@ -32,20 +32,9 @@ public class ChatService implements Service {
         String gameID = (String) obj[1];
         //String ipAddress = (String) obj[2];
         ActiveGame game = model.getGame().getActiveGame();
-        if (game.getId().equals(gameID))
+        if (game != null && game.getName().equals(gameID))
         {
-            String className = game.getClass().getSimpleName();
-            switch (className) {
-                case "Active Game":
-                    game.addChatMessage(message);
-                    break;
-                case "Pending Game":
-                    System.out.println("Somehow, you tried to send a command to a pending game");
-                    break;
-                default:
-                    System.out.println("Class name not being interpreted correctly");
-                    break;
-            }
+            game.addChatMessage(message);
         }
         else
         {

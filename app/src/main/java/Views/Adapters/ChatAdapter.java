@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,8 +20,8 @@ import Views.R;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
     private OnItemClickListener listener;
-    private List<ChatMessage> messageList;
-    private Map<PlayerColorEnum, Color> colorMap;
+    private List<ChatMessage> messageList = new ArrayList<>();
+    private Map<PlayerColorEnum, Color> colorMap = new HashMap<>();
 
     public interface OnItemClickListener{
         void onItemClick(View gameView, String name);

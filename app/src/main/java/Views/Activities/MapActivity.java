@@ -10,6 +10,7 @@ import android.os.Bundle;
 //import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.DisplayMetrics;
 import android.support.v7.widget.RecyclerView;
 import android.widget.EditText;
@@ -88,7 +89,9 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
         destinationCardDisplay = findViewById(R.id.destination_card_recycler_view);
         //chat sheet initialization stuff
         chatSheet = findViewById(R.id.bottom_sheet);
+
         chatList = findViewById(R.id.chat_recycler_view);
+        chatList.setLayoutManager(new LinearLayoutManager(this));
         chatInput = findViewById(R.id.message_box);
         chatButton = findViewById(R.id.message_button);
         chatButton.setOnClickListener(new View.OnClickListener() {

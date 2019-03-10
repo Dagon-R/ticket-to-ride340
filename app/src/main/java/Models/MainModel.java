@@ -84,6 +84,7 @@ public class MainModel{
     public void addMapObservers(Observer o){
 //        mapModel.addObserver(o);
         game.addObserver(o);
+        game.getActiveGame().addObservers(o);
     }
 
     public void activateGame(String gameName, Store store){

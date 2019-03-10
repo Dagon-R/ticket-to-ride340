@@ -5,6 +5,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashSet;
+import java.util.Observable;
 import java.util.Observer;
 import java.util.TreeSet;
 
@@ -13,7 +14,7 @@ import Phase2Models.ChatQueue;
 import Phase2Models.Route;
 import Phase2Models.Store;
 
-public class ActiveGame{
+public class ActiveGame extends Observable {
 	static String TAG = "ActiveGame";
 	//A list of the players associated with the game
 	private TreeSet<Player> players ;
@@ -49,6 +50,8 @@ public class ActiveGame{
 		this.id = startGame.getId() + "_ACTIVE";
 		routeOwners = new EnumMap<>(Route.class);
 		queue= new ChatQueue();
+
+//		store = new Store();
 	}
 
 	private void addPlayers(ArrayList<String> players){
@@ -91,9 +94,10 @@ public class ActiveGame{
 		return id;
 	}
 
-	public void addObserver(Observer o){
-		store.addObserver(o);
+	public void addObservers(Observer o){
+//		store.addObserver(o);
 		queue.addObserver(o);
+		this.addObserver(o);
 	}
 
 	private void setPlayers(TreeSet<Player> input){

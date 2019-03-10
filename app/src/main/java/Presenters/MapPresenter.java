@@ -184,10 +184,10 @@ public class MapPresenter implements Observer {
     }
     public void sendMessage(String message){
 //        ChatMessage message, String gameI
-        ChatMessage chatMessage = new ChatMessage(MainModel.get().getPlayer(),message,(int)System.currentTimeMillis());
+//        ChatMessage chatMessage = new ChatMessage(MainModel.get().getPlayer(),message,(int)System.currentTimeMillis());
         //Create ChatMessage object, retrieve UTC time stamp, and send to service
         Service chatService = new ChatService();
-        chatService.connectToProxy(chatMessage,MainModel.get().getGame().getActiveGame().getName());
+        chatService.connectToProxy(message,MainModel.get().getGame().getActiveGame().getName());
 
     }
     private void advanceTurn(){
