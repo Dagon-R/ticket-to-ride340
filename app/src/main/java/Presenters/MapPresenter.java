@@ -48,8 +48,8 @@ public class MapPresenter implements Observer {
         updateActiveGame();
         updateChat();
         updateMap();
+        initActionBar();
     }
-
 
 
     @Override
@@ -201,7 +201,9 @@ public class MapPresenter implements Observer {
 
     }
     private void advanceTurn(){
-        //mapactivity.updateTurnView
+        ActiveGame game = MainModel.get().getGame().getActiveGame()
+        game.incActivePlayerInd();
+        mapActivity.updateTurnView(game.getActivePlayerInd(), game.getPlayers());
     }
 
     public void initActionBar(){

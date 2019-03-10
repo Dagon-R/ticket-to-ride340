@@ -39,7 +39,7 @@ import Models.Player;
 import Models.PlayerColorEnum;
 import Models.PlayerList;
 import Phase2Models.ChatQueue;
-\import Phase2Models.DestinationCard;
+import Phase2Models.DestinationCard;
 import Phase2Models.City;
 import Phase2Models.MapModel;
 import Phase2Models.Store;
