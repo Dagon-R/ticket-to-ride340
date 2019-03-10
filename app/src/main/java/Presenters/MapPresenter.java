@@ -201,7 +201,7 @@ public class MapPresenter implements Observer {
 
     }
     private void advanceTurn(){
-        ActiveGame game = MainModel.get().getGame().getActiveGame()
+        ActiveGame game = MainModel.get().getGame().getActiveGame();
         game.incActivePlayerInd();
         mapActivity.updateTurnView(game.getActivePlayerInd(), game.getPlayers());
     }
