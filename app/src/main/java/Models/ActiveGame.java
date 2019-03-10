@@ -45,7 +45,6 @@ public class ActiveGame extends Observable {
 //	}
 
 	public ActiveGame() {
-
 		routeOwners = new EnumMap<>(Route.class);
 		queue= new ChatQueue();
 	}

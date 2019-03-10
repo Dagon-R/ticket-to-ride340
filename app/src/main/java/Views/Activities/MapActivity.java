@@ -100,22 +100,20 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
     private void construct() {
 //        mapLogic = new MapLogic(this, this);
 
-        //presenter initialization stuff
-        mapPresenter = new MapPresenter(this);
         //init actionbar
         actionBar = (LinearLayout) findViewById(R.id.action_bar_layout);
         //drawer initialization stuff
         drawerLayout = findViewById(R.id.activity_map_layout);
         destinationCardDisplay = findViewById(R.id.destination_card_recycler_view);
-        TextView blueCards = findViewById(R.id.blue_card_box);
-        TextView redCards = findViewById(R.id.red_card_box);
-        TextView yellowCards = findViewById(R.id.yellow_card_box);
-        TextView greenCards = findViewById(R.id.green_card_box);
-        TextView purpleCards = findViewById(R.id.purple_card_box);
-        TextView orangeCards = findViewById(R.id.orange_card_box);
-        TextView blackCards = findViewById(R.id.black_card_box);
-        TextView whiteCards = findViewById(R.id.white_card_box);
-        TextView rainbowCards = findViewById(R.id.rainbow_card_box);
+        blueCards = findViewById(R.id.blue_card_box);
+        redCards = findViewById(R.id.red_card_box);
+        yellowCards = findViewById(R.id.yellow_card_box);
+        greenCards = findViewById(R.id.green_card_box);
+        purpleCards = findViewById(R.id.purple_card_box);
+        orangeCards = findViewById(R.id.orange_card_box);
+        blackCards = findViewById(R.id.black_card_box);
+        whiteCards = findViewById(R.id.white_card_box);
+        rainbowCards = findViewById(R.id.rainbow_card_box);
         //Game drawer initialization
         player1 = findViewById(R.id.player1);
         player2 = findViewById(R.id.player2);
@@ -145,6 +143,7 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
         //canvas initialization stuff
         mapLogic = findViewById(R.id.map);
         mapLogic.setIMap(this);
+
         //presenter initialization stuff
         mapPresenter = new MapPresenter(this);
     }
@@ -162,15 +161,15 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
 
     public void updatePlayerInfo(Player player){
         destinationCardDisplay.swapAdapter(new DestinationAdapter(player.getDestHand()), false);
-        blueCards.setText(player.getCardColorCount(TrainCardColor.BLUE));
-        redCards.setText(player.getCardColorCount(TrainCardColor.RED));
-        yellowCards.setText(player.getCardColorCount(TrainCardColor.YELLOW));
-        greenCards.setText(player.getCardColorCount(TrainCardColor.GREEN));
-        purpleCards.setText(player.getCardColorCount(TrainCardColor.PURPLE));
-        orangeCards.setText(player.getCardColorCount(TrainCardColor.ORANGE));
-        blackCards.setText(player.getCardColorCount(TrainCardColor.BLACK));
-        whiteCards.setText(player.getCardColorCount(TrainCardColor.WHITE));
-        rainbowCards.setText(player.getCardColorCount(TrainCardColor.RAINBOW));
+        blueCards.setText(String.valueOf(player.getCardColorCount(TrainCardColor.BLUE)));
+        redCards.setText((String.valueOf(player.getCardColorCount(TrainCardColor.RED))));
+        yellowCards.setText(String.valueOf(player.getCardColorCount(TrainCardColor.YELLOW)));
+        greenCards.setText(String.valueOf(player.getCardColorCount(TrainCardColor.GREEN)));
+        purpleCards.setText(String.valueOf(player.getCardColorCount(TrainCardColor.PURPLE)));
+        orangeCards.setText(String.valueOf(player.getCardColorCount(TrainCardColor.ORANGE)));
+        blackCards.setText(String.valueOf(player.getCardColorCount(TrainCardColor.BLACK)));
+        whiteCards.setText(String.valueOf(player.getCardColorCount(TrainCardColor.WHITE)));
+        rainbowCards.setText(String.valueOf(player.getCardColorCount(TrainCardColor.RAINBOW)));
     }
 
     public void updateGameInfo(ActiveGame game) {
