@@ -41,7 +41,6 @@ public class ActiveGame{
 	
 	ActiveGame(PendingGame startGame, Store store){
 		players = new TreeSet<>();
-		this.store = store;
 		addPlayers(startGame.getPlayers());
 
 //		players.addAll();
@@ -50,6 +49,7 @@ public class ActiveGame{
 		this.id = startGame.getId() + "_ACTIVE";
 		routeOwners = new EnumMap<>(Route.class);
 		queue= new ChatQueue();
+        this.store = store;
 	}
 
 	private void addPlayers(ArrayList<String> players){

@@ -88,9 +88,9 @@ public class MainModel{
     public void activateGame(String gameName, Store store){
         gameList.unPendGame(gameName);
         ActiveGame game = new ActiveGame(this.game.getPendingGame(),store);
-        setActiveGame(game);
 //        ((ActiveGame) game).setStore(store);
         createMapActivity();
+        setActiveGame(game);
     }
 
     private void createMapActivity(){
