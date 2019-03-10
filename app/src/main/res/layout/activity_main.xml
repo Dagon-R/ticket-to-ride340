@@ -87,6 +87,16 @@
                     android:onClick="register"/>
 
             </LinearLayout>
+            <!--<Button-->
+                <!--android:id="@+id/sampleButton"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="60dp"-->
+                <!--android:text="Sample"-->
+                <!--android:textColor="#fff"-->
+                <!--android:enabled="true"-->
+                <!--android:layout_margin="20dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:onClick="sample"/>-->
 
         </LinearLayout>
 

@@ -121,6 +121,8 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
         mapLogic = findViewById(R.id.map);
         mapLogic.setIMap(this);
         mapPresenter = new MapPresenter(this);
+        //presenter initialization stuff
+//        mapPresenter = new MapPresenter(this);
     }
 
     public void updateMap(MapModel map){

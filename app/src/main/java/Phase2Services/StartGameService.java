@@ -2,6 +2,9 @@ package Phase2Services;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import Communication.ServerProxy;
@@ -39,12 +42,21 @@ public class StartGameService implements Service {
         String gameID = (String) obj[0];
         String ipAddress = (String) obj[1];
         Store store = (Store) obj[2]; //game store
-        Map<String, DestinationCard[]> destCards = (Map <String, DestinationCard[]>) obj[3];
-        Map<String, TrainCardColor[]> trainCards = (Map<String, TrainCardColor[]>) obj[4];
+        HashMap<String, DestinationCard[]> destCards = (HashMap<String, DestinationCard[]>) obj[3];
+        HashMap<String, LinkedHashMap<TrainCardColor,Integer>> tempTrains = (HashMap<String, LinkedHashMap<TrainCardColor,Integer>>) obj[4];
+        HashMap<String, EnumMap<TrainCardColor,Integer>> trainCards = new HashMap<>();
+        for (String string : tempTrains.keySet())
+        {
+            trainCards.put(string,new EnumMap<TrainCardColor, Integer>(TrainCardColor.class));
+            for (TrainCardColor color : tempTrains.get(string).keySet())
+            {
+                trainCards.get(string).put(color,tempTrains.get(string).get(color));
+            }
+        }
 
         PendingGame pg = model.findGame(gameID);
         if(pg != null){ //checks if this is user's game
-//            ActiveGame ag = model.getGameList().startGame(pg.getName()); //creates active game and removes pending from list
+//            ActiveGame ag = model.getGameList().unPendGame(pg.getName()); //creates active game and removes pending from list
 //            ag.setStore(store);
             model.activateGame(gameID,store);
 
@@ -53,7 +65,8 @@ public class StartGameService implements Service {
                 //ArrayList<DestinationCard> userDestCards = new ArrayList<>(Arrays.asList(destCards.get(model.getUser().getName())));
                 model.getPlayer().setDestHand(destCards.get(model.getUser().getName()));
                 //set player's train card hand
-                ArrayList<TrainCardColor> userTrainCards = new ArrayList<>(Arrays.asList(trainCards.get(model.getUser().getName())));
+                EnumMap<TrainCardColor,Integer> userTrainCards =
+                        new EnumMap<TrainCardColor,Integer>(trainCards.get(model.getUser().getName()));
                 model.getPlayer().setTrainHand(userTrainCards);
             }
 

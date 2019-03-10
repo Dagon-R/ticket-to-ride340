@@ -17,7 +17,8 @@ import Phase2Models.Store;
 import Views.R;
 
 public class ActiveGame extends Observable {
-	static String TAG = "ActiveGame";
+//	static String TAG = "ActiveGame";
+	private static String TAG = "ActiveGame";
 	//A list of the players associated with the game
 	private TreeSet<Player> players ;
 	//The name of the game that will be displayed in menus
@@ -34,7 +35,7 @@ public class ActiveGame extends Observable {
     private int activePlayerInd;
 //	public ActiveGame(){}
 
-	//Should be called from ClientGameList.startGame
+	//Should be called from ClientGameList.unPendGame
 //	public ActiveGame(Player host, String gameName){
 //		players = new TreeSet<>();
 //
@@ -51,7 +52,7 @@ public class ActiveGame extends Observable {
 		queue= new ChatQueue();
 	}
 
-	public ActiveGame(PendingGame startGame){
+	public ActiveGame(PendingGame startGame,Store store){
 		players = new TreeSet<>();
 		addPlayers(startGame.getPlayers());
 
@@ -65,6 +66,7 @@ public class ActiveGame extends Observable {
 		this.destDeckSize = 30;
 		this.trainDeckSize = 110;
 		this.activePlayerInd = 0;
+        this.store = store;
 	}
 
 	private void addPlayers(ArrayList<String> players){

@@ -4,6 +4,9 @@ public class Store
 {
     private TrainCardColor store[];
     private static final int STORE_SIZE = 5;
+    public TrainCardColor[] getStore() {
+        return store;
+    }
     public Store(TrainCardColor[] store) throws InvalidStoreLengthException
     {
         if (store.length == 5)
