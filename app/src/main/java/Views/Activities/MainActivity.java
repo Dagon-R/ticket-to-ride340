@@ -12,6 +12,7 @@ import android.widget.Toast;
 import java.util.Observable;
 import java.util.Observer;
 
+import Communication.ServerProxy;
 import Communication.SongPlayer;
 import Models.MainModel;
 import Models.User;
@@ -132,4 +133,15 @@ public class MainActivity extends AppCompatActivity implements Observer {
         //player.start();
         loginPresenter.removeObserver();
     }
+
+//    public void sample(View view) {
+//        MainModel.get().setAuthToken("1at");
+//        ServerProxy.get().register("user1","user2","1","1at");
+//        ServerProxy.get().register("user2","user2","2","2at");
+//        ServerProxy.get().register("user3","user3","3","3at");
+//        ServerProxy.get().createGame("user1","game1");
+//        ServerProxy.get().joinGame("user2","game1");
+//        ServerProxy.get().joinGame("user3","game1");
+//        ServerProxy.get().unPendGame("game1");
+//}
 }

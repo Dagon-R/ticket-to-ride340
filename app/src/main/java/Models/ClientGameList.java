@@ -52,14 +52,9 @@ public class ClientGameList extends Observable {
 
 
 
-	public ActiveGame startGame(String name){
-
+	public void unPendGame(String name){
 		if(ServerPendingGames.containsKey(name)){
-			PendingGame game = ServerPendingGames.get(name);
 			ServerPendingGames.remove(name);
-			return new ActiveGame(game);
 		}
-		return null;
-
 	}
 }

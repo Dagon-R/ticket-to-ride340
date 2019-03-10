@@ -45,7 +45,7 @@ public class StartGameService implements Service {
 
         PendingGame pg = model.findGame(gameID);
         if(pg != null){ //checks if this is user's game
-//            ActiveGame ag = model.getGameList().startGame(pg.getName()); //creates active game and removes pending from list
+//            ActiveGame ag = model.getGameList().unPendGame(pg.getName()); //creates active game and removes pending from list
 //            ag.setStore(store);
             model.activateGame(gameID,store);
 

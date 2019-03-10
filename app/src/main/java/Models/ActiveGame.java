@@ -14,7 +14,7 @@ import Phase2Models.Route;
 import Phase2Models.Store;
 
 public class ActiveGame{
-	static String TAG = "ActiveGame";
+	private static String TAG = "ActiveGame";
 	//A list of the players associated with the game
 	private TreeSet<Player> players ;
 	//The name of the game that will be displayed in menus
@@ -28,7 +28,7 @@ public class ActiveGame{
     private EnumMap<Route,Player> routeOwners;
 //	public ActiveGame(){}
 
-	//Should be called from ClientGameList.startGame
+	//Should be called from ClientGameList.unPendGame
 //	public ActiveGame(Player host, String gameName){
 //		players = new TreeSet<>();
 //
@@ -39,8 +39,9 @@ public class ActiveGame{
 //        routeOwners = new EnumMap<>(Route.class);
 //	}
 	
-	public ActiveGame(PendingGame startGame){
+	ActiveGame(PendingGame startGame, Store store){
 		players = new TreeSet<>();
+		this.store = store;
 		addPlayers(startGame.getPlayers());
 
 //		players.addAll();
