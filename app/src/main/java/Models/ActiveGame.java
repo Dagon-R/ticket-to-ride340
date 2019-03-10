@@ -14,11 +14,9 @@ import Phase2Models.ChatQueue;
 import Phase2Models.City;
 import Phase2Models.Route;
 import Phase2Models.Store;
-import Views.R;
 
 public class ActiveGame extends Observable {
-//	static String TAG = "ActiveGame";
-	private static String TAG = "ActiveGame";
+	static String TAG = "ActiveGame";
 	//A list of the players associated with the game
 	private TreeSet<Player> players ;
 	//The name of the game that will be displayed in menus
@@ -47,12 +45,11 @@ public class ActiveGame extends Observable {
 //	}
 
 	public ActiveGame() {
-
 		routeOwners = new EnumMap<>(Route.class);
 		queue= new ChatQueue();
 	}
 
-	public ActiveGame(PendingGame startGame,Store store){
+	public ActiveGame(PendingGame startGame){
 		players = new TreeSet<>();
 		addPlayers(startGame.getPlayers());
 
@@ -62,11 +59,13 @@ public class ActiveGame extends Observable {
 		this.id = startGame.getId() + "_ACTIVE";
 		routeOwners = new EnumMap<>(Route.class);
 		queue= new ChatQueue();
+        this.store = store;
 		//Sorry for the hard coding but they're always the same so sue me -_o_-
 		this.destDeckSize = 30;
 		this.trainDeckSize = 110;
 		this.activePlayerInd = 0;
-        this.store = store;
+
+//		store = new Store();
 	}
 
 	private void addPlayers(ArrayList<String> players){
@@ -119,7 +118,7 @@ public class ActiveGame extends Observable {
 	}
 
 	public void addObservers(Observer o){
-//		store.addObserver(o);
+		store.addObserver(o);
 		queue.addObserver(o);
 		this.addObserver(o);
 	}

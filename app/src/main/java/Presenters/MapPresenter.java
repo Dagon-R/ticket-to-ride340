@@ -21,7 +21,7 @@ import Phase2Models.City;
 import Phase2Models.DestinationCard;
 import Phase2Models.MapModel;
 import Phase2Models.Store;
-//import Presenters.R;
+
 import Phase2Services.ChatService;
 import Phase2Services.ClaimRouteService;
 import Phase2Services.DrawDestCardService;
@@ -49,8 +49,8 @@ public class MapPresenter implements Observer {
         updateActiveGame();
         updateChat();
         updateMap();
+        initActionBar();
     }
-
 
 
     @Override
@@ -82,9 +82,7 @@ public class MapPresenter implements Observer {
                 mapActivity.updateTurnView(ag.getActivePlayerInd(), ag.getPlayers());
                 break;
             case "MapModel":
-
                 updateMap();
-
                 break;
             case "ChatQueue":
                 updateChat();
@@ -205,7 +203,9 @@ public class MapPresenter implements Observer {
 
     }
     private void advanceTurn(){
-        //mapactivity.updateTurnView
+        ActiveGame game = MainModel.get().getGame().getActiveGame();
+        game.incActivePlayerInd();
+        mapActivity.updateTurnView(game.getActivePlayerInd(), game.getPlayers());
     }
 
     public void initActionBar(){
@@ -215,7 +215,6 @@ public class MapPresenter implements Observer {
     }
 
     public void showDestDialog(){
-
         EnumSet<DestinationCard> destHand = MainModel.get().getPlayer().getDestHand();
         this.mapActivity.setDialogInfo(destHand);
     }
