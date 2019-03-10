@@ -1,12 +1,13 @@
 package Phase2Models;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.concurrent.ArrayBlockingQueue;
 
 public class TrainDeck {
     private static final int DECK_COLOR_SIZE = 12;
 
-    private ArrayBlockingQueue<TrainCardColor> deck =
-            new ArrayBlockingQueue<>((TrainCardColor.values().length * DECK_COLOR_SIZE) + 2);
+    private ArrayList<TrainCardColor> deck = new ArrayList<>();
 
     public TrainDeck() {
         for (TrainCardColor color : TrainCardColor.values())
@@ -18,31 +19,41 @@ public class TrainDeck {
         }
         deck.add(TrainCardColor.RAINBOW);
         deck.add(TrainCardColor.RAINBOW);
+
+        Collections.shuffle(deck);
+
     }
     public TrainCardColor[] draw2()
     {
         TrainCardColor[] result = new TrainCardColor[2];
-        if (deck.size() > 0) {result[0] = deck.poll();
-        if (deck.size() > 0) {result[1] = deck.poll();}}
+        for(int i = 0; i < 2; i++) {
+            if (deck.size() > 0) {
+                result[i] = deck.get(0);
+                deck.remove(0);
+            }
+        }
         return result;
     }
     public TrainCardColor[] draw4()
     {
         TrainCardColor[] result = new TrainCardColor[4];
-        if (deck.size() > 0) {result[0] = deck.poll();
-        if (deck.size() > 0) {result[1] = deck.poll();}
-        if (deck.size() > 0) {result[2] = deck.poll();}
-        if (deck.size() > 0) {result[3] = deck.poll();}}
+        for(int i = 0; i < 4; i++) {
+            if (deck.size() > 0) {
+                result[i] = deck.get(0);
+                deck.remove(0);
+            }
+        }
         return result;
     }
 
     public TrainCardColor[] drawStore(){
         TrainCardColor[] result = new TrainCardColor[5];
-        if (deck.size() > 0) {result[0] = deck.poll();}
-        if (deck.size() > 0) {result[1] = deck.poll();}
-        if (deck.size() > 0) {result[2] = deck.poll();}
-        if (deck.size() > 0) {result[3] = deck.poll();}
-        if (deck.size() > 0) {result[4] = deck.poll();}
+        for(int i = 0; i < 5; i++) {
+            if (deck.size() > 0) {
+                result[i] = deck.get(0);
+                deck.remove(0);
+            }
+        }
         return result;
     }
 }
