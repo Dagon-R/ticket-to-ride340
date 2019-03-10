@@ -47,7 +47,7 @@ public class MapPresenter implements Observer {
         updateStore();
         updateActiveGame();
         updateChat();
-//        updateMap();
+        updateMap();
     }
 
 
@@ -60,6 +60,13 @@ public class MapPresenter implements Observer {
         }
 
         switch (type){
+            case "ErrorMessage":
+                runOnUI(new Runnable() {
+                    @Override
+                    public void run() {
+                        mapActivity.popToast(MainModel.get().getErrorMessage());
+                    }
+                });
             case "Player":
                 updatePlayer();
                 break;
@@ -71,7 +78,7 @@ public class MapPresenter implements Observer {
                 updateActiveGame();
                 break;
             case "MapModel":
-                Log.d(TAG, "update: "+ MainModel.get().getMapModel());
+
                 updateMap();
 
                 break;
@@ -151,13 +158,16 @@ public class MapPresenter implements Observer {
             float dist = (float)Math.pow(Math.pow(x-point.x,2) + Math.pow(y-point.y,2),.5);
 
             if(dist < 30){
-                System.out.println(city);
-                selectCity(city);
+                if(MainModel.get().getMapModel().getSelectedCity() == null)selectCity(city);
+                else claimRoute(MainModel.get().getMapModel().getSelectedCity(),city);
                 return;
             }
         }
+        deselectCity();
     }
-    private void claimRoute(){
+    private void claimRoute(City city1, City city2){
+        MainModel.get().getGame().getActiveGame().setRouteOwner(city1,city2);
+        MainModel.get().getMapModel().setSelectedCity(null);
         //Send prompt to view with message "Claim route between %city1 and %city2?" (place names in for city1 and city2)
         //Prompt should also include "Requires %numberRequired %color train car cards"
         //Prompt includes "You have %numberOwned %color train car cards"
@@ -195,8 +205,8 @@ public class MapPresenter implements Observer {
     }
 
     public void showDestDialog(){
-        EnumSet<DestinationCard> destHand = MainModel.get().getPlayer().getDestHand();
-        this.mapActivity.setDialogInfo(destHand);
+//        EnumSet<DestinationCard> destHand = MainModel.get().getPlayer().getDestHand();
+//        this.mapActivity.setDialogInfo(destHand);
     }
 
     public void checkDestination(boolean isChecked, int index){

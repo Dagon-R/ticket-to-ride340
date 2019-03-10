@@ -22,6 +22,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import java.util.ArrayList;
@@ -118,9 +119,14 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
         mapLogic.updateMap(map);
     }
 
+    public void popToast(String error){
+        Toast.makeText(MapActivity.this,error,Toast.LENGTH_SHORT).show();
+    }
+
+
 
     public void updatePlayerInfo(Player player){
-        destinationCardDisplay.swapAdapter(new DestinationAdapter(player.getDestHand()), false);
+//        destinationCardDisplay.swapAdapter(new DestinationAdapter(player.getDestHand()), false);
     }
 
     public void updateGameInfo(ActiveGame game) {

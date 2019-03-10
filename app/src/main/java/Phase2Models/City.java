@@ -42,4 +42,5 @@ public enum City {
     {
         System.out.println(Arrays.toString(City.values()));
     }
+
 }

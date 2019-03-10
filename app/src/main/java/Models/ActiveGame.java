@@ -11,6 +11,7 @@ import java.util.TreeSet;
 
 import Phase2Models.ChatMessage;
 import Phase2Models.ChatQueue;
+import Phase2Models.City;
 import Phase2Models.Route;
 import Phase2Models.Store;
 
@@ -39,7 +40,13 @@ public class ActiveGame extends Observable {
 //        queue= new ChatQueue();
 //        routeOwners = new EnumMap<>(Route.class);
 //	}
-	
+
+	public ActiveGame() {
+
+		routeOwners = new EnumMap<>(Route.class);
+		queue= new ChatQueue();
+	}
+
 	public ActiveGame(PendingGame startGame){
 		players = new TreeSet<>();
 		addPlayers(startGame.getPlayers());
@@ -67,6 +74,15 @@ public class ActiveGame extends Observable {
 			this.players.add(player);
 			i++;
 		}
+	}
+
+	public void setRouteOwner(City city1, City city2){
+		Route route = Route.getRoute(city1,city2);
+		if(route != null){
+			routeOwners.put(route,player);
+			return;
+		}
+		MainModel.get().setErrorMessage(city1.getName() + " is not directly next to "+ city2);
 	}
     public Player getOwner(Route route) {return routeOwners.get(route);}
 
@@ -100,7 +116,11 @@ public class ActiveGame extends Observable {
 		this.addObserver(o);
 	}
 
-	private void setPlayers(TreeSet<Player> input){
+    public EnumMap<Route, Player> getRouteOwners() {
+        return routeOwners;
+    }
+
+    private void setPlayers(TreeSet<Player> input){
 		this.players = input;
 	}
 	

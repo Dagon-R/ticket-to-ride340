@@ -13,6 +13,9 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.EnumMap;
+
+import Models.Player;
 import Phase2Models.City;
 import Phase2Models.MapModel;
 import Phase2Models.Route;
@@ -29,6 +32,8 @@ public class MapLogic extends View {
     float selectedRadius;
     float routeThickness;
     IMap mapActivity;
+    int i=0;
+    MapModel mapModel;
 
     public MapLogic(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -38,7 +43,7 @@ public class MapLogic extends View {
         selectedRadius = 20;
         routeThickness =15;
 
-        this.invalidate();
+//        this.invalidate();
     }
 
     public void setIMap(IMap map){
@@ -55,8 +60,10 @@ public class MapLogic extends View {
     }
 
     public void updateMap(MapModel model){
-
-        drawMap(model);
+//        canvas =new Canvas();
+//        drawMap(model);
+        mapModel = model;
+        invalidate();
     }
 
     @Override
@@ -65,23 +72,51 @@ public class MapLogic extends View {
         this.canvas = canvas;
         this.size = new PointF(canvas.getWidth(),canvas.getHeight());
 //        this.setBackgroundColor(Color.TRANSPARENT);
-        drawMap(new MapModel());
+        if(mapModel == null){
+            drawMap(new MapModel());
+        }else{
+            drawMap(mapModel);
+        }
+
     }
 
     protected void drawMap(MapModel map){
+        Log.d(TAG, "drawMap: " + map);
         City selectedCity = map.getSelectedCity();
         drawBackground();
-
+//        if(i>0) return;
         drawRoutes();
+        drawClaimedRoutes();
         drawCities();
         drawSelectedCity(selectedCity);
+        i++;
 
 
     }
 
-    private void drawSelectedCity(City city){
+    private void drawClaimedRoutes(){
 
+        for(Route route : mapModel.getClaimedRoutes().keySet()){
+            PointF point1 = MapEquations.getPoint(route.getCity1(),size);
+            PointF point2 = MapEquations.getPoint(route.getCity2(),size);
+//            PointF point1 = MapEquations.getPoint(route.getCity1(),size);
+//            PointF point2 = MapEquations.getPoint(route.getCity2(),size);
+            float dist = (float)Math.pow(Math.pow(point2.x-point1.x,2) + Math.pow(point1.y-point2.y,2),.5);
+            float[] intervals = getIntervals(point1,point2,route.getLength(),dist);
+
+            paint.setStyle(Paint.Style.STROKE);
+
+            paint.setColor(Color.RED);
+            paint.setStrokeWidth(15);
+            setPaintParams(Color.RED, Paint.Style.STROKE,null);
+            canvas.drawLine(point1.x,point1.y,point2.x,point2.y,paint);
+        }
+    }
+
+    private void drawSelectedCity(City city){
+        Log.d(TAG, "drawSelectedCity: " + city);
         if(city == null) return;
+        Log.d(TAG, "drawSelectedCity HERE: " + city);
         PointF point = MapEquations.getPoint(city,size);
         setPaintParams(getResources().getColor(R.color.lightBlue),null,null);
         canvas.drawCircle(point.x,point.y,radius,paint);

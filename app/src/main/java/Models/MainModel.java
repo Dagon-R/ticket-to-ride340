@@ -82,7 +82,13 @@ public class MainModel{
     }
 
     public void addMapObservers(Observer o){
-//        mapModel.addObserver(o);
+        if(mapModel == null){
+            mapModel = new MapModel();
+        }
+        mapModel.addObserver(o);
+        if(game.getActiveGame() == null){
+            game.setActiveGame(new ActiveGame());
+        }
         game.addObserver(o);
         game.getActiveGame().addObservers(o);
     }
