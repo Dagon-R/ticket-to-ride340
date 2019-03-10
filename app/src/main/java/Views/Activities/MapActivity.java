@@ -36,6 +36,7 @@ import Phase2Models.DestinationCard;
 import Phase2Models.City;
 import Phase2Models.MapModel;
 import Phase2Models.Store;
+import Phase2Models.TrainCardColor;
 import Presenters.MapPresenter;
 import Views.ViewInterfaces.ActionBar;
 import Views.MapLogic;
@@ -53,6 +54,7 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
     RecyclerView chatList;
     EditText chatInput;
     Button chatButton;
+    LinearLayout actionBar;
 
 
     @Override
@@ -69,6 +71,8 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
 
         //presenter initialization stuff
         mapPresenter = new MapPresenter(this);
+        //init actionbar
+        actionBar = (LinearLayout) findViewById(R.id.action_bar_layout);
         //drawer initialization stuff
         drawerLayout = findViewById(R.id.activity_map_layout);
         //chat sheet initialization stuff
@@ -111,8 +115,48 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
     }
 
     public void updateStore(Store store) {
+        ArrayList<View> views = new ArrayList<>();
+        views.add((View) findViewById(R.id.store0));
+        views.add((View) findViewById(R.id.store1));
+        views.add((View) findViewById(R.id.store2));
+        views.add((View) findViewById(R.id.store3));
+        views.add((View) findViewById(R.id.store4));
 
+        TrainCardColor[] storeList = store.getStore();
+        for(int i = 0; i < storeList.length; i++){
+            switch (storeList[i]){
+                case BLUE:
+                    views.get(i).setBackgroundColor(getResources().getColor(R.color.blue));
+                    break;
+                case RED:
+                    views.get(i).setBackgroundColor(getResources().getColor(R.color.red));
+                    break;
+                case BLACK:
+                    views.get(i).setBackgroundColor(getResources().getColor(R.color.black));
+                    break;
+                case GREEN:
+                    views.get(i).setBackgroundColor(getResources().getColor(R.color.green));
+                    break;
+                case WHITE:
+                    views.get(i).setBackgroundColor(getResources().getColor(R.color.white));
+                    break;
+                case ORANGE:
+                    views.get(i).setBackgroundColor(getResources().getColor(R.color.orange));
+                    break;
+                case PURPLE:
+                    views.get(i).setBackgroundColor(getResources().getColor(R.color.purple));
+                    break;
+                case YELLOW:
+                    views.get(i).setBackgroundColor(getResources().getColor(R.color.yellow));
+                    break;
+                case RAINBOW:
+                    views.get(i).setBackgroundColor(getResources().getColor(R.color.rainbow));
+                    break;
+            }
+        }
     }
+
+
 
     public void updateTurnView(int playerIndex) {
         //grey out i - 1 and color i
@@ -121,7 +165,7 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
 
 
     @Override
-    public void drawStore(int i, DestinationCard newCard) {
+    public void drawStore(int i) {
         //replace card at i with new dest card
 
     }
