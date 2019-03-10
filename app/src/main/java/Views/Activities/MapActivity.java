@@ -92,7 +92,7 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
 
 //        mapPresenter = new MapPresenter(this);
         //init actionbar
-        actionBar = (LinearLayout) findViewById(R.id.action_bar_layout);
+        actionBar = findViewById(R.id.action_bar_layout);
         //drawer initialization stuff
         drawerLayout = findViewById(R.id.activity_map_layout);
         destinationCardDisplay = findViewById(R.id.destination_card_recycler_view);

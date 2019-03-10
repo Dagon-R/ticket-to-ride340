@@ -10,7 +10,7 @@
 
 
 
-This nested coordinator layout needs to be here or else the sheet won't work properly
+<!--This nested coordinator layout needs to be here or else the sheet won't work properly-->
     <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"

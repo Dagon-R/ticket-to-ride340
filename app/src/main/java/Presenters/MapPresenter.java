@@ -21,7 +21,7 @@ import Phase2Models.City;
 import Phase2Models.DestinationCard;
 import Phase2Models.MapModel;
 import Phase2Models.Store;
-
+//import Presenters.R;
 import Phase2Services.ChatService;
 import Phase2Services.ClaimRouteService;
 import Phase2Services.DrawDestCardService;
@@ -215,8 +215,9 @@ public class MapPresenter implements Observer {
     }
 
     public void showDestDialog(){
-//        EnumSet<DestinationCard> destHand = MainModel.get().getPlayer().getDestHand();
-//        this.mapActivity.setDialogInfo(destHand);
+
+        EnumSet<DestinationCard> destHand = MainModel.get().getPlayer().getDestHand();
+        this.mapActivity.setDialogInfo(destHand);
     }
 
     public void checkDestination(boolean isChecked, int index){
