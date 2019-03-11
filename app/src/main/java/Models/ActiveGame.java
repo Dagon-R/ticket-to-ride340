@@ -204,6 +204,10 @@ public class ActiveGame extends Observable {
 		this.trainDeckSize = totalDeckSize;
 	}
 
+	public void setTrainDeckSize(int deckSize) {
+		this.trainDeckSize = deckSize;
+	}
+
 	public int getTrainDeckSize() {
 		return this.trainDeckSize;
 	}
@@ -220,7 +224,7 @@ public class ActiveGame extends Observable {
 		int numPlayers = this.players.size();
 		this.activePlayerInd += 1;
 		//wraparound to player 0
-		if(this.activePlayerInd > numPlayers) this.activePlayerInd = 0;
+		if(this.activePlayerInd > numPlayers - 1) this.activePlayerInd = 0;
 	}
 
 

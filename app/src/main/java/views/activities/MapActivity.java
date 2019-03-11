@@ -234,7 +234,7 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
                 break;
             case RAINBOW:
                 retColor = getResources().getColor(R.color.rainbow);
-                break;
+                break; //TODO: make rainbow drawable
         }
         return retColor;
     }
@@ -273,13 +273,12 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
         views.add(findViewById(R.id.p4Turn));
 
         int i = 0;
-        int lastPlayer = playerIndex - 1;
-        if(lastPlayer < 0) lastPlayer = playerList.size();
         for(Player player : playerList){
             //set active player view color
             if (i == playerIndex) views.get(i).getBackground().setTint(getPlayerColor(player.getColor()));
-            //set previous active player view color to grey
-            if(i == lastPlayer)  views.get(i).getBackground().setTint(getResources().getColor(R.color.grey));
+            //set previous all other players to grey
+            else views.get(i).getBackground().setTint(getResources().getColor(R.color.grey));
+            i += 1;
         }
     }
 
