@@ -29,12 +29,26 @@ public class Player extends Observable implements Comparable<Player>{
 
 	public Player(String name, PlayerColorEnum playerColor){
 		this.name = name;
+		piecesLeft = 45;
 		this.playerColor = playerColor;
+		score =0;
 	}
 
 	public void removeDestCard(DestinationCard card)
 	{
 		destHand.remove(card);
+		setChanged();
+		notifyObservers(this);
+	}
+
+	public void addTrainCard(TrainCardColor card){
+		Integer size = trainHand.get(card);
+		size +=1;
+		trainHand.put(card,size);
+	}
+
+	public void incrementScore(int points){
+		score+=points;
 		setChanged();
 		notifyObservers(this);
 	}
@@ -85,7 +99,7 @@ public class Player extends Observable implements Comparable<Player>{
 		this.trainHand = trainHand;
 
 		setChanged();
-		notifyObservers(TrainCardColor.BLACK);
+		notifyObservers("TrainCardColor");
 	}
 
 	public EnumSet<DestinationCard> getDestHand() {
@@ -97,7 +111,7 @@ public class Player extends Observable implements Comparable<Player>{
 		temp.addAll(Arrays.asList(destHand));
 		this.destHand = temp;
 		setChanged();
-		notifyObservers(destHand[0]);
+		notifyObservers("DestinationCard");
 	}
 
 	public void setDestHand(ArrayList<DestinationCard> destHand) { //TODO TEST
@@ -105,13 +119,13 @@ public class Player extends Observable implements Comparable<Player>{
 		temp.addAll(destHand);
 		this.destHand = temp;
 		setChanged();
-		notifyObservers(destHand.get(0));
+		notifyObservers("DestinationCard");
 	}
 
 	public void addToDestHand(DestinationCard card){
 		this.destHand.add(card);
 		setChanged();
-		notifyObservers(this);
+		notifyObservers("DestinationCard");
 	}
 
 	public int getScore() {
@@ -126,6 +140,12 @@ public class Player extends Observable implements Comparable<Player>{
 
 	public int getPiecesLeft() {
 		return piecesLeft;
+	}
+
+	public void decrementPiecesLeft(int dec){
+		this.piecesLeft -=dec;
+		setChanged();
+		notifyObservers(this);
 	}
 
 	public void setPiecesLeft(int piecesLeft) {

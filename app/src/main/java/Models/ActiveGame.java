@@ -12,8 +12,10 @@ import java.util.TreeSet;
 import Phase2Models.ChatMessage;
 import Phase2Models.ChatQueue;
 import Phase2Models.City;
+import Phase2Models.DestinationCard;
 import Phase2Models.Route;
 import Phase2Models.Store;
+import Phase2Models.TrainCardColor;
 
 public class ActiveGame extends Observable {
 	static String TAG = "ActiveGame";
@@ -119,8 +121,19 @@ public class ActiveGame extends Observable {
 	public void addObservers(Observer o){
 		store.addObserver(o);
 		queue.addObserver(o);
-		
+		player.addObserver(o);
 		this.addObserver(o);
+	}
+
+	public void doStuff(){
+		for(Player player : MainModel.get().getGame().getActiveGame().getPlayers()){
+			player.incrementScore(15);
+			player.addToDestHand(DestinationCard.DUL_ELPASO);
+			player.addTrainCard(TrainCardColor.BLACK);
+			player.decrementPiecesLeft(15);
+		}
+		setChanged();
+		notifyObservers(this);
 	}
 
     public EnumMap<Route, Player> getRouteOwners() {
@@ -199,4 +212,6 @@ public class ActiveGame extends Observable {
 		//wraparound to player 0
 		if(this.activePlayerInd > numPlayers) this.activePlayerInd = 0;
 	}
+
+
 }

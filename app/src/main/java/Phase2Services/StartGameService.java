@@ -14,6 +14,7 @@ import Communication.ServerProxy;
 import Models.ActiveGame;
 import Models.MainModel;
 import Models.PendingGame;
+import Models.Player;
 import Phase2Models.DestinationCard;
 import Phase2Models.Store;
 import Phase2Models.TrainCardColor;
@@ -70,17 +71,26 @@ public class StartGameService implements Service {
             Log.d(TAG, "Returning");
             return;
         }
-
-
         ActiveGame game = model.activateGame(gameID,store);
-        game.getPlayer().setDestHand(destCards.get(model.getUser().getName()));
+        int i=0;
+//        Player[] players = (Player[])game.getPlayers().toArray();
+        for(Player player : game.getPlayers()){
+            player.setTrainHand(colorMap.get(player.getName()));
+            player.setDestHand(destCards.get(player.getName()));
+        }
+//        for(String name : colorMap.keySet()){
+//            if(name.equals(model.getUser().getName())){
+//                game.getPlayer().setTrainHand(colorMap.get(model.getUsername()));
+//            }else if()
+//
+//            i++;
+//        }
+//        EnumMap<TrainCardColor,Integer> userTrainCards =colorMap.get(model.getUser().getName());
+//
+//
+//        game.getPlayer().setDestHand(destCards.get(model.getUser().getName()));
         //set player's train card hand
-        EnumMap<TrainCardColor,Integer> userTrainCards =colorMap.get(model.getUser().getName());
 
-
-
-
-        game.getPlayer().setTrainHand(userTrainCards);
         model.setActiveGame(game);
 
             //decrement deck counts (subtract sum player train cards & dest cards)
