@@ -173,16 +173,26 @@ public class ActiveGame extends Observable {
 		this.destDeckSize = destDeckSize;
 	}
 
-	public void decrementDeckSize(int numDrawn){
-		this.destDeckSize -= numDrawn;
+	public void updateDestDeckSize(){
+		//iterate through player's destDeck sizes and subtract from total
+		int totalDeckSize = 30; //30 total destCardds
+		for(Player player : this.getPlayers()){
+			totalDeckSize -= player.getTotalDestinationCards();
+		}
+		this.destDeckSize = totalDeckSize;
+	}
+
+	public void updateTrainDeckSize(){
+		//iterate through player's trainDeck sizes and subtract from total
+		int totalDeckSize = 110; //110 total trainCards
+		for(Player player : this.getPlayers()){
+			totalDeckSize -= player.getTotalTrainCards();
+		}
+		this.trainDeckSize = totalDeckSize;
 	}
 
 	public int getTrainDeckSize() {
-		return trainDeckSize;
-	}
-
-	public void setTrainDeckSize(int trainDeckSize) {
-		this.trainDeckSize = trainDeckSize;
+		return this.trainDeckSize;
 	}
 
 	public void decrementTrainCards(int numDrawn){

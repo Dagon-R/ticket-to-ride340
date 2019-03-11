@@ -56,7 +56,7 @@ public class StartGameService implements Service {
 
     }
 
-    private void serve(String gameID, Store store, String ipAddress, HashMap<String,DestinationCard[]> destCards,HashMap<String,EnumMap<TrainCardColor,Integer>>colorMap){
+    private void serve(String gameID, Store store, String ipAddress, HashMap<String,DestinationCard[]> destCards, HashMap<String,EnumMap<TrainCardColor,Integer>>colorMap){
         PendingGame pendingGame = model.findGame(gameID);
         //If there is a pending game, continue
         if(pendingGame == null){
@@ -77,14 +77,8 @@ public class StartGameService implements Service {
         //set player's train card hand
         EnumMap<TrainCardColor,Integer> userTrainCards =colorMap.get(model.getUser().getName());
 
-
-
-
         game.getPlayer().setTrainHand(userTrainCards);
         model.setActiveGame(game);
-
-            //decrement deck counts (subtract sum player train cards & dest cards)
-//        }
 
 
     }

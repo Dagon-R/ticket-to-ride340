@@ -24,6 +24,7 @@ import java.util.EnumSet;
 import java.util.TreeSet;
 
 import Models.ActiveGame;
+import Models.MainModel;
 import Models.Player;
 import Models.PlayerColorEnum;
 import Phase2Models.ChatQueue;
@@ -185,6 +186,16 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
             playersArray[i].setInfo(currentPlayer);
             i++;
         }
+    }
+
+    public void updateDestDeck(int deckSize){
+        TextView tv = (TextView) findViewById(R.id.destDeckNum);
+        tv.setText(String.valueOf(deckSize));
+    }
+
+    public void updateTrainDeck(int deckSize){
+        TextView tv = (TextView) findViewById(R.id.trainDeckNum);
+        tv.setText(String.valueOf(deckSize));
     }
 
     public void updateStore(Store store) {

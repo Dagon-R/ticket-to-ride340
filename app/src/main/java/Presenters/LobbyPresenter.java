@@ -22,7 +22,6 @@ public class LobbyPresenter implements Observer {
         retrievePlayers();
         MainModel.get().addLobbyObservers(this);
 
-
     }
 
     public void retrievePlayers(){

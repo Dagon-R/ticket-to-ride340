@@ -77,10 +77,12 @@ public class MapPresenter implements Observer {
                 break;
             case "TrainCardColor":
                 updatePlayerTrainCards();
+                updateTrainDeck();
                 break;
 
             case"DestinationCard":
                 updatePlayerDestCards();
+                updateDestDeck();
                 break;
 
             case "ActiveGame":
@@ -159,6 +161,26 @@ public class MapPresenter implements Observer {
             @Override
             public void run() {
                 mapActivity.updateChat(MainModel.get().getGame().getActiveGame().getChatQueue());
+            }
+        });
+    }
+
+    private void updateTrainDeck(){
+        MainModel.get().getGame().getActiveGame().updateTrainDeckSize();
+        runOnUI(new Runnable() {
+            @Override
+            public void run() {
+                mapActivity.updateTrainDeck(MainModel.get().getGame().getActiveGame().getTrainDeckSize());
+            }
+        });
+    }
+
+    private void updateDestDeck(){
+        MainModel.get().getGame().getActiveGame().updateDestDeckSize();
+        runOnUI(new Runnable() {
+            @Override
+            public void run() {
+                mapActivity.updateDestDeck(MainModel.get().getGame().getActiveGame().getDestDeckSize());
             }
         });
     }

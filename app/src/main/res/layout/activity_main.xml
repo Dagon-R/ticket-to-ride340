@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="username"
-                android:text="Phil"
+                android:text="sar"
                 android:padding="20dp"
                 android:inputType="text"
                 />
@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="password"
-                android:text="Bob"
+                android:text="s"
                 android:padding="20dp"
                 android:inputType="textVisiblePassword"/>
 
@@ -55,7 +55,7 @@
                 android:hint="IP address"
                 android:padding="20dp"
                 android:inputType="text"
-                android:text="192.168.1.200"
+                android:text="45.56.21.145"
                 />
 
             <LinearLayout
