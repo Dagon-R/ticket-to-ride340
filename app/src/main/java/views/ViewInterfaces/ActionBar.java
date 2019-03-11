@@ -1,6 +1,6 @@
 package views.ViewInterfaces;
 
-public interface ActionBar { //
+public interface ActionBar {
 
     void drawStore(int i);
     void drawTrainCarCard();
