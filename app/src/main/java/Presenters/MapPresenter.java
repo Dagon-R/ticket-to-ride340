@@ -187,7 +187,7 @@ public class MapPresenter implements Observer {
     }
 
     private void updateDestDeck(){
-        MainModel.get().getGame().getActiveGame().updateDestDeckSize();
+//        MainModel.get().getGame().getActiveGame().updateDestDeckSize();
         runOnUI(new Runnable() {
             @Override
             public void run() {
