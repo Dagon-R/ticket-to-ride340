@@ -13,9 +13,13 @@ import java.util.Set;
 
 import Models.ActiveGame;
 import Models.MainModel;
+import Models.Player;
 import Phase2Models.City;
 import Phase2Models.DestinationCard;
 
+import Phase2Models.Route;
+import Phase2Models.Store;
+import Phase2Models.TrainCardColor;
 import Phase2Services.ChatService;
 import Phase2Services.ClaimRouteService;
 import Phase2Services.DrawDestCardService;
@@ -38,12 +42,13 @@ public class MapPresenter implements Observer {
     }
 
     private void initialize(){
-//        updatePlayer();
-//        updateStore();
-//        updateActiveGame();
+        updatePlayer();
+        updateStore();
+//
         updateChat();
         updateMap();
         initActionBar();
+        updateActiveGame();
     }
 
 
@@ -52,6 +57,13 @@ public class MapPresenter implements Observer {
         String type = o.getClass().getSimpleName();
         if(arg != null){
             type = arg.getClass().getSimpleName();
+        }
+        System.out.println(arg);
+        if(type.equals("String")){
+            type = arg.toString();
+        }
+        if(type.equals("ActiveGame")){
+            System.out.println(MainModel.get().getGame().getActiveGame());
         }
 
         switch (type){
@@ -183,14 +195,17 @@ public class MapPresenter implements Observer {
     }
 
     public void drawDestination(){
-        Service drawDestinationService = new DrawDestCardService();
+        MainModel.get().getGame().getActiveGame().setDestDeckSize(3);
+//        Service drawDestinationService = new DrawDestCardService();
 //        drawDestinationService.
     }
     public void drawStore(int index){
+
         Service drawStoreService = null;
 
     }
     public void drawTrainCard() {
+        MainModel.get().getGame().getActiveGame().setTrainDeckSize(3);
         Service drawTrainCardService = null;
     }
     public void selectCity(float x, float y,PointF size){
@@ -210,6 +225,19 @@ public class MapPresenter implements Observer {
     private void claimRoute(City city1, City city2){
         MainModel.get().getGame().getActiveGame().setRouteOwner(city1,city2);
         MainModel.get().getMapModel().setSelectedCity(null);
+        MainModel.get().getPlayer().decrementPiecesLeft(5);
+        drawDestination();
+        drawTrainCard();
+        TrainCardColor[] trainCardColors ={TrainCardColor.BLACK,TrainCardColor.BLACK,TrainCardColor.BLACK,TrainCardColor.BLACK,TrainCardColor.BLACK};
+        MainModel.get().getGame().getActiveGame().setStore(new Store(trainCardColors));
+        advanceTurn();
+        MainModel.get().getPlayer().addToDestHand(DestinationCard.CHICAGO_ORLEANS);
+        MainModel.get().getPlayer().addToDestHand(DestinationCard.BOSTON_MIAMI);
+        MainModel.get().getPlayer().addToDestHand(DestinationCard.DENV_ELPASO);
+
+        MainModel.get().getGame().getActiveGame().doStuff();
+
+
         //TODO Send prompt to view with message "Claim route between %city1 and %city2?" (place names in for city1 and city2)
         //TODO Prompt should also include "Requires %numberRequired %color train car cards"
         //TODO Prompt includes "You have %numberOwned %color train car cards"
@@ -274,7 +302,9 @@ public class MapPresenter implements Observer {
 
     public void clickDialogAccept(){
         MainModel.get().getPlayer().setDestHand(selectedDestCards);
+//        updateActiveGame();
     }
+
     private void runOnUI(Runnable run){
         mapActivity.runOnUiThread(run);
     }
