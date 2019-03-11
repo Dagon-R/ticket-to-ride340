@@ -16,7 +16,7 @@ import Models.Player;
 import Presenters.LobbyPresenter;
 import views.R;
 
-public class LobbyActivity extends AppCompatActivity {
+public class LobbyActivity extends AppCompatActivity {//
     Button startButton;
     Button backButton;
     TextView playerName0;

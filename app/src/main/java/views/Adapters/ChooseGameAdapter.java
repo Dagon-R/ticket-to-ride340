@@ -16,7 +16,7 @@ import Models.ClientGameList;
 import Models.PendingGame;
 import views.R;
 
-public class ChooseGameAdapter extends RecyclerView.Adapter<ChooseGameAdapter.ViewHolder>{
+public class ChooseGameAdapter extends RecyclerView.Adapter<ChooseGameAdapter.ViewHolder>{ //
     Vector<PendingGame> gameList = new Vector<>();
     private OnItemClickListener listener;
 
