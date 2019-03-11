@@ -1,7 +1,5 @@
 package Presenters;
 
-import android.widget.Toast;
-
 import java.util.Observable;
 import java.util.Observer;
 
@@ -9,7 +7,7 @@ import Models.ErrorMessage;
 import Models.MainModel;
 import Services.LoginService;
 import Services.RegisterService;
-import Views.Activities.MainActivity;
+import views.activities.MainActivity;
 
 public class LoginPresenter implements Observer {
     MainActivity mainActivity;
