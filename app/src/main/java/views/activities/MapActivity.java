@@ -283,6 +283,15 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
         }
     }
 
+    public void updateDestDeck(int deckSize){
+        TextView tv = (TextView) findViewById(R.id.destDeckNum);
+        tv.setText(String.valueOf(deckSize));
+    }
+
+    public void updateTrainDeck(int deckSize){
+        TextView tv = (TextView) findViewById(R.id.trainDeckNum);
+        tv.setText(String.valueOf(deckSize));
+    }
 
     @Override
     public void drawStore(int i) {
