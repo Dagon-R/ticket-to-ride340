@@ -5,7 +5,6 @@ import android.util.Log;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.Map;
 import java.util.Observable;
@@ -14,16 +13,11 @@ import java.util.Set;
 
 import Models.ActiveGame;
 import Models.MainModel;
-import Models.Player;
-import Phase2Models.ChatMessage;
-import Phase2Models.ChatQueue;
 import Phase2Models.City;
 import Phase2Models.DestinationCard;
-import Phase2Models.MapModel;
-import Phase2Models.Store;
 
 import Phase2Services.ChatService;
-import Phase2Services.ClaimRouteService;
+import Phase3Services.ClaimRouteService;
 import Phase2Services.DrawDestCardService;
 import Services.Service;
 import Views.Activities.MapActivity;

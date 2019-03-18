@@ -1,5 +1,6 @@
 package Phase2Services;
 
+import Communication.ServerProxy;
 import Models.MainModel;
 import Models.PendingGame;
 import Phase2Models.DestinationCard;
@@ -13,10 +14,8 @@ public class DrawDestCardService implements Service {
     }
 
     @Override
-    //Params: String playerID
     public void connectToProxy(Object... obj) {
-        String playerID = (String) obj[0];
-        //sp.drawDestCard(playerID);
+        ServerProxy.get().drawDest();
     }
 
     @Override
