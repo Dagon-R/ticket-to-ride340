@@ -18,7 +18,7 @@ import Phase2Models.ChatMessage;
 import Phase2Models.ChatQueue;
 import views.R;
 
-public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{ //
+public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
     private OnItemClickListener listener;
     private List<ChatMessage> messageList = new ArrayList<>();
     private Map<PlayerColorEnum, Color> colorMap = new HashMap<>();

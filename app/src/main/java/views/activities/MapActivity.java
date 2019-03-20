@@ -44,7 +44,7 @@ import views.ViewInterfaces.MesssageSender;
 
 //import android.support.design.widget.BottomSheetBehavior;
 
-public class MapActivity extends AppCompatActivity implements ActionBar, IMap, MesssageSender { //
+public class MapActivity extends AppCompatActivity implements ActionBar, IMap, MesssageSender { ///
     static String TAG = "MapActivity";
 //    MapLogic mapLogic;
     MapLogic mapLogic;

@@ -19,7 +19,7 @@ import Presenters.ChooseGamePresenter;
 import views.Adapters.ChooseGameAdapter;
 import views.R;
 
-public class ChooseGameActivity extends AppCompatActivity{//
+public class ChooseGameActivity extends AppCompatActivity{
     static String TAG = "Choose Game Activity";
     RecyclerView gamesRecyclerView;
     EditText gameNameTextfield;

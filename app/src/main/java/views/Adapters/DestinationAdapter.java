@@ -18,7 +18,7 @@ import Models.PlayerColorEnum;
 import Phase2Models.DestinationCard;
 import views.R;
 
-public class DestinationAdapter extends RecyclerView.Adapter<DestinationAdapter.ViewHolder>{ //
+public class DestinationAdapter extends RecyclerView.Adapter<DestinationAdapter.ViewHolder>{
     private OnItemClickListener listener;
     private List<DestinationCard> cardList = new ArrayList<>();
     private Map<PlayerColorEnum, Color> colorMap = new HashMap<>();
