@@ -80,18 +80,6 @@ public class StartGameService implements Service {
             player.setTrainHand(colorMap.get(player.getName()));
             player.setDestHand(destCards.get(player.getName()));
         }
-//        for(String name : colorMap.keySet()){
-//            if(name.equals(model.getUser().getName())){
-//                game.getPlayer().setTrainHand(colorMap.get(model.getUsername()));
-//            }else if()
-//
-//            i++;
-//        }
-//        EnumMap<TrainCardColor,Integer> userTrainCards =colorMap.get(model.getUser().getName());
-//
-//
-//        game.getPlayer().setDestHand(destCards.get(model.getUser().getName()));
-        //set player's train card hand
 
         model.setActiveGame(game);
 

@@ -1,5 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <integer name="totalDestCards">30</integer>
-    <integer name="totalTrainCards">110</integer>
-</resources>
+<resources></resources>

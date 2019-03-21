@@ -20,7 +20,9 @@ import Phase2Models.MapModel;
 import Phase2Models.Route;
 import Phase2Models.TrainCardColor;
 import Presenters.MapEquations;
+import Presenters.MapPresenter;
 import views.ViewInterfaces.IMap;
+import views.activities.MapActivity;
 
 public class MapLogic extends View {
     static String TAG = "MapLogic";
@@ -30,33 +32,28 @@ public class MapLogic extends View {
     float radius;
     float selectedRadius;
     float routeThickness;
-    IMap mapActivity;
+    MapActivity activity;
+    MapPresenter presenter;
     int i=0;
     MapModel mapModel;
 
     public MapLogic(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.mapActivity = mapActivity;
         paint = new Paint();
         radius =15;
         selectedRadius = 20;
         routeThickness =15;
 
+
 //        this.invalidate();
     }
 
-    public void setIMap(IMap map){
-        mapActivity = map;
+    public void setActivity(MapActivity map){
+        activity = map;
+        presenter = new MapPresenter(map,this);
     }
 
-    public void setCanvas(Canvas canvas){
-        this.canvas = canvas;
-    }
 
-    public MapLogic(Context context, IMap mapActivity){
-        super(context);
-
-    }
 
     public void updateMap(MapModel model){
 //        canvas =new Canvas();
@@ -343,7 +340,7 @@ public class MapLogic extends View {
     public boolean onTouchEvent(MotionEvent event) {
         super.onTouchEvent(event);
 //        System.out.println(event.getX());
-        mapActivity.mapClick(event.getX(),event.getY(),size);
+        presenter.mapClick(event.getX(),event.getY(),size);
         return false;
     }
 
