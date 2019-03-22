@@ -11,6 +11,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import Communication.ServerProxy;
+import Models.APlayer;
 import Models.ActiveGame;
 import Models.MainModel;
 import Models.PendingGame;
@@ -76,10 +77,11 @@ public class StartGameService implements Service {
         ActiveGame game = model.activateGame(gameID,store);
         int i=0;
 //        Player[] players = (Player[])game.getPlayers().toArray();
-        for(Player player : game.getPlayers()){
-            player.setTrainHand(colorMap.get(player.getName()));
-            player.setDestHand(destCards.get(player.getName()));
-        }
+        //FIXME A PLAYER VS THISPLAYER
+//        for(APlayer player : game.getPlayers()){
+//            player.setTrainHand(colorMap.get(player.getName()));
+//            player.setDestHand(destCards.get(player.getName()));
+//        }
 
         model.setActiveGame(game);
 
