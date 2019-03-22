@@ -1,10 +1,11 @@
-package Presenters;
+package Presenters.GamePresenters;
 
 import java.util.Observable;
 import java.util.Observer;
 
 import Models.ActiveGame;
 import Models.MainModel;
+import Presenters.UtilPresenter;
 import views.activities.MapActivity;
 
 public class GameInfoPresenter implements Observer {

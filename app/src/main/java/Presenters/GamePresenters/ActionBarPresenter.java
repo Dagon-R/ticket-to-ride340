@@ -1,4 +1,4 @@
-package Presenters;
+package Presenters.GamePresenters;
 
 import android.util.Log;
 
@@ -7,6 +7,7 @@ import java.util.Observer;
 
 import Models.ActiveGame;
 import Models.MainModel;
+import Presenters.UtilPresenter;
 import Services.Service;
 import views.ViewInterfaces.ActionBar;
 import views.activities.MapActivity;

@@ -1,4 +1,4 @@
-package Presenters;
+package Presenters.GamePresenters;
 
 import android.util.Log;
 
@@ -7,6 +7,7 @@ import java.util.Observer;
 
 import Models.MainModel;
 import Phase2Services.ChatService;
+import Presenters.UtilPresenter;
 import Services.Service;
 import views.ViewInterfaces.MesssageSender;
 import views.activities.MapActivity;

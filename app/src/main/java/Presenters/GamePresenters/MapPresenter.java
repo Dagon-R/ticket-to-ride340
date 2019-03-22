@@ -1,12 +1,15 @@
-package Presenters;
+package Presenters.GamePresenters;
 import android.graphics.PointF;
 import android.util.Log;
 import java.util.Observable;
 import java.util.Observer;
-import Models.ActiveGame;
+
 import Models.MainModel;
 import Phase2Models.City;
-import Phase2Services.ClaimRouteService;
+
+import Phase3Services.ClaimRouteService;
+import Presenters.MapEquations;
+import Presenters.UtilPresenter;
 import Services.Service;
 import views.MapLogic;
 import views.ViewInterfaces.IMap;
@@ -74,6 +77,7 @@ public class MapPresenter implements Observer, IMap {
 //    }
 
     private void updateMap() {
+        Log.d(TAG, "updateMap method: THERE MAY BE AN ISSUE HERE");
         UtilPresenter.runOnUI(mapActivity,new Runnable() {
             @Override
             public void run() {

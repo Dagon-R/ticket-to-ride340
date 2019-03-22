@@ -1,4 +1,4 @@
-package Presenters;
+package Presenters.GamePresenters;
 
 import android.util.Log;
 
@@ -9,6 +9,7 @@ import java.util.Observer;
 
 import Models.MainModel;
 import Phase2Models.DestinationCard;
+import Presenters.UtilPresenter;
 import views.activities.MapActivity;
 
 public class DialogPresenter implements Observer {
