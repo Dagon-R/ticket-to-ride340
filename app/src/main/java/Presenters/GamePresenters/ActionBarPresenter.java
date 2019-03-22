@@ -9,15 +9,18 @@ import Models.ActiveGame;
 import Models.MainModel;
 import Presenters.UtilPresenter;
 import Services.Service;
+import views.ActionBarLogic;
 import views.ViewInterfaces.ActionBar;
 import views.activities.MapActivity;
 
 public class ActionBarPresenter implements Observer, ActionBar {
     private static String TAG = "ActionBarPresenter";
     private MapActivity mapActivity;
+    private ActionBarLogic actionBarLogic;
 
-    public ActionBarPresenter(MapActivity activity) {
+    public ActionBarPresenter(MapActivity activity, ActionBarLogic actionBarLogic) {
         this.mapActivity = activity;
+        this.actionBarLogic = actionBarLogic;
     }
 
     @Override
