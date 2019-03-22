@@ -18,7 +18,7 @@ import Phase2Models.Store;
 import Phase2Models.TrainCardColor;
 
 public class ActiveGame extends Observable {
-	static String TAG = "ActiveGame";
+	private static String TAG = "ActiveGame";
 	//A list of the players associated with the game
 	private TreeSet<APlayer> players ;
 	//The name of the game that will be displayed in menus
@@ -29,7 +29,7 @@ public class ActiveGame extends Observable {
 	//New Field
 	private Store store;
 	private ChatQueue queue;
-    private EnumMap<Route,APlayer> routeOwners;
+    private EnumMap<Route,APlayer[]> routeOwners;
     private int destDeckSize;
     private int trainDeckSize;
     private int activePlayerInd;
@@ -61,7 +61,6 @@ public class ActiveGame extends Observable {
 		this.id = startGame.getId() + "_ACTIVE";
 		routeOwners = new EnumMap<>(Route.class);
 		queue= new ChatQueue();
-        this.store = store;
 		//Sorry for the hard coding but they're always the same so sue me -_o_-
 		this.destDeckSize = 30;
 		this.trainDeckSize = 110;
@@ -91,12 +90,31 @@ public class ActiveGame extends Observable {
 	public void setRouteOwner(City city1, City city2){
 		Route route = Route.getRoute(city1,city2);
 		if(route != null){
-			routeOwners.put(route,player);
+			routeOwners.put(route,new APlayer[]{player});
 			return;
 		}
 		MainModel.get().setErrorMessage(city1.getName() + " is not directly next to "+ city2);
 	}
-    public APlayer getOwner(Route route) {return routeOwners.get(route);}
+
+	public APlayer[] getRouteOwners(Route route) {
+		return routeOwners.get(route);
+	}
+
+	// Used for setting route owners for single routes
+	public void setRouteOwner(Route route, APlayer player)
+	{
+		APlayer players[] = new APlayer[1];
+		players[0] = player;
+		routeOwners.put(route,players);
+	}
+	// Used for setting route owners for double routes
+	public void setRouteOwner(Route route, APlayer player, boolean isSecond)
+	{
+		APlayer players[] = new APlayer[2];
+		if (isSecond) { players[0] = routeOwners.get(route)[0]; players[1] = player; }
+		else {players[0] = player; players[1] = routeOwners.get(route)[1];}
+		routeOwners.put(route,players);
+	}
 
     public void addChatMessage(ChatMessage message){
 		queue.add(message);
@@ -111,6 +129,14 @@ public class ActiveGame extends Observable {
 	
 	public TreeSet<APlayer> getPlayers(){
 		return players;
+	}
+	public APlayer getPlayer(String name)
+	{
+		for (APlayer aPlayer : players)
+		{
+			if (aPlayer.getName().equals(name)) {return aPlayer;}
+		}
+		return null;
 	}
 	
 	public String getName(){
@@ -139,7 +165,7 @@ public class ActiveGame extends Observable {
 		notifyObservers(this);
 	}
 
-    public EnumMap<Route, APlayer> getRouteOwners() {
+    public EnumMap<Route, APlayer[]> getRouteOwners() {
         return routeOwners;
     }
 
@@ -195,7 +221,7 @@ public class ActiveGame extends Observable {
 	public void updateDestDeckSize(){
 		//iterate through player's destDeck sizes and subtract from total
 		int totalDeckSize = 30; //30 total destCardds
-		for(Player player : this.getPlayers()){
+		for(APlayer player : this.getPlayers()){
 			totalDeckSize -= player.getTotalDestinationCards();
 		}
 		this.destDeckSize = totalDeckSize;
@@ -206,7 +232,7 @@ public class ActiveGame extends Observable {
 	public void updateTrainDeckSize(){
 		//iterate through player's trainDeck sizes and subtract from total
 		int totalDeckSize = 110; //110 total trainCards
-		for(Player player : this.getPlayers()){
+		for(APlayer player : this.getPlayers()){
 			totalDeckSize -= player.getTotalTrainCards();
 		}
 		this.trainDeckSize = totalDeckSize;

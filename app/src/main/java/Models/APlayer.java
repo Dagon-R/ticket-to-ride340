@@ -1,5 +1,6 @@
 package Models;
 
+import java.util.EnumMap;
 import java.util.Observable;
 
 import Phase2Models.DestinationCard;
@@ -93,4 +94,7 @@ public abstract class APlayer extends Observable implements Comparable<APlayer>{
 
     public abstract void addTrainCard(TrainCardColor card);
 
+    public abstract void setTrainHand(EnumMap<TrainCardColor, Integer> trainCardColorIntegerEnumMap);
+
+    public abstract void setDestHand(DestinationCard[] destinationCards);
 }
