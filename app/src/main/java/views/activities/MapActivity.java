@@ -77,7 +77,6 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
     PlayerSummaryView player5;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -86,8 +85,6 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
         construct();
 
     }
-
-
 
     private void construct() {
         setupActionBar();
