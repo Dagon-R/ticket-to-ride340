@@ -1,6 +1,4 @@
-package Views.ViewInterfaces;
-
-import Phase2Models.DestinationCard;
+package views.ViewInterfaces;
 
 public interface ActionBar {
 

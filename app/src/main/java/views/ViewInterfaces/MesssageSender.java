@@ -1,4 +1,4 @@
-package Views.ViewInterfaces;
+package views.ViewInterfaces;
 
 public interface MesssageSender {
     void sendChat(String message);

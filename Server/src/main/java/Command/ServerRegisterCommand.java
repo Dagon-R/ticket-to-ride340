@@ -67,6 +67,10 @@ public class ServerRegisterCommand implements Command{
         Service registerService = new RegisterService();
         return registerService.doService(username, password,authToken);
     }
+    @Override
+    public String getGameID() {
+        return null;
+    }
 
     @Override
     public String toString() {

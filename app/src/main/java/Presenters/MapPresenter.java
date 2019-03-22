@@ -13,14 +13,18 @@ import java.util.Set;
 
 import Models.ActiveGame;
 import Models.MainModel;
+import Models.Player;
 import Phase2Models.City;
 import Phase2Models.DestinationCard;
 
+import Phase2Models.Route;
+import Phase2Models.Store;
+import Phase2Models.TrainCardColor;
 import Phase2Services.ChatService;
-import Phase3Services.ClaimRouteService;
+import Phase2Services.ClaimRouteService;
 import Phase2Services.DrawDestCardService;
 import Services.Service;
-import Views.Activities.MapActivity;
+import views.activities.MapActivity;
 //import View.MapActivity;
 
 public class MapPresenter implements Observer {
@@ -33,16 +37,18 @@ public class MapPresenter implements Observer {
         MainModel.get().addMapObservers(this);
         selectedDestCards = new ArrayList<>();
         showDestDialog();
+        initActionBar();
         initialize();
     }
 
     private void initialize(){
         updatePlayer();
         updateStore();
-        updateActiveGame();
+//
         updateChat();
         updateMap();
         initActionBar();
+        updateActiveGame();
     }
 
 
@@ -51,6 +57,13 @@ public class MapPresenter implements Observer {
         String type = o.getClass().getSimpleName();
         if(arg != null){
             type = arg.getClass().getSimpleName();
+        }
+        System.out.println(arg);
+        if(type.equals("String")){
+            type = arg.toString();
+        }
+        if(type.equals("ActiveGame")){
+            System.out.println(MainModel.get().getGame().getActiveGame());
         }
 
         switch (type){
@@ -68,10 +81,19 @@ public class MapPresenter implements Observer {
                 updateStore();
 
                 break;
+            case "TrainCardColor":
+                updatePlayerTrainCards();
+                break;
+
+            case"DestinationCard":
+                updatePlayerDestCards();
+                break;
+
             case "ActiveGame":
                 updateActiveGame();
-                ActiveGame ag = MainModel.get().getGame().getActiveGame();
-                mapActivity.updateTurnView(ag.getActivePlayerInd(), ag.getPlayers());
+////                mapActivity.updateGameInfo((ActiveGame)arg);
+//                ActiveGame ag = MainModel.get().getGame().getActiveGame();
+//                mapActivity.updateTurnView(ag.getActivePlayerInd(), ag.getPlayers());
                 break;
             case "MapModel":
                 updateMap();
@@ -84,11 +106,29 @@ public class MapPresenter implements Observer {
         }
     }
 
+    private void updatePlayerTrainCards(){
+        runOnUI(new Runnable() {
+            @Override
+            public void run() {
+                mapActivity.updateTrainCards(MainModel.get().getPlayer());
+            }
+        });
+    }
+
+    private void updatePlayerDestCards(){
+        runOnUI(new Runnable() {
+            @Override
+            public void run() {
+                mapActivity.updateDestinationCards(MainModel.get().getPlayer().getDestHand());
+            }
+        });
+    }
+
     private void updatePlayer(){
         runOnUI(new Runnable() {
             @Override
             public void run() {
-                mapActivity.updatePlayerInfo(MainModel.get().getPlayer());
+                mapActivity.updateTrainCards(MainModel.get().getPlayer());
             }
         });
     }
@@ -107,6 +147,9 @@ public class MapPresenter implements Observer {
             @Override
             public void run() {
                 mapActivity.updateGameInfo(MainModel.get().getGame().getActiveGame());
+
+                ActiveGame ag = MainModel.get().getGame().getActiveGame();
+                mapActivity.updateTurnView(ag.getActivePlayerInd(), ag.getPlayers());
             }
         });
     }
@@ -130,29 +173,27 @@ public class MapPresenter implements Observer {
     }
 
     public void drawDestination(){
-        Service drawDestinationService = new DrawDestCardService();
+        MainModel.get().getGame().getActiveGame().setDestDeckSize(3);
+//        Service drawDestinationService = new DrawDestCardService();
 //        drawDestinationService.
     }
     public void drawStore(int index){
+
         Service drawStoreService = null;
 
     }
     public void drawTrainCard() {
+        MainModel.get().getGame().getActiveGame().setTrainDeckSize(3);
         Service drawTrainCardService = null;
     }
     public void selectCity(float x, float y,PointF size){
-        //Loop over cities and check distance between this point and the city point
-        //If distance is <= a specified radius, the city will be specified
-        //If no city is currently selected selectCity();
-        //If same city as currently selected, deselectCity()
-        //If city is not directly connected, do nothing
-        //If city is directly connected, claimRoute()
         for(City city : City.values()){
             PointF point = MapEquations.getPoint(city,size);
             float dist = (float)Math.pow(Math.pow(x-point.x,2) + Math.pow(y-point.y,2),.5);
 
-            if(dist < 30){
-                if(MainModel.get().getMapModel().getSelectedCity() == null)selectCity(city);
+            if(dist < 50){
+                if(MainModel.get().getMapModel().getSelectedCity() == null) selectCity(city);
+                else if(MainModel.get().getMapModel().getSelectedCity().equals(city)) deselectCity();
                 else claimRoute(MainModel.get().getMapModel().getSelectedCity(),city);
                 return;
             }
@@ -162,34 +203,43 @@ public class MapPresenter implements Observer {
     private void claimRoute(City city1, City city2){
         MainModel.get().getGame().getActiveGame().setRouteOwner(city1,city2);
         MainModel.get().getMapModel().setSelectedCity(null);
-        //Send prompt to view with message "Claim route between %city1 and %city2?" (place names in for city1 and city2)
-        //Prompt should also include "Requires %numberRequired %color train car cards"
-        //Prompt includes "You have %numberOwned %color train car cards"
-        //Prompt may also include "You must use %numberRequired - numberOwned rainbow car cards"
-        //Options for confirm and deny
-        //(Next parts will not be called from here, but will include the sequence of events)
-        //If confirmed, call confirmRoute()
-        //If deny, deselectCity()
+        MainModel.get().getPlayer().decrementPiecesLeft(5);
+        drawDestination();
+        drawTrainCard();
+        TrainCardColor[] trainCardColors ={TrainCardColor.BLACK,TrainCardColor.BLACK,TrainCardColor.BLACK,TrainCardColor.BLACK,TrainCardColor.BLACK};
+        MainModel.get().getGame().getActiveGame().setStore(new Store(trainCardColors));
+        advanceTurn();
+        MainModel.get().getPlayer().addToDestHand(DestinationCard.CHICAGO_ORLEANS);
+        MainModel.get().getPlayer().addToDestHand(DestinationCard.BOSTON_MIAMI);
+        MainModel.get().getPlayer().addToDestHand(DestinationCard.DENV_ELPASO);
+
+        MainModel.get().getGame().getActiveGame().doStuff();
+
+
+        //TODO Send prompt to view with message "Claim route between %city1 and %city2?" (place names in for city1 and city2)
+        //TODO Prompt should also include "Requires %numberRequired %color train car cards"
+        //TODO Prompt includes "You have %numberOwned %color train car cards"
+        //TODO Prompt may also include "You must use %numberRequired - numberOwned rainbow car cards"
+        //TODO Options for confirm and deny
+        //TODO (Next parts will not be called from here, but will include the sequence of events)
+        //TODO If confirmed, call confirmRoute()
+        //TODO If deny, deselectCity()
     }
 
     public void confirmRoute(){
-        //Confirm route after being prompted
         Service claimRouteService = new ClaimRouteService();
     }
 
     private void selectCity(City city){
         MainModel.get().getMapModel().setSelectedCity(city);
-
-}
+    }
 
     private void deselectCity(){
         MainModel.get().getMapModel().setSelectedCity(null);
-        //update model. Selected
     }
     public void sendMessage(String message){
-//        ChatMessage message, String gameI
-//        ChatMessage chatMessage = new ChatMessage(MainModel.get().getPlayer(),message,(int)System.currentTimeMillis());
-        //Create ChatMessage object, retrieve UTC time stamp, and send to service
+        if(message.length() == 0) return;
+
         Service chatService = new ChatService();
         chatService.connectToProxy(message,MainModel.get().getGame().getActiveGame().getName());
 
@@ -230,7 +280,9 @@ public class MapPresenter implements Observer {
 
     public void clickDialogAccept(){
         MainModel.get().getPlayer().setDestHand(selectedDestCards);
+//        updateActiveGame();
     }
+
     private void runOnUI(Runnable run){
         mapActivity.runOnUiThread(run);
     }

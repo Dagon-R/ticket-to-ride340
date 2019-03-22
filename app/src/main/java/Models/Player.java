@@ -1,15 +1,19 @@
 package Models;
 
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.EnumSet;
+import java.util.Observable;
 
 import Phase2Models.DestinationCard;
 import Phase2Models.TrainCardColor;
 
-public class Player implements Comparable<Player>{
+public class Player extends Observable implements Comparable<Player>{
+	static String TAG = "Player";
 	//The color that represents this player
 	private PlayerColorEnum playerColor;
 	//The name of this player
@@ -25,12 +29,28 @@ public class Player implements Comparable<Player>{
 
 	public Player(String name, PlayerColorEnum playerColor){
 		this.name = name;
+		piecesLeft = 45;
 		this.playerColor = playerColor;
+		score =0;
 	}
 
 	public void removeDestCard(DestinationCard card)
 	{
 		destHand.remove(card);
+		setChanged();
+		notifyObservers(this);
+	}
+
+	public void addTrainCard(TrainCardColor card){
+		Integer size = trainHand.get(card);
+		size +=1;
+		trainHand.put(card,size);
+	}
+
+	public void incrementScore(int points){
+		score+=points;
+		setChanged();
+		notifyObservers(this);
 	}
 	
 	public PlayerColorEnum getColor(){
@@ -43,10 +63,14 @@ public class Player implements Comparable<Player>{
 
 	private void setColor(PlayerColorEnum input){
 		this.playerColor = input;
+		setChanged();
+		notifyObservers(this);
 	}
 	
 	private void setName(String input){
 		this.name = input;
+		setChanged();
+		notifyObservers(this);
 	}
 
 	@Override
@@ -73,6 +97,9 @@ public class Player implements Comparable<Player>{
 
 	public void setTrainHand(EnumMap<TrainCardColor,Integer> trainHand) {
 		this.trainHand = trainHand;
+
+		setChanged();
+		notifyObservers("TrainCardColor");
 	}
 
 	public EnumSet<DestinationCard> getDestHand() {
@@ -83,16 +110,22 @@ public class Player implements Comparable<Player>{
 		EnumSet<DestinationCard> temp = EnumSet.noneOf(DestinationCard.class);
 		temp.addAll(Arrays.asList(destHand));
 		this.destHand = temp;
+		setChanged();
+		notifyObservers("DestinationCard");
 	}
 
 	public void setDestHand(ArrayList<DestinationCard> destHand) { //TODO TEST
 		EnumSet<DestinationCard> temp = EnumSet.noneOf(DestinationCard.class);
 		temp.addAll(destHand);
 		this.destHand = temp;
+		setChanged();
+		notifyObservers("DestinationCard");
 	}
 
 	public void addToDestHand(DestinationCard card){
 		this.destHand.add(card);
+		setChanged();
+		notifyObservers("DestinationCard");
 	}
 
 	public int getScore() {
@@ -101,14 +134,24 @@ public class Player implements Comparable<Player>{
 
 	public void setScore(int score) {
 		this.score = score;
+		setChanged();
+		notifyObservers(this);
 	}
 
 	public int getPiecesLeft() {
 		return piecesLeft;
 	}
 
+	public void decrementPiecesLeft(int dec){
+		this.piecesLeft -=dec;
+		setChanged();
+		notifyObservers(this);
+	}
+
 	public void setPiecesLeft(int piecesLeft) {
 		this.piecesLeft = piecesLeft;
+		setChanged();
+		notifyObservers(this);
 	}
 
 	public int getTotalTrainCards(){

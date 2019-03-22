@@ -100,11 +100,14 @@ public class ServerSideSocket extends Thread implements IServerSocket{
     }
 
     private void sendToBound(Command command, SocketCommunicator socket){
-        for(Set<SocketCommunicator> sockets : boundSockets.values()){
-            if(sockets.contains(socket)){
-                sendToGame(command,sockets);
-            }
+        if (command.getGameID() == null){
+            System.out.println("Command with no game id is trying to be sent to bound. Error in code");
+            return;
         }
+
+        sendToGame(command,boundSockets.get(command.getGameID()));
+
+
     }
 
     private void sendToGame(Command command, Set<SocketCommunicator> sockets){
@@ -121,5 +124,34 @@ public class ServerSideSocket extends Thread implements IServerSocket{
         else{
             sendToBound(command,socket);
         }
+    }
+
+
+    @Override
+    public void addToBound(SocketCommunicator socketCommunicator,String game) {
+        allSockets.remove(socketCommunicator);
+        if(boundSockets.containsKey(game)){
+            boundSockets.get(game).add(socketCommunicator);
+            return;
+        }
+        HashSet<SocketCommunicator> sockets = new HashSet<>();
+        sockets.add(socketCommunicator);
+        boundSockets.put(game,sockets);
+
+    }
+
+    @Override
+    public void removeFromBound(SocketCommunicator socketCommunicator) {
+        if(allSockets.contains(socketCommunicator)) return;
+        allSockets.add(socketCommunicator);
+        for(String game : boundSockets.keySet()){
+            if(boundSockets.get(game).contains(socketCommunicator)){
+                boundSockets.get(game).remove(socketCommunicator);
+                if(boundSockets.get(game).size() <=0){
+                    boundSockets.remove(game);
+                }
+            }
+        }
+
     }
 }

@@ -63,13 +63,8 @@ public class SocketCommunicator{
 
 //                System.out.println(ServerStartGameCommand.class +" " + type);
                 Command command = Deserializer.deserializeCommand(wrapper.getCommand(),type.toString());
-                Object obj = null;
-                try{
-                    obj = command.execute();
-                }
-                catch(AssertionError e){
-//                    command = new ErrorCommand(e.getMessage());
-                }
+                Object obj =command.execute();
+
                 if(obj.getClass() == ErrorCommand.class){
                     command = (Command)obj;
                 }
@@ -79,13 +74,25 @@ public class SocketCommunicator{
                 command.setIpAddress(socket.getInetAddress().getHostAddress());
 
                 System.out.println(command);
+//                checkGame(command);
                 server.sendToAll(command,this);
             }
             catch (ClassNotFoundException e){
-                System.out.println("Command type is not found");
+                System.out.println("Command type: '"+wrapper.getType()+"' is not found");
             }
 
         }
+    }
+
+    private void checkGame(Command command){
+        System.out.println("Attempting to bind socket to game. If not desired, Comment out method call");
+        if(command.getGameID() ==null){
+            server.removeFromBound(this);
+            return;
+        }
+
+        server.addToBound(this,command.getGameID());
+
     }
 
     private CommandWrapper[] read()throws IOException{

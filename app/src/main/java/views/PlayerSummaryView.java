@@ -1,4 +1,4 @@
-package Views;
+package views;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -77,9 +77,9 @@ public class PlayerSummaryView extends LinearLayout {
         playerTrains.setText(String.valueOf(player.getPiecesLeft()));
         if(player.getPiecesLeft() < 3){
             playerTrains.setTextColor(Color.RED);
-        }
+        } 
         trainCards.setText(String.valueOf(player.getTotalTrainCards()));
-        destCards.setText(String.valueOf(player.getTotalTrainCards()));
+        destCards.setText(String.valueOf(player.getTotalDestinationCards()));
     }
 
 }

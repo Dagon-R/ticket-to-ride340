@@ -13,6 +13,8 @@ public class PendingGame{
 	private String id;
 	
 	public PendingGame(){}
+
+	
 	
 	public PendingGame(String host, String gameName){
 		players = new ArrayList<>();

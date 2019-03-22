@@ -1,4 +1,4 @@
-package Views.Activities;
+package views.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,17 +11,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.Observable;
-import java.util.Observer;
 
 
 import Models.ClientGameList;
 import Models.MainModel;
-import Models.PendingGame;
 import Presenters.ChooseGamePresenter;
-import Services.CreateGameService;
-import Services.JoinGameService;
-import Views.Adapters.ChooseGameAdapter;
-import Views.R;
+import views.Adapters.ChooseGameAdapter;
+import views.R;
 
 public class ChooseGameActivity extends AppCompatActivity{
     static String TAG = "Choose Game Activity";

@@ -1,4 +1,4 @@
-package Views.Adapters;
+package views.Adapters;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -16,7 +16,7 @@ import java.util.Map;
 import Models.PlayerColorEnum;
 import Phase2Models.ChatMessage;
 import Phase2Models.ChatQueue;
-import Views.R;
+import views.R;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
     private OnItemClickListener listener;

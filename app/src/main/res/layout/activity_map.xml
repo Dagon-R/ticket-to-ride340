@@ -6,11 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000"
-    tools:context=".Activities.MapActivity">
+    tools:context=".activities.MapActivity">
 
 
 
-This nested coordinator layout needs to be here or else the sheet won't work properly
+<!--This nested coordinator layout needs to be here or else the sheet won't work properly-->
     <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -19,7 +19,7 @@ This nested coordinator layout needs to be here or else the sheet won't work pro
         android:background="#efefef">
         <!--tools:context="info.androidhive.bottomsheet.MainActivity">-->
 
-            <Views.MapLogic
+            <views.MapLogic
                 android:id="@+id/map"
                 android:layout_width="match_parent"
                 android:layout_height="266dp"
@@ -154,27 +154,27 @@ This nested coordinator layout needs to be here or else the sheet won't work pro
         android:orientation="vertical"
         android:background="#efefef">
 
-        <Views.PlayerSummaryView
+        <views.PlayerSummaryView
                 android:id="@+id/player1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-        <Views.PlayerSummaryView
+        <views.PlayerSummaryView
             android:id="@+id/player2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <Views.PlayerSummaryView
+        <views.PlayerSummaryView
             android:id="@+id/player3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <Views.PlayerSummaryView
+        <views.PlayerSummaryView
             android:id="@+id/player4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <Views.PlayerSummaryView
+        <views.PlayerSummaryView
             android:id="@+id/player5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

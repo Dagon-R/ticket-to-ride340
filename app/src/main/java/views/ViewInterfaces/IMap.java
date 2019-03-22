@@ -1,4 +1,4 @@
-package Views.ViewInterfaces;
+package views.ViewInterfaces;
 
 import android.graphics.PointF;
 

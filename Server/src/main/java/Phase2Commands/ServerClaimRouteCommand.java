@@ -8,6 +8,7 @@ public class ServerClaimRouteCommand implements Command {
     private Route route;
     private String playerName;
     private String ipAddress;
+    private String gameID;
 
     @Override
     public Object execute() {
@@ -18,6 +19,11 @@ public class ServerClaimRouteCommand implements Command {
     @Override
     public void addResults(Object obj) {
 
+    }
+
+    @Override
+    public String getGameID() {
+        return gameID;
     }
 
     @Override

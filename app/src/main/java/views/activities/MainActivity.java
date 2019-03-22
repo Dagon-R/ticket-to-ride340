@@ -1,7 +1,6 @@
-package Views.Activities;
+package views.activities;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,14 +11,9 @@ import android.widget.Toast;
 import java.util.Observable;
 import java.util.Observer;
 
-import Communication.ServerProxy;
-import Communication.SongPlayer;
 import Models.MainModel;
-import Models.User;
 import Presenters.LoginPresenter;
-import Services.LoginService;
-import Services.RegisterService;
-import Views.R;
+import views.R;
 
 
 public class MainActivity extends AppCompatActivity implements Observer {

@@ -1,7 +1,5 @@
 package Presenters;
 
-import android.widget.Toast;
-
 import java.util.Observable;
 import java.util.Observer;
 
@@ -10,7 +8,7 @@ import Models.MainModel;
 import Models.PendingGame;
 import Services.CreateGameService;
 import Services.JoinGameService;
-import Views.Activities.ChooseGameActivity;
+import views.activities.ChooseGameActivity;
 
 public class ChooseGamePresenter implements Observer {
     ChooseGameActivity chooseGameActivity;

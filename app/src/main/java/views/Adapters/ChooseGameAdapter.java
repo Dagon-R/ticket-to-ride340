@@ -1,4 +1,4 @@
-package Views.Adapters;
+package views.Adapters;
 
 import android.content.Context;
 
@@ -14,7 +14,7 @@ import java.util.Vector;
 
 import Models.ClientGameList;
 import Models.PendingGame;
-import Views.R;
+import views.R;
 
 public class ChooseGameAdapter extends RecyclerView.Adapter<ChooseGameAdapter.ViewHolder>{
     Vector<PendingGame> gameList = new Vector<>();

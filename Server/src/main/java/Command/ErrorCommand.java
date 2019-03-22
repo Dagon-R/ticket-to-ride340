@@ -34,9 +34,11 @@ public class ErrorCommand implements Command {
 
     @Override
     public void addResults(Object obj) {
+    }
 
-
-
+    @Override
+    public String getGameID() {
+        return null;
     }
 
     public String getError() {

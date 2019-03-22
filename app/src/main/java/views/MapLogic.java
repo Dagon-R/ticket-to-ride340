@@ -1,4 +1,4 @@
-package Views;
+package views;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -13,15 +13,14 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
-import java.util.EnumMap;
-
-import Models.Player;
+import Models.MainModel;
+import Models.PlayerColorEnum;
 import Phase2Models.City;
 import Phase2Models.MapModel;
 import Phase2Models.Route;
 import Phase2Models.TrainCardColor;
 import Presenters.MapEquations;
-import Views.ViewInterfaces.IMap;
+import views.ViewInterfaces.IMap;
 
 public class MapLogic extends View {
     static String TAG = "MapLogic";
@@ -105,11 +104,14 @@ public class MapLogic extends View {
             float[] intervals = getIntervals(point1,point2,route.getLength(),dist);
 
             paint.setStyle(Paint.Style.STROKE);
-
-            paint.setColor(Color.RED);
-            paint.setStrokeWidth(15);
-            setPaintParams(Color.RED, Paint.Style.STROKE,null);
+            paint.setStrokeWidth(18);
+            setPaintParams(Color.WHITE, Paint.Style.STROKE,null);
             canvas.drawLine(point1.x,point1.y,point2.x,point2.y,paint);
+            setColor(MainModel.get().getPlayer().getColor());
+            paint.setStrokeWidth(15);
+            setPaintParams(paint.getColor(), Paint.Style.STROKE,null);
+            canvas.drawLine(point1.x,point1.y,point2.x,point2.y,paint);
+
         }
     }
 
@@ -251,7 +253,29 @@ public class MapLogic extends View {
         return intervals;
     }
 
+    private void setColor(PlayerColorEnum color){
 
+        switch (color){
+            case BLUE:
+                paint.setColor(getResources().getColor(R.color.p1Color));
+                break;
+            case RED:
+
+                paint.setColor(getResources().getColor(R.color.p0Color));
+                break;
+            case BLACK:
+                paint.setColor(getResources().getColor(R.color.p4Color));
+                break;
+            case GREEN:
+                paint.setColor(getResources().getColor(R.color.p2Color));
+                break;
+            case YELLOW:
+                paint.setColor(getResources().getColor(R.color.p3Color));
+                break;
+
+        }
+        paint.setAlpha(255);
+    }
     private void setColor(TrainCardColor color){
 
         switch (color){

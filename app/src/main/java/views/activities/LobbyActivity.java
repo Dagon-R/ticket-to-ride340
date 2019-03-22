@@ -1,38 +1,20 @@
-package Views.Activities;
+package views.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.Vector;
 
-import Models.ActiveGame;
 import Models.MainModel;
 import Models.Player;
-import Models.User;
 import Presenters.LobbyPresenter;
-import Services.LoginService;
-import Services.RegisterService;
-import Views.R;
+import views.R;
 
 public class LobbyActivity extends AppCompatActivity {
     Button startButton;
