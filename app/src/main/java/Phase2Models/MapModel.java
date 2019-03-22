@@ -8,8 +8,10 @@ import Models.Player;
 
 public class MapModel extends Observable {
     City selectedCity;
+    Route selectedRoute;
     public MapModel(){
         selectedCity = City.Kansas_City;
+        selectedRoute = null;
     }
 
     public City getSelectedCity() {
@@ -28,6 +30,18 @@ public class MapModel extends Observable {
 
     public Route[] getRoutes(){
         return Route.values();
+    }
+
+    public void setSelectedRoute(Route route){
+        selectedRoute = route;
+    }
+
+    public boolean hasRoute(){
+        return selectedRoute == null;
+    }
+
+    public Route getSelectedRoute(){
+        return selectedRoute;
     }
 
     public EnumMap<Route, Player> getClaimedRoutes(){

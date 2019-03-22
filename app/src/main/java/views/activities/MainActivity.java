@@ -16,7 +16,7 @@ import Presenters.LoginPresenter;
 import views.R;
 
 
-public class MainActivity extends AppCompatActivity implements Observer {
+public class MainActivity extends AppCompatActivity implements Observer { //
     EditText usernameTextfield;
     EditText passwordTextfield;
     EditText ipTextfield;

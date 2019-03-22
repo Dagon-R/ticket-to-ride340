@@ -11,7 +11,7 @@
     <!--dest deck-->
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:layout_weight="1"
@@ -22,11 +22,12 @@
             android:text="Destination \n Deck:"/>
         <TextView
             android:id="@+id/destDeckNum"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_margin="10dp"
             android:background="@color/grey"
             android:textAlignment="center"
+            android:gravity="center_vertical"
             android:text="30"/>
 
     </LinearLayout>
@@ -34,7 +35,7 @@
     <!--train deck-->
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:layout_weight="1"
@@ -50,19 +51,20 @@
             android:layout_height="wrap_content"
             android:text="Train \n Deck:"/>
         <TextView
-            android:id="@+id/trainDeck"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:id="@+id/trainDeckNum"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_margin="10dp"
             android:background="@color/grey"
             android:textAlignment="center"
+            android:gravity="center_vertical"
             android:text="110" />
     </LinearLayout>
 
     <!--Store-->
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:layout_weight="1"
@@ -74,10 +76,11 @@
             android:background="@color/grey">
 
         </View>
+
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Store"/>
+            android:layout_height="21dp"
+            android:text="Store" />
         <View
             android:id="@+id/store0"
             android:layout_width="20dp"
@@ -121,7 +124,7 @@
     <LinearLayout
         android:id="@+id/turnView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:layout_gravity="right"

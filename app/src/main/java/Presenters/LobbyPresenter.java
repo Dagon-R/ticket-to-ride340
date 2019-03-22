@@ -20,7 +20,6 @@ public class LobbyPresenter implements Observer {
         retrievePlayers();
         MainModel.get().addLobbyObservers(this);
 
-
     }
 
     public void retrievePlayers(){
@@ -38,7 +37,7 @@ public class LobbyPresenter implements Observer {
 
     public void startGame(){
 
-        if(MainModel.get().getGame().getPendingGame().getPlayers().size() < 2){ //TODO: uncomment
+        if(MainModel.get().getGame().getPendingGame().getPlayers().size() < 2){
             lobbyActivity.popToast("Not enough players. You need 2-5 players to play");
             return;
         }
