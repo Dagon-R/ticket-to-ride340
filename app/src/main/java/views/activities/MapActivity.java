@@ -26,11 +26,9 @@ import java.util.TreeSet;
 
 import Models.ActiveGame;
 import Models.Player;
-import Models.PlayerColorEnum;
 import Phase2Models.ChatQueue;
 import Phase2Models.DestinationCard;
 import Phase2Models.MapModel;
-import Phase2Models.Store;
 import Phase2Models.TrainCardColor;
 import Presenters.MapPresenter;
 import views.Adapters.ChatAdapter;
@@ -38,7 +36,6 @@ import views.Adapters.DestinationAdapter;
 import views.MapLogic;
 import views.PlayerSummaryView;
 import views.R;
-import views.ViewInterfaces.ActionBar;
 import views.ViewInterfaces.IMap;
 import views.ViewInterfaces.MesssageSender;
 
