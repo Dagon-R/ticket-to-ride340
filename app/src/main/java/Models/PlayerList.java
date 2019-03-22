@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 
 public class PlayerList{
-    private ArrayList<Player> list;
+    private ArrayList<APlayer> list;
     private static final PlayerList ourInstance = new PlayerList();
 
     public static PlayerList get() {
@@ -11,15 +11,15 @@ public class PlayerList{
     }
 
     private PlayerList() {
-        list = new ArrayList<Player>();
+        list = new ArrayList<>();
     }
 
-    public void addPlayer(Player newPlayer){
+    public void addPlayer(APlayer newPlayer){
         list.add(newPlayer);
     }
 
     public boolean findUser(String username, String password){
-        for(Player player : list){
+        for(APlayer player : list){
             if(player.getName().equals(username)){
                 return true;
             }

@@ -107,11 +107,11 @@ public class MainModel{
 
     }
 
-    public Player getPlayer() {
+    public ThisPlayer getPlayer() {
         return game.getActiveGame().getPlayer();
     }
 
-    public void setPlayer(Player player) {
+    public void setPlayer(ThisPlayer player) {
         game.getActiveGame().setPlayer(player);
     }
 
