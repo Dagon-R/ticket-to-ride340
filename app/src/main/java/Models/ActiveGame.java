@@ -184,6 +184,8 @@ public class ActiveGame extends Observable {
 
 	public void setDestDeckSize(int destDeckSize) {
 		this.destDeckSize = destDeckSize;
+		setChanged();
+		notifyObservers();
 	}
 
 	public void updateDestDeckSize(){
@@ -193,6 +195,8 @@ public class ActiveGame extends Observable {
 			totalDeckSize -= player.getTotalDestinationCards();
 		}
 		this.destDeckSize = totalDeckSize;
+		setChanged();
+		notifyObservers();
 	}
 
 	public void updateTrainDeckSize(){

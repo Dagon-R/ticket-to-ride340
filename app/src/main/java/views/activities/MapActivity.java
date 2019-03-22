@@ -44,7 +44,7 @@ import views.ViewInterfaces.MesssageSender;
 
 //import android.support.design.widget.BottomSheetBehavior;
 
-public class MapActivity extends AppCompatActivity implements ActionBar, IMap, MesssageSender { ///
+public class MapActivity extends AppCompatActivity implements IMap, MesssageSender { ///
     static String TAG = "MapActivity";
 //    MapLogic mapLogic;
     MapLogic mapLogic;
@@ -77,16 +77,15 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
     PlayerSummaryView player5;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         construct();
+        this.getSupportActionBar().hide();
 
     }
-
 
 
     private void construct() {
@@ -191,124 +190,6 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
         }
     }
 
-    public void updateStore(Store store) {
-        ArrayList<View> views = new ArrayList<>();
-        views.add(findViewById(R.id.store0));
-        views.add(findViewById(R.id.store1));
-        views.add(findViewById(R.id.store2));
-        views.add(findViewById(R.id.store3));
-        views.add(findViewById(R.id.store4));
-
-        TrainCardColor[] storeList = store.getStore();
-        for(int i = 0; i < storeList.length; i++){
-            views.get(i).setBackgroundColor(getTrainColor(storeList[i]));
-        }
-    }
-
-    private int getTrainColor(TrainCardColor cardColor){
-        int retColor = 0;
-        switch (cardColor){
-            case BLUE:
-                retColor = getResources().getColor(R.color.blue);
-                break;
-            case RED:
-                retColor = getResources().getColor(R.color.red);
-                break;
-            case BLACK:
-                retColor = getResources().getColor(R.color.black);
-                break;
-            case GREEN:
-                retColor = getResources().getColor(R.color.green);
-                break;
-            case WHITE:
-                retColor = getResources().getColor(R.color.white);
-                break;
-            case ORANGE:
-                retColor = getResources().getColor(R.color.orange);
-                break;
-            case PURPLE:
-                retColor = getResources().getColor(R.color.purple);
-                break;
-            case YELLOW:
-                retColor = getResources().getColor(R.color.yellow);
-                break;
-            case RAINBOW:
-                retColor = getResources().getColor(R.color.rainbow);
-                break; //TODO: make rainbow drawable
-        }
-        return retColor;
-    }
-
-    private int getPlayerColor(PlayerColorEnum playerColor){
-        int retColor = 0;
-        switch (playerColor) { //RBGYB
-            case RED:
-                retColor = getResources().getColor(R.color.p0Color);
-                break;
-            case BLUE:
-                retColor = getResources().getColor(R.color.p1Color);
-                break;
-            case GREEN:
-                retColor = getResources().getColor(R.color.p2Color);
-                break;
-            case YELLOW:
-                retColor = getResources().getColor(R.color.p3Color);
-                break;
-            case BLACK:
-                retColor = getResources().getColor(R.color.p4Color);
-                break;
-        }
-        return retColor;
-    }
-
-
-
-    public void updateTurnView(int playerIndex, TreeSet<Player> playerList) {
-        //grey out i - 1 and color i
-        ArrayList<View> views = new ArrayList<>();
-        views.add(findViewById(R.id.p0Turn));
-        views.add(findViewById(R.id.p1Turn));
-        views.add(findViewById(R.id.p2Turn));
-        views.add(findViewById(R.id.p3Turn));
-        views.add(findViewById(R.id.p4Turn));
-
-        int i = 0;
-        for(Player player : playerList){
-            //set active player view color
-            if (i == playerIndex) views.get(i).getBackground().setTint(getPlayerColor(player.getColor()));
-            //set previous all other players to grey
-            else views.get(i).getBackground().setTint(getResources().getColor(R.color.grey));
-            i += 1;
-        }
-    }
-
-    public void updateDestDeck(int deckSize){
-        TextView tv = (TextView) findViewById(R.id.destDeckNum);
-        tv.setText(String.valueOf(deckSize));
-    }
-
-    public void updateTrainDeck(int deckSize){
-        TextView tv = (TextView) findViewById(R.id.trainDeckNum);
-        tv.setText(String.valueOf(deckSize));
-    }
-
-    @Override
-    public void drawStore(int i) {
-        //replace card at i with new dest card
-        mapPresenter.drawStore(i);
-
-    }
-
-    @Override
-    public void drawTrainCarCard() {
-        mapPresenter.drawTrainCard();
-    }
-
-    @Override
-    public void drawDestinationCard() {
-        mapPresenter.drawDestination();
-    }
-
 
     @Override
     public void sendChat(String message) {
@@ -324,6 +205,8 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
 
         mapPresenter.selectCity(x, y, size);
     }
+
+    //TODO: move everything from here? out to DialogLogic
 
     public void setDialogInfo(EnumSet<DestinationCard> destHand){
         showDestDialog(this, destHand);

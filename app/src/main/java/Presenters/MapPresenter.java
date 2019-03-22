@@ -137,26 +137,26 @@ public class MapPresenter implements Observer {
         });
     }
 
-    private void updateStore(){
-        runOnUI(new Runnable() {
-            @Override
-            public void run() {
-                mapActivity.updateStore(MainModel.get().getStore());
-            }
-        });
-    }
-
-    private void updateActiveGame(){
-        runOnUI(new Runnable() {
-            @Override
-            public void run() {
-                mapActivity.updateGameInfo(MainModel.get().getGame().getActiveGame());
-
-                ActiveGame ag = MainModel.get().getGame().getActiveGame();
-                mapActivity.updateTurnView(ag.getActivePlayerInd(), ag.getPlayers());
-            }
-        });
-    }
+//    private void updateStore(){
+//        runOnUI(new Runnable() {
+//            @Override
+//            public void run() {
+//                mapActivity.updateStore(MainModel.get().getStore());
+//            }
+//        });
+//    }
+//
+//    private void updateActiveGame(){
+//        runOnUI(new Runnable() {
+//            @Override
+//            public void run() {
+//                mapActivity.updateGameInfo(MainModel.get().getGame().getActiveGame());
+//
+//                ActiveGame ag = MainModel.get().getGame().getActiveGame();
+//                mapActivity.updateTurnView(ag.getActivePlayerInd(), ag.getPlayers());
+//            }
+//        });
+//    }
 
     private void updateMap(){
         runOnUI(new Runnable() {
@@ -176,25 +176,25 @@ public class MapPresenter implements Observer {
         });
     }
 
-    private void updateTrainDeck(){
-        MainModel.get().getGame().getActiveGame().updateTrainDeckSize();
-        runOnUI(new Runnable() {
-            @Override
-            public void run() {
-                mapActivity.updateTrainDeck(MainModel.get().getGame().getActiveGame().getTrainDeckSize());
-            }
-        });
-    }
-
-    private void updateDestDeck(){
-        MainModel.get().getGame().getActiveGame().updateDestDeckSize();
-        runOnUI(new Runnable() {
-            @Override
-            public void run() {
-                mapActivity.updateDestDeck(MainModel.get().getGame().getActiveGame().getDestDeckSize());
-            }
-        });
-    }
+//    private void updateTrainDeck(){
+//        MainModel.get().getGame().getActiveGame().updateTrainDeckSize();
+//        runOnUI(new Runnable() {
+//            @Override
+//            public void run() {
+//                mapActivity.updateTrainDeck(MainModel.get().getGame().getActiveGame().getTrainDeckSize());
+//            }
+//        });
+//    }
+//
+//    private void updateDestDeck(){
+//        //MainModel.get().getGame().getActiveGame().updateDestDeckSize();
+//        runOnUI(new Runnable() {
+//            @Override
+//            public void run() {
+//                mapActivity.updateDestDeck(MainModel.get().getGame().getActiveGame().getDestDeckSize());
+//            }
+//        });
+//    }
 
     public void drawDestination(){
         MainModel.get().getGame().getActiveGame().setDestDeckSize(3);
@@ -274,13 +274,13 @@ public class MapPresenter implements Observer {
         mapActivity.updateTurnView(game.getActivePlayerInd(), game.getPlayers());
     }
 
-    public void initActionBar(){
-        ActiveGame ag = MainModel.get().getGame().getActiveGame();
-        updateDestDeck();
-        updateTrainDeck();
-        mapActivity.updateTurnView(ag.getActivePlayerInd(), ag.getPlayers());
-        mapActivity.updateStore(ag.getStore());
-    }
+//    public void initActionBar(){
+//        ActiveGame ag = MainModel.get().getGame().getActiveGame();
+//        updateDestDeck();
+//        updateTrainDeck();
+//        mapActivity.updateTurnView(ag.getActivePlayerInd(), ag.getPlayers());
+//        mapActivity.updateStore(ag.getStore());
+//    }
 
     public void showDestDialog(){
         EnumSet<DestinationCard> destHand = MainModel.get().getPlayer().getDestHand();
