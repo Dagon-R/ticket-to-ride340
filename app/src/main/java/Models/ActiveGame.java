@@ -20,16 +20,16 @@ import Phase2Models.TrainCardColor;
 public class ActiveGame extends Observable {
 	static String TAG = "ActiveGame";
 	//A list of the players associated with the game
-	private TreeSet<Player> players ;
+	private TreeSet<APlayer> players ;
 	//The name of the game that will be displayed in menus
 	private String name;
 	//The unique id that represents this game
 	private String id;
-	private Player player;
+	private ThisPlayer player;
 	//New Field
 	private Store store;
 	private ChatQueue queue;
-    private EnumMap<Route,Player> routeOwners;
+    private EnumMap<Route,APlayer> routeOwners;
     private int destDeckSize;
     private int trainDeckSize;
     private int activePlayerInd;
@@ -74,12 +74,15 @@ public class ActiveGame extends Observable {
 		int i =0;
 		Log.d(TAG, "addPlayers: " + players);
 		for(String name : players){
-			Player player = new Player(name,PlayerColorEnum.values()[i]);
-
+		    APlayer player;
 			if(name.equals(MainModel.get().getUsername())){
-				this.player = player;
-
+			    player = new ThisPlayer(name,PlayerColorEnum.values()[i]);
+				this.player = (ThisPlayer) player;
 			}
+			else
+            {
+                player = new OtherPlayer(name,PlayerColorEnum.values()[i]);
+            }
 			this.players.add(player);
 			i++;
 		}
@@ -93,20 +96,20 @@ public class ActiveGame extends Observable {
 		}
 		MainModel.get().setErrorMessage(city1.getName() + " is not directly next to "+ city2);
 	}
-    public Player getOwner(Route route) {return routeOwners.get(route);}
+    public APlayer getOwner(Route route) {return routeOwners.get(route);}
 
     public void addChatMessage(ChatMessage message){
 		queue.add(message);
 	}
-	public Boolean addPlayer(Player newPlayer){
+	public Boolean addPlayer(APlayer newPlayer){
 		return players.add(newPlayer);
 	}
 	
-	public Boolean removePlayer(Player targetPlayer){
+	public Boolean removePlayer(APlayer targetPlayer){
 		return players.remove(targetPlayer);
 	}
 	
-	public TreeSet<Player> getPlayers(){
+	public TreeSet<APlayer> getPlayers(){
 		return players;
 	}
 	
@@ -126,7 +129,7 @@ public class ActiveGame extends Observable {
 	}
 
 	public void doStuff(){
-		for(Player player : MainModel.get().getGame().getActiveGame().getPlayers()){
+		for(APlayer player : MainModel.get().getGame().getActiveGame().getPlayers()){
 			player.incrementScore(15);
 			player.addToDestHand(DestinationCard.DUL_ELPASO);
 			player.addTrainCard(TrainCardColor.BLACK);
@@ -136,11 +139,11 @@ public class ActiveGame extends Observable {
 		notifyObservers(this);
 	}
 
-    public EnumMap<Route, Player> getRouteOwners() {
+    public EnumMap<Route, APlayer> getRouteOwners() {
         return routeOwners;
     }
 
-    private void setPlayers(TreeSet<Player> input){
+    private void setPlayers(TreeSet<APlayer> input){
 		this.players = input;
 	}
 	
@@ -162,11 +165,11 @@ public class ActiveGame extends Observable {
 		notifyObservers(store);
 	}
 
-	public Player getPlayer() {
+	public ThisPlayer getPlayer() {
 		return player;
 	}
 
-	public void setPlayer(Player player) {
+	public void setPlayer(ThisPlayer player) {
 		this.player = player;
 	}
 

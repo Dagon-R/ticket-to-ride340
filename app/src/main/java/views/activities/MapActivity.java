@@ -24,9 +24,10 @@ import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.TreeSet;
 
+import Models.APlayer;
 import Models.ActiveGame;
-import Models.Player;
 import Models.PlayerColorEnum;
+import Models.ThisPlayer;
 import Phase2Models.ChatQueue;
 import Phase2Models.DestinationCard;
 import Phase2Models.MapModel;
@@ -169,7 +170,7 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
 
     }
 
-    public void updateTrainCards(Player player){
+    public void updateTrainCards(ThisPlayer player){
         blueCards.setText(String.valueOf(player.getCardColorCount(TrainCardColor.BLUE)));
         redCards.setText((String.valueOf(player.getCardColorCount(TrainCardColor.RED))));
         yellowCards.setText(String.valueOf(player.getCardColorCount(TrainCardColor.YELLOW)));
@@ -182,10 +183,10 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
     }
 
     public void updateGameInfo(ActiveGame game) {
-        TreeSet<Player> players = game.getPlayers();
+        TreeSet<APlayer> players = game.getPlayers();
         int i = 0;
         System.out.println(game);
-        for (Player currentPlayer : players){
+        for (APlayer currentPlayer : players){
             playersArray[i].setInfo(currentPlayer);
             i++;
         }
@@ -263,7 +264,7 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
 
 
 
-    public void updateTurnView(int playerIndex, TreeSet<Player> playerList) {
+    public void updateTurnView(int playerIndex, TreeSet<APlayer> playerList) {
         //grey out i - 1 and color i
         ArrayList<View> views = new ArrayList<>();
         views.add(findViewById(R.id.p0Turn));
@@ -275,7 +276,7 @@ public class MapActivity extends AppCompatActivity implements ActionBar, IMap, M
         int i = 0;
         int lastPlayer = playerIndex - 1;
         if(lastPlayer < 0) lastPlayer = playerList.size();
-        for(Player player : playerList){
+        for(APlayer player : playerList){
             //set active player view color
             if (i == playerIndex) views.get(i).getBackground().setTint(getPlayerColor(player.getColor()));
             //set previous active player view color to grey

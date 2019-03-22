@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import Models.APlayer;
 import Models.Player;
 import Models.PlayerColorEnum;
 
@@ -42,7 +43,7 @@ public class PlayerSummaryView extends LinearLayout {
         playerTrains = findViewById(R.id.player_trains);
     }
 
-    public void setInfo(Player player){
+    public void setInfo(APlayer player){
         if(playerName.getText().toString().equals("")){
             playerName.setText(player.getName());
             PlayerColorEnum playerColorEnum = player.getPlayerColor();
