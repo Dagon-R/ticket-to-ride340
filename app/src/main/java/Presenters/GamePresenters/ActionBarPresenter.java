@@ -34,6 +34,14 @@ public class ActionBarPresenter implements Observer, ActionBar {
         }
 
         switch (type){
+            case "ErrorMessage":
+                UtilPresenter.runOnUI(mapActivity,new Runnable() {
+                    @Override
+                    public void run() {
+                        mapActivity.popToast(MainModel.get().getErrorMessage());
+                    }
+                });
+                break;
             case "Store":
                 updateStore();
                 break;

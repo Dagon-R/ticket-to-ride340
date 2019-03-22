@@ -27,6 +27,14 @@ public class PlayerInfoPresenter implements Observer {
             type = arg.toString();
         }
         switch (type) {
+            case "ErrorMessage":
+                UtilPresenter.runOnUI(activity,new Runnable() {
+                    @Override
+                    public void run() {
+                        activity.popToast(MainModel.get().getErrorMessage());
+                    }
+                });
+                break;
             case "DestinationCard":
                 updatePlayerDestCards();
                 break;

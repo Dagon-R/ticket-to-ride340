@@ -33,6 +33,14 @@ public class DialogPresenter implements Observer {
         }
 
         switch (type){
+            case "ErrorMessage":
+                UtilPresenter.runOnUI(activity,new Runnable() {
+                    @Override
+                    public void run() {
+                        activity.popToast(MainModel.get().getErrorMessage());
+                    }
+                });
+                break;
             case "MapModel":
                 confirmRouteDialog();
                 break;

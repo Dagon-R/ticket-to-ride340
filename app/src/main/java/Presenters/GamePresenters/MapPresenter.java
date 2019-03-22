@@ -48,6 +48,7 @@ public class MapPresenter implements Observer, IMap {
                         mapActivity.popToast(MainModel.get().getErrorMessage());
                     }
                 });
+                break;
             case "MapModel":
                 updateMap();
                 break;
