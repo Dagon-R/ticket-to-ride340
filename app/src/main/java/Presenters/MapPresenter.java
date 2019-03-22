@@ -136,7 +136,8 @@ public class MapPresenter implements Observer, IMap {
         //TODO If deny, deselectCity()
     }
 
-    public void confirmRoute() {
+    public void confirmRoute(){
+        //Confirm route after being prompted
         Service claimRouteService = new ClaimRouteService();
     }
 

@@ -19,7 +19,7 @@ public class ActiveGame{
 	//The unique gameId that represents this game
 	private String gameId;
 
-	private EnumMap<Route,Player> routeOwners;
+	private EnumMap<Route,Player[]> routeOwners;
 
 	private Store store;
 
@@ -27,8 +27,24 @@ public class ActiveGame{
 
 	private TrainDeck trainDeck;
 
-	public Player getRouteOwner(Route route) {
+	public Player[] getRouteOwners(Route route) {
 		return routeOwners.get(route);
+	}
+
+	// Used for setting route owners for single routes
+	public void setRouteOwner(Route route, Player player)
+	{
+		Player players[] = new Player[1];
+		players[0] = player;
+		routeOwners.put(route,players);
+	}
+	// Used for setting route owners for double routes
+	public void setRouteOwner(Route route, Player player, boolean isSecond)
+	{
+		Player players[] = new Player[2];
+		if (isSecond) { players[0] = routeOwners.get(route)[0]; players[1] = player; }
+		else {players[0] = player; players[1] = routeOwners.get(route)[1];}
+		routeOwners.put(route,players);
 	}
 
 	public Store getStore() {
