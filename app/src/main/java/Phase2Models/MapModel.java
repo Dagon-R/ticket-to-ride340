@@ -3,9 +3,8 @@ package Phase2Models;
 import java.util.EnumMap;
 import java.util.Observable;
 
-import Models.APlayer;
-import Models.MainModel;
 import Models.Player;
+import Models.MainModel;
 
 public class MapModel extends Observable {
     private City selectedCity;
@@ -45,7 +44,7 @@ public class MapModel extends Observable {
         return selectedRoute;
     }
 
-    public EnumMap<Route, APlayer[]> getClaimedRoutes(){
+    public EnumMap<Route, Player[]> getClaimedRoutes(){
         return MainModel.get().getGame().getActiveGame().getRouteOwners();
     }
 

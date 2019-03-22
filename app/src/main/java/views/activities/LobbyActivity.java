@@ -11,8 +11,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import Models.MainModel;
 import Models.Player;
+import Models.MainModel;
 import Presenters.LobbyPresenter;
 import views.R;
 
