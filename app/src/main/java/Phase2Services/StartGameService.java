@@ -77,11 +77,10 @@ public class StartGameService implements Service {
         ActiveGame game = model.activateGame(gameID,store);
         int i=0;
 //        Player[] players = (Player[])game.getPlayers().toArray();
-        //FIXME A PLAYER VS THISPLAYER
-//        for(APlayer player : game.getPlayers()){
-//            player.setTrainHand(colorMap.get(player.getName()));
-//            player.setDestHand(destCards.get(player.getName()));
-//        }
+        for(APlayer player : game.getPlayers()){
+            player.setTrainHand(colorMap.get(player.getName()));
+            player.setDestHand(destCards.get(player.getName()));
+        }
 
         model.setActiveGame(game);
 
