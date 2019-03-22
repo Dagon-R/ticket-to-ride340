@@ -1,4 +1,4 @@
-package Presenters;
+package Presenters.GamePresenters;
 
 import android.util.Log;
 
@@ -7,6 +7,7 @@ import java.util.Observer;
 
 import Models.ActiveGame;
 import Models.MainModel;
+import Presenters.UtilPresenter;
 import Services.Service;
 import views.ViewInterfaces.ActionBar;
 import views.activities.MapActivity;
@@ -33,6 +34,14 @@ public class ActionBarPresenter implements Observer, ActionBar {
         }
 
         switch (type){
+            case "ErrorMessage":
+                UtilPresenter.runOnUI(mapActivity,new Runnable() {
+                    @Override
+                    public void run() {
+                        mapActivity.popToast(MainModel.get().getErrorMessage());
+                    }
+                });
+                break;
             case "Store":
                 updateStore();
                 break;

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="blue">
-        #514ade
-    </color>
+    <color name="blue">#FFFFFF</color>
     <color name="red">
         #e82d5c
 

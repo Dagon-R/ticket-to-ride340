@@ -20,8 +20,7 @@ import Phase2Models.MapModel;
 import Phase2Models.Route;
 import Phase2Models.TrainCardColor;
 import Presenters.MapEquations;
-import Presenters.MapPresenter;
-import views.ViewInterfaces.IMap;
+import Presenters.GamePresenters.MapPresenter;
 import views.activities.MapActivity;
 
 public class MapLogic extends View {

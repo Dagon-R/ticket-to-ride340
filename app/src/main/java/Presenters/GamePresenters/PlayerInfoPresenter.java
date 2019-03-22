@@ -1,4 +1,4 @@
-package Presenters;
+package Presenters.GamePresenters;
 
 import android.util.Log;
 
@@ -6,6 +6,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import Models.MainModel;
+import Presenters.UtilPresenter;
 import views.activities.MapActivity;
 
 public class PlayerInfoPresenter implements Observer {
@@ -26,6 +27,14 @@ public class PlayerInfoPresenter implements Observer {
             type = arg.toString();
         }
         switch (type) {
+            case "ErrorMessage":
+                UtilPresenter.runOnUI(activity,new Runnable() {
+                    @Override
+                    public void run() {
+                        activity.popToast(MainModel.get().getErrorMessage());
+                    }
+                });
+                break;
             case "DestinationCard":
                 updatePlayerDestCards();
                 break;

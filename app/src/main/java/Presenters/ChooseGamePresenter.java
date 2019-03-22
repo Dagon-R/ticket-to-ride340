@@ -17,6 +17,7 @@ public class ChooseGamePresenter implements Observer {
         this.chooseGameActivity = chooseGameActivity;
         MainModel.get().addChooseGameObservers(this);
 
+
     }
 
     public void clickOnGame(String name){

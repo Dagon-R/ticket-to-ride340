@@ -1,42 +1,10 @@
 package views.activities;
 
-import android.app.Dialog;
-import android.content.Context;
-import android.graphics.PointF;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
-import android.view.View;
-import android.view.Window;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.HashSet;
-import java.util.TreeSet;
-
-import Models.ActiveGame;
-import Models.Player;
-import Models.PlayerColorEnum;
-import Phase2Models.ChatQueue;
-import Phase2Models.DestinationCard;
-import Phase2Models.MapModel;
-import Phase2Models.Store;
-import Phase2Models.TrainCardColor;
-import Presenters.MapPresenter;
-import views.Adapters.ChatAdapter;
-import views.Adapters.DestinationAdapter;
 import views.MapLogic;
-import views.PlayerSummaryView;
 import views.R;
 
 //import android.support.design.widget.BottomSheetBehavior;

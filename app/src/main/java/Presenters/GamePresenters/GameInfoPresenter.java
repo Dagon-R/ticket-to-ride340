@@ -1,13 +1,17 @@
-package Presenters;
+package Presenters.GamePresenters;
+
+import android.util.Log;
 
 import java.util.Observable;
 import java.util.Observer;
 
 import Models.ActiveGame;
 import Models.MainModel;
+import Presenters.UtilPresenter;
 import views.activities.MapActivity;
 
 public class GameInfoPresenter implements Observer {
+    static String TAG = "GameInfoPresenter";
     MapActivity activity;
 
     public GameInfoPresenter(MapActivity activity) {
@@ -24,9 +28,19 @@ public class GameInfoPresenter implements Observer {
             type = arg.toString();
         }
         switch (type){
+            case "ErrorMessage":
+                UtilPresenter.runOnUI(activity,new Runnable() {
+                    @Override
+                    public void run() {
+                        activity.popToast(MainModel.get().getErrorMessage());
+                    }
+                });
+                break;
             case "ActiveGame":
                 updateActiveGame();
                 break;
+            default:
+                Log.d(TAG, "Type " + type + " is not being checked");
         }
     }
 
