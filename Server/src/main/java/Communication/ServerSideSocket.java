@@ -100,12 +100,12 @@ public class ServerSideSocket extends Thread implements IServerSocket{
     }
 
     private void sendToBound(Command command, SocketCommunicator socket){
-        if (command.getGameID() == null){
-            System.out.println("Command with no game id is trying to be sent to bound. Error in code");
-            return;
-        }
-
-        sendToGame(command,boundSockets.get(command.getGameID()));
+//        if (command.getGameID() == null){
+//            System.out.println("Command with no game id is trying to be sent to bound. Error in code");
+//            return;
+//        }
+//
+//        sendToGame(command,boundSockets.get(command.getGameID()));
 
 
     }

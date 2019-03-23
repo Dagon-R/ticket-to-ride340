@@ -9,11 +9,12 @@ import Models.ActiveGame;
 import Models.MainModel;
 import Presenters.UtilPresenter;
 import Services.Service;
+import States.IActionBarPresenter;
 import views.ActionBarLogic;
 import views.ViewInterfaces.ActionBar;
 import views.activities.MapActivity;
 
-public class ActionBarPresenter implements Observer, ActionBar {
+public class ActionBarPresenter implements Observer, ActionBar, IActionBarPresenter {
     private static String TAG = "ActionBarPresenter";
     private MapActivity mapActivity;
     private ActionBarLogic actionBarLogic;

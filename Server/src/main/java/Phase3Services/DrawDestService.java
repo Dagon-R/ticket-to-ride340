@@ -13,5 +13,6 @@ public class DrawDestService implements Service {
     @Override
     public Object doService(Object... obj) {
         DestinationCard card = (DestinationCard) obj[0];
+        return null;
     }
 }

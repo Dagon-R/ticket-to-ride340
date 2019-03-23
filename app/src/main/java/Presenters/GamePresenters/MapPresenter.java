@@ -11,11 +11,12 @@ import Phase3Services.ClaimRouteService;
 import Presenters.MapEquations;
 import Presenters.UtilPresenter;
 import Services.Service;
+import States.IMapPresenter;
 import views.MapLogic;
 import views.ViewInterfaces.IMap;
 import views.activities.MapActivity;
 
-public class MapPresenter implements Observer, IMap {
+public class MapPresenter implements Observer, IMap, IMapPresenter {
     static String TAG = "Presenter";
     MapActivity mapActivity;
     MapLogic logic;

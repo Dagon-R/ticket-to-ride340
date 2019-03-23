@@ -26,7 +26,7 @@ public class ServerLeaveGameCommand implements Command {
         this.gameList = gameList;
 
     }
-    @Override
+
     public String getGameID() {
         return null;
     }
