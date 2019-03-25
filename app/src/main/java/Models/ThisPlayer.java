@@ -68,6 +68,13 @@ public class ThisPlayer extends Player {
         setChanged();
         notifyObservers("DestinationCard");
     }
+    @Override
+    public void addToDestHand(DestinationCard[] cards){
+        this.destHand.addAll(Arrays.asList(cards));
+        setChanged();
+        notifyObservers("DestinationCard");
+    }
+
 
     @Override
     public int getTotalTrainCards() {

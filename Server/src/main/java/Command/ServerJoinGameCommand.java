@@ -50,9 +50,9 @@ public class ServerJoinGameCommand implements Command {
     }
 
     @Override
-    public Object execute() {
+    public Object execute(String gameID) {
         Service joinGameService = new JoinGameService();
-        return joinGameService.doService(player,gameID);
+        return joinGameService.doService(player,this.gameID);
     }
 
     @Override

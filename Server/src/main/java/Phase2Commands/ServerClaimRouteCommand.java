@@ -11,7 +11,8 @@ public class ServerClaimRouteCommand implements Command {
     private String gameID;
 
     @Override
-    public Object execute() {
+    public Object execute(String gameID) {
+        this.gameID = gameID;
         ClaimRouteService claimRouteService = new ClaimRouteService();
         return claimRouteService.doService(route,playerName,ipAddress);
     }

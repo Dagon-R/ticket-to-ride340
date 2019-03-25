@@ -50,7 +50,7 @@ public class ServerStartGameCommand implements Command {
     }
 
     @Override
-    public Object execute() {
+    public Object execute(String gameID) {
         Service startGameService = new StartGameService();
 
         return startGameService.doService(gameID);

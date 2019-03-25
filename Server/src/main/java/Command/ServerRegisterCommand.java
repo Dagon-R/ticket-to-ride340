@@ -63,7 +63,7 @@ public class ServerRegisterCommand implements Command{
     }
 
     @Override
-    public Object execute() {
+    public Object execute(String gameID) {
         Service registerService = new RegisterService();
         return registerService.doService(username, password,authToken);
     }

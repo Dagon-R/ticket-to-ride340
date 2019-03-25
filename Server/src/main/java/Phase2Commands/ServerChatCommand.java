@@ -9,7 +9,7 @@ public class ServerChatCommand implements Command {
     private String gameID;
 
     @Override
-    public Object execute() {
+    public Object execute(String gameID) {
         return true;
     }
 

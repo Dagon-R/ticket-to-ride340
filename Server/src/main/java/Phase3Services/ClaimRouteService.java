@@ -18,5 +18,7 @@ public class ClaimRouteService implements Service {
         String playerName = (String) obj[0];
         Route route = (Route) obj[1];
         boolean isSecond = (boolean) obj[2];
+        return null;
+
     }
 }
