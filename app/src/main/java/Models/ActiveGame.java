@@ -4,7 +4,6 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.HashSet;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.TreeSet;
@@ -20,7 +19,7 @@ import Phase2Models.TrainCardColor;
 public class ActiveGame extends Observable {
 	private static String TAG = "ActiveGame";
 	//A list of the players associated with the game
-	private TreeSet<APlayer> players ;
+	private TreeSet<Player> players ;
 	//The name of the game that will be displayed in menus
 	private String name;
 	//The unique id that represents this game
@@ -29,7 +28,7 @@ public class ActiveGame extends Observable {
 	//New Field
 	private Store store;
 	private ChatQueue queue;
-    private EnumMap<Route,APlayer[]> routeOwners;
+    private EnumMap<Route, Player[]> routeOwners;
     private int destDeckSize;
     private int trainDeckSize;
     private int activePlayerInd;
@@ -56,7 +55,7 @@ public class ActiveGame extends Observable {
 		int i =0;
 		Log.d(TAG, "addPlayers: " + players);
 		for(String name : players){
-		    APlayer player;
+		    Player player;
 			if(name.equals(MainModel.get().getUsername())){
 			    player = new ThisPlayer(name,PlayerColorEnum.values()[i]);
 				this.player = (ThisPlayer) player;
@@ -73,27 +72,27 @@ public class ActiveGame extends Observable {
 	public void setRouteOwner(City city1, City city2){
 		Route route = Route.getRoute(city1,city2);
 		if(route != null){
-			routeOwners.put(route,new APlayer[]{player});
+			routeOwners.put(route,new Player[]{player});
 			return;
 		}
 		MainModel.get().setErrorMessage(city1.getName() + " is not directly next to "+ city2);
 	}
 
-	public APlayer[] getRouteOwners(Route route) {
+	public Player[] getRouteOwners(Route route) {
 		return routeOwners.get(route);
 	}
 
 	// Used for setting route owners for single routes
-	public void setRouteOwner(Route route, APlayer player)
+	public void setRouteOwner(Route route, Player player)
 	{
-		APlayer players[] = new APlayer[1];
+		Player players[] = new Player[1];
 		players[0] = player;
 		routeOwners.put(route,players);
 	}
 	// Used for setting route owners for double routes
-	public void setRouteOwner(Route route, APlayer player, boolean isSecond)
+	public void setRouteOwner(Route route, Player player, boolean isSecond)
 	{
-		APlayer players[] = new APlayer[2];
+		Player players[] = new Player[2];
 		if (isSecond) { players[0] = routeOwners.get(route)[0]; players[1] = player; }
 		else {players[0] = player; players[1] = routeOwners.get(route)[1];}
 		routeOwners.put(route,players);
@@ -102,22 +101,22 @@ public class ActiveGame extends Observable {
     public void addChatMessage(ChatMessage message){
 		queue.add(message);
 	}
-	public Boolean addPlayer(APlayer newPlayer){
+	public Boolean addPlayer(Player newPlayer){
 		return players.add(newPlayer);
 	}
 	
-	public Boolean removePlayer(APlayer targetPlayer){
+	public Boolean removePlayer(Player targetPlayer){
 		return players.remove(targetPlayer);
 	}
 	
-	public TreeSet<APlayer> getPlayers(){
+	public TreeSet<Player> getPlayers(){
 		return players;
 	}
-	public APlayer getPlayer(String name)
+	public Player getPlayer(String name)
 	{
-		for (APlayer aPlayer : players)
+		for (Player player : players)
 		{
-			if (aPlayer.getName().equals(name)) {return aPlayer;}
+			if (player.getName().equals(name)) {return player;}
 		}
 		return null;
 	}
@@ -174,11 +173,11 @@ case "ErrorMessage":
  		player.addObserver(o);
 	}
 
-    public EnumMap<Route, APlayer[]> getRouteOwners() {
+    public EnumMap<Route, Player[]> getRouteOwners() {
         return routeOwners;
     }
 
-    private void setPlayers(TreeSet<APlayer> input){
+    private void setPlayers(TreeSet<Player> input){
 		this.players = input;
 	}
 	
@@ -230,7 +229,7 @@ case "ErrorMessage":
 	public void updateDestDeckSize(){
 		//iterate through player's destDeck sizes and subtract from total
 		int totalDeckSize = 30; //30 total destCardds
-		for(APlayer player : this.getPlayers()){
+		for(Player player : this.getPlayers()){
 			totalDeckSize -= player.getTotalDestinationCards();
 		}
 		this.destDeckSize = totalDeckSize;
@@ -241,7 +240,7 @@ case "ErrorMessage":
 	public void updateTrainDeckSize(){
 		//iterate through player's trainDeck sizes and subtract from total
 		int totalDeckSize = 110; //110 total trainCards
-		for(APlayer player : this.getPlayers()){
+		for(Player player : this.getPlayers()){
 			totalDeckSize -= player.getTotalTrainCards();
 		}
 		this.trainDeckSize = totalDeckSize;

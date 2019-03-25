@@ -3,7 +3,6 @@ package Phase2Models;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import Models.APlayer;
 import Models.Player;
 import Models.PlayerColorEnum;
 
@@ -12,7 +11,7 @@ public class ChatMessage {
     private PlayerColorEnum color;
     private String message;
     private int timestamp;
-    public ChatMessage(APlayer player, String message, int timestamp)
+    public ChatMessage(Player player, String message, int timestamp)
     {
         playerName = player.getName();
         color = player.getColor();

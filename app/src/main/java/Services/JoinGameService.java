@@ -15,9 +15,7 @@ public class JoinGameService implements Service {
         String gameName = (String) obj[0];
         String username = (String) obj[1];
 
-        //PendingGame game = model.findGame(gameName);
-        //int numPlayers = game.getPlayers().size();
-//        String player = new Player(model.getUser().getName(), PlayerColorEnum.values()[numPlayers]);
+
 
         ServerProxy.get().joinGame(username, gameName);
     }

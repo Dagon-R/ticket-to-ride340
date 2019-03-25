@@ -2,20 +2,14 @@ package Phase2Services;
 
 import android.util.Log;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 import Communication.ServerProxy;
-import Models.APlayer;
+import Models.Player;
 import Models.ActiveGame;
 import Models.MainModel;
 import Models.PendingGame;
-import Models.Player;
 import Phase2Models.DestinationCard;
 import Phase2Models.Store;
 import Phase2Models.TrainCardColor;
@@ -76,8 +70,7 @@ public class StartGameService implements Service {
 
         ActiveGame game = model.activateGame(gameID,store);
         int i=0;
-//        Player[] players = (Player[])game.getPlayers().toArray();
-        for(APlayer player : game.getPlayers()){
+        for(Player player : game.getPlayers()){
             player.setTrainHand(colorMap.get(player.getName()));
             player.setDestHand(destCards.get(player.getName()));
         }

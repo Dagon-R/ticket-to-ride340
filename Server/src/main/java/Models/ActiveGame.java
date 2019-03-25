@@ -19,7 +19,7 @@ public class ActiveGame{
 	//The unique gameId that represents this game
 	private String gameId;
 
-	private EnumMap<Route,Player[]> routeOwners;
+	private EnumMap<Route, Player[]> routeOwners;
 
 	private Store store;
 
