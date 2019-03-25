@@ -19,7 +19,7 @@ public class MapActivity extends AppCompatActivity { //
 //    LinearLayout chatSheet;
 //    RecyclerView chatList;
 //    EditText chatInput;
-//    Button chatButton;
+//    ImageButton chatButton;
 //
 //    LinearLayout actionBar;
 //
