@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -50,10 +51,20 @@
                 android:layout_weight="1"/>
 
             <view
+                android:id="@+id/singleRoute"
                 android:layout_width="267dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:backgroundTint="@color/blue"
                 android:layout_weight="2" />
+            <view
+                android:id="@+id/doubleRoute"
+                android:layout_width="267dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:backgroundTint="@color/red"
+                android:layout_marginTop="2dp"/>
 
             <view
                 android:layout_width="match_parent"
@@ -149,7 +160,7 @@
 
                     android:text="0"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textColor="@color/blue"
+                    android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:typeface="normal" />
@@ -189,13 +200,23 @@
 
                 android:text="0"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textColor="@color/blue"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:typeface="normal" />
         </RelativeLayout>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/notEnoughCards"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="You do not have the right cards to claim this route"
+        android:textColor="@color/red"
+         />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

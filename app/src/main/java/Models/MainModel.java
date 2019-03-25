@@ -83,6 +83,7 @@ public class MainModel{
     public void addActionBarObservers(Observer o){
         game.getActiveGame().addActionBarObservers(o);
     }
+
     public void addChatSheetObservers(Observer o){
         game.getActiveGame().addChatObserver(o);
     }
@@ -105,8 +106,6 @@ public class MainModel{
         }
         mapModel.addObserver(o);
     }
-
-
 
     public ActiveGame activateGame(String gameName, Store store){
         gameList.unPendGame(gameName);
@@ -187,7 +186,6 @@ public class MainModel{
         this.errorMessage.setError(errorMessage);
     }
 
-
     public void setIPAddress(String IPAddress) {
         this.IPAddress = IPAddress;
     }
@@ -202,11 +200,13 @@ public class MainModel{
 
     public void setAuthToken(String authToken) {
         user.setAuthToken(authToken);
-
     }
+
     public void addGameToGameList(PendingGame newGame) {
         this.getGameList().addServerPendingGame(newGame);
     }
+
     public Store getStore() {return this.game.getActiveGame().getStore();}
+
     public ChatQueue getChatQueue() {return this.game.getActiveGame().getChatQueue();}
 }
