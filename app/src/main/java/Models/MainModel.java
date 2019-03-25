@@ -80,14 +80,30 @@ public class MainModel{
         game.deleteObserver(o);
     }
 
+    public void addActionBarObservers(Observer o){
+        game.getActiveGame().addActionBarObservers(o);
+    }
+    public void addChatSheetObservers(Observer o){
+        game.getActiveGame().addChatObserver(o);
+    }
+
+    public void addDialogObservers(Observer o){
+        mapModel.addObserver(o);
+    }
+
+    public void addGameInfoObservers(Observer o){
+        game.getActiveGame().addObserver(o);
+    }
+
+    public void addPlayerInfoObservers(Observer o){
+        game.getActiveGame().addPlayerInfoObserver(o);
+    }
+
     public void addMapObservers(Observer o){
         if(mapModel == null){
             mapModel = new MapModel();
         }
         mapModel.addObserver(o);
-        
-        game.addObserver(o);
-        game.getActiveGame().addObservers(o);
     }
 
 
@@ -104,7 +120,6 @@ public class MainModel{
     private void createMapActivity(){
         mapModel = new MapModel();
         activity.setCurrentActivty(ActivityTypes.MapActivity);
-
     }
 
     public ThisPlayer getPlayer() {
@@ -158,12 +173,10 @@ public class MainModel{
 
     public void setGameList(ClientGameList gameList){
         this.gameList.setServerPendingGames(gameList.getServerPendingGames());
-
     }
 
     public void addPlayerToGame(String gameName, String player){
         gameList.addPlayerToGame(gameName,player);
-
     }
 
     public String getErrorMessage() {
@@ -191,7 +204,6 @@ public class MainModel{
         user.setAuthToken(authToken);
 
     }
-
     public void addGameToGameList(PendingGame newGame) {
         this.getGameList().addServerPendingGame(newGame);
     }

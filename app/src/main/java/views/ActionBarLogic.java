@@ -8,6 +8,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
+import Models.APlayer;
 import Models.Player;
 import Models.PlayerColorEnum;
 import Phase2Models.Store;
@@ -21,7 +22,7 @@ public class ActionBarLogic implements ActionBar {
     private MapPresenter mapPresenter; //TODO: should become ActionBarPresenter soon
     private ActionBar actionBarPresenter;
 
-    ActionBarLogic(Context context, AppCompatActivity mapActivity, MapPresenter mapPresenter){
+    public ActionBarLogic(MapActivity mapActivity){
         this.mapActivity = mapActivity;
         //this.mapPresenter = mapPresenter;
         this.actionBarPresenter = new ActionBarPresenter((MapActivity) mapActivity, this);
@@ -99,7 +100,7 @@ public class ActionBarLogic implements ActionBar {
     }
 
 
-    public void updateTurnView(int playerIndex, TreeSet<Player> playerList) {
+    public void updateTurnView(int playerIndex, TreeSet<APlayer> playerList) {
         //grey out i - 1 and color i
         ArrayList<View> views = new ArrayList<>();
         views.add(mapActivity.findViewById(R.id.p0Turn));
@@ -109,7 +110,7 @@ public class ActionBarLogic implements ActionBar {
         views.add(mapActivity.findViewById(R.id.p4Turn));
 
         int i = 0;
-        for(Player player : playerList){
+        for(APlayer player : playerList){
             //set active player view color
             if (i == playerIndex) views.get(i).getBackground().setTint(getPlayerColor(player.getColor()));
                 //set previous all other players to grey

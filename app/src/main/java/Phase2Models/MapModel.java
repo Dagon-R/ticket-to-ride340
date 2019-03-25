@@ -35,6 +35,8 @@ public class MapModel extends Observable {
 
     public void setSelectedRoute(Route route){
         selectedRoute = route;
+        setChanged();
+        notifyObservers("ConfirmRoute");
     }
 
     public boolean hasRoute(){

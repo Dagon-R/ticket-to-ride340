@@ -22,6 +22,7 @@ public class ActionBarPresenter implements Observer, ActionBar, IActionBarPresen
     public ActionBarPresenter(MapActivity activity, ActionBarLogic actionBarLogic) {
         this.mapActivity = activity;
         this.actionBarLogic = actionBarLogic;
+        MainModel.get().addActionBarObservers(this);
     }
 
     @Override
@@ -38,14 +39,6 @@ public class ActionBarPresenter implements Observer, ActionBar, IActionBarPresen
         }
 
         switch (type){
-            case "ErrorMessage":
-                UtilPresenter.runOnUI(mapActivity,new Runnable() {
-                    @Override
-                    public void run() {
-                        mapActivity.popToast(MainModel.get().getErrorMessage());
-                    }
-                });
-                break;
             case "Store":
                 updateStore();
                 break;
@@ -85,7 +78,7 @@ public class ActionBarPresenter implements Observer, ActionBar, IActionBarPresen
         UtilPresenter.runOnUI(mapActivity,new Runnable() {
             @Override
             public void run() {
-//                mapActivity.updateTrainDeck(MainModel.get().getGame().getActiveGame().getTrainDeckSize());
+                actionBarLogic.updateTrainDeck(MainModel.get().getGame().getActiveGame().getTrainDeckSize());
             }
         });
     }
@@ -95,7 +88,7 @@ public class ActionBarPresenter implements Observer, ActionBar, IActionBarPresen
             @Override
             public void run() {
                 ActiveGame ag = MainModel.get().getGame().getActiveGame();
-//                mapActivity.updateTurnView(ag.getActivePlayerInd(), ag.getPlayers());
+                actionBarLogic.updateTurnView(ag.getActivePlayerInd(), ag.getPlayers());
             }
         });
     }
@@ -105,7 +98,7 @@ public class ActionBarPresenter implements Observer, ActionBar, IActionBarPresen
         UtilPresenter.runOnUI(mapActivity,new Runnable() {
             @Override
             public void run() {
-//                mapActivity.updateDestDeck(MainModel.get().getGame().getActiveGame().getDestDeckSize());
+                actionBarLogic.updateDestDeck(MainModel.get().getGame().getActiveGame().getDestDeckSize());
             }
         });
     }
@@ -114,7 +107,7 @@ public class ActionBarPresenter implements Observer, ActionBar, IActionBarPresen
         UtilPresenter.runOnUI(mapActivity,new Runnable() {
             @Override
             public void run() {
-//                mapActivity.updateStore(MainModel.get().getStore());
+                actionBarLogic.updateStore(MainModel.get().getStore());
             }
         });
     }

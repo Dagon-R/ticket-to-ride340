@@ -33,23 +33,7 @@ public class ActiveGame extends Observable {
     private int destDeckSize;
     private int trainDeckSize;
     private int activePlayerInd;
-//	public ActiveGame(){}
 
-	//Should be called from ClientGameList.unPendGame
-//	public ActiveGame(Player host, String gameName){
-//		players = new TreeSet<>();
-//
-//		players.add(host);
-//		this.name = gameName;
-//		this.id = gameName + host.getName() + "_ACTIVE";
-//        queue= new ChatQueue();
-//        routeOwners = new EnumMap<>(Route.class);
-//	}
-
-	public ActiveGame() {
-		routeOwners = new EnumMap<>(Route.class);
-		queue= new ChatQueue();
-	}
 
 	public ActiveGame(PendingGame startGame){
 		players = new TreeSet<>();
@@ -66,7 +50,6 @@ public class ActiveGame extends Observable {
 		this.trainDeckSize = 110;
 		this.activePlayerInd = 0;
 
-//		store = new Store();
 	}
 
 	private void addPlayers(ArrayList<String> players){
@@ -154,15 +137,41 @@ public class ActiveGame extends Observable {
 		this.addObserver(o);
 	}
 
-	public void doStuff(){
-		for(APlayer player : MainModel.get().getGame().getActiveGame().getPlayers()){
-			player.incrementScore(15);
-			player.addToDestHand(DestinationCard.DUL_ELPASO);
-			player.addTrainCard(TrainCardColor.BLACK);
-			player.decrementPiecesLeft(15);
-		}
-		setChanged();
-		notifyObservers(this);
+
+
+	public void addActionBarObservers(Observer o){
+		store.addObserver(o);
+
+/*
+case "ErrorMessage":
+                UtilPresenter.runOnUI(mapActivity,new Runnable() {
+                    @Override
+                    public void run() {
+                        mapActivity.popToast(MainModel.get().getErrorMessage());
+                    }
+                });
+                break;
+            case "Store":
+                updateStore();
+                break;
+            case "TrainCardColor":
+                updateTrainDeck();
+                break;
+
+            case "DestinationCard":
+                updateDestDeck();
+                break;
+            case "Turn":
+                updateTurn();
+ */
+	}
+
+	public void addChatObserver(Observer o){
+		getChatQueue().addObserver(o);
+	}
+
+ 	public void addPlayerInfoObserver(Observer o){
+ 		player.addObserver(o);
 	}
 
     public EnumMap<Route, APlayer[]> getRouteOwners() {
