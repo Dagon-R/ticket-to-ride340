@@ -59,7 +59,6 @@ public class DialogPresenter implements Observer {
         UtilPresenter.runOnUI(activity, new Runnable() {
             @Override
             public void run() {
-
                 logic.showConfirmRouteDialog(MainModel.get().getMapModel());
             }
         });
@@ -85,7 +84,7 @@ public class DialogPresenter implements Observer {
             @Override
             public void run() {
                 EnumSet<DestinationCard> destHand = MainModel.get().getPlayer().getDestHand();
-                dialogLogic.showDestDialog(destHand);
+                logic.showDestDialog(destHand);
             }
         });
     }
@@ -117,7 +116,7 @@ public class DialogPresenter implements Observer {
         UtilPresenter.runOnUI(activity, new Runnable() {
             @Override
             public void run() {
-                dialogLogic.showTrainDialog();
+                logic.showTrainDialog();
             }
         });
     }
@@ -135,7 +134,7 @@ public class DialogPresenter implements Observer {
         UtilPresenter.runOnUI(activity, new Runnable() {
             @Override
             public void run() {
-                dialogLogic.showDrawDestDialog();
+                logic.showDrawDestDialog();
             }
         });
     }

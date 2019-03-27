@@ -1,6 +1,7 @@
 package Presenters.GamePresenters;
 
 import android.util.Log;
+import android.view.View;
 
 import java.util.Observable;
 import java.util.Observer;
