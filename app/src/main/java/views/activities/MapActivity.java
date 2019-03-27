@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import views.ActionBarLogic;
 import views.MapLogic;
 import views.R;
 
@@ -13,6 +14,7 @@ public class MapActivity extends AppCompatActivity { //
     static String TAG = "MapActivity";
 //    MapLogic mapLogic;
     MapLogic mapLogic;
+    ActionBarLogic actionBarLogic;
 //    MapPresenter mapPresenter;
 //    DrawerLayout drawerLayout;
 //
@@ -57,7 +59,7 @@ public class MapActivity extends AppCompatActivity { //
     private void construct() {
 
 
-//        setupActionBar();
+        setupActionBar();
 //        setupDrawers();
 //        setupChatSheet();
         setupMap();
@@ -65,9 +67,9 @@ public class MapActivity extends AppCompatActivity { //
 
     }
 
-//    private void setupActionBar(){
-//        actionBar = findViewById(R.id.action_bar_layout);
-//    }
+    private void setupActionBar(){
+        actionBarLogic = new ActionBarLogic(this);
+    }
 //
     private void setupMap(){
         mapLogic = findViewById(R.id.map);

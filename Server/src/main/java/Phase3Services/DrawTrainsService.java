@@ -8,6 +8,6 @@ public class DrawTrainsService implements Service {
     public Object doService(Object... obj) {
         int pos1 = (int) obj[0];
         int pos2 = (int) obj[1];
-
+        return null;
     }
 }

@@ -8,5 +8,4 @@ public interface Command {
 
     void setIpAddress(String ipAddress);
 
-    String getGameID();
 }

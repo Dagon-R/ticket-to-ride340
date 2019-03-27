@@ -7,15 +7,17 @@ import java.util.Observer;
 import Models.MainModel;
 import Phase2Models.City;
 
+import Phase2Models.Route;
 import Phase3Services.ClaimRouteService;
 import Presenters.MapEquations;
 import Presenters.UtilPresenter;
 import Services.Service;
+import States.IMapPresenter;
 import views.MapLogic;
 import views.ViewInterfaces.IMap;
 import views.activities.MapActivity;
 
-public class MapPresenter implements Observer, IMap {
+public class MapPresenter implements Observer, IMap, IMapPresenter {
     static String TAG = "Presenter";
     MapActivity mapActivity;
     MapLogic logic;
@@ -126,9 +128,8 @@ public class MapPresenter implements Observer, IMap {
     }
 
     private void claimRoute(City city1, City city2) {
-        MainModel.get().getGame().getActiveGame().setRouteOwner(city1, city2);
-        MainModel.get().getMapModel().setSelectedCity(null);
-
+        Route route = Route.getRoute(city1,city2);
+        MainModel.get().getMapModel().setSelectedRoute(route);
 
 
         //TODO Send prompt to view with message "Claim route between %city1 and %city2?" (place names in for city1 and city2)
@@ -137,14 +138,10 @@ public class MapPresenter implements Observer, IMap {
         //TODO Prompt may also include "You must use %numberRequired - numberOwned rainbow car cards"
         //TODO Options for confirm and deny
         //TODO (Next parts will not be called from here, but will include the sequence of events)
-        //TODO If confirmed, call confirmRoute()
-        //TODO If deny, deselectCity()
+
     }
 
-    public void confirmRoute(){
-        //Confirm route after being prompted
-        Service claimRouteService = new ClaimRouteService();
-    }
+
 
     private void selectCity(City city) {
         MainModel.get().getMapModel().setSelectedCity(city);

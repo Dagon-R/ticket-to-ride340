@@ -16,6 +16,7 @@ public class GameInfoPresenter implements Observer {
 
     public GameInfoPresenter(MapActivity activity) {
         this.activity = activity;
+        MainModel.get().addGameInfoObservers(this);
     }
 
     @Override
@@ -28,14 +29,6 @@ public class GameInfoPresenter implements Observer {
             type = arg.toString();
         }
         switch (type){
-            case "ErrorMessage":
-                UtilPresenter.runOnUI(activity,new Runnable() {
-                    @Override
-                    public void run() {
-                        activity.popToast(MainModel.get().getErrorMessage());
-                    }
-                });
-                break;
             case "ActiveGame":
                 updateActiveGame();
                 break;
