@@ -11,6 +11,7 @@ import Presenters.UtilPresenter;
 import Services.Service;
 import States.IActionBarPresenter;
 import views.ActionBarLogic;
+import views.DialogLogic;
 import views.ViewInterfaces.ActionBar;
 import views.activities.MapActivity;
 
@@ -58,19 +59,29 @@ public class ActionBarPresenter implements Observer, ActionBar, IActionBarPresen
 
 
     @Override
-    public void drawStore(int i) {
+    public void drawStore(View view, int i) {
+        //service called on accept dialog (dialogPresenter))
         Service drawDestinationCardServe = null;
         Log.d(TAG, "Attach draw Store Service");
     }
 
     @Override
-    public void drawDestinationCard() {
-        Service drawDestinationCardServe = null;
+    public void drawDestinationCard(View view) {
+        //show confirm dialog
+        DialogPresenter dp = new DialogPresenter(mapActivity, new DialogLogic(mapActivity));
+        dp.showDestDialog();
+        //service called on accept dialog (dialogPresenter)
+        //Service drawDestinationCardServe = null;
         Log.d(TAG, "Attach draw Destination Service");
+        //pop confirm dialog
     }
 
-    public void drawTrainCarCard() {
-        Service drawTrainCardService = null;
+    public void drawTrainCarCard(View view) {
+        //show confirm dialog
+        DialogPresenter dp = new DialogPresenter(mapActivity, new DialogLogic(mapActivity));
+        dp.showDrawTrainDialog();
+        //service called on accept dialog (dialogPresenter)
+        //Service drawTrainCardService = null;
         Log.d(TAG, "Attach draw Train Car Card Service");
     }
 
