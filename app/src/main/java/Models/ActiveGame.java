@@ -120,7 +120,7 @@ public class ActiveGame extends Observable {
 		}
 		return null;
 	}
-	
+
 	public String getName(){
 		return name;
 	}
@@ -136,16 +136,16 @@ public class ActiveGame extends Observable {
 		this.addObserver(o);
 	}
 
-	public void doStuff(){
-		for(Player player : MainModel.get().getGame().getActiveGame().getPlayers()){
-			player.incrementScore(15);
-			player.addToDestHand(DestinationCard.DUL_ELPASO);
-			player.addTrainCard(TrainCardColor.BLACK);
-			player.decrementPiecesLeft(15);
-		}
-		setChanged();
-		notifyObservers(this);
-
+	public void doStuff() {
+        for (Player player : MainModel.get().getGame().getActiveGame().getPlayers()) {
+            player.incrementScore(15);
+            player.addToDestHand(DestinationCard.DUL_ELPASO);
+            player.addTrainCard(TrainCardColor.BLACK);
+            player.decrementPiecesLeft(15);
+        }
+        setChanged();
+        notifyObservers(this);
+    }
 
 	public void addActionBarObservers(Observer o){
 		store.addObserver(o);
