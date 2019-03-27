@@ -22,7 +22,7 @@ public class ServerClaimRouteCommand implements Command {
 
     }
 
-    @Override
+
     public String getGameID() {
         return gameID;
     }

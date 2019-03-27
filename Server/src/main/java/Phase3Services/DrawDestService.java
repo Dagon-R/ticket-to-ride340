@@ -1,8 +1,6 @@
 package Phase3Services;
 
 import Models.MainModel;
-import Phase2Models.DestinationCard;
-import Phase2Models.DestinationDeck;
 import Services.Service;
 
 public class DrawDestService implements Service {

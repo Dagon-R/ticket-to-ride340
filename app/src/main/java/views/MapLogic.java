@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import Models.APlayer;
 import Models.MainModel;
 import Models.PlayerColorEnum;
 import Phase2Models.City;
@@ -55,8 +56,6 @@ public class MapLogic extends View {
 
 
     public void updateMap(MapModel model){
-//        canvas =new Canvas();
-//        drawMap(model);
         mapModel = model;
         invalidate();
     }
@@ -66,7 +65,6 @@ public class MapLogic extends View {
         super.onDraw(canvas);
         this.canvas = canvas;
         this.size = new PointF(canvas.getWidth(),canvas.getHeight());
-//        this.setBackgroundColor(Color.TRANSPARENT);
         if(mapModel == null){
             drawMap(new MapModel());
         }else{
@@ -94,11 +92,9 @@ public class MapLogic extends View {
         for(Route route : mapModel.getClaimedRoutes().keySet()){
             PointF point1 = MapEquations.getPoint(route.getCity1(),size);
             PointF point2 = MapEquations.getPoint(route.getCity2(),size);
-//            PointF point1 = MapEquations.getPoint(route.getCity1(),size);
-//            PointF point2 = MapEquations.getPoint(route.getCity2(),size);
-            float dist = (float)Math.pow(Math.pow(point2.x-point1.x,2) + Math.pow(point1.y-point2.y,2),.5);
-            float[] intervals = getIntervals(point1,point2,route.getLength(),dist);
-
+            if(route.isDouble()){
+                drawDoubleClaimedRoute(route, mapModel.getClaimedRoutes().get(route));
+            }
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(18);
             setPaintParams(Color.WHITE, Paint.Style.STROKE,null);
@@ -109,6 +105,40 @@ public class MapLogic extends View {
             canvas.drawLine(point1.x,point1.y,point2.x,point2.y,paint);
 
         }
+    }
+
+    private void drawDoubleClaimedRoute(Route route, APlayer[] player){
+        PointF pointOrigin1 = MapEquations.getPoint(route.getCity1(),size);
+        PointF pointOrigin2 = MapEquations.getPoint(route.getCity2(),size);
+
+        float angle = (float)Math.atan2(pointOrigin1.y - pointOrigin2.y,pointOrigin1.x - pointOrigin2.x);
+        angle+=Math.PI/2;
+        float x = (float)Math.cos(angle)*(routeThickness/1.5f);
+        float y = (float)Math.sin(angle)*(routeThickness/1.5f);
+
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(15);
+        if(player[0] != null){
+            PointF point1 =new PointF(pointOrigin1.x + x,pointOrigin1.y +y);
+            PointF point2 = new PointF(pointOrigin2.x + x,pointOrigin2.y +y);
+            drawClaimLine(point1,point2,player[0].getColor());
+        }
+
+        if(player[1] != null){
+            PointF point1 =new PointF(pointOrigin1.x - x,pointOrigin1.y -y);
+            PointF point2 = new PointF(pointOrigin2.x - x,pointOrigin2.y -y);
+            drawClaimLine(point1,point2,player[0].getColor());        }
+
+    }
+
+    private void drawClaimLine(PointF point1, PointF point2,PlayerColorEnum color){
+        paint.setStrokeWidth(18);
+        setPaintParams(Color.WHITE, Paint.Style.STROKE,null);
+        canvas.drawLine(point1.x,point1.y,point2.x,point2.y,paint);
+        setColor(color);
+        paint.setStrokeWidth(15);
+        setPaintParams(paint.getColor(), Paint.Style.STROKE,null);
+        canvas.drawLine(point1.x,point1.y,point2.x,point2.y,paint);
     }
 
     private void drawSelectedCity(City city){

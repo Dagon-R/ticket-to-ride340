@@ -23,7 +23,7 @@ public class ServerTheLoginCommand implements Command{
         this.ipAddress = ipAddress;
     }
 
-    @Override
+
     public String getGameID() {
         return null;
     }

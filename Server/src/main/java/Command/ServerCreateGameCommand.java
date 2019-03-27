@@ -29,7 +29,7 @@ public class ServerCreateGameCommand implements Command {
         this.player = player;
     }
 
-    @Override
+
     public String getGameID() {
         return gameID;
     }

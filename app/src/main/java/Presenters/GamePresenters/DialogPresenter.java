@@ -9,15 +9,22 @@ import java.util.Observer;
 
 import Models.MainModel;
 import Phase2Models.DestinationCard;
+import Phase3Services.ClaimRouteService;
 import Presenters.UtilPresenter;
+import Services.Service;
+import views.DialogLogic;
 import views.activities.MapActivity;
 
 public class DialogPresenter implements Observer {
     static String TAG = "DialogPresenter";
     ArrayList<DestinationCard> selectedDestCards;
     MapActivity activity;
+    DialogLogic logic;
 
-    public DialogPresenter(MapActivity activity) {
+    public DialogPresenter(MapActivity activity, DialogLogic logic) {
+        this.logic = logic;
+        this.activity = activity;
+        MainModel.get().addDialogObservers(this);
         showDestDialog();
         //TODO attach to MapModel,Active Game?
     }
@@ -33,15 +40,7 @@ public class DialogPresenter implements Observer {
         }
 
         switch (type){
-            case "ErrorMessage":
-                UtilPresenter.runOnUI(activity,new Runnable() {
-                    @Override
-                    public void run() {
-                        activity.popToast(MainModel.get().getErrorMessage());
-                    }
-                });
-                break;
-            case "MapModel":
+            case "ConfirmRoute":
                 confirmRouteDialog();
                 break;
             default:
@@ -52,13 +51,26 @@ public class DialogPresenter implements Observer {
     }
 
     private void confirmRouteDialog(){
-        System.out.println("Need to Link To Dialog");
+        if(MainModel.get().getMapModel().getSelectedRoute() == null) return;
         UtilPresenter.runOnUI(activity, new Runnable() {
             @Override
             public void run() {
-                //
+
+                logic.showConfirmRouteDialog(MainModel.get().getMapModel());
             }
         });
+    }
+    private void deselectRoute() {
+        MainModel.get().getMapModel().setSelectedRoute(null);
+    }
+    private void deselectCity() {
+        MainModel.get().getMapModel().setSelectedCity(null);
+    }
+    public void confirmRoute(){
+        //Confirm route after being prompted
+        Service claimRouteService = new ClaimRouteService();
+        //TODO Connect to Proxy
+
     }
 
     public void showDestDialog() {

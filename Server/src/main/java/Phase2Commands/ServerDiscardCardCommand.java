@@ -16,7 +16,7 @@ public class ServerDiscardCardCommand implements Command {
         return discardCardService.doService(toDiscard, this.gameId);
     }
 
-    @Override
+
     public String getGameID() {
         return gameId;
     }

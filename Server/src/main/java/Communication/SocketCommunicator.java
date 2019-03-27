@@ -86,12 +86,12 @@ public class SocketCommunicator{
 
     private void checkGame(Command command){
         System.out.println("Attempting to bind socket to game. If not desired, Comment out method call");
-        if(command.getGameID() ==null){
-            server.removeFromBound(this);
-            return;
-        }
-
-        server.addToBound(this,command.getGameID());
+//        if(command.getGameID() ==null){
+//            server.removeFromBound(this);
+//            return;
+//        }
+//
+//        server.addToBound(this,command.getGameID());
 
     }
 
