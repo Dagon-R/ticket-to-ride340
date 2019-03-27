@@ -16,7 +16,7 @@ import Presenters.GamePresenters.*;
 import views.ViewInterfaces.ActionBar;
 import views.activities.MapActivity;
 
-public class ActionBarLogic implements ActionBar {
+public class ActionBarLogic {
     private AppCompatActivity mapActivity;
     private MapPresenter mapPresenter; //TODO: should become ActionBarPresenter soon
     private ActionBar actionBarPresenter;
@@ -128,20 +128,19 @@ public class ActionBarLogic implements ActionBar {
         tv.setText(String.valueOf(deckSize));
     }
 
-    @Override
-    public void drawStore(int i) {
-        //replace card at i with new dest card
-        actionBarPresenter.drawStore(i);
-    }
-
-    @Override
-    public void drawTrainCarCard() {
-        actionBarPresenter.drawTrainCarCard();
-    }
-
-    @Override
-    public void drawDestinationCard() {
-        actionBarPresenter.drawDestinationCard();
-    }
+//    @Override
+//    public void drawStore(int i) {
+//        //replace card at i with new dest card
+//        actionBarPresenter.drawStore(i);
+//    }
+//
+//    @Override
+//    public void drawTrainCarCard() {
+//        actionBarPresenter.drawTrainCarCard();
+//    }
+//
+//    public void drawDestinationCard() {
+//        actionBarPresenter.drawDestinationCard();
+//    }
 
 }

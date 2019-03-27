@@ -1,6 +1,7 @@
 package Presenters.GamePresenters;
 
 import android.util.Log;
+import android.view.View;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -10,6 +11,7 @@ import Models.MainModel;
 import Presenters.UtilPresenter;
 import Services.Service;
 import views.ActionBarLogic;
+import views.DialogLogic;
 import views.ViewInterfaces.ActionBar;
 import views.activities.MapActivity;
 
@@ -64,19 +66,29 @@ public class ActionBarPresenter implements Observer, ActionBar {
 
 
     @Override
-    public void drawStore(int i) {
+    public void drawStore(View view, int i) {
+        //service called on accept dialog (dialogPresenter))
         Service drawDestinationCardServe = null;
         Log.d(TAG, "Attach draw Store Service");
     }
 
     @Override
-    public void drawDestinationCard() {
-        Service drawDestinationCardServe = null;
+    public void drawDestinationCard(View view) {
+        //show confirm dialog
+        DialogPresenter dp = new DialogPresenter(mapActivity, new DialogLogic(mapActivity));
+        dp.showDestDialog();
+        //service called on accept dialog (dialogPresenter)
+        //Service drawDestinationCardServe = null;
         Log.d(TAG, "Attach draw Destination Service");
+        //pop confirm dialog
     }
 
-    public void drawTrainCarCard() {
-        Service drawTrainCardService = null;
+    public void drawTrainCarCard(View view) {
+        //show confirm dialog
+        DialogPresenter dp = new DialogPresenter(mapActivity, new DialogLogic(mapActivity));
+        dp.showDrawTrainDialog();
+        //service called on accept dialog (dialogPresenter)
+        //Service drawTrainCardService = null;
         Log.d(TAG, "Attach draw Train Car Card Service");
     }
 
@@ -84,7 +96,7 @@ public class ActionBarPresenter implements Observer, ActionBar {
         UtilPresenter.runOnUI(mapActivity,new Runnable() {
             @Override
             public void run() {
-//                mapActivity.updateTrainDeck(MainModel.get().getGame().getActiveGame().getTrainDeckSize());
+                actionBarLogic.updateTrainDeck(MainModel.get().getGame().getActiveGame().getTrainDeckSize());
             }
         });
     }
@@ -94,7 +106,7 @@ public class ActionBarPresenter implements Observer, ActionBar {
             @Override
             public void run() {
                 ActiveGame ag = MainModel.get().getGame().getActiveGame();
-//                mapActivity.updateTurnView(ag.getActivePlayerInd(), ag.getPlayers());
+                //actionBarLogic.updateTurnView(ag.getActivePlayerInd(), ag.getPlayers());
             }
         });
     }
@@ -113,9 +125,10 @@ public class ActionBarPresenter implements Observer, ActionBar {
         UtilPresenter.runOnUI(mapActivity,new Runnable() {
             @Override
             public void run() {
-//                mapActivity.updateStore(MainModel.get().getStore());
+                actionBarLogic.updateStore(MainModel.get().getStore());
             }
         });
     }
+
 
 }
