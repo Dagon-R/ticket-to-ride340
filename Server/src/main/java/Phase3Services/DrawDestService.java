@@ -12,7 +12,6 @@ public class DrawDestService implements Service {
     @Override
     public Object doService(Object... obj) {
         String gameID = (String) obj[0];
-        String playerID = (String) obj[1];
         return model.getGameList().getActiveGame(gameID).getDestDeck().draw3();
     }
 }

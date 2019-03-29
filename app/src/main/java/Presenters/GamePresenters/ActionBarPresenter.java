@@ -8,22 +8,26 @@ import java.util.Observer;
 
 import Models.ActiveGame;
 import Models.MainModel;
+import Models.PlayerColorEnum;
 import Presenters.UtilPresenter;
-import Services.Service;
 import States.IActionBarPresenter;
 import views.ActionBarLogic;
-import views.DialogLogic;
 import views.ViewInterfaces.ActionBar;
 import views.activities.MapActivity;
 
 public class ActionBarPresenter implements Observer, ActionBar, IActionBarPresenter {
-    private static String TAG = "ActionBarPresenter";
     private MapActivity mapActivity;
     private ActionBarLogic actionBarLogic;
+    private IActionBarPresenter turnLogic;
+    private static String TAG = "ActionBarPresenter";
 
     public ActionBarPresenter(MapActivity activity, ActionBarLogic actionBarLogic) {
         this.mapActivity = activity;
         this.actionBarLogic = actionBarLogic;
+        ActiveGame game = MainModel.get().getGame().getActiveGame();
+        if (game.getPlayer().getColor() == PlayerColorEnum.values()[0])
+        { this.turnLogic = new ABPOn(activity); }
+        else {this.turnLogic = new ABPOff();}
         MainModel.get().addActionBarObservers(this);
     }
 
@@ -62,29 +66,16 @@ public class ActionBarPresenter implements Observer, ActionBar, IActionBarPresen
 
     @Override
     public void drawStore(View view, int i) {
-        //service called on accept dialog (dialogPresenter))
-        Service drawDestinationCardServe = null;
-        Log.d(TAG, "Attach draw Store Service");
+        turnLogic.drawStore(view,i);
     }
 
     @Override
     public void drawDestinationCard(View view) {
-        //show confirm dialog
-        DialogPresenter dp = new DialogPresenter(mapActivity, new DialogLogic(mapActivity));
-        dp.showDestDialog();
-        //service called on accept dialog (dialogPresenter)
-        //Service drawDestinationCardServe = null;
-        Log.d(TAG, "Attach draw Destination Service");
-        //pop confirm dialog
+        turnLogic.drawDestinationCard(view);
     }
 
     public void drawTrainCarCard(View view) {
-        //show confirm dialog
-        DialogPresenter dp = new DialogPresenter(mapActivity, new DialogLogic(mapActivity));
-        dp.showDrawTrainDialog();
-        //service called on accept dialog (dialogPresenter)
-        //Service drawTrainCardService = null;
-        Log.d(TAG, "Attach draw Train Car Card Service");
+        turnLogic.drawTrainCarCard(view);
     }
 
     private void updateTrainDeck() {
@@ -104,6 +95,11 @@ public class ActionBarPresenter implements Observer, ActionBar, IActionBarPresen
                 actionBarLogic.updateTurnView(ag.getActivePlayerInd(), ag.getPlayers());
             }
         });
+        ActiveGame game = MainModel.get().getGame().getActiveGame();
+        int activeIndex = game.getActivePlayerInd();
+        if (PlayerColorEnum.values()[activeIndex] == game.getPlayer().getColor())
+        { turnLogic = new ABPOn(mapActivity); }
+        else { turnLogic = new ABPOff(); }
     }
 
     private void updateDestDeck() {
