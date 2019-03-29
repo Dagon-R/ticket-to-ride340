@@ -1,5 +1,6 @@
 package Presenters.GamePresenters;
 
+import android.app.Dialog;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -9,6 +10,9 @@ import java.util.Observer;
 
 import Models.MainModel;
 import Phase2Models.DestinationCard;
+import Phase2Services.DrawDestCardService;
+import Phase3Services.DrawDestService;
+import Phase3Services.DrawTrainsService;
 import Phase3Services.ClaimRouteService;
 import Presenters.UtilPresenter;
 import Services.Service;
@@ -73,13 +77,15 @@ public class DialogPresenter implements Observer {
 
     }
 
+    ////////////////////Choose dest dialog///////////////////////////////
+
     public void showDestDialog() {
 
         UtilPresenter.runOnUI(activity, new Runnable() {
             @Override
             public void run() {
                 EnumSet<DestinationCard> destHand = MainModel.get().getPlayer().getDestHand();
-                //this.mapActivity.setDialogInfo(destHand);
+                logic.showDestDialog(destHand);
             }
         });
     }
@@ -88,7 +94,7 @@ public class DialogPresenter implements Observer {
         return selectedDestCards.size() > 1;
     }
 
-    public void clickDialogAccept() {
+    public void clickDestDialogAccept() {
         MainModel.get().getPlayer().setDestHand(selectedDestCards);
 //        updateActiveGame();
     }
@@ -106,8 +112,40 @@ public class DialogPresenter implements Observer {
     }
 
 
+    //////////////////Draw Train Card Dialog////////////////////////////
+    public void showDrawTrainDialog() {
+        UtilPresenter.runOnUI(activity, new Runnable() {
+            @Override
+            public void run() {
+                logic.showTrainDialog();
+            }
+        });
+    }
+
+    public void clickTrainAccept(){
+        //call trainCard service
+        Service drawTrainService = new DrawTrainsService();
+        drawTrainService.connectToProxy();
+        //TODO: may need a callback to update trainDeck size
+    }
 
 
+    //////////////////Draw Dest Card Confirm Dialog////////////////////////////
+    public void showDrawDestDialog(){
+        UtilPresenter.runOnUI(activity, new Runnable() {
+            @Override
+            public void run() {
+                logic.showDrawDestDialog();
+            }
+        });
+    }
+
+    public void clickDrawDestAccept(){
+        //call trainCard service
+        Service drawDestService = new DrawDestCardService();
+        drawDestService.connectToProxy();
+        //TODO: make sure destDialog is triggered after drawdestcardserice
+    }
 
 
 

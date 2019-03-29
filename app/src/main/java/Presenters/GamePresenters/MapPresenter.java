@@ -27,7 +27,6 @@ public class MapPresenter implements Observer, IMap, IMapPresenter {
         MainModel.get().addMapObservers(this);
         updateMap();
         this.logic = logic;
-
     }
 
 

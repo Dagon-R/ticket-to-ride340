@@ -1,9 +1,11 @@
 package views.ViewInterfaces;
 
+import android.view.View;
+
 public interface ActionBar {
 
-    void drawStore(int i);
-    void drawTrainCarCard();
-    void drawDestinationCard();
+    void drawStore(View view, int i);
+    void drawTrainCarCard(View view);
+    void drawDestinationCard(View view);
     //void drawTurnView();
 }
