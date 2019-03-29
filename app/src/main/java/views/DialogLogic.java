@@ -44,8 +44,6 @@ public class DialogLogic {
     }
 
     public void showConfirmRouteDialog(MapModel mapModel, ThisPlayer player){
-    ///////////////////////Confirm Route Dialog////////////////////////
-    public void showConfirmRouteDialog(MapModel mapModel){
         final Dialog dialog = new Dialog(mapActivity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.claim_route);
@@ -59,7 +57,7 @@ public class DialogLogic {
     private void setConfirmText(MapModel model,ThisPlayer player){
         mapActivity.findViewById(R.id.selectDouble).setVisibility(View.GONE);
         mapActivity.findViewById(R.id.doubleRoute).setVisibility(View.GONE);
-//        mapActivity.findViewById(R.id.singleRoute).setBackgroundT;
+//        mapActivity.findViewById(R.id.singleRoute).setBackgroundColor();
         //Add Click Listeners
         mapActivity.findViewById(R.id.confirmRoute).setOnClickListener(confirmRoute);
         mapActivity.findViewById(R.id.rejectRoute).setOnClickListener(rejectRoute);

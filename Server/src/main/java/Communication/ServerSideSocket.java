@@ -20,6 +20,7 @@ public class ServerSideSocket extends Thread implements IServerSocket{
     Set<SocketCommunicator> unboundSockets;
     Set<SocketCommunicator> allSockets;
     HashMap<String, Set<SocketCommunicator>> boundSockets;
+    HashMap<SocketCommunicator,String> socketToGame;
 
     ServerSocket serverSocket;
     boolean accessing;
@@ -29,6 +30,7 @@ public class ServerSideSocket extends Thread implements IServerSocket{
         allSockets = new CopyOnWriteArraySet<>();
         pendingSockets = new HashSet<>();
         boundSockets = new HashMap<>();
+        socketToGame = new HashMap<>();
     }
 
     public void poll()throws ConcurrentModificationException {
@@ -110,26 +112,37 @@ public class ServerSideSocket extends Thread implements IServerSocket{
 
     }
 
-    private void sendToGame(Command command, Set<SocketCommunicator> sockets){
-        for(SocketCommunicator socketCommunicator : sockets){
+    private void sendToGame(Command command,String game){
+        for(SocketCommunicator socketCommunicator : boundSockets.get(game)){
             socketCommunicator.send(command);
         }
     }
-    @Override
-    public void sendToAll(Command command, SocketCommunicator socket) {
-        if(unboundSockets.contains(socket)){
-            sendToUnbound(command);
 
+    public void send(Command command, SocketCommunicator socket){
+        if(!socketToGame.containsKey(socket)){
+            sendToUnbound(command);
+            return;
         }
-        else{
-            sendToBound(command,socket);
-        }
+        sendToGame(command,socketToGame.get(socket));
+
     }
+
 
 
     @Override
     public void addToBound(SocketCommunicator socketCommunicator,String game) {
         allSockets.remove(socketCommunicator);
+        bindToGame(socketCommunicator,game);
+        bindToSocket(socketCommunicator,game);
+
+
+    }
+
+    private void bindToSocket(SocketCommunicator socketCommunicator, String game){
+        socketToGame.put(socketCommunicator,game);
+    }
+
+    private void bindToGame(SocketCommunicator socketCommunicator, String game){
         if(boundSockets.containsKey(game)){
             boundSockets.get(game).add(socketCommunicator);
             return;
@@ -137,21 +150,7 @@ public class ServerSideSocket extends Thread implements IServerSocket{
         HashSet<SocketCommunicator> sockets = new HashSet<>();
         sockets.add(socketCommunicator);
         boundSockets.put(game,sockets);
-
     }
 
-    @Override
-    public void removeFromBound(SocketCommunicator socketCommunicator) {
-        if(allSockets.contains(socketCommunicator)) return;
-        allSockets.add(socketCommunicator);
-        for(String game : boundSockets.keySet()){
-            if(boundSockets.get(game).contains(socketCommunicator)){
-                boundSockets.get(game).remove(socketCommunicator);
-                if(boundSockets.get(game).size() <=0){
-                    boundSockets.remove(game);
-                }
-            }
-        }
 
-    }
 }

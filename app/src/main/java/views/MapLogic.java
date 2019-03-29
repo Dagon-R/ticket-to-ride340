@@ -13,7 +13,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
-import Models.APlayer;
+import Models.Player;
 import Models.MainModel;
 import Models.PlayerColorEnum;
 import Phase2Models.City;
@@ -107,7 +107,7 @@ public class MapLogic extends View {
         }
     }
 
-    private void drawDoubleClaimedRoute(Route route, APlayer[] player){
+    private void drawDoubleClaimedRoute(Route route, Player[] player){
         PointF pointOrigin1 = MapEquations.getPoint(route.getCity1(),size);
         PointF pointOrigin2 = MapEquations.getPoint(route.getCity2(),size);
 

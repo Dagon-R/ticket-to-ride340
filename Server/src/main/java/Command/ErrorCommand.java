@@ -20,7 +20,7 @@ public class ErrorCommand implements Command {
     }
 
     @Override
-    public Object execute() {
+    public Object execute(String gameID) {
         return null;
     }
 

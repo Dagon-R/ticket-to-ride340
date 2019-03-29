@@ -11,7 +11,7 @@ public class ServerDiscardCardCommand implements Command {
     private volatile boolean success;
 
     @Override
-    public Object execute() {
+    public Object execute(String gameID) {
         DiscardCardService discardCardService = new DiscardCardService();
         return discardCardService.doService(toDiscard, gameId);
     }
