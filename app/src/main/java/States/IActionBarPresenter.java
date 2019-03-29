@@ -1,10 +1,12 @@
 package States;
 
+import android.view.View;
+
 public interface IActionBarPresenter {
 
-    void drawStore(int i);
+    void drawStore(View view, int i);
 
-    void drawDestinationCard();
+    void drawDestinationCard(View view);
 
-    void drawTrainCarCard() ;
+    void drawTrainCarCard(View view) ;
 }

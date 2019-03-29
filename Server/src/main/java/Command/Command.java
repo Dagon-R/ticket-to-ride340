@@ -2,7 +2,7 @@ package Command;
 
 public interface Command {
 
-    Object execute();
+    Object execute(String gameID);
 
     void addResults(Object obj);
 

@@ -1,6 +1,7 @@
 package Presenters.GamePresenters;
 
 import android.util.Log;
+import android.view.View;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -51,6 +52,7 @@ public class ActionBarPresenter implements Observer, ActionBar, IActionBarPresen
                 updateDestDeck();
                 break;
             case "Turn":
+                //TODO Link up properly
                 updateTurn();
             default:
                 Log.d(TAG, "Type " + type + " is not being checked");

@@ -10,39 +10,61 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import Models.ThisPlayer;
 import java.util.ArrayList;
 import java.util.EnumSet;
 
 import Phase2Models.DestinationCard;
+import Phase2Models.MapModel;
 import Presenters.GamePresenters.DialogPresenter;
 import views.activities.MapActivity;
 
 public class DialogLogic {
     DialogPresenter dialogPresenter;
     MapActivity mapActivity;
+    View.OnClickListener confirmRoute = new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            dialogPresenter.confirmRoute();
+            dialogPresenter.deselectCity();
+            dialogPresenter.deselectRoute();
+        }
+    };
+    View.OnClickListener rejectRoute = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            dialogPresenter.deselectCity();
+            dialogPresenter.deselectRoute();
+        }
+    };
 
     public DialogLogic(MapActivity mapActivity) {
         dialogPresenter = new DialogPresenter(mapActivity,this);
         this.mapActivity = mapActivity;
     }
 
-    ///////////////////////Confirm Route Dialog////////////////////////
-    public void showConfirmRouteDialog(MapModel mapModel){
+    public void showConfirmRouteDialog(MapModel mapModel, ThisPlayer player){
         final Dialog dialog = new Dialog(mapActivity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.claim_route);
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(true);
-        setConfirmText(mapModel);
+        setConfirmText(mapModel,player);
         //TODO FINISH LINKING
-        //TODO If confirmed, call confirmRoute()
-        //TODO If deny, deselectCity()
+
     }
 
-    private void setConfirmText(MapModel model){
+    private void setConfirmText(MapModel model,ThisPlayer player){
         mapActivity.findViewById(R.id.selectDouble).setVisibility(View.GONE);
+        mapActivity.findViewById(R.id.doubleRoute).setVisibility(View.GONE);
+//        mapActivity.findViewById(R.id.singleRoute).setBackgroundColor();
+        //Add Click Listeners
+        mapActivity.findViewById(R.id.confirmRoute).setOnClickListener(confirmRoute);
+        mapActivity.findViewById(R.id.rejectRoute).setOnClickListener(rejectRoute);
+
         if(model.getSelectedRoute().isDouble()){
             mapActivity.findViewById(R.id.selectDouble).setVisibility(View.VISIBLE);
+            mapActivity.findViewById(R.id.doubleRoute).setVisibility(View.VISIBLE);
         }
         ((TextView)mapActivity.findViewById(R.id.city1)).setText(model.getSelectedRoute().getCity1().getName());
         ((TextView)mapActivity.findViewById(R.id.city1)).setText(model.getSelectedRoute().getCity2().getName());
@@ -55,7 +77,7 @@ public class DialogLogic {
     //pass destination
 
     public void showDestDialog(EnumSet<DestinationCard> destHand){
-        final Dialog dialog = new Dialog(map);
+        final Dialog dialog = new Dialog(mapActivity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dest_card_dialog);
         dialog.setCanceledOnTouchOutside(false);
@@ -66,7 +88,7 @@ public class DialogLogic {
         setDestDialogListeners(dialog);
 
         //make dialog only cover 85% of screen
-        DisplayMetrics displayMetrics = map.getResources().getDisplayMetrics();
+        DisplayMetrics displayMetrics = mapActivity.getResources().getDisplayMetrics();
         int dialogWidth = (int)(displayMetrics.widthPixels * 0.85);
         int dialogHeight = (int)(displayMetrics.heightPixels * 0.85);
         dialog.getWindow().setLayout(dialogWidth, dialogHeight);
@@ -82,7 +104,7 @@ public class DialogLogic {
             @Override
             public void onClick(View view) {
                 System.out.println("Clicked button!");
-                presenter.clickDestDialogAccept();
+                dialogPresenter.clickDestDialogAccept();
                 dialog.dismiss();
             }
         });
@@ -90,8 +112,8 @@ public class DialogLogic {
         CheckBox card1Check = (CheckBox) dialog.findViewById(R.id.dest1Check);
         card1Check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()  {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                presenter.checkDestination(isChecked, 0);
-                if(presenter.enoughDestsSelected()) acceptButton.setEnabled(true);
+                dialogPresenter.checkDestination(isChecked, 0);
+                if(dialogPresenter.enoughDestsSelected()) acceptButton.setEnabled(true);
                 else acceptButton.setEnabled(false);
             }
         });
@@ -99,8 +121,8 @@ public class DialogLogic {
         CheckBox card2Check = (CheckBox) dialog.findViewById(R.id.dest2Check);
         card2Check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()  {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                presenter.checkDestination(isChecked, 1);
-                if(presenter.enoughDestsSelected()) acceptButton.setEnabled(true);
+                dialogPresenter.checkDestination(isChecked, 1);
+                if(dialogPresenter.enoughDestsSelected()) acceptButton.setEnabled(true);
                 else acceptButton.setEnabled(false);
             }
         });
@@ -108,8 +130,8 @@ public class DialogLogic {
         CheckBox card3Check = (CheckBox) dialog.findViewById(R.id.dest3Check);
         card3Check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()  {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                presenter.checkDestination(isChecked, 2);
-                if(presenter.enoughDestsSelected()) acceptButton.setEnabled(true);
+                dialogPresenter.checkDestination(isChecked, 2);
+                if(dialogPresenter.enoughDestsSelected()) acceptButton.setEnabled(true);
                 else acceptButton.setEnabled(false);
             }
         });
@@ -141,7 +163,7 @@ public class DialogLogic {
 
     //////////////////////////Draw train confirm Dialog//////////////////////////////////////
     public void showTrainDialog(){
-        final Dialog dialog = new Dialog(map);
+        final Dialog dialog = new Dialog(mapActivity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.draw_train_dialog); //TODO: change to new layout
         dialog.setCanceledOnTouchOutside(false);
@@ -150,7 +172,7 @@ public class DialogLogic {
         setTrainDialogListeners(dialog);
 
         //make dialog only cover 85% of screen
-        DisplayMetrics displayMetrics = map.getResources().getDisplayMetrics();
+        DisplayMetrics displayMetrics = mapActivity.getResources().getDisplayMetrics();
         int dialogWidth = (int)(displayMetrics.widthPixels * 0.85);
         int dialogHeight = (int)(displayMetrics.heightPixels * 0.85);
         dialog.getWindow().setLayout(dialogWidth, dialogHeight);
@@ -164,7 +186,7 @@ public class DialogLogic {
             @Override
             public void onClick(View view) {
                 System.out.println("Accept train cards!");
-                presenter.clickTrainAccept();
+                dialogPresenter.clickTrainAccept();
                 dialog.dismiss();
             }
         });
@@ -182,7 +204,7 @@ public class DialogLogic {
 
     //////////////////////////Draw train confirm Dialog//////////////////////////////////////
     public void showDrawDestDialog(){
-        final Dialog dialog = new Dialog(map);
+        final Dialog dialog = new Dialog(mapActivity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.draw_dest_dialog); //TODO: change to new layout
         dialog.setCanceledOnTouchOutside(false);
@@ -191,7 +213,7 @@ public class DialogLogic {
         setDrawDestDialogListeners(dialog);
 
         //make dialog only cover 85% of screen
-        DisplayMetrics displayMetrics = map.getResources().getDisplayMetrics();
+        DisplayMetrics displayMetrics = mapActivity.getResources().getDisplayMetrics();
         int dialogWidth = (int)(displayMetrics.widthPixels * 0.85);
         int dialogHeight = (int)(displayMetrics.heightPixels * 0.85);
         dialog.getWindow().setLayout(dialogWidth, dialogHeight);
@@ -205,7 +227,7 @@ public class DialogLogic {
             @Override
             public void onClick(View view) {
                 System.out.println("Accept draw dest cards!");
-                presenter.clickDrawDestAccept();
+                dialogPresenter.clickDrawDestAccept();
                 dialog.dismiss();
             }
         });

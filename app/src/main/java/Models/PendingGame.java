@@ -12,9 +12,7 @@ public class PendingGame{
 	private String id;
 	//player object for this client
 	private String player;
-	
-	public PendingGame(){}
-	
+
 	public PendingGame(String host, String gameName){
 		players = new ArrayList<>();
 		players.add(host);

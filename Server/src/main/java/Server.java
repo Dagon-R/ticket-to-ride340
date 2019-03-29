@@ -28,7 +28,7 @@ public class Server {
 //            System.out.println(startGameService.doService("Game"));
             //            CreateGameService serv = new CreateGameService("");
 //            System.out.println(registerService.doService("Bob", "password"));
-
+            System.out.println("Server listening on port 8080");
             ServerSideSocket serverSideSocket = new ServerSideSocket(8080);
             serverSideSocket.start();
             Poller poller = new Poller(serverSideSocket);
