@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_map_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+    tools:context=".activities.MapActivity">
+
+
+
+<!--This nested coordinator layout needs to be here or else the sheet won't work properly-->
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#efefef">
+        <!--tools:context="info.androidhive.bottomsheet.MainActivity">-->
+
+        <views.MapLogic
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#00FFFFFF" />
+
+        <include layout="@layout/action_bar"></include>
+
+        <include layout="@layout/chat_sheet" />
+
+</android.support.design.widget.CoordinatorLayout>
+
+<!--This is the player drawer stuff, it can't go in another file, I tried-->
+    <LinearLayout
+        android:id="@+id/player_drawer"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        android:background="#efefef">
+<!-- This is the color stuff, I know it's an eyesore-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/blue_card_box"
+                android:layout_width="48dp"
+                android:layout_height="24dp"
+                android:background="@color/blue"
+                android:textColor="@color/darkText"
+                android:text="0"
+                android:textSize="20dp"
+                android:textAlignment="center"/>
+            <TextView
+                android:id="@+id/red_card_box"
+                android:layout_width="48dp"
+                android:layout_height="24dp"
+                android:background="@color/red"
+                android:textColor="@color/darkText"
+                android:text="0"
+                android:textSize="20dp"
+                android:textAlignment="center"/>
+            <TextView
+                android:id="@+id/yellow_card_box"
+                android:layout_width="48dp"
+                android:layout_height="24dp"
+                android:background="@color/yellow"
+                android:textColor="@color/darkText"
+                android:text="0"
+                android:textSize="20dp"
+                android:textAlignment="center"/>
+            <TextView
+                android:id="@+id/green_card_box"
+                android:layout_width="48dp"
+                android:layout_height="24dp"
+                android:background="@color/green"
+                android:textColor="@color/darkText"
+                android:text="0"
+                android:textSize="20dp"
+                android:textAlignment="center"/>
+            <TextView
+                android:id="@+id/purple_card_box"
+                android:layout_width="48dp"
+                android:layout_height="24dp"
+                android:background="@color/purple"
+                android:textColor="@color/darkText"
+                android:text="0"
+                android:textSize="20dp"
+                android:textAlignment="center"/>
+            <TextView
+                android:id="@+id/orange_card_box"
+                android:layout_width="48dp"
+                android:layout_height="24dp"
+                android:background="@color/orange"
+                android:textColor="@color/darkText"
+                android:text="0"
+                android:textSize="20dp"
+                android:textAlignment="center"/>
+            <TextView
+                android:id="@+id/black_card_box"
+                android:layout_width="48dp"
+                android:layout_height="24dp"
+                android:background="@color/black"
+                android:textColor="@color/lightText"
+                android:text="0"
+                android:textSize="20dp"
+                android:textAlignment="center"/>
+            <TextView
+                android:id="@+id/white_card_box"
+                android:layout_width="48dp"
+                android:layout_height="24dp"
+                android:background="@color/white"
+                android:textColor="@color/darkText"
+                android:text="0"
+                android:textSize="20dp"
+                android:textAlignment="center"/>
+            <TextView
+                android:id="@+id/rainbow_card_box"
+                android:layout_width="48dp"
+                android:layout_height="24dp"
+                android:background="@drawable/gradient"
+                android:textColor="@color/white"
+                android:text="0"
+                android:textSize="20dp"
+                android:textAlignment="center"/>
+
+
+<!--End color stuff-->
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/destination_card_recycler_view"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            />
+
+<!-- End player drawer stuff-->
+    </LinearLayout>
+
+    <!-- Game drawer starts here (once again, it can't go in another file)-->
+    <LinearLayout
+        android:id="@+id/game_drawer"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        android:background="#efefef">
+
+        <views.PlayerSummaryView
+                android:id="@+id/player1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <views.PlayerSummaryView
+            android:id="@+id/player2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <views.PlayerSummaryView
+            android:id="@+id/player3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <views.PlayerSummaryView
+            android:id="@+id/player4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <views.PlayerSummaryView
+            android:id="@+id/player5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        <!-- End Game drawer stuff-->
+    </LinearLayout>
+
+
+
+</android.support.v4.widget.DrawerLayout>
