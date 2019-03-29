@@ -8,7 +8,7 @@ public class ServerDrawDestCommand implements Command {
     DestinationCard card;
     String ipAddress;
     @Override
-    public Object execute() {
+    public Object execute(String gameID) {
         DrawDestService service = new DrawDestService();
         return service.doService(ipAddress,card);
     }

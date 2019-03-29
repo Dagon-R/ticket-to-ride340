@@ -8,7 +8,7 @@ import java.util.EnumSet;
 import Phase2Models.DestinationCard;
 import Phase2Models.TrainCardColor;
 
-public class ThisPlayer extends APlayer {
+public class ThisPlayer extends Player {
     // New Fields
     private EnumMap<TrainCardColor,Integer> trainHand;
     private EnumSet<DestinationCard> destHand;

@@ -46,9 +46,9 @@ public class ServerCreateGameCommand implements Command {
     }
 
     @Override
-    public Object execute() {
+    public Object execute(String gameID) {
         Service createGameService = new CreateGameService();
-        return createGameService.doService(player,gameID);
+        return createGameService.doService(player,this.gameID);
     }
 
     @Override

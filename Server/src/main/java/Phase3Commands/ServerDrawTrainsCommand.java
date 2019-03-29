@@ -11,7 +11,7 @@ public class ServerDrawTrainsCommand implements Command {
     private TrainCardColor return2;
     private String ipAddress;
     @Override
-    public Object execute() {
+    public Object execute(String gameID) {
         DrawTrainsService service = new DrawTrainsService();
         return service.doService(ipAddress,card1,card2,return1,return2);
     }

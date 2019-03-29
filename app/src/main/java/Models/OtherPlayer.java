@@ -5,7 +5,7 @@ import java.util.EnumMap;
 import Phase2Models.DestinationCard;
 import Phase2Models.TrainCardColor;
 
-public class OtherPlayer extends APlayer {
+public class OtherPlayer extends Player {
     private int trainCards;
     private int destCards;
 

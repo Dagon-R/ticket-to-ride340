@@ -13,7 +13,7 @@ public class ServerLeaveGameCommand implements Command {
     String ipAddress;
 
     @Override
-    public Object execute() {
+    public Object execute(String gameID) {
         Service leaveGameService = null;
         return leaveGameService.doService(player,gameID);
     }

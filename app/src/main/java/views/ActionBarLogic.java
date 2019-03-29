@@ -8,7 +8,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
-import Models.APlayer;
 import Models.Player;
 import Models.PlayerColorEnum;
 import Phase2Models.Store;
@@ -25,7 +24,7 @@ public class ActionBarLogic {
     public ActionBarLogic(MapActivity mapActivity){
         this.mapActivity = mapActivity;
         //this.mapPresenter = mapPresenter;
-        this.actionBarPresenter = new ActionBarPresenter((MapActivity) mapActivity, this);
+        this.actionBarPresenter = new ActionBarPresenter(mapActivity, this);
     }
 
     public void updateStore(Store store) {
@@ -100,7 +99,7 @@ public class ActionBarLogic {
     }
 
 
-    public void updateTurnView(int playerIndex, TreeSet<APlayer> playerList) {
+    public void updateTurnView(int playerIndex, TreeSet<Player> playerList) {
         //grey out i - 1 and color i
         ArrayList<View> views = new ArrayList<>();
         views.add(mapActivity.findViewById(R.id.p0Turn));
@@ -110,7 +109,7 @@ public class ActionBarLogic {
         views.add(mapActivity.findViewById(R.id.p4Turn));
 
         int i = 0;
-        for(APlayer player : playerList){
+        for(Player player : playerList){
             //set active player view color
             if (i == playerIndex) views.get(i).getBackground().setTint(getPlayerColor(player.getColor()));
                 //set previous all other players to grey
@@ -129,19 +128,6 @@ public class ActionBarLogic {
         tv.setText(String.valueOf(deckSize));
     }
 
-//    @Override
-//    public void drawStore(int i) {
-//        //replace card at i with new dest card
-//        actionBarPresenter.drawStore(i);
-//    }
-//
-//    @Override
-//    public void drawTrainCarCard() {
-//        actionBarPresenter.drawTrainCarCard();
-//    }
-//
-//    public void drawDestinationCard() {
-//        actionBarPresenter.drawDestinationCard();
-//    }
+
 
 }

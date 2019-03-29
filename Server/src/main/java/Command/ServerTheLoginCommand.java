@@ -69,7 +69,7 @@ public class ServerTheLoginCommand implements Command{
     }
 
     @Override
-    public Object execute() {
+    public Object execute(String gameID) {
         //pass in info in constructor
         Service loginService = new LoginService();
         return loginService.doService(username,password,authToken);

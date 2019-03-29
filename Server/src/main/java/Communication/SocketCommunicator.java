@@ -10,8 +10,9 @@ import java.util.Objects;
 import Command.Command;
 import Command.ErrorCommand;
 import Command.CommandWrapper;
-import Phase2Commands.ServerStartGameCommand;
 import Serialization.Deserializer;
+import Command.ServerCreateGameCommand;
+import Command.ServerJoinGameCommand;
 import Serialization.Serializer;
 
 
@@ -20,6 +21,7 @@ public class SocketCommunicator{
     PrintWriter out;
     BufferedReader in;
     IServerSocket server;
+    String gameID;
 
     public SocketCommunicator(Socket socket, IServerSocket server)throws IOException{
         this.socket = socket;
@@ -63,7 +65,7 @@ public class SocketCommunicator{
 
 //                System.out.println(ServerStartGameCommand.class +" " + type);
                 Command command = Deserializer.deserializeCommand(wrapper.getCommand(),type.toString());
-                Object obj =command.execute();
+                Object obj =command.execute(gameID);
 
                 if(obj.getClass() == ErrorCommand.class){
                     command = (Command)obj;
@@ -74,8 +76,8 @@ public class SocketCommunicator{
                 command.setIpAddress(socket.getInetAddress().getHostAddress());
 
                 System.out.println(command);
-//                checkGame(command);
-                server.sendToAll(command,this);
+                checkGame(command);
+                server.send(command,this);
             }
             catch (ClassNotFoundException e){
                 System.out.println("Command type: '"+wrapper.getType()+"' is not found");
@@ -85,13 +87,22 @@ public class SocketCommunicator{
     }
 
     private void checkGame(Command command){
-        System.out.println("Attempting to bind socket to game. If not desired, Comment out method call");
-//        if(command.getGameID() ==null){
-//            server.removeFromBound(this);
-//            return;
-//        }
-//
-//        server.addToBound(this,command.getGameID());
+//        System.out.println("Attempting to bind socket to game. If not desired, Comment out method call");
+
+        String commandType = command.getClass().getName();
+        String createGame = ServerCreateGameCommand.class.getName();
+        String joinGame = ServerJoinGameCommand.class.getName();
+        if(commandType.equals(createGame)){
+            ServerCreateGameCommand c = (ServerCreateGameCommand) command;
+            gameID= c.getGameID();
+            server.addToBound(this,gameID);
+        }
+
+        if(commandType.equals(joinGame)){
+            ServerJoinGameCommand c = (ServerJoinGameCommand) command;
+            gameID = c.getGameID();
+            server.addToBound(this,gameID);
+        }
 
     }
 
@@ -118,8 +129,15 @@ public class SocketCommunicator{
         if (this == o) return true;
         if (!(o instanceof SocketCommunicator)) return false;
         SocketCommunicator that = (SocketCommunicator) o;
+        if(!socket.getInetAddress().getHostAddress().equals(that.socket.getInetAddress().getHostAddress()))return false;
+        if(gameID == null && that.gameID == null) return true;
+        if(gameID != null && that.gameID == null) return false;
+        if(gameID == null && that.gameID != null) return false;
+        return gameID.equals(that.getGameID());
+    }
 
-        return socket.getInetAddress().getHostAddress().equals(that.socket.getInetAddress().getHostAddress());
+    public String getGameID() {
+        return gameID;
     }
 
     @Override

@@ -16,7 +16,7 @@ public class ServerClaimRouteCommand implements Command {
         this.isSecond = isSecond;
     }
     @Override
-    public Object execute() {
+    public Object execute(String gameID) {
         ClaimRouteService routeService = new ClaimRouteService();
         return routeService.doService(ipAddress,playerName,route,isSecond);
     }
