@@ -8,15 +8,24 @@ import Phase2Models.TrainCardColor;
 import Services.Service;
 
 public class DrawTrainsService implements Service {
+    MainModel model;
+
+    public DrawTrainsService(){
+        model = MainModel.get();
+    }
+
+    //Params: int pos1, int pos2
     @Override
     //int pos1, int pos2
     public void connectToProxy(Object... obj) {
         String playerID = MainModel.get().getPlayer().getName();
         int pos1 = (int) obj[1];
         int pos2 = (int) obj[2];
-        ServerProxy.get().drawTrains(playerID,pos1,pos2);
+        ServerProxy.get().drawTrains(playerID, pos1, pos2);
     }
 
+    //Params: int pos1, int pos2
+    //Indexes 0-4 are the store, 5 is the deck, and -1 is a skipped draw
     @Override
     public void doService(Object... obj) {
         ActiveGame game = MainModel.get().getGame().getActiveGame();
@@ -25,10 +34,14 @@ public class DrawTrainsService implements Service {
         TrainCardColor color1 = (TrainCardColor) obj[2];
         TrainCardColor color2 = (TrainCardColor) obj[3];
         String playerID = (String) obj[4];
+
         Player player = game.getPlayer(playerID);
         TrainCardColor[] drawnCards = game.drawAt(pos1,pos2);
+
         if (pos1 != -1) {game.setBuffer(pos1,color1);}
         if (pos2 != -1) {game.setBuffer(pos2,color2);}
         for (TrainCardColor color : drawnCards) {player.addTrainCard(color);}
     }
 }
+
+

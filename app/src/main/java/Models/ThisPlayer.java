@@ -31,6 +31,7 @@ public class ThisPlayer extends Player {
         Integer size = trainHand.get(card);
         size +=1;
         trainHand.put(card,size);
+        notifyObservers("TrainCardColor");
     }
 
     public int getCardColorCount(TrainCardColor color) { return trainHand.get(color); }

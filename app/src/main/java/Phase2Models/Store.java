@@ -49,6 +49,10 @@ public class Store extends Observable {
         else {return new TrainCardColor[]{};}
     }
 
+    public TrainCardColor drawOneAt(int index){
+        return store[index];
+    }
+
     public TrainCardColor[] getStore() {
         return store;
     }

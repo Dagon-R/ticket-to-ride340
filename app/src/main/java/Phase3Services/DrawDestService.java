@@ -2,28 +2,33 @@ package Phase3Services;
 
 import Communication.ServerProxy;
 import Models.MainModel;
-import Models.Player;
 import Phase2Models.DestinationCard;
 import Services.Service;
 
 public class DrawDestService implements Service {
     private MainModel model;
+    public DrawDestService() {model = MainModel.get();}
 
-    public DrawDestService(){
-        model = MainModel.get();
-    }
 
+    //Params: String playerID
     @Override
     public void connectToProxy(Object... obj) {
-        ServerProxy.get().drawDest(model.getPlayer().getName());
+        String playerID = (String) obj[0];
+        ServerProxy.get().drawDest(playerID);
     }
 
+    //Param 1: String ipAddress
+    //Param 2: DestinationCard card
     @Override
-    //Params: String playerID, IDestCard card, String ipAddress
     public void doService(Object... obj) {
-        DestinationCard[] cards = (DestinationCard[]) obj[0];
-        String playerName = (String) obj[1];
-        MainModel.get().getGame().getActiveGame().getPlayer(playerName).addToDestHand(cards);
-    }
+        String ipAddress = (String) obj[0];
+        DestinationCard card = (DestinationCard) obj[1];
+        String playerName = (String) obj[2];
 
+        if (ipAddress.equals(model.getIPAddress())) {
+            model.getPlayer().addToDestHand(card);
+        } else{
+            model.getGame().getActiveGame().getPlayer(playerName).addToDestHand(card);
+        }
+    }
 }

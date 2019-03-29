@@ -14,12 +14,13 @@ public class ClaimRouteService implements Service {
     }
 
     @Override
-    //params: Route route, String playerName, boolean isSecond
+    //params: String playerID, Route route, bool isSecond
     public void connectToProxy(Object... obj) {
-        Route route = (Route) obj[0];
-        String playerName = MainModel.get().getPlayer().getName();
-        boolean isSecond = (boolean) obj[1];
-        ServerProxy.get().claimRoute(route,playerName,isSecond);
+        String playerID = (String) obj[0];
+        Route route = (Route) obj[1];
+        Boolean isSecond = (Boolean) obj[3];
+
+        ServerProxy.get().claimRoute(route, playerID, isSecond);
     }
 
     @Override
@@ -30,10 +31,10 @@ public class ClaimRouteService implements Service {
         Player player = model.getGame().getActiveGame().getPlayer(playerName);
         Route route = (Route) obj[2];
         boolean isSecond = (boolean) obj[3];
-        if (ipAddress.equals(model.getIPAddress()))
-        {
-            //TODO: Current Player Stuff
-        }
+//        if (ipAddress.equals(MainModel.get().getIPAddress()))
+//        {
+//            //nothing specific for player
+//        }
         if (route.isDouble())
         {
             model.getGame().getActiveGame().setRouteOwner(route,player,isSecond);

@@ -7,6 +7,8 @@ import Services.Service;
 
 public class DrawTrainsService implements Service {
 
+    //Params: int pos1, int pos2
+    //Indexes 0-4 are the store, 5 is the deck, and -1 is a skipped draw
     @Override
     public Object doService(Object... obj) {
         String gameID = (String) obj[0];
