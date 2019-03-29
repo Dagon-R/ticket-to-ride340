@@ -5,25 +5,27 @@ import Phase2Models.TrainCardColor;
 import Phase3Services.DrawTrainsService;
 
 public class ServerDrawTrainsCommand implements Command {
-    private int card1;
-    private int card2;
-    private TrainCardColor return1;
-    private TrainCardColor return2;
+    private volatile int card1;
+    private volatile int card2;
+    private volatile TrainCardColor return1 = null;
+    private volatile TrainCardColor return2 = null;
     private String ipAddress;
     @Override
     public Object execute(String gameID) {
         DrawTrainsService service = new DrawTrainsService();
-        return service.doService(ipAddress,card1,card2,return1,return2);
+        return service.doService(gameID,card1,card2);
     }
 
     @Override
     public void addResults(Object obj) {
-
+        TrainCardColor[] results = (TrainCardColor[]) obj;
+        return1 = results[0];
+        if (results.length > 1) {return2 = results[1];}
     }
 
     @Override
     public void setIpAddress(String ipAddress) {
-
+        this.ipAddress = ipAddress;
     }
 
     public ServerDrawTrainsCommand(int pos1, int pos2)

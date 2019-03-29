@@ -56,4 +56,8 @@ public class Store extends Observable {
     public void setStore(TrainCardColor[] store) {
         this.store = store;
     }
+
+    public void setIndex(int index, TrainCardColor trainCardColor) {
+        store[index] = trainCardColor;
+    }
 }

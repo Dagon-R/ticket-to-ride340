@@ -14,7 +14,7 @@ public class DrawTrainsCommand implements Command {
     @Override
     public void execute() {
         DrawTrainsService service = new DrawTrainsService();
-        service.doService(return1,return2,playerID);
+        service.doService(card1,card2,return1,return2,playerID);
     }
     public DrawTrainsCommand(String playerID, int pos1, int pos2)
     {
