@@ -10,7 +10,6 @@ import java.util.Observer;
 
 import Models.MainModel;
 import Phase2Models.DestinationCard;
-import Phase2Services.DrawDestCardService;
 import Phase3Services.DrawDestService;
 import Phase3Services.DrawTrainsService;
 import Phase3Services.ClaimRouteService;
@@ -142,8 +141,8 @@ public class DialogPresenter implements Observer {
 
     public void clickDrawDestAccept(){
         //call trainCard service
-        Service drawDestService = new DrawDestCardService();
-        drawDestService.connectToProxy();
+        //Service drawDestService = new DrawDestCardService();
+        //drawDestService.connectToProxy();
         //TODO: make sure destDialog is triggered after drawdestcardserice
     }
 
