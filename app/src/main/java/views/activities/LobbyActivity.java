@@ -35,6 +35,7 @@ public class LobbyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lobby_activity);
+        getSupportActionBar().hide();
 
         playerName0 = (TextView) findViewById(R.id.playerName0);
         playerName1 = (TextView) findViewById(R.id.playerName1);

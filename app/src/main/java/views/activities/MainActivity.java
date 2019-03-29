@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements Observer { //
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
         //player = new SongPlayer(MediaPlayer.create(getApplicationContext(),R.raw.railroad),true);
         //player.start();
         loginPresenter = new LoginPresenter(this);
