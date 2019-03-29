@@ -28,6 +28,6 @@ public class ServerClaimRouteCommand implements Command {
 
     @Override
     public void setIpAddress(String ipAddress) {
-
+        this.ipAddress = ipAddress;
     }
 }

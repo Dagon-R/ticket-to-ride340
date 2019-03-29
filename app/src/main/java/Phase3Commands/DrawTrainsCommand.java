@@ -10,13 +10,15 @@ public class DrawTrainsCommand implements Command {
     private TrainCardColor return1;
     private TrainCardColor return2;
     private String ipAddress;
+    private String playerID;
     @Override
     public void execute() {
         DrawTrainsService service = new DrawTrainsService();
-        service.doService(ipAddress,card1,card2,return1,return2);
+        service.doService(card1,card2,return1,return2,playerID);
     }
-    public DrawTrainsCommand(int pos1, int pos2)
+    public DrawTrainsCommand(String playerID, int pos1, int pos2)
     {
+        this.playerID = playerID;
         card1 = pos1;
         card2 = pos2;
     }

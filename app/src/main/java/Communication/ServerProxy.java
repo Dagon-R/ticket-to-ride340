@@ -161,15 +161,15 @@ public class ServerProxy {
         sc2.start();
     }
 
-    public void drawDest()
+    public void drawDest(String playerName)
     {
-        DrawDestCommand newDrawDest = new DrawDestCommand();
+        DrawDestCommand newDrawDest = new DrawDestCommand(playerName);
         SendCommand sc2 = new SendCommand(newDrawDest);
         sc2.start();
     }
-    public void drawTrains(int pos1, int pos2)
+    public void drawTrains(String playerID, int pos1, int pos2)
     {
-        DrawTrainsCommand newDraw = new DrawTrainsCommand(pos1,pos2);
+        DrawTrainsCommand newDraw = new DrawTrainsCommand(playerID,pos1,pos2);
         SendCommand sc2 = new SendCommand(newDraw);
         sc2.start();
     }

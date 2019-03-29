@@ -19,11 +19,11 @@
         android:background="#efefef">
         <!--tools:context="info.androidhive.bottomsheet.MainActivity">-->
 
-            <views.MapLogic
-                android:id="@+id/map"
-                android:layout_width="match_parent"
-                android:layout_height="266dp"
-                android:background="#00FFFFFF" />
+        <views.MapLogic
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#00FFFFFF" />
 
         <include layout="@layout/action_bar"></include>
 

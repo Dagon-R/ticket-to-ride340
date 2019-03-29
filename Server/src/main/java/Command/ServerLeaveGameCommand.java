@@ -7,23 +7,22 @@ import Models.Player;
 import Services.Service;
 
 public class ServerLeaveGameCommand implements Command {
-    Player player;
-    String gameID;
-    GameList gameList;
-    String ipAddress;
+    private Player player;
+    private String gameID;
+    private GameList gameList;
+    private String ipAddress;
 
     @Override
     public Object execute(String gameID) {
         Service leaveGameService = null;
-        return leaveGameService.doService(player,gameID);
+        return leaveGameService.doService(player,this.gameID);
     }
 
     @Override
     public void addResults(Object obj) {
         if(obj == null) return;
         if(obj.getClass() != GameList.class) return;
-        GameList gameList = (GameList) obj;
-        this.gameList = gameList;
+        this.gameList = (GameList) obj;
 
     }
 

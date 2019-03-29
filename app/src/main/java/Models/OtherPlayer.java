@@ -16,6 +16,9 @@ public class OtherPlayer extends Player {
     }
 
     @Override
+    public void addToDestHand(DestinationCard[] cards) { destCards += cards.length; }
+
+    @Override
     public int getTotalTrainCards() {
         return trainCards;
     }

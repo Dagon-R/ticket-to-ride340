@@ -13,7 +13,7 @@ public class ServerDiscardCardCommand implements Command {
     @Override
     public Object execute(String gameID) {
         DiscardCardService discardCardService = new DiscardCardService();
-        return discardCardService.doService(toDiscard, gameId);
+        return discardCardService.doService(toDiscard, this.gameId);
     }
 
 

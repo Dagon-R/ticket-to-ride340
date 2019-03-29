@@ -5,12 +5,12 @@ import Phase2Models.DestinationCard;
 import Phase3Services.DrawDestService;
 
 public class DrawDestCommand implements Command {
-    DestinationCard card;
-    String ipAddress;
+    volatile private DestinationCard[] cards;
+    volatile private String playerName;
     @Override
     public void execute() {
         DrawDestService service = new DrawDestService();
-        service.doService(ipAddress,card);
+        service.doService(cards,playerName);
     }
-    public DrawDestCommand(){}
+    public DrawDestCommand(String playerName){this.playerName = playerName;}
 }

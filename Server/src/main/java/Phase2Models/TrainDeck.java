@@ -56,4 +56,14 @@ public class TrainDeck {
         }
         return result;
     }
+
+    public TrainCardColor draw() {
+        if(deck.size() > 0)
+        {
+            TrainCardColor result = deck.get(0);
+            deck.remove(0);
+            return result;
+        }
+        return null;
+    }
 }

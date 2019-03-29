@@ -1,7 +1,6 @@
 package Phase3Services;
 
 import Models.MainModel;
-import Phase2Models.DestinationCard;
 import Services.Service;
 
 public class DrawDestService implements Service {
@@ -12,7 +11,8 @@ public class DrawDestService implements Service {
     //Param 2: DestinationCard card
     @Override
     public Object doService(Object... obj) {
-        DestinationCard card = (DestinationCard) obj[0];
-        return null;
+        String gameID = (String) obj[0];
+        String playerID = (String) obj[1];
+        return model.getGameList().getActiveGame(gameID).getDestDeck().draw3();
     }
 }

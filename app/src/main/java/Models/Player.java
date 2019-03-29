@@ -86,6 +86,9 @@ public abstract class Player extends Observable implements Comparable<Player>{
         setChanged();
         notifyObservers(this);
     }
+
+    public abstract void addToDestHand(DestinationCard[] cards);
+
     public abstract int getTotalTrainCards();
 
     public abstract int getTotalDestinationCards();

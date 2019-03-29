@@ -17,6 +17,7 @@ import Phase2Models.Store;
 import Phase2Models.TrainCardColor;
 
 public class ActiveGame extends Observable {
+	private static final int STORE_SIZE = 5;
 	private static String TAG = "ActiveGame";
 	//A list of the players associated with the game
 	private TreeSet<Player> players ;
@@ -32,6 +33,7 @@ public class ActiveGame extends Observable {
     private int destDeckSize;
     private int trainDeckSize;
     private int activePlayerInd;
+    private TrainCardColor[] buffer;
 
 
 	public ActiveGame(PendingGame startGame){
@@ -199,6 +201,10 @@ case "ErrorMessage":
 		notifyObservers(store);
 	}
 
+	public void setBuffer(TrainCardColor[] inputBuffer) { this.buffer = inputBuffer; }
+
+	public void setBuffer(int index, TrainCardColor color) {this.buffer[index] = color;}
+
 	public ThisPlayer getPlayer() {
 		return player;
 	}
@@ -267,6 +273,26 @@ case "ErrorMessage":
 		this.activePlayerInd += 1;
 		//wraparound to player 0
 		if(this.activePlayerInd > numPlayers - 1) this.activePlayerInd = 0;
+	}
+	public TrainCardColor[] drawAt(int... indexes)
+	{
+		TrainCardColor[] result = new TrainCardColor[indexes.length];
+		int j = 0;
+        for (int index : indexes) {
+            if (index > 0) {
+                if (index < STORE_SIZE) {
+                    result[j] = store.drawAt(index)[0];
+                    store.setIndex(index, buffer[j]);
+                    j++;
+                } else if (index == STORE_SIZE) {
+                    result[j] = buffer[j];
+                    j++;
+                } else {
+                    return null;
+                }
+            }
+        }
+		return result;
 	}
 
 
