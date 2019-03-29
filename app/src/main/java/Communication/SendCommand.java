@@ -39,8 +39,9 @@ public class SendCommand extends Thread {
     private void writeString(String str) {
         System.out.println("Made it to write-string");
         // Write the given string to the output stream
-        server.write(str + "\n");
+
         try {
+            server.write(str + "\n");
             server.flush(); // Attempt to send the output stream to the server
         } catch (Exception e) {
             e.printStackTrace(); // Print a failure

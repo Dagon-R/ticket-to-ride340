@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import views.ActionBarLogic;
+import views.DialogLogic;
 import views.MapLogic;
 import views.R;
 
@@ -15,6 +16,7 @@ public class MapActivity extends AppCompatActivity { //
 //    MapLogic mapLogic;
     MapLogic mapLogic;
     ActionBarLogic actionBarLogic;
+    DialogLogic dialogLogic;
 //    MapPresenter mapPresenter;
 //    DrawerLayout drawerLayout;
 //
@@ -63,6 +65,7 @@ public class MapActivity extends AppCompatActivity { //
 //        setupDrawers();
 //        setupChatSheet();
         setupMap();
+        dialogLogic = new DialogLogic(this);
 //        mapPresenter = new MapPresenter(this);
 
     }

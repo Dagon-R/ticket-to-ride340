@@ -18,8 +18,9 @@ import views.activities.MapActivity;
 
 public class ActionBarLogic {
     private AppCompatActivity mapActivity;
-    private MapPresenter mapPresenter; //TODO: should become ActionBarPresenter soon
+     //TODO: should become ActionBarPresenter soon
     private ActionBar actionBarPresenter;
+
 
     public ActionBarLogic(MapActivity mapActivity){
         this.mapActivity = mapActivity;

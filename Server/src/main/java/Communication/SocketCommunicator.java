@@ -65,6 +65,7 @@ public class SocketCommunicator{
 
 //                System.out.println(ServerStartGameCommand.class +" " + type);
                 Command command = Deserializer.deserializeCommand(wrapper.getCommand(),type.toString());
+                System.out.println(command);
                 Object obj =command.execute(gameID);
 
                 if(obj.getClass() == ErrorCommand.class){
@@ -75,7 +76,7 @@ public class SocketCommunicator{
                 command.addResults(obj);
                 command.setIpAddress(socket.getInetAddress().getHostAddress());
 
-                System.out.println(command);
+
                 checkGame(command);
                 server.send(command,this);
             }

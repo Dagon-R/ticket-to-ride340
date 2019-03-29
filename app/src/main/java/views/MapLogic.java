@@ -369,6 +369,7 @@ public class MapLogic extends View {
     public boolean onTouchEvent(MotionEvent event) {
         super.onTouchEvent(event);
 //        System.out.println(event.getX());
+        System.out.println("CLICKING");
         presenter.mapClick(event.getX(),event.getY(),size);
         return false;
     }

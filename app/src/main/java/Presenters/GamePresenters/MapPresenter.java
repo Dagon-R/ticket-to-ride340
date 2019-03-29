@@ -24,9 +24,10 @@ public class MapPresenter implements Observer, IMap, IMapPresenter {
 
     public MapPresenter(MapActivity mapActivity, MapLogic logic) {
         this.mapActivity = mapActivity;
+        this.logic = logic;
         MainModel.get().addMapObservers(this);
         updateMap();
-        this.logic = logic;
+
     }
 
 
@@ -111,6 +112,7 @@ public class MapPresenter implements Observer, IMap, IMapPresenter {
 //    }
 
     public void selectCity(float x, float y, PointF size) {
+        System.out.println("selectCity: " +"Attempting to select");
         for (City city : City.values()) {
             PointF point = MapEquations.getPoint(city, size);
             float dist = (float) Math.pow(Math.pow(x - point.x, 2) + Math.pow(y - point.y, 2), .5);
@@ -127,6 +129,7 @@ public class MapPresenter implements Observer, IMap, IMapPresenter {
     }
 
     private void claimRoute(City city1, City city2) {
+        System.out.println("claimRoute: " + "JUST SELECTED A ROUTE");
         Route route = Route.getRoute(city1,city2);
         MainModel.get().getMapModel().setSelectedRoute(route);
 
@@ -152,6 +155,7 @@ public class MapPresenter implements Observer, IMap, IMapPresenter {
 
     @Override
     public void mapClick(float x, float y, PointF size) {
+        System.out.println("CLICKING!!!!");
         selectCity(x,y,size);
     }
 

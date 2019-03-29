@@ -23,7 +23,6 @@ public class ServerSideSocket extends Thread implements IServerSocket{
     HashMap<SocketCommunicator,String> socketToGame;
 
     ServerSocket serverSocket;
-    boolean accessing;
     public ServerSideSocket(int port)throws IOException{
         serverSocket = new ServerSocket(port);
         unboundSockets = new CopyOnWriteArraySet<>();
@@ -131,11 +130,9 @@ public class ServerSideSocket extends Thread implements IServerSocket{
 
     @Override
     public void addToBound(SocketCommunicator socketCommunicator,String game) {
-        allSockets.remove(socketCommunicator);
-        bindToGame(socketCommunicator,game);
-        bindToSocket(socketCommunicator,game);
-
-
+        unboundSockets.remove(socketCommunicator);
+        bindToGame  (socketCommunicator, game);
+        bindToSocket(socketCommunicator, game);
     }
 
     private void bindToSocket(SocketCommunicator socketCommunicator, String game){

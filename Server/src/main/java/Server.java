@@ -9,6 +9,8 @@ import Communication.ServerSideSocket;
 public class Server {
 
     public static void main(String[] args){
+
+
         try{
 //            RegisterService registerService = new RegisterService();
 //            registerService.doService("Bob", "password");
@@ -28,8 +30,11 @@ public class Server {
 //            System.out.println(startGameService.doService("Game"));
             //            CreateGameService serv = new CreateGameService("");
 //            System.out.println(registerService.doService("Bob", "password"));
+            int port = 8080;
+            if(args.length ==1) port = Integer.parseInt(args[0]);
+            else System.out.println("Port was not specified, attempting to start on 8080");
+            ServerSideSocket serverSideSocket = new ServerSideSocket(port);
             System.out.println("Server listening on port 8080");
-            ServerSideSocket serverSideSocket = new ServerSideSocket(8080);
             serverSideSocket.start();
             Poller poller = new Poller(serverSideSocket);
             poller.start();

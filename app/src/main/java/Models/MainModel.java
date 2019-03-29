@@ -90,6 +90,7 @@ public class MainModel{
 
     public void addDialogObservers(Observer o){
         mapModel.addObserver(o);
+
     }
 
     public void addGameInfoObservers(Observer o){

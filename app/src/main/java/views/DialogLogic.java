@@ -22,6 +22,7 @@ import views.activities.MapActivity;
 public class DialogLogic {
     DialogPresenter dialogPresenter;
     MapActivity mapActivity;
+    final Dialog dialog;
     View.OnClickListener confirmRoute = new View.OnClickListener(){
         @Override
         public void onClick(View v) {
@@ -39,35 +40,40 @@ public class DialogLogic {
     };
 
     public DialogLogic(MapActivity mapActivity) {
-        dialogPresenter = new DialogPresenter(mapActivity,this);
         this.mapActivity = mapActivity;
+        dialog = new Dialog(mapActivity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogPresenter = new DialogPresenter(mapActivity,this);
+
+
     }
 
     public void showConfirmRouteDialog(MapModel mapModel, ThisPlayer player){
-        final Dialog dialog = new Dialog(mapActivity);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+
         dialog.setContentView(R.layout.claim_route);
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(true);
         setConfirmText(mapModel,player);
+        dialog.show();
         //TODO FINISH LINKING
 
     }
 
     private void setConfirmText(MapModel model,ThisPlayer player){
-        mapActivity.findViewById(R.id.selectDouble).setVisibility(View.GONE);
-        mapActivity.findViewById(R.id.doubleRoute).setVisibility(View.GONE);
-//        mapActivity.findViewById(R.id.singleRoute).setBackgroundColor();
-        //Add Click Listeners
-        mapActivity.findViewById(R.id.confirmRoute).setOnClickListener(confirmRoute);
-        mapActivity.findViewById(R.id.rejectRoute).setOnClickListener(rejectRoute);
-
-        if(model.getSelectedRoute().isDouble()){
-            mapActivity.findViewById(R.id.selectDouble).setVisibility(View.VISIBLE);
-            mapActivity.findViewById(R.id.doubleRoute).setVisibility(View.VISIBLE);
-        }
-        ((TextView)mapActivity.findViewById(R.id.city1)).setText(model.getSelectedRoute().getCity1().getName());
-        ((TextView)mapActivity.findViewById(R.id.city1)).setText(model.getSelectedRoute().getCity2().getName());
+//        mapActivity.findViewById(R.id.selectDouble).setVisibility(View.GONE);
+//        mapActivity.findViewById(R.id.doubleRoute).setVisibility(View.GONE);
+////        mapActivity.findViewById(R.id.singleRoute).setBackgroundColor();
+//        //Add Click Listeners
+//        mapActivity.findViewById(R.id.confirmRoute).setOnClickListener(confirmRoute);
+//        mapActivity.findViewById(R.id.rejectRoute).setOnClickListener(rejectRoute);
+//
+//        if(model.getSelectedRoute().isDouble()){
+//            mapActivity.findViewById(R.id.selectDouble).setVisibility(View.VISIBLE);
+//            mapActivity.findViewById(R.id.doubleRoute).setVisibility(View.VISIBLE);
+//        }
+//        ((TextView)mapActivity.findViewById(R.id.city1)).setText(model.getSelectedRoute().getCity1().getName());
+//        ((TextView)mapActivity.findViewById(R.id.city1)).setText(model.getSelectedRoute().getCity2().getName());
 
 
     }
@@ -77,8 +83,6 @@ public class DialogLogic {
     //pass destination
 
     public void showDestDialog(EnumSet<DestinationCard> destHand){
-        final Dialog dialog = new Dialog(mapActivity);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dest_card_dialog);
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(true);

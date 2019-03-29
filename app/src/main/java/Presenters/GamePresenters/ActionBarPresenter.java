@@ -71,7 +71,7 @@ public class ActionBarPresenter implements Observer, ActionBar, IActionBarPresen
     public void drawDestinationCard(View view) {
         //show confirm dialog
         DialogPresenter dp = new DialogPresenter(mapActivity, new DialogLogic(mapActivity));
-        dp.showDestDialog();
+//        dp.showDestDialog();
         //service called on accept dialog (dialogPresenter)
         //Service drawDestinationCardServe = null;
         Log.d(TAG, "Attach draw Destination Service");

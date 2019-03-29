@@ -30,6 +30,7 @@ public class DialogPresenter implements Observer {
         this.activity = activity;
         MainModel.get().addDialogObservers(this);
         showDestDialog();
+        selectedDestCards = new ArrayList<>();
         //TODO attach to MapModel,Active Game?
     }
 
@@ -42,7 +43,7 @@ public class DialogPresenter implements Observer {
         if (type.equals("String")) {
             type = arg.toString();
         }
-
+        Log.d(TAG, "update: "+type);
         switch (type){
             case "ConfirmRoute":
                 confirmRouteDialog();
