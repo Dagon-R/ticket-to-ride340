@@ -27,7 +27,7 @@ public class ActionBarPresenter implements Observer, ActionBar, IActionBarPresen
         ActiveGame game = MainModel.get().getGame().getActiveGame();
         if (game.getPlayer().getColor() == PlayerColorEnum.values()[0])
         { this.turnLogic = new ABPOn(activity); }
-        else {this.turnLogic = new ABPOff();}
+        else {this.turnLogic = new ABPOff(activity);}
         MainModel.get().addActionBarObservers(this);
     }
 
@@ -99,7 +99,7 @@ public class ActionBarPresenter implements Observer, ActionBar, IActionBarPresen
         int activeIndex = game.getActivePlayerInd();
         if (PlayerColorEnum.values()[activeIndex] == game.getPlayer().getColor())
         { turnLogic = new ABPOn(mapActivity); }
-        else { turnLogic = new ABPOff(); }
+        else { turnLogic = new ABPOff(mapActivity); }
     }
 
     private void updateDestDeck() {
