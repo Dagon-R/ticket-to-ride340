@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 import Command.Command;
+import Phase2Commands.ServerChatCommand;
 
 public class ServerSideSocket extends Thread implements IServerSocket{
     public static int totalSockets;
@@ -120,9 +121,17 @@ public class ServerSideSocket extends Thread implements IServerSocket{
     public void send(Command command, SocketCommunicator socket){
         if(!socketToGame.containsKey(socket)){
             sendToUnbound(command);
+
             return;
         }
+        if(!command.getClass().getSimpleName().equals(ServerChatCommand.class.getSimpleName())) {
+            ServerChatCommand history = new ServerChatCommand();
+            history.addResults(command);
+            history.setGameID(socketToGame.get(socket));
+            sendToGame(history, socketToGame.get(socket));
+        }
         sendToGame(command,socketToGame.get(socket));
+
 
     }
 

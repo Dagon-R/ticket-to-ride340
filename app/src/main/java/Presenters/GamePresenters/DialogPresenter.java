@@ -65,12 +65,7 @@ public class DialogPresenter implements Observer {
             }
         });
     }
-    public void deselectRoute() {
-        MainModel.get().getMapModel().setSelectedRoute(null);
-    }
-    public void deselectCity() {
-        MainModel.get().getMapModel().setSelectedCity(null);
-    }
+
     public void confirmRoute(){
         //Confirm route after being prompted
         Service claimRouteService = new ClaimRouteService();

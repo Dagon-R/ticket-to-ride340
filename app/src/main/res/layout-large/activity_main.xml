@@ -140,33 +140,33 @@
             android:layout_gravity="center"
             android:gravity="center"/>
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center">
 
-                <View
-                    android:id="@+id/trainCardColor"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@color/blue"
-                    android:backgroundTint="@color/blue"
-                    android:src="@drawable/square" />
+            <View
+                android:id="@+id/trainCardColor"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@color/blue"
+                android:backgroundTint="@color/blue"
+                android:src="@drawable/square" />
 
-                <TextView
-                    android:id="@+id/trainCardNumber"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:gravity="center"
+            <TextView
+                android:id="@+id/trainCardNumber"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:gravity="center"
 
-                    android:text="0"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:typeface="normal" />
-            </RelativeLayout>
+                android:text="0"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:typeface="normal" />
+        </RelativeLayout>
 
     </LinearLayout>
     <LinearLayout
@@ -218,10 +218,12 @@
         android:gravity="center"
         android:text="You do not have the right cards to claim this route"
         android:textColor="@color/red"
-         />
+        />
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="bottom">
         <Button
             android:id="@+id/rejectRoute"
             android:layout_width="wrap_content"

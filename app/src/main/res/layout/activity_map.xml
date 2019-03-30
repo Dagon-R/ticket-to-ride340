@@ -19,13 +19,22 @@
         android:background="#efefef">
         <!--tools:context="info.androidhive.bottomsheet.MainActivity">-->
 
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <include layout="@layout/action_bar"
+                android:id="@+id/a_bar"/>
             <views.MapLogic
                 android:id="@+id/map"
                 android:layout_width="match_parent"
-                android:layout_height="266dp"
-                android:background="#00FFFFFF" />
+                android:layout_height="match_parent"
+                android:background="#00FFFFFF"
+                android:layout_below="@id/a_bar"/>
 
-        <include layout="@layout/action_bar"></include>
+
+        </RelativeLayout>
+
 
         <include layout="@layout/chat_sheet" />
 

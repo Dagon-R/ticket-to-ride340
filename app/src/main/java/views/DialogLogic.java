@@ -17,6 +17,7 @@ import java.util.EnumSet;
 import Phase2Models.DestinationCard;
 import Phase2Models.MapModel;
 import Presenters.GamePresenters.DialogPresenter;
+import Presenters.UtilPresenter;
 import views.activities.MapActivity;
 
 public class DialogLogic {
@@ -27,15 +28,15 @@ public class DialogLogic {
         @Override
         public void onClick(View v) {
             dialogPresenter.confirmRoute();
-            dialogPresenter.deselectCity();
-            dialogPresenter.deselectRoute();
+            UtilPresenter.deselectCity();
+            UtilPresenter.deselectRoute();
         }
     };
     View.OnClickListener rejectRoute = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            dialogPresenter.deselectCity();
-            dialogPresenter.deselectRoute();
+            UtilPresenter.deselectCity();
+            UtilPresenter.deselectRoute();
         }
     };
 
@@ -61,19 +62,19 @@ public class DialogLogic {
     }
 
     private void setConfirmText(MapModel model,ThisPlayer player){
-//        mapActivity.findViewById(R.id.selectDouble).setVisibility(View.GONE);
-//        mapActivity.findViewById(R.id.doubleRoute).setVisibility(View.GONE);
-////        mapActivity.findViewById(R.id.singleRoute).setBackgroundColor();
-//        //Add Click Listeners
-//        mapActivity.findViewById(R.id.confirmRoute).setOnClickListener(confirmRoute);
-//        mapActivity.findViewById(R.id.rejectRoute).setOnClickListener(rejectRoute);
-//
-//        if(model.getSelectedRoute().isDouble()){
-//            mapActivity.findViewById(R.id.selectDouble).setVisibility(View.VISIBLE);
-//            mapActivity.findViewById(R.id.doubleRoute).setVisibility(View.VISIBLE);
-//        }
-//        ((TextView)mapActivity.findViewById(R.id.city1)).setText(model.getSelectedRoute().getCity1().getName());
-//        ((TextView)mapActivity.findViewById(R.id.city1)).setText(model.getSelectedRoute().getCity2().getName());
+        mapActivity.findViewById(R.id.selectDouble).setVisibility(View.GONE);
+        mapActivity.findViewById(R.id.doubleRoute).setVisibility(View.GONE);
+//        mapActivity.findViewById(R.id.singleRoute).setBackgroundColor();
+        //Add Click Listeners
+        mapActivity.findViewById(R.id.confirmRoute).setOnClickListener(confirmRoute);
+        mapActivity.findViewById(R.id.rejectRoute).setOnClickListener(rejectRoute);
+
+        if(model.getSelectedRoute().isDouble()){
+            mapActivity.findViewById(R.id.selectDouble).setVisibility(View.VISIBLE);
+            mapActivity.findViewById(R.id.doubleRoute).setVisibility(View.VISIBLE);
+        }
+        ((TextView)mapActivity.findViewById(R.id.city1)).setText(model.getSelectedRoute().getCity1().getName());
+        ((TextView)mapActivity.findViewById(R.id.city1)).setText(model.getSelectedRoute().getCity2().getName());
 
 
     }

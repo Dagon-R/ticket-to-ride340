@@ -14,11 +14,24 @@ public class ServerChatCommand implements Command {
     }
 
     @Override
-    public void addResults(Object obj) { }
+    public void addResults(Object obj) {
+        Command command = (Command) obj;
+        String commandName = command.getClass().getSimpleName();
+        commandName = commandName.replace("Server","");
+        commandName = commandName.replace("Command","");
+        String name = String.join(" ",commandName.split("(?=\\p{Upper})"));
+        message = new ChatMessage("Console",name);
+
+    }
 
     public String getGameID() {
         return gameID;
     }
+
+    public void setGameID(String gameID){
+        this.gameID = gameID;
+    }
+
     @Override
     public void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;

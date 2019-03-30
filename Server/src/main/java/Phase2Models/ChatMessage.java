@@ -15,6 +15,10 @@ public class ChatMessage {
         this.message = message;
         this.timestamp = timestamp;
     }
+    public ChatMessage(String name, String message){
+        this.playerName = name;
+        this.message = message;
+    }
     ChatMessage(String playerName, PlayerColorEnum color, String message, int timestamp)
     {
         this.playerName = playerName;

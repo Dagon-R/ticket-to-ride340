@@ -6,6 +6,7 @@ import Communication.ServerProxy;
 import Models.ActiveGame;
 
 import Models.MainModel;
+import Models.Player;
 import Phase2Models.ChatMessage;
 import Services.Service;
 
@@ -40,7 +41,12 @@ public class ChatService implements Service {
             System.out.println("Another Active game just got a chat message");
             return;
         }
-
+        if(message.getPlayerName().equals("Console")){
+            Player p = (Player)game.getPlayers().toArray()[ game.getActivePlayerInd()];
+            StringBuilder history = new StringBuilder(message.getMessage());
+            history.insert(0,p.getName() +": ");
+            message.setMessage(history.toString());
+        }
 
         game.addChatMessage(message);
 

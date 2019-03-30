@@ -4,6 +4,7 @@ import android.util.Log;
 import java.util.Observable;
 import java.util.Observer;
 
+import Models.ActiveGame;
 import Models.MainModel;
 import Phase2Models.City;
 
@@ -120,26 +121,37 @@ public class MapPresenter implements Observer, IMap, IMapPresenter {
             if (dist < 50) {
                 if (MainModel.get().getMapModel().getSelectedCity() == null) selectCity(city);
                 else if (MainModel.get().getMapModel().getSelectedCity().equals(city))
-                    deselectCity();
+                    UtilPresenter.deselectCity();
                 else claimRoute(MainModel.get().getMapModel().getSelectedCity(), city);
                 return;
             }
         }
-        deselectCity();
+        UtilPresenter.deselectCity();
     }
 
     private void claimRoute(City city1, City city2) {
-        System.out.println("claimRoute: " + "JUST SELECTED A ROUTE");
+
         Route route = Route.getRoute(city1,city2);
-        MainModel.get().getMapModel().setSelectedRoute(route);
+        if(route == null){
+            UtilPresenter.deselectCity();
+            return;
+        }
+        ActiveGame game = MainModel.get().getGame().getActiveGame();
+        if(route.isDouble()){
 
+            if(game.getPlayers().size()<4){
 
-        //TODO Send prompt to view with message "Claim route between %city1 and %city2?" (place names in for city1 and city2)
-        //TODO Prompt should also include "Requires %numberRequired %color train car cards"
-        //TODO Prompt includes "You have %numberOwned %color train car cards"
-        //TODO Prompt may also include "You must use %numberRequired - numberOwned rainbow car cards"
-        //TODO Options for confirm and deny
-        //TODO (Next parts will not be called from here, but will include the sequence of events)
+                if(game.getRouteOwners(route) == null){
+                    MainModel.get().getMapModel().setSelectedRoute(route);
+                    return;
+                }
+            }
+            MainModel.get().getMapModel().setSelectedRoute(route);
+            return;
+
+        }else if(game.getRouteOwners(route)[0] == null){
+            MainModel.get().getMapModel().setSelectedRoute(route);
+        }
 
     }
 
@@ -149,9 +161,6 @@ public class MapPresenter implements Observer, IMap, IMapPresenter {
         MainModel.get().getMapModel().setSelectedCity(city);
     }
 
-    private void deselectCity() {
-        MainModel.get().getMapModel().setSelectedCity(null);
-    }
 
     @Override
     public void mapClick(float x, float y, PointF size) {
